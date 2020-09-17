@@ -1,0 +1,17 @@
+.content{
+    background: var(--background);
+    width: 100%;
+    height: 100vh;
+}
+
+.photo-section{
+    background-image: url("../images/diego-sulivan-iDa5Mf7GqRg-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.section-light {
+    background-color: var(--background-light);
+}

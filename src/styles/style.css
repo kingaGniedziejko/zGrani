@@ -1,0 +1,31 @@
+:root {
+    --accent-1: #C6070E;
+    --accent-2: #B0030F;
+    --accent-3: #850015;
+    --accent-4: #57021B;
+
+    --background: #111111;
+    --background-light: #2F2F2F;
+    --background-faded: rgba(0, 0, 0, 0.2);
+
+    --text-color: rgb(239, 239, 239);
+    --text-color-dark: rgb(210, 210, 210);
+
+    --transparent: rgba(0, 0, 0, 0);
+}
+
+* {
+    color: var(--text-color);
+}
+
+#header {
+    transition: background-color 0.5s ease-in-out;
+}
+
+#header .navbar-nav a {
+    font-size: 0.9em;
+}
+
+#header .navbar-nav a.active {
+    border-bottom: 1px solid white;
+}

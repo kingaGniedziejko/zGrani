@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from "react-router-dom";
+
+import "./styles/style.css"
+
+import Header from "./components/layouts/Header";
+import Content from "./components/layouts/Content";
+import Footer from "./components/layouts/Footer";
 
 class App extends Component{
     render() {
         return (
-            <div>
-                zGrani
-            </div>
+            <BrowserRouter>
+                <Header/>
+                <Content/>
+                <Footer/>
+            </BrowserRouter>
         );
     }
 }

@@ -20,9 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/json-to-firestore-instruments.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/json-to-firestore-voivodeship.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layouts/Content.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layouts/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layouts/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/Browse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/Home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/Search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/Signup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/SignupArtist.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/SignupBand.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/UserProfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/UserProfileEdit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/diego-sulivan-iDa5Mf7GqRg-unsplash.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/content_style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json-to-firestore-instruments.js" beforeDir="false" afterPath="$PROJECT_DIR$/json-to-firestore/json-to-firestore-instruments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json-to-firestore-voivodeship.js" beforeDir="false" afterPath="$PROJECT_DIR$/json-to-firestore/json-to-firestore-voivodeship.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +52,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -40,6 +60,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1hXt6X7pefa2YYzQZOGSMpsWoxq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,9 +71,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../psp5_website" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.splitter.proportion" value="0.16626312" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gnied\Documents\GitHub\zGrani\src\images" />
+      <recent name="C:\Users\gnied\Documents\GitHub\zGrani\json-to-firestore" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -61,6 +92,8 @@
       <option name="presentableId" value="Default" />
       <updated>1600169089878</updated>
       <workItem from="1600169090982" duration="8951000" />
+      <workItem from="1600251909481" duration="4437000" />
+      <workItem from="1600261836603" duration="15052000" />
     </task>
     <servers />
   </component>
@@ -77,19 +110,24 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600258962379">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600258962379" />
     <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600171230000">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600171230000" />
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1600171654762">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1600252120658">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600171654762" />
-    <state x="277" y="77" key="SettingsEditor" timestamp="1600189403307">
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600252120658" />
+    <state x="106" y="46" width="1384" height="709" key="SettingsEditor" timestamp="1600261825939">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="277" y="77" key="SettingsEditor/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600189403307" />
+    <state x="106" y="46" width="1384" height="709" key="SettingsEditor/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600261825939" />
   </component>
 </project>
