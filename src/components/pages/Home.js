@@ -9,14 +9,14 @@ class Home extends Component{
     render() {
         return (
             <div className={"home"}>
-                <div className={"section photo-section d-flex justify-content-center align-items-center"}>
-                    <div className={"section-content"}>
+                <div className={"section photo-section d-flex justify-content-center"}>
+                    <div id={"title-text"} className={"section-content mt-5"}>
                         <h1 className="text-center">zGrani - portal dla muzyków</h1>
                         <h3 className="text-center">i nie tylko</h3>
                         <p className="text-center">Stwórz profil, załóż zespół, znajdź zastępstwo, zatrudnij twórcę</p>
                     </div>
                 </div>
-                <div className={"section section-dark-gradient"}>
+                <div className={"section section-dark-gradient py-5"}>
                     <Container className={"section-content"}>
                         <Row className="py-5 justify-content-center">
                             <Col className="col-12 col-sm-8 col-lg-4 mt-5 mt-lg-0 d-flex flex-column align-items-center">
