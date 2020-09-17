@@ -1,21 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 :root {
     --accent-1: #C6070E;
     --accent-2: #B0030F;
     --accent-3: #850015;
-    --accent-4: #57021B;
+    /*--accent-4: #57021B;*/
+    /*--accent-4: #430000;*/
+    --accent-4: #320b0b;
 
-    --background: #111111;
-    --background-light: #2F2F2F;
-    --background-faded: rgba(0, 0, 0, 0.2);
+
+    --background: #000000;
+    --background-light: #0c0c0c;
+    --background-faded: rgba(0, 0, 0, 0.9);
 
     --text-color: rgb(239, 239, 239);
-    --text-color-dark: rgb(210, 210, 210);
+    --text-color-dark: rgb(157, 157, 157);
 
     --transparent: rgba(0, 0, 0, 0);
 }
 
 * {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
     color: var(--text-color);
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+.dark-text {
+    color: var(--text-color-dark);
+}
+
+.border {
 }
 
 #header {
@@ -28,4 +47,24 @@
 
 #header .navbar-nav a.active {
     border-bottom: 1px solid white;
+}
+
+.btn {
+    font-weight: 300;
+    width: fit-content;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    border-radius: 0;
+}
+
+.btn-outline-accent {
+    color: var(--text-color);
+    border-color: var(--text-color-dark);
+}
+
+.btn-outline-accent:hover {
+    color: var(--text-color);
+    background-color: var(--accent-3);
+    border-color: var(--text-color-dark);
 }

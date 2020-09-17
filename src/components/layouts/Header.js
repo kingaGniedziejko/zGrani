@@ -31,8 +31,8 @@ class Header extends Component{
                         <Nav.Link className="px-0 mx-2" href="/szukaj">Szukaj</Nav.Link>
                     </Nav>
                     <Nav.Item className="mt-3 mt-md-0">
-                        <Button className="mr-2 mt-1 mt-md-0" variant="outline-light" size="sm">Logowanie</Button>
-                        <Button className="mt-1 mt-md-0" variant="outline-light" size="sm">Rejestracja</Button>
+                        <Button className="mr-2 mt-1 mt-md-0" variant="outline-accent" size="sm">Logowanie</Button>
+                        <Button className="mt-1 mt-md-0" variant="outline-accent" size="sm">Rejestracja</Button>
                     </Nav.Item>
 
                 </Navbar.Collapse>
