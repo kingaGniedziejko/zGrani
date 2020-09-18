@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Nav, Navbar, Button} from "react-bootstrap";
-import { withRouter } from "react-router-dom";
+import {withRouter, NavLink, Link} from "react-router-dom";
 
 import "../../styles/header_style.css"
 
@@ -32,9 +32,9 @@ class Header extends Component{
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="pt-2 pt-md-0">
                     <Nav className="ml-xs-auto ml-md-5 mr-xs-0 mr-md-auto" activeKey={location.pathname}>
-                        <Nav.Link className="px-0 mx-md-2" href="/">Strona główna</Nav.Link>
-                        <Nav.Link className="px-0 mx-md-2" href="/przegladaj">Przeglądaj</Nav.Link>
-                        <Nav.Link className="px-0 mx-md-2" href="/szukaj">Szukaj</Nav.Link>
+                        <NavLink className="px-0 mx-md-2 py-1" to="/" exact>Strona główna</NavLink>
+                        <NavLink className="px-0 mx-md-2 py-1" to="/przegladaj">Przeglądaj</NavLink>
+                        <NavLink className="px-0 mx-md-2 py-1" to="/szukaj">Szukaj</NavLink>
                     </Nav>
                     <Nav.Item className="mt-3 mt-md-0 d-flex flex-row">
                         <Button className="mr-2 mt-1 mt-md-0" block variant="outline-accent" size="sm">Logowanie</Button>

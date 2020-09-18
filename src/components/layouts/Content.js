@@ -13,7 +13,7 @@ class Content extends Component{
             <div className={"content"}>
                 <Switch>
                     <Route exact path={"/"} component={Home}/>
-                    <Route exact path={"/przegladaj"} component={Browse}/>
+                    <Route path={"/przegladaj"} component={Browse}/>
                     <Route exact path={"/szukaj"} component={Search}/>
                 </Switch>
             </div>
