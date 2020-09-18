@@ -13,7 +13,8 @@
     --background-light: #0c0c0c;
     --background-faded: rgba(0, 0, 0, 0.9);
 
-    --text-color: rgb(239, 239, 239);
+    --text-color-light: rgb(255, 255, 255);
+    --text-color: rgb(214, 214, 214);
     --text-color-dark: rgb(157, 157, 157);
 
     --transparent: rgba(0, 0, 0, 0);
@@ -34,24 +35,14 @@
     color: var(--text-color-dark);
 }
 
-.border {
-}
-
-#header {
-    transition: background-color 0.5s ease-in-out;
-}
-
-#header .navbar-nav a {
-    font-size: 0.9em;
-}
-
-#header .navbar-nav a.active {
-    border-bottom: 1px solid white;
-}
-
 .btn {
     font-weight: 300;
     width: fit-content;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
 }
 
 .btn-group-sm>.btn, .btn-sm {
@@ -67,4 +58,17 @@
     color: var(--text-color);
     background-color: var(--accent-3);
     border-color: var(--text-color-dark);
+}
+
+a:link, a:visited {
+    color: var(--text-color);
+}
+
+a:hover {
+    color: var(--text-color-light);
+    text-decoration: none;
+}
+
+a:active {
+    color: var(--text-color);
 }

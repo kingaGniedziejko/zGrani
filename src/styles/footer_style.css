@@ -1,0 +1,17 @@
+#footer {
+    width: 100%;
+    background-color: var(--accent-4);
+    bottom: 0;
+    position: relative;
+}
+
+.icon-text {
+    font-size: 2em;
+    line-height: 15px;
+}
+
+@media (max-width: 767px) {
+    .icon-text {
+        display: none;
+    }
+}

@@ -9,10 +9,10 @@ class Home extends Component{
     render() {
         return (
             <div className={"home"}>
-                <div className={"section photo-section d-flex justify-content-center"}>
-                    <div id={"title-text"} className={"section-content mt-5"}>
-                        <h1 className="text-center">zGrani - portal dla muzyków</h1>
-                        <h3 className="text-center">i nie tylko</h3>
+                <div className={"section photo-section d-flex flex-column align-items-center"}>
+                    <div id={"title-text"} className={"section-content mt-1 mt-sm-4 mt-lg-5 px-3"}>
+                        <h1 className="text-center mb-1">zGrani</h1>
+                        <h4 className="text-center mb-3">portal dla muzyków i nie tylko</h4>
                         <p className="text-center">Stwórz profil, załóż zespół, znajdź zastępstwo, zatrudnij twórcę</p>
                     </div>
                 </div>

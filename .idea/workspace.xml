@@ -20,10 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/styles/footer_style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/header_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/diego-sulivan-iDa5Mf7GqRg-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/diego-sulivan-iDa5Mf7GqRg-unsplash.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/content_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +56,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../personal-project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -75,7 +79,9 @@
       <updated>1600169089878</updated>
       <workItem from="1600169090982" duration="8951000" />
       <workItem from="1600251909481" duration="4437000" />
-      <workItem from="1600261836603" duration="34945000" />
+      <workItem from="1600261836603" duration="35224000" />
+      <workItem from="1600420097073" duration="3809000" />
+      <workItem from="1600423928692" duration="5006000" />
     </task>
     <servers />
   </component>
@@ -103,10 +109,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600171230000" />
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1600358130417">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1600421627064">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600358130417" />
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600421627064" />
     <state x="106" y="46" width="1384" height="709" key="SettingsEditor" timestamp="1600261825939">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
