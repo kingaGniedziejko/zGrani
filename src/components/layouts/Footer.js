@@ -15,7 +15,7 @@ class Footer extends Component{
                     <span className="icon-text">.</span>
                     <Link to={"/"} className="mx-2 my-1 my-md-1 align-self-md-center">Polityka&nbsp;prywatności</Link>
                 </div>
-                <div className="ml-auto p-2">
+                <div id={"copyright"} className="ml-auto p-2 accent-text">
                     Copyright © 2020 zGrani
                 </div>
             </div>

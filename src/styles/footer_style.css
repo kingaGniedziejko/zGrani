@@ -1,18 +1,19 @@
 #footer {
     width: 100%;
-    background-color: var(--accent-4);
+    background-color: #030303;
     bottom: 0;
     position: relative;
     font-size: 0.8em;
 }
 
-.icon-text {
+#footer .icon-text {
+    color: var(--accent-1);
     font-size: 2em;
     line-height: 17px;
 }
 
 @media (max-width: 767px) {
-    .icon-text {
+    #footer .icon-text {
         display: none;
     }
 }

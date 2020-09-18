@@ -28,7 +28,7 @@ class Header extends Component{
         return (
             <Navbar id="header" variant="dark" expand="md" scrolling dark fixed="top" className="px-3 px-sm-5 py-3"
                     style={{backgroundColor: (this.state.isScrolled ? "var(--background-faded" : "var(--transparent")}}>
-                <Navbar.Brand href="/">zGrani</Navbar.Brand>
+                <Navbar.Brand href="/" className={"accent-text"}>zGrani</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="pt-2 pt-md-0">
                     <Nav className="ml-xs-auto ml-md-5 mr-xs-0 mr-md-auto" activeKey={location.pathname}>

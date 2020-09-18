@@ -20,12 +20,13 @@ class Browse extends Component{
                     <Switch>
                         <Route exact path={"/przegladaj"}>
                             <div>
-                                artyści
+                                <p>Filtruj:</p>
+
                             </div>
                         </Route>
                         <Route exact path={"/przegladaj/zespoly"}>
                             <div>
-                                zespoły
+                                <p>Filtruj:</p>
                             </div>
                         </Route>
                     </Switch>
