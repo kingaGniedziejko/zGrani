@@ -3,13 +3,13 @@ import { Switch, Route } from 'react-router-dom';
 
 import '../../styles/content_style.css'
 
-import Home from "../pages/Home";
-import Browse from "../pages/Browse";
-import Search from "../pages/Search";
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
-import SignupArtist from "../pages/SignupArtist";
-import SignupBand from "../pages/SignupBand";
+import Home from "../contents/main_functions/Home";
+import Browse from "../contents/main_functions/Browse";
+import Search from "../contents/main_functions/Search";
+import Login from "../contents/auth/Login";
+import Signup from "../contents/auth/Signup";
+import SignupArtist from "../contents/auth/SignupArtist";
+import SignupBand from "../contents/auth/SignupBand";
 
 class Content extends Component{
     render() {
