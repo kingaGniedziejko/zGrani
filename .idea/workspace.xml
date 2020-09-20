@@ -21,17 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/SignupArtist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/SignupArtist.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/SignupBand.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/SignupBand.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/browse_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/browse_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/content_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/header_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/header_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +83,7 @@
       <workItem from="1600261836603" duration="35224000" />
       <workItem from="1600420097073" duration="3809000" />
       <workItem from="1600423928692" duration="13204000" />
-      <workItem from="1600602573763" duration="7399000" />
+      <workItem from="1600602573763" duration="9269000" />
     </task>
     <servers />
   </component>
@@ -123,5 +119,9 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="106" y="46" width="1384" height="709" key="SettingsEditor/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600261825939" />
+    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1600620069483">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
   </component>
 </project>

@@ -4,6 +4,7 @@ import  {Container, Row, Col, Button, Nav, Image} from "react-bootstrap";
 import photo1 from '../../images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
 import photo2 from '../../images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
 import photo3 from '../../images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
+import {Link} from "react-router-dom";
 
 class Home extends Component{
     render() {
@@ -27,7 +28,9 @@ class Home extends Component{
                                     znajdź artystów w okolicy, z którymi możesz stworzyć razem coś wielkiego.
                                     Zostań zauważony przez pracodawców.
                                 </p>
-                                <Button variant="outline-accent mt-auto" size="sm">Rozpocznij</Button>
+                                <Link to={"/rejestracja/artysta"} className="mt-auto">
+                                    <Button variant="outline-accent" size="sm">Rozpocznij</Button>
+                                </Link>
                             </Col>
                             <Col className="col-12 col-sm-8 col-lg-4 mt-5 mt-lg-0 d-flex flex-column align-items-center">
                                 <Image src={photo2} fluid className="my-5"/>
@@ -37,7 +40,9 @@ class Home extends Component{
                                     znajdź szybko zastępstwo w okolicy.
                                     Zostań zauważony przez pracodawców.
                                 </p>
-                                <Button variant="outline-accent mt-auto" size="sm">Rozpocznij</Button>
+                                <Link to={"/rejestracja/zespol"} className="mt-auto">
+                                    <Button variant="outline-accent" size="sm">Rozpocznij</Button>
+                                </Link>
                             </Col>
                             <Col className="col-12 col-sm-8 col-lg-4 mt-5 mt-lg-0 d-flex flex-column align-items-center">
                                 <Image src={photo3} fluid className="my-5"/>
@@ -46,7 +51,9 @@ class Home extends Component{
                                     Organizujesz wydarzenie?
                                     Szukasz artysty lub zespołu?
                                 </p>
-                                <Button variant="outline-accent mt-auto" size="sm">Szukaj</Button>
+                                <Link to={"/szukaj"} className="mt-auto">
+                                    <Button variant="outline-accent" size="sm">Szukaj</Button>
+                                </Link>
                             </Col>
                         </Row>
                     </Container>

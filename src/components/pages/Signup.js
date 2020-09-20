@@ -5,13 +5,13 @@ class Signup extends Component{
     render() {
         return (
             <div id={"signup"} className={"page-content"}>
-                <div className={"section-dark d-flex flex-column align-items-center py-5"}>
+                <div className={"d-flex flex-column align-items-center py-5"}>
                     <h3>Rejestracja</h3>
                     <Link to={"/rejestracja/artysta"}>
                         <div>Artysta</div>
                     </Link>
                     <Link to={"/rejestracja/zespol"}>
-                        <div>Zespol</div>
+                        <div>Zespół</div>
                     </Link>
                 </div>
             </div>

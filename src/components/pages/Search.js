@@ -9,7 +9,7 @@ class Search extends Component{
         const { location } = this.props;
         return (
             <div id={"search"} className={"page-content"}>
-                <div className={"section-dark d-flex flex-column align-items-center py-5"}>
+                <div className={"d-flex flex-column align-items-center py-5"}>
                     <h3>Szukaj</h3>
                     <Nav className="mb-5" activeKey={location.pathname}>
                         <NavLink className="py-1 mx-2" to="/szukaj" exact>Artyści</NavLink>

@@ -17,12 +17,16 @@
     height: 106vh;
 }
 
-.section-light {
+.background-light {
     background-color: var(--background-light);
 }
 
-.section-dark {
+.background {
     background-color: var(--background);
+}
+
+.background-dark {
+    background-color: var(--background-dark);
 }
 
 .section-dark-gradient {

@@ -13,8 +13,10 @@
 
 
     /*--background: #000000;*/
+    --background-dark: #070707;
     --background: #121212;
     --background-light: #212121;
+
     --background-faded: rgba(0, 0, 0, 0.9);
 
     --text-color-light: rgb(255, 255, 255);
