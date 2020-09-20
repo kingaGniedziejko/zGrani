@@ -6,11 +6,6 @@
     font-size: 0.9em;
 }
 
-#header .navbar-nav a.active {
-    border-bottom: 1px solid white;
-    color: var(--text-color-light);
-}
-
 @media (max-width: 767px) {
     #header {
         background-color: var(--background-faded) !important;

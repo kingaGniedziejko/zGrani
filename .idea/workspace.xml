@@ -22,10 +22,16 @@
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Content.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Browse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/footer_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/footer_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/SignupArtist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/SignupArtist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/SignupBand.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/SignupBand.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/browse_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/browse_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/content_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/header_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/header_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,6 +87,7 @@
       <workItem from="1600261836603" duration="35224000" />
       <workItem from="1600420097073" duration="3809000" />
       <workItem from="1600423928692" duration="13204000" />
+      <workItem from="1600602573763" duration="7399000" />
     </task>
     <servers />
   </component>

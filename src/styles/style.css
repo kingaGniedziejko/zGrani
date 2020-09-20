@@ -56,7 +56,7 @@ body, #root {
 
 /*   button   */
 .btn {
-    font-weight: 300;
+    font-weight: 500;
     width: fit-content;
 }
 
@@ -69,15 +69,26 @@ body, #root {
     border-radius: 0;
 }
 
-.btn-outline-accent {
+.btn-outline-white {
     color: var(--text-color);
-    border-color: var(--text-color-dark);
+    border-color: var(--text-color);
+}
+
+.btn-outline-white:hover {
+    color: var(--background);
+    background-color: var(--text-color);
+    border-color: var(--text-color);
+}
+
+.btn-outline-accent {
+    color: var(--accent-1);
+    border-color: var(--accent-1);
 }
 
 .btn-outline-accent:hover {
-    color: var(--text-color);
-    background-color: var(--accent-3);
-    border-color: var(--text-color-dark);
+    color: var(--background);
+    background-color: var(--accent-1);
+    border-color: var(--accent-1);
 }
 
 
@@ -93,4 +104,11 @@ a:hover {
 
 a:active {
     color: var(--text-color);
+}
+
+/*   link in nav   */
+.navbar-nav a.active,
+.nav a.active {
+    border-bottom: 1px solid white;
+    color: var(--text-color-light);
 }

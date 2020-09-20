@@ -10,10 +10,16 @@ class Header extends Component{
     }
 
     componentDidMount() {
+        let path = this.props.location.pathname;
+        this.setState({
+            isScrolled: path !== "/"
+        });
+
         document.addEventListener("scroll", (e) => {
             let position = document.scrollingElement.scrollTop;
+            let path = this.props.location.pathname;
             this.setState({
-                isScrolled: position > 0
+                isScrolled: position > 0 || path !== "/"
             });
         })
     }
@@ -26,8 +32,10 @@ class Header extends Component{
     render() {
         const { location } = this.props;
         return (
-            <Navbar id="header" variant="dark" expand="md" scrolling dark fixed="top" className="px-3 px-sm-5 py-3"
-                    style={{backgroundColor: (this.state.isScrolled ? "var(--background-faded" : "var(--transparent")}}>
+            <Navbar id="header" variant="dark" expand="md" fixed="top" className="px-3 px-sm-5 py-3"
+                    style={{backgroundColor: (this.props.location.pathname === "/" ?
+                            (this.state.isScrolled ? "var(--background-faded)" : "var(--transparent)")
+                                : "var(--background-faded)")}}>
                 <Navbar.Brand href="/" className={"accent-text"}>zGrani</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="pt-2 pt-md-0">
@@ -37,8 +45,12 @@ class Header extends Component{
                         <NavLink className="px-0 mx-md-2 py-1" to="/szukaj">Szukaj</NavLink>
                     </Nav>
                     <Nav.Item className="mt-3 mt-md-0 d-flex flex-row">
-                        <Button className="mr-2 mt-1 mt-md-0" block variant="outline-accent" size="sm">Logowanie</Button>
-                        <Button className="mt-1 mt-md-0" block variant="outline-accent" size="sm">Rejestracja</Button>
+                        <Link to={"/logowanie"} className="mr-2 mt-1 mt-md-0">
+                            <Button block variant="outline-white" size="sm">Logowanie</Button>
+                        </Link>
+                        <Link to={"/rejestracja"} className="mt-1 mt-md-0">
+                            <Button block variant="outline-white" size="sm">Rejestracja</Button>
+                        </Link>
                     </Nav.Item>
                 </Navbar.Collapse>
             </Navbar>
