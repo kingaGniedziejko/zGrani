@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import {Nav, Navbar, Button} from "react-bootstrap";
-import {withRouter, NavLink, Link} from "react-router-dom";
+import {Nav, Navbar} from "react-bootstrap";
+import {withRouter, NavLink} from "react-router-dom";
 
 import "../../styles/header_style.css"
+
+import LoggedInButtons from "./LoggedInButtons";
+import LoggedOutButtons from "./LoggedOutButtons";
+
 
 class Header extends Component{
     state = {
@@ -44,14 +48,8 @@ class Header extends Component{
                         <NavLink className="px-0 mx-md-2 py-1" to="/przegladaj">Przeglądaj</NavLink>
                         <NavLink className="px-0 mx-md-2 py-1" to="/szukaj">Szukaj</NavLink>
                     </Nav>
-                    <Nav.Item className="mt-3 mt-md-0 d-flex flex-row">
-                        <Link to={"/logowanie"} className="mr-2 mt-1 mt-md-0">
-                            <Button block variant="outline-white" size="sm">Logowanie</Button>
-                        </Link>
-                        <Link to={"/rejestracja"} className="mt-1 mt-md-0">
-                            <Button block variant="outline-white" size="sm">Rejestracja</Button>
-                        </Link>
-                    </Nav.Item>
+                    <LoggedInButtons/>
+                    <LoggedOutButtons/>
                 </Navbar.Collapse>
             </Navbar>
         );

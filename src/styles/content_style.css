@@ -30,8 +30,8 @@
 }
 
 .section-dark-gradient {
-    margin-top: -100px;
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0), var(--background) 60px);
+    margin-top: -80px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0), var(--background) 90px);
 }
 
 .section-content {

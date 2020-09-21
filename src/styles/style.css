@@ -17,7 +17,7 @@
     --background: #121212;
     --background-light: #212121;
 
-    --background-faded: rgba(0, 0, 0, 0.9);
+    --background-faded: rgba(6, 6, 6, 0.9);
 
     --text-color-light: rgb(255, 255, 255);
     --text-color: rgb(214, 214, 214);
@@ -113,4 +113,10 @@ a:active {
 .nav a.active {
     border-bottom: 1px solid white;
     color: var(--text-color-light);
+}
+
+
+/*   images   */
+.cover {
+    object-fit: cover;
 }
