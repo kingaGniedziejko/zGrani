@@ -129,3 +129,35 @@ a:active {
 .cover {
     object-fit: cover;
 }
+
+/*   inputs (.form-control)   */
+.form-control {
+    background: none;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    color: var(--text-color);
+}
+
+.form-control:focus {
+    background: none;
+    border-bottom: 1px solid var(--text-color-light);
+    color: var(--text-color);
+    box-shadow: none;
+}
+
+::-webkit-input-placeholder {
+    color: var(--text-color-dark) !important;
+}
+:-ms-input-placeholder {
+    color: var(--text-color-dark) !important;
+}
+::-ms-input-placeholder {
+    color: var(--text-color-dark) !important;
+}
+:-moz-placeholder {
+    color: var(--text-color-dark) !important;
+}
+::placeholder {
+    color: var(--text-color-dark) !important;
+}

@@ -19,6 +19,8 @@ import ReactPlayer from "react-player";
 
 class UserProfile extends Component{
     render() {
+        const { login } = this.props.match.params;
+
         const photos = [
             {
                 src: userPhoto,
@@ -41,7 +43,7 @@ class UserProfile extends Component{
                 height: 3
             }
         ]
-        
+
         return (
             <div id={"user-profile"} className={"page-content"}>
                 <div className={"section py-4 py-md-0"} style={{backgroundColor: "var(--background-light)"}}>
@@ -52,7 +54,7 @@ class UserProfile extends Component{
                             </Col>
                             <Col className={"pt-3"}>
                                 <h5 className={"m-0"}>Anna Kowalska</h5>
-                                <small className={"d-block mb-2"}>anna21</small>
+                                <small className={"d-block mb-2"}>{login}</small>
                                 <h6 className={"mb-3"}>Artysta</h6>
                                 <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>
                                 <div className={"mb-4"}>
@@ -119,7 +121,7 @@ class UserProfile extends Component{
                         <Row className={"justify-content-center"}>
                             <Col className={"text-center align-self-center d-flex flex-column align-items-center"}>
                                 <h5 className={"mb-4"}>Filmy</h5>
-                                <ReactPlayer url={"https://www.youtube.com/watch?v=6bbv_W2kLSg&ab_channel=KickItCrew"}/>
+                                {/*<ReactPlayer url={"https://www.youtube.com/watch?v=6bbv_W2kLSg&ab_channel=KickItCrew"}/>*/}
                             </Col>
                         </Row>
                     </Container>

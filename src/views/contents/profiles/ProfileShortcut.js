@@ -15,13 +15,13 @@ class ProfileShortcut extends Component{
     render() {
         return (
             <div className={"profile-shortcut mb-5"}>
-                <Link to={"/profil"} className={"mb-2 d-block"}>
+                <Link to={"/profil/anna21"} className={"mb-2 d-block"}>
                     <Image src={userPhoto} fluid/>
                 </Link>
-                <Link to={"/profil"}>
+                <Link to={"/profil/anna21"}>
                     <h5>Anna Kowalska</h5>
                 </Link>
-                <Link to={"/profil"}>
+                <Link to={"/profil/anna21"}>
                     <small className={"d-block mb-2"}>anna21</small>
                 </Link>
                 <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>

@@ -9,10 +9,10 @@ class LoggedInButtons extends Component{
         return (
             <Nav.Item className="mt-3 mt-md-0 d-flex flex-row">
                     <div className="mr-4 mt-1 mt-md-0 d-flex flex-row">
-                        <Link to={"/profil"}>
+                        <Link to={"/profil/anna21"}>
                             <Image src={userPhoto} height={31} width={31} className={"cover border mr-2"}/>
                         </Link>
-                        <Link to={"/profil"} className={"pt-1"}>userName</Link>
+                        <Link to={"/profil/anna21"} className={"pt-1"}>userName</Link>
                     </div>
                 <Link to={"/"} className="mt-1 mt-md-0">
                     <Button block variant="outline-white" size="sm">Wyloguj</Button>

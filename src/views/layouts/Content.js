@@ -8,9 +8,8 @@ import Browse from "../contents/main_functions/Browse";
 import Search from "../contents/main_functions/Search";
 import Login from "../contents/auth/Login";
 import Signup from "../contents/auth/Signup";
-import SignupArtist from "../contents/auth/SignupArtist";
-import SignupBand from "../contents/auth/SignupBand";
 import UserProfile from "../contents/profiles/UserProfile";
+import SignupTyped from "../contents/auth/SignupTyped";
 
 class Content extends Component{
     render() {
@@ -23,9 +22,8 @@ class Content extends Component{
 
                     <Route exact path={"/logowanie"} component={Login}/>
                     <Route exact path={"/rejestracja"} component={Signup}/>
-                    <Route exact path={"/rejestracja/artysta"} component={SignupArtist}/>
-                    <Route exact path={"/rejestracja/zespol"} component={SignupBand}/>
-                    <Route exact path={"/profil"} component={UserProfile}/>
+                    <Route exact path={"/rejestracja/:type"} component={SignupTyped}/>
+                    <Route path={"/profil/:login"} component={UserProfile}/>
 
                 </Switch>
             </div>
