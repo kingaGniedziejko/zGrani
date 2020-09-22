@@ -2,3 +2,27 @@
     width: 16px;
     text-align: center;
 }
+
+#user-profile .user-info {
+    position: relative;
+    top: 40px;
+}
+
+#user-profile .user-photo {
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    #user-profile .user-info {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    #user-profile .user-photo {
+        max-height: 60vw;
+    }
+}

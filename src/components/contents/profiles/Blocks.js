@@ -8,7 +8,7 @@ class Blocks extends Component{
             <div className={"blocks-container mb-1"}>
                 {elementsList.map((elem, index) => {
                     return (
-                        <div className={"block mr-1 mb-1 border d-inline-block px-2"}>
+                        <div className={"block d-inline-block background-lighter mr-2 mb-2 px-3 py-1"}>
                             {elem}
                         </div>
                     )

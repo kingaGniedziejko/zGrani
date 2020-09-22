@@ -17,17 +17,23 @@
     height: 106vh;
 }
 
-.background-light {
-    background-color: var(--background-light);
+.background-dark {
+    background-color: var(--background-dark);
 }
 
 .background {
     background-color: var(--background);
 }
 
-.background-dark {
-    background-color: var(--background-dark);
+.background-light {
+    background-color: var(--background-light);
 }
+
+.background-lighter {
+     background-color: var(--background-lighter);
+ }
+
+
 
 .section-dark-gradient {
     margin-top: -80px;

@@ -15,7 +15,8 @@
     /*--background: #000000;*/
     --background-dark: #070707;
     --background: #121212;
-    --background-light: #212121;
+    --background-light: #1d1d1d;
+    --background-lighter: #373737;
 
     --background-faded: rgba(6, 6, 6, 0.9);
 
@@ -37,11 +38,18 @@ body, #root {
     min-height: 100vh;
 }
 
-* {
+html * {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     color: var(--text-color);
+    margin: 0;
+    padding: 0;
 }
+
+/*p {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
@@ -99,7 +107,8 @@ a:link, a:visited {
     color: var(--text-color);
 }
 
-a:hover {
+a:hover,
+a:hover *{
     color: var(--text-color-light);
     text-decoration: none;
 }

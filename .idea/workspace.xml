@@ -20,13 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/contents/profiles/Blocks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/contents/profiles/ProfileShortcut.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/profile_style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/contents/profiles/BlocksWithButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/contents/main_functions/Browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contents/main_functions/Browse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contents/profiles/Blocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contents/profiles/ProfileShortcut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contents/profiles/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Content.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/LoggedInButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/LoggedInButtons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/content_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/profile_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/profile_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,11 +71,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gnied\Documents\GitHub\zGrani\src\images" />
       <recent name="C:\Users\gnied\Documents\GitHub\zGrani\src\components\contents" />
       <recent name="C:\Users\gnied\Documents\GitHub\zGrani\src\components\profiles" />
       <recent name="C:\Users\gnied\Documents\GitHub\zGrani\src\components\auth" />
       <recent name="C:\Users\gnied\Documents\GitHub\zGrani\src\components\main_functions" />
-      <recent name="C:\Users\gnied\Documents\GitHub\zGrani\src\images" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -86,7 +93,7 @@
       <workItem from="1600423928692" duration="13204000" />
       <workItem from="1600602573763" duration="11195000" />
       <workItem from="1600675015933" duration="2897000" />
-      <workItem from="1600679058719" duration="7779000" />
+      <workItem from="1600679058719" duration="23492000" />
     </task>
     <servers />
   </component>

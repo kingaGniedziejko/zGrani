@@ -9,14 +9,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faGuitar, faMusic } from "@fortawesome/free-solid-svg-icons";
 
 import Blocks from "./Blocks";
+import {Link} from "react-router-dom";
 
 class ProfileShortcut extends Component{
     render() {
         return (
             <div className={"profile-shortcut mb-5"}>
-                <Image src={userPhoto} fluid className={"mb-2"}/>
-                <h5 className={"m-0"}>Anna Kowalska</h5>
-                <small className={"d-block mb-2"}>anna21</small>
+                <Link to={"/profil"} className={"mb-2 d-block"}>
+                    <Image src={userPhoto} fluid/>
+                </Link>
+                <Link to={"/profil"}>
+                    <h5>Anna Kowalska</h5>
+                </Link>
+                <Link to={"/profil"}>
+                    <small className={"d-block mb-2"}>anna21</small>
+                </Link>
                 <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>
                 <div>
                     <div className={"d-flex flex-row mb-1"}>

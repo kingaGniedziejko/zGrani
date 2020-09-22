@@ -3,8 +3,9 @@ import {Col, Container, Nav, Row} from "react-bootstrap";
 import { NavLink, withRouter, Switch, Route } from "react-router-dom";
 
 import "../../../styles/browse_style.css"
-import ProfileShortcut from "../profiles/ProfileShortcut";
 import { ChevronDown } from "react-bootstrap-icons";
+
+import ProfileShortcut from "../profiles/ProfileShortcut";
 
 class Browse extends Component{
     render() {

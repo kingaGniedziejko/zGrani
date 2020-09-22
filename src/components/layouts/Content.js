@@ -10,6 +10,7 @@ import Login from "../contents/auth/Login";
 import Signup from "../contents/auth/Signup";
 import SignupArtist from "../contents/auth/SignupArtist";
 import SignupBand from "../contents/auth/SignupBand";
+import UserProfile from "../contents/profiles/UserProfile";
 
 class Content extends Component{
     render() {
@@ -24,6 +25,7 @@ class Content extends Component{
                     <Route exact path={"/rejestracja"} component={Signup}/>
                     <Route exact path={"/rejestracja/artysta"} component={SignupArtist}/>
                     <Route exact path={"/rejestracja/zespol"} component={SignupBand}/>
+                    <Route exact path={"/profil"} component={UserProfile}/>
 
                 </Switch>
             </div>
