@@ -56,7 +56,7 @@ class UserProfile extends Component{
                                 <h5 className={"m-0"}>Anna Kowalska</h5>
                                 <small className={"d-block mb-2"}>{login}</small>
                                 <h6 className={"mb-3"}>Artysta</h6>
-                                <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>
+                                <Blocks elementsList={["szuka zespołu", "szuka zleceń"]} align={"start"}/>
                                 <div className={"mb-4"}>
                                     <div className={"d-flex flex-row mb-1"}>
                                         <div className={"icon-container mr-2"}>
@@ -87,11 +87,11 @@ class UserProfile extends Component{
                         <Row>
                             <Col md={6} className={"text-center"}>
                                 <h5 className={"mb-3"}>Gatunki</h5>
-                                <Blocks elementsList={["Rock", "Classic", "Alternative", "Blues", "Ska"]}/>
+                                <Blocks elementsList={["Rock", "Classic", "Alternative", "Blues", "Ska"]} align={"center"}/>
                             </Col>
                             <Col md={6} className={"text-center"}>
                                 <h5 className={"mb-3"}>Instrumenty</h5>
-                                <Blocks elementsList={["Gitara", "Pianino", "Skrzypce"]}/>
+                                <Blocks elementsList={["Gitara", "Pianino", "Skrzypce"]} align={"center"}/>
                             </Col>
                         </Row>
                     </Container>

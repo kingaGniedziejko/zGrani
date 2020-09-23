@@ -29,8 +29,8 @@ class Login extends MVVM.ViewComponent{
                             <h3 className={"mb-5"}>Logowanie</h3>
                             <Form onSubmit={this.handleSubmit} style={{width: "100%"}}>
                                 <Form.Group className={"d-flex flex-column align-items-center"}>
-                                    <Form.Control id={"login"} type={"text"} placeholder={"Login"} onChange={this.handleChange} className={"mb-3"}/>
-                                    <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} className={"mb-4"}/>
+                                    <Form.Control id={"login"} type={"text"} placeholder={"Login"} onChange={this.handleChange} size="sm" className={"mb-3"}/>
+                                    <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
 
                                     <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Zaloguj się</Button>
 

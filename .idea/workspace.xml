@@ -20,30 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/contents/auth/Login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlockMemberElement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/auth/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/auth/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/auth/SignupArtist.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/auth/SignupBand.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/main_functions/Browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/main_functions/Browse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/main_functions/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/main_functions/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/main_functions/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/main_functions/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/BlocksWithButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksWithButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contents/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/SignupTyped.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/LoggedInButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/LoggedInButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/LoggedOutButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/LoggedOutButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/content_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/auth/SignupTyped.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/SignupTyped.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksWithButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksWithButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +89,7 @@
       <workItem from="1600602573763" duration="11195000" />
       <workItem from="1600675015933" duration="2897000" />
       <workItem from="1600679058719" duration="37386000" />
+      <workItem from="1600847253638" duration="22470000" />
     </task>
     <servers />
   </component>
@@ -140,13 +126,18 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="106" y="46" width="1384" height="709" key="SettingsEditor/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600261825939" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1600851056467">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1536.864/-1920.-422.1536.864@0.0.1536.864" timestamp="1600851056467" />
     <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1600620069483">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1600788147705">
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1600850132164">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/-1920.-422.1536.864@0.0.1536.864" timestamp="1600850132164" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/-1920.-450.1920.1080@0.0.1536.864" timestamp="1600788147705" />
   </component>
 </project>
