@@ -17,7 +17,7 @@ class SignupTyped extends Component{
         genres: [],
         instruments: [],
         currentMember: '',
-        members: ["Anna Kowalska"],
+        members: [{name: "Anna Kowalska", userId: ""}],
         agreement: false
     }
 
@@ -65,7 +65,11 @@ class SignupTyped extends Component{
         let members = this.state.members;
 
         if (currentMember !== ""){
-            members.push(currentMember);
+            members.push(
+                {
+                    name: currentMember,
+                    userId: ""
+                });
             console.log(members);
             this.setState({
                 members: members,
@@ -73,6 +77,26 @@ class SignupTyped extends Component{
             })
             document.getElementById("currentMember").value = "";
         }
+    }
+
+    handleLinking = (slug, operation, index, userId) => {
+        let elements = this.state[slug];
+        console.log(elements);
+        console.log(index);
+
+        switch (operation){
+            case "add":
+                console.log(elements[index]);
+                elements[index].userId = userId;
+                break;
+            case "delete":
+                elements[index].userId = "";
+                break;
+        }
+
+        this.setState({
+            [slug]: elements
+        })
     }
 
     blockInput = (title, slug) => {
@@ -95,9 +119,9 @@ class SignupTyped extends Component{
                 <h6 className={"mb-2"}>Członkowie</h6>
                 <div className={"d-flex flex-row mb-3"}>
                     <Form.Control id={"currentMember"} type={"text"} placeholder={"Pseudonim"} onChange={this.handleChange} size="sm" className={"mr-2"}/>
-                    <Button variant="outline-accent" size="sm" onClick={this.handleAddMember}><h3 style={{lineHeight: "17px", fontWeight: "400"}}>+</h3></Button>
+                    <Button variant="outline-accent" size="sm" onClick={this.handleAddMember}>Dodaj</Button>
                 </div>
-                <BlocksMembers elementsList={this.state.members} align={"start"} editable={true} slug={"members"} handler={this.handleDelete} buttonText={"Załącz profil"}/>
+                <BlocksMembers elementsList={this.state.members} align={"start"} editable={true} slug={"members"} handler={this.handleDelete} linkingHandler={this.handleLinking}/>
             </Form.Group>
         )
     }

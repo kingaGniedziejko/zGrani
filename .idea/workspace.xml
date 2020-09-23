@@ -20,15 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlockMemberElement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/auth/SignupTyped.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/SignupTyped.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksWithButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksWithButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlockMemberElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlockMemberElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +84,7 @@
       <workItem from="1600602573763" duration="11195000" />
       <workItem from="1600675015933" duration="2897000" />
       <workItem from="1600679058719" duration="37386000" />
-      <workItem from="1600847253638" duration="22470000" />
+      <workItem from="1600847253638" duration="27444000" />
     </task>
     <servers />
   </component>
