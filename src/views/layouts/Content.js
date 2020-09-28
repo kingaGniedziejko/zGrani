@@ -9,7 +9,8 @@ import Search from "../contents/main_functions/Search";
 import Login from "../contents/auth/Login";
 import Signup from "../contents/auth/Signup";
 import UserProfile from "../contents/profiles/UserProfile";
-import SignupTyped from "../contents/auth/SignupTyped";
+import UserProfileCreate from "../contents/profiles/UserProfileCreate";
+import UserProfileEdit from "../contents/profiles/UserProfileEdit";
 
 class Content extends Component{
     render() {
@@ -22,8 +23,10 @@ class Content extends Component{
 
                     <Route exact path={"/logowanie"} component={Login}/>
                     <Route exact path={"/rejestracja"} component={Signup}/>
-                    <Route exact path={"/rejestracja/:type"} component={SignupTyped}/>
-                    <Route path={"/profil/:login"} component={UserProfile}/>
+                    <Route exact path={"/rejestracja/:type"} component={UserProfileCreate}/>
+
+                    <Route exact path={"/profil/:login"} component={UserProfile}/>
+                    <Route path={"/profil/:login/edytowanie"} component={UserProfileEdit}/>
 
                 </Switch>
             </div>

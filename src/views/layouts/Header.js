@@ -48,7 +48,7 @@ class Header extends Component{
                         <NavLink className="px-0 mx-md-2 py-1" to="/przegladaj">Przeglądaj</NavLink>
                         <NavLink className="px-0 mx-md-2 py-1" to="/szukaj">Szukaj</NavLink>
                     </Nav>
-                    <LoggedInButtons/>
+                    {/*<LoggedInButtons/>*/}
                     <LoggedOutButtons/>
                 </Navbar.Collapse>
             </Navbar>

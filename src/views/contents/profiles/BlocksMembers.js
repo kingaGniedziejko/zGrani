@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import BlockMemberElement from "./BlockMemberElement";
+import BlocksMembersElement from "./BlocksMembersElement";
 
 class BlocksMembers extends Component{
 
@@ -12,8 +12,8 @@ class BlocksMembers extends Component{
             <div className={"blocks-container mb-1 d-flex flex-column justify-content-"+align}>
                 {elementsList.map((elem, index) => {
                     return (
-                        <BlockMemberElement key={index} index={index} elem={elem} editable={editable}
-                                            slug={slug} handler={handler} linkingHandler={linkingHandler}/>
+                        <BlocksMembersElement key={index} index={index} elem={elem} editable={editable}
+                                              slug={slug} handler={handler} linkingHandler={linkingHandler}/>
                     )
                 })}
 

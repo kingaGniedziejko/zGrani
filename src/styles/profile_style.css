@@ -14,15 +14,52 @@
     object-fit: cover;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     #user-profile .user-info {
         position: relative;
         top: 0;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     #user-profile .user-photo {
         max-height: 60vw;
     }
+}
+
+.image-block img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+    .image-block image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 991px) {
+    .image-block image {
+
+    }
+}
+
+@media (max-width: 767px) {
+    .image-block image {
+
+    }
+}
+
+@media (max-width: 575px) {
+    .image-block image {
+
+    }
+}
+
+.image-block svg{
+    top: 5px;
+    right: 5px;
 }

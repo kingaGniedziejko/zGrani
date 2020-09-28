@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {X, Check2} from 'react-bootstrap-icons';
 import {Button, Form} from "react-bootstrap";
 
-class BlockMemberElement extends Component{
+class BlocksMembersElement extends Component{
     state = {
         isLinking: false,
         userEmail: "",
@@ -79,4 +79,4 @@ class BlockMemberElement extends Component{
     }
 }
 
-export default BlockMemberElement;
+export default BlocksMembersElement;
