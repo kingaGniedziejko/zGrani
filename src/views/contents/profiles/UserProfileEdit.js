@@ -49,18 +49,18 @@ class UserProfileEdit extends Component{
             <div id={"signup-artist"} className={"page-content"}>
                 <Container>
                     <Row className={"section section-card d-flex flex-column align-items-center"}>
-                        <Col className={"background-light p-3 p-sm-5 my-2 my-sm-5 text-center"} xs={11} sm={10} md={11} lg={11}>
+                        <Col className={"background-light p-3 p-sm-5 my-2 my-sm-5 text-center"} xs={11}>
                             <h3 className={"mb-2"}>Edytowanie Profilu</h3>
                             <h6 className={"mb-5"}>{userType.title}</h6>
 
                             <Form id={"personal-data-form"} onSubmit={this.handleSubmit} style={{width: "100%"}} className={"d-flex flex-column"}>
                                 <Container>
                                     <Row className={"d-flex justify-content-center"}>
-                                        <Col xs={11} lg={5} className={"mr-lg-2"}>
+                                        <Col xs={11} lg={5} className={"mr-2"}>
                                             <h5 className={"mt-2 mb-5"}>Podstawowe dane</h5>
                                             <PersonalDataFormGroup type={type} operation={"edit"} />
                                         </Col>
-                                        <Col xs={11} lg={5} className={"ml-lg-2"}>
+                                        <Col xs={11} lg={5} className={"ml-2"}>
                                             <h5 className={"mt-2 mb-5"}>Dodatkowe dane</h5>
                                             <ProfileDataFormGroup type={type} operation={"edit"} />
                                         </Col>

@@ -68,7 +68,7 @@ class UserProfile extends Component{
                                 <Link to={""} className="mt-auto">
                                     <Button variant="outline-accent" size="sm">Skontaktuj się</Button>
                                 </Link>
-                                <Link to={"/profil/anna21/edytowanie"}>
+                                <Link to={"/profil/anna21/edytowanie"} className={""}>
                                     <Button variant="outline-accent" size="sm">Edytuj profil</Button>
                                 </Link>
                             </Col>

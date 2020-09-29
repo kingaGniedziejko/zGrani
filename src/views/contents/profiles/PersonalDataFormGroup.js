@@ -142,7 +142,7 @@ class PersonalDataFormGroup extends Component{
 
                 {this.blockInput("Gatunki", "genres")}
 
-                {userType.type === "artist" ?
+                {userType.type === "artysta" ?
                     this.blockInput("Instrumenty", "instruments")
                     : this.membersInput()
                 }

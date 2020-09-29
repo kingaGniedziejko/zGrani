@@ -20,20 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlocksDisplay.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileDataFormGroup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/profile_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/profile_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/auth/SignupTyped.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileCreate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlockMemberElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlocksDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlocksDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileDataFormGroup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layouts/LoggedOutButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/LoggedOutButtons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +93,8 @@
       <workItem from="1600679058719" duration="37386000" />
       <workItem from="1600847253638" duration="27883000" />
       <workItem from="1600948343849" duration="8698000" />
-      <workItem from="1601289107494" duration="15704000" />
+      <workItem from="1601289107494" duration="16456000" />
+      <workItem from="1601374820617" duration="12767000" />
     </task>
     <servers />
   </component>
@@ -142,6 +140,10 @@
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1601316238075" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1601402373360">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1601402373360" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1601310792634">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

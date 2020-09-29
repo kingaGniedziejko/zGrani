@@ -8,11 +8,11 @@ import ImageBlocksDisplay from "./ImageBlocksDisplay";
 
 class ProfileDataFormGroup extends Component{
     state = {
-        profilePhotoSrc: '',
-        profileBackgroundSrc: '',
+        profilePhotoSrc: userPhoto,
+        profileBackgroundSrc: userPhoto,
         status: [],
         description: '',
-        gallery: [],
+        gallery: [userPhoto, userPhoto, userPhoto, userPhoto],
         videos: []
     }
 
@@ -36,7 +36,11 @@ class ProfileDataFormGroup extends Component{
         }
     }
 
-    handleDelete = (slug, value) => {
+    handleDelete = (slug, _) => {
+        this.setState({[slug]: undefined})
+    }
+
+    handleArrayDelete = (slug, value) => {
         let elements = this.state[slug];
         let index = elements.indexOf(value)
         if (index !== -1) {
@@ -55,24 +59,25 @@ class ProfileDataFormGroup extends Component{
                     <option>Rock</option>
                     <option>Classic</option>
                 </Form.Control>
-                <Blocks elementsList={this.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleDelete}/>
+                <Blocks elementsList={this.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleArrayDelete}/>
             </Form.Group>
         )
     }
 
     render() {
         const { type, operation } = this.props;
+        const { profilePhotoSrc, profileBackgroundSrc, gallery } = this.state;
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
-                <Form.Group as={Row} className={"d-flex flex-row justify-content-center"}>
-                    <Col className={"xs-6 mb-5"}>
-                        <h6 className={"mb-3"}>Zdjęcie profilowe</h6>
-                        <ImageBlocksDisplay elementsList={[userPhoto]} deleteHandler={() => console.log("handler")}/>
+                <Form.Group as={Row} className={"d-flex flex-row justify-content-center"} style={{width: "100%"}}>
+                    <Col className={"xs-6 p-0 mr-1"} style={{width: "100%"}}>
+                        <h6 className={"mb-3"}>Zdjęcie&nbsp;profilowe</h6>
+                        <ImageBlocksDisplay type={"single"} elementsList={profilePhotoSrc} slug={"profilePhotoSrc"} deleteHandler={this.handleDelete}/>
                     </Col>
-                    <Col className={"xs-5 mb-5 mx-3"}>
+                    <Col className={"xs-5 p-0 ml-1"} style={{width: "100%"}}>
                         <h6 className={"mb-3"}>Tło</h6>
-                        <ImageBlocksDisplay elementsList={[userPhoto]} deleteHandler={() => console.log("handler")}/>
+                        <ImageBlocksDisplay type={"single"} elementsList={profileBackgroundSrc} slug={"profileBackgroundSrc"} deleteHandler={this.handleDelete}/>
                     </Col>
                 </Form.Group>
 
@@ -80,7 +85,11 @@ class ProfileDataFormGroup extends Component{
 
                 <Form.Control id={"description"} as={"textarea"} rows={5} placeholder={"Opis"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
 
-                <h6 className={"mb-5"}>Galeria</h6>
+                <h6 className={"mb-5"}>Nagrania</h6>
+
+                <h6 className={"mb-3"}>Galeria</h6>
+                <ImageBlocksDisplay type={"multiple"} elementsList={gallery} slug={"gallery"} deleteHandler={this.handleArrayDelete}/>
+
                 <h6 className={"mb-5"}>Filmy</h6>
             </Form.Group>
         );
