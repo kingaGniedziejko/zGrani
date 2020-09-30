@@ -84,6 +84,10 @@ p {
     width: 100%;
 }
 
+.fit-content {
+    width: fit-content;
+}
+
 
 /*   button   */
 .btn {
@@ -107,6 +111,7 @@ p {
 .btn-outline-white {
     color: var(--text-color);
     border-color: var(--text-color);
+    background-color: var(--transparent);
 }
 
 .btn-outline-white:hover {
@@ -120,6 +125,7 @@ p {
 {
     color: var(--accent-1);
     border-color: var(--accent-1);
+    background-color: var(--transparent);
 }
 
 .btn-outline-accent:hover
@@ -235,4 +241,26 @@ textarea.form-control  {
 textarea.form-control:focus {
     border: 1px solid var(--text-color);
     border-bottom-color: var(--text-color-light) ;
+}
+
+/*   file inpyt   */
+.custom-file-input:hover~.btn-outline-white {
+    color: var(--background);
+    background-color: var(--text-color);
+    border-color: var(--text-color);
+}
+
+.custom-file-input:hover~.btn-outline-accent
+{
+    color: var(--background);
+    background-color: var(--accent-1);
+    border-color: var(--accent-1);
+}
+
+.custom-file-input:hover~.btn-outline-accent * {
+    color: var(--background);
+}
+
+.default-file-input .form-control-file {
+    font-weight: 500;
 }

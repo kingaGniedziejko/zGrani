@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import {Col, Container, Nav, Row} from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { NavLink, withRouter, Switch, Route } from "react-router-dom";
 
 import "../../../styles/browse_style.css"
-import { ChevronDown } from "react-bootstrap-icons";
 
-import ProfileShortcut from "../profiles/ProfileShortcut";
+import BrowseContent from "./BrowseContent";
 
 class Browse extends Component{
     render() {
@@ -20,31 +19,10 @@ class Browse extends Component{
                     </Nav>
                     <Switch>
                         <Route exact path={"/przegladaj"}>
-                            <div className={"section d-flex flex-column align-items-center"}>
-                                <Container>
-                                    <Row>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                        <Col sm={6} lg><ProfileShortcut/></Col>
-                                    </Row>
-                                </Container>
-                                <div className={"d-flex flex-column align-items-center"}>
-                                    <p className={"m-0"}>Więcej</p>
-                                    <ChevronDown/>
-                                </div>
-                            </div>
+                            <BrowseContent type={"artysta"}/>
                         </Route>
                         <Route exact path={"/przegladaj/zespoly"}>
-                            <div>
-                                <p>Filtruj:</p>
-                            </div>
+                            <BrowseContent type={"zespol"}/>
                         </Route>
                     </Switch>
                 </div>

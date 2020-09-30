@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
+import { Button, Image, Form } from "react-bootstrap";
 
-import {X} from 'react-bootstrap-icons';
-import { Button, Image } from "react-bootstrap";
 import ImageBlock from "./ImageBlock";
 
 class ImageBlocksDisplay extends Component{
+
+    selectFiles = (e) => {
+        console.log(e.target.files);
+    }
+
+    buttonAdd = (type, id) => {
+        let opts = {};
+        if (type === "multiple") opts["multiple"] = "multiple";
+
+        return (
+            <div className={"custom-file-input-button position-relative mt-2"}>
+                <input id={id} type="file" className="custom-file-input position-absolute"
+                       style={{top: 0, right: 0, height: "31px"}}
+                       {...(type === "multiple" ? {multiple:true} : {})}
+                       onChange={this.selectFiles}/>
+                <Button variant="outline-accent" size="sm">Dodaj</Button>
+            </div>
+        );
+    }
+
+
     render() {
         let { type, elementsList, slug, deleteHandler } = this.props;
 
@@ -12,10 +32,7 @@ class ImageBlocksDisplay extends Component{
             <div className={"blocks-container mb-5 d-flex flex-column align-items-center " + type}>
                 <div className={"d-flex flex-row flex-wrap justify-content-center"}>
                     {type === "single" ?
-                        elementsList === undefined ?
-                            <Button variant="outline-accent" size="sm" className={"mt-2"}>Dodaj</Button>
-                            :
-                            <ImageBlock image={elementsList} slug={slug} deleteHandler={deleteHandler}/>
+                        elementsList === undefined ? this.buttonAdd(type) : <ImageBlock image={elementsList} slug={slug} deleteHandler={deleteHandler}/>
                         :
                         elementsList.map((elem, index) => {
                             return (
@@ -24,7 +41,7 @@ class ImageBlocksDisplay extends Component{
                         })
                     }
                 </div>
-                {type === "single" ? "" : <Button variant="outline-accent" size="sm" className={(elementsList.length === 0 ? "mt-2" : "mt-3")}>Dodaj</Button>}
+                {type === "single" ? "" : this.buttonAdd(type) }
             </div>
         );
     }

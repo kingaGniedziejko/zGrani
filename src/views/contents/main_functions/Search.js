@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Nav } from "react-bootstrap";
 import { NavLink, withRouter, Switch, Route } from "react-router-dom";
 
+import SearchContent from "./SearchContent";
+
 class Search extends Component{
     render() {
         const { location } = this.props;
@@ -15,14 +17,10 @@ class Search extends Component{
                     </Nav>
                     <Switch>
                         <Route exact path={"/szukaj"}>
-                            <div>
-                                <p>artyści</p>
-                            </div>
+                            <SearchContent type={"artysta"}/>
                         </Route>
                         <Route exact path={"/szukaj/zespoly"}>
-                            <div>
-                                <p>zespoły</p>
-                            </div>
+                            <SearchContent type={"zespol"}/>
                         </Route>
                     </Switch>
                 </div>
