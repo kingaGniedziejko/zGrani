@@ -1,0 +1,24 @@
+.modal-backdrop.show {
+    opacity: .7;
+}
+
+.modal-content {
+    background-color: var(--background-light);
+    border-radius: 0;
+    border: 3px solid var(--background-lighter);
+}
+
+.modal-header {
+    border: none;
+}
+
+.modal-header .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    margin-left: 1rem;
+}
+
+.modal-footer {
+    border: none;
+}

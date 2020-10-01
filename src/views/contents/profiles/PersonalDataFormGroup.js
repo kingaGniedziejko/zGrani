@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {Button, Form} from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
+
+import "../../../styles/modal_style.css";
 
 import Blocks from "./Blocks";
 import BlocksMembers from "./BlocksMembers";
@@ -16,7 +18,13 @@ class PersonalDataFormGroup extends Component{
         genres: [],
         instruments: [],
         currentMember: '',
-        members: []
+        members: [],
+
+        modalShow: false,
+        actualPassword: '',
+        isPasswordCorrect: false,
+        newPassword: '',
+        newPasswordRep: ''
     }
 
     handleChange = (e) => {
@@ -112,29 +120,92 @@ class PersonalDataFormGroup extends Component{
         )
     }
 
+    checkActualPassword = () => {
+        let isCorrect = true;
+        console.log(this.state.actualPassword);
+
+        this.setState({isPasswordCorrect: isCorrect})
+    }
+
+    saveNewPassword = () => {
+        console.log(this.state.newPassword);
+        console.log(this.state.newPasswordRep);
+
+        this.setState({modalShow: false, isPasswordCorrect: false});
+    }
+
+    displayPasswordEdit = () => {
+        const { modalShow, isPasswordCorrect } = this.state;
+
+        return (
+            <Modal
+                show={modalShow}
+                onHide={() => this.setState({modalShow: false, isPasswordCorrect: false})}
+                size="md"
+                centered>
+                <Modal.Header closeButton className={"d-flex flex-row justify-content-center"}>
+                    <h5>Zmiana hasła</h5>
+                </Modal.Header>
+                <Modal.Body className={"d-flex flex-row justify-content-center"}>
+                    {!isPasswordCorrect ?
+                        <Form.Control id={"actualPassword"} type={"password"} placeholder={"Aktualne hasło"} onChange={this.handleChange} size="sm" className={"mb-4"} style={{width: "60%"}}/>
+                        :
+                        <div className={"d-flex flex-column align-items-center"} style={{width: "100%"}}>
+                            <Form.Control id={"newPassword"} type={"password"} placeholder={"Nowe hasło"} onChange={this.handleChange} size="sm" className={"mb-4"} style={{width: "60%"}}/>
+                            <Form.Control id={"newPasswordRep"} type={"password"} placeholder={"Powtórz hasło"} onChange={this.handleChange} size="sm" className={"mb-4"} style={{width: "60%"}}/>
+                        </div>
+                    }
+
+
+                </Modal.Body>
+                <Modal.Footer className={"justify-content-center"}>
+                    {!isPasswordCorrect ?
+                        <Button variant="outline-accent" size="sm" onClick={this.checkActualPassword}>Zatwierdź</Button>
+                        :
+                        <Button variant="outline-accent" size="sm" onClick={this.saveNewPassword}>Zapisz zmiany</Button>
+                    }
+
+                </Modal.Footer>
+            </Modal>
+        );
+    }
 
     render() {
         let userType;
-        const type1 = {
-            type: "artysta",
-            nameFieldText: "Pseudonim"
-        }
-        const type2 = {
-            type: "zespol",
-            nameFieldText: "Nazwa zespołu"
-        }
+        let userOperation;
+
+        const type1 = {type: "artysta", nameFieldText: "Pseudonim"}
+        const type2 = {type: "zespol", nameFieldText: "Nazwa zespołu"}
 
         const { type, operation } = this.props;
 
-        if (type === type1.type) userType = type1
-        else if (type === type2.type) userType = type2
+        if (type === type1.type) userType = type1;
+        else if (type === type2.type) userType = type2;
+
+        if (operation === undefined) userOperation = "create";
+        else userOperation = operation;
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
                 <Form.Control id={"login"} type={"text"} placeholder={"Login"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <Form.Control id={"email"} type={"email"} placeholder={"Email"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
-                <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
-                <Form.Control id={"passwordRep"} type={"password"} placeholder={"Powtórz hasło"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
+
+                {userOperation === "create" ?
+                    <>
+                        <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
+                        <Form.Control id={"passwordRep"} type={"password"} placeholder={"Powtórz hasło"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
+                    </>
+                    : ""
+                }
+
+                {userOperation === "edit" ?
+                    <>
+                        <Button block variant="outline-white" size="sm" className={"mt-2 mb-5"} onClick={() => this.setState({modalShow: true})}>Zmień hasło</Button>
+                        {this.displayPasswordEdit()}
+                    </>
+                    : ""
+                }
+
 
                 <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <Form.Control id={"voivodeship"} type={"text"} placeholder={"Województwo"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
