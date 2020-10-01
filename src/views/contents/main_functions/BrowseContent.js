@@ -10,26 +10,28 @@ class BrowseContent extends Component{
 
     browseFilters = (type) => {
         return (
-            <div className={"mb-5 d-flex flex-row justify-content-center"}>
-                <h6 className={"mr-4 mt-1"}>Filtruj:</h6>
+            <Row className={"mb-5 justify-content-center"}>
+                <Col className={"d-flex flex-column flex-sm-row align-items-center justify-content-center"} xs={8} sm={10} md={8} lg={6} xl={5}>
+                    <h6 className={"mr-sm-4 mb-4 mb-sm-0 mt-1"}>Filtruj:</h6>
 
-                <Form.Control id={"genre"} as={"select"} value={-1} size="sm" onChange={this.handleChange}
-                              className={"mr-4 dark-text"} style={{width: "fit-content"}}>
-                    <option disabled value={-1} key={-1}>Gatunek</option>
-                    <option>Rock</option>
-                    <option>Classic</option>
-                </Form.Control>
-
-                {type === "artysta" ?
-                    <Form.Control id={"instrument"} as={"select"} value={-1} size="sm" onChange={this.handleChange}
-                                  className={"dark-text"} style={{width: "fit-content"}}>
-                        <option disabled value={-1} key={-1}>Instrument</option>
+                    <Form.Control id={"genre"} as={"select"} value={-1} size="sm" onChange={this.handleChange}
+                                  className={"mr-sm-4 mb-3 mb-sm-0 dark-text"}>
+                        <option disabled value={-1} key={-1}>Gatunek</option>
                         <option>Rock</option>
                         <option>Classic</option>
                     </Form.Control>
-                    : ""
-                }
-            </div>
+
+                    {type === "artysta" ?
+                        <Form.Control id={"instrument"} as={"select"} value={-1} size="sm" onChange={this.handleChange}
+                                      className={"dark-text"}>
+                            <option disabled value={-1} key={-1}>Instrument</option>
+                            <option>Rock</option>
+                            <option>Classic</option>
+                        </Form.Control>
+                        : ""
+                    }
+                </Col>
+            </Row>
         )
     }
 
@@ -63,10 +65,10 @@ class BrowseContent extends Component{
         const { type } = this.props;
 
         return (
-            <div id={"browse-content d-flex flex-column align-items-center"}>
+            <Container id={"browse-content d-flex flex-column align-items-center"}>
                 {this.browseFilters(type)}
                 {this.browseContent(type)}
-            </div>
+            </Container>
         );
     }
 }

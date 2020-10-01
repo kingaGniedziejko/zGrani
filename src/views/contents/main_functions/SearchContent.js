@@ -8,7 +8,7 @@ import ProfileShortcut from "../profiles/ProfileShortcut";
 
 class SearchContent extends Component{
     state = {
-        isExtended: false
+        isExtended: true
     }
 
     selectInput = (slug, placeHolder, disabled=false) => {
@@ -33,12 +33,12 @@ class SearchContent extends Component{
         return (
             <Container className={"mb-5 d-flex flex-column align-items-center"}>
                 <Row className={"mb-4"}>
-                    <Col className={"d-flex flex-row align-items-center"}>
-                        <h6>Filtry</h6>
+                    <Col className={"clickable d-flex flex-row align-items-center"} onClick={this.changeIsExtended}>
+                        <h5>Filtry</h5>
                         {isExtended ?
-                            <ChevronUp className={"clickable ml-3"} size={20} onClick={this.changeIsExtended}/>
+                            <ChevronUp className={"ml-3"} size={20}/>
                             :
-                            <ChevronDown className={"clickable ml-3"} size={20} onClick={this.changeIsExtended}/>
+                            <ChevronDown className={"ml-3"} size={20}/>
                         }
                     </Col>
                 </Row>
@@ -46,8 +46,8 @@ class SearchContent extends Component{
                 {isExtended ?
 
                     <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
-                        <Col className={"d-flex flex-column align-items-center"} xs={3}>
-                            <p className={"mb-3"}>Cel</p>
+                        <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={4} lg={3}>
+                            <h6 className={"mb-4"}>Cel</h6>
                             <Form.Group>
                                 <Form.Check id={"purpose"} name={"purpose"} value={"1"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
                                             onChange={this.handleChange}
@@ -73,8 +73,8 @@ class SearchContent extends Component{
                             </Form.Group>
 
                         </Col>
-                        <Col className={"d-flex flex-column align-items-center"} xs={3}>
-                            <p className={"mb-3"}>Parametry</p>
+                        <Col className={"d-flex flex-column align-items-center"} xs={11} sm={6} md={4} lg={3}>
+                            <h6 className={"mb-4"}>Parametry</h6>
                             {this.selectInput("voivodeship", "Województwo")}
                             <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-3"}/>
                             {this.selectInput("genre", "Gatunek")}
