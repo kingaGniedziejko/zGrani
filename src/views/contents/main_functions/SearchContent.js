@@ -8,13 +8,13 @@ import ProfileShortcut from "../profiles/ProfileShortcut";
 
 class SearchContent extends Component{
     state = {
-        isExtended: true
+        isExtended: false
     }
 
-    selectInput = (slug, placeHolder) => {
+    selectInput = (slug, placeHolder, disabled=false) => {
         return (
             <Form.Control id={slug} as={"select"} value={-1} size="sm" onChange={this.handleChange}
-                          className={"dark-text mb-3"}>
+                          className={"dark-text mb-3"} >
                 <option disabled value={-1} key={-1}>{placeHolder}</option>
                 <option>Rock</option>
                 <option>Classic</option>
@@ -31,21 +31,23 @@ class SearchContent extends Component{
         const {type} = this.props;
 
         return (
-            <div className={"mb-5 d-flex flex-column align-items-center"}>
-                <div className={"d-flex flex-row align-items-center mb-3"}>
-                    <h6 className={"mt-1"}>Filtruj</h6>
-                    {isExtended ?
-                        <ChevronUp className={"clickable ml-3"} size={20} onClick={this.changeIsExtended}/>
-                        :
-                        <ChevronDown className={"clickable ml-3"} size={20} onClick={this.changeIsExtended}/>
-                    }
-                </div>
+            <Container className={"mb-5 d-flex flex-column align-items-center"}>
+                <Row className={"mb-4"}>
+                    <Col className={"d-flex flex-row align-items-center"}>
+                        <h6>Filtry</h6>
+                        {isExtended ?
+                            <ChevronUp className={"clickable ml-3"} size={20} onClick={this.changeIsExtended}/>
+                            :
+                            <ChevronDown className={"clickable ml-3"} size={20} onClick={this.changeIsExtended}/>
+                        }
+                    </Col>
+                </Row>
 
                 {isExtended ?
 
-                    <div className={"d-flex flex-row"}>
-                        <div className={"d-flex flex-column align-items-center"}>
-                            <p>Cel</p>
+                    <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
+                        <Col className={"d-flex flex-column align-items-center"} xs={3}>
+                            <p className={"mb-3"}>Cel</p>
                             <Form.Group>
                                 <Form.Check id={"purpose"} name={"purpose"} value={"1"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
                                             onChange={this.handleChange}
@@ -53,7 +55,13 @@ class SearchContent extends Component{
 
                                 <Form.Check id={"purpose"} name={"purpose"} value={"2"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
                                             onChange={this.handleChange}
-                                            label={<p style={{paddingTop: "2px"}}>Dołączenie do zespołu</p>}/>
+                                            label={<p style={{paddingTop: "2px"}}>{type === "artysta" ? "Zaproszenie do zespołu" : "Dołączenie do zespołu"}</p>}/>
+
+                                {type === "artysta" ? "" :
+                                    <div className={"pl-4 mb-3"}>
+                                        {this.selectInput("instrument", "Instrument", true)}
+                                    </div>
+                                }
 
                                 <Form.Check id={"purpose"} name={"purpose"} value={"3"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
                                             onChange={this.handleChange}
@@ -64,21 +72,22 @@ class SearchContent extends Component{
                                             label={<p style={{paddingTop: "2px"}}>Brak</p>}/>
                             </Form.Group>
 
-                        </div>
-                        <div className={"d-flex flex-column align-items-center"}>
+                        </Col>
+                        <Col className={"d-flex flex-column align-items-center"} xs={3}>
                             <p className={"mb-3"}>Parametry</p>
                             {this.selectInput("voivodeship", "Województwo")}
                             <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-3"}/>
-                            {type === "artysta" ? this.selectInput("genre", "Gatunek") : ""}
-                        </div>
-                    </div>
+                            {this.selectInput("genre", "Gatunek")}
+                            {type === "artysta" ? this.selectInput("instrument", "Instrument") : ""}
+                        </Col>
+                    </Row>
 
                     : ""
 
                 }
 
 
-            </div>
+            </Container>
         )
     }
 

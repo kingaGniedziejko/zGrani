@@ -20,14 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/contents/main_functions/BrowseContent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contents/main_functions/SearchContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/Browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/main_functions/Browse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/main_functions/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlocksDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ImageBlocksDisplay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/SearchContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/main_functions/SearchContent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +87,7 @@
       <workItem from="1601289107494" duration="16456000" />
       <workItem from="1601374820617" duration="12767000" />
       <workItem from="1601463266286" duration="15665000" />
+      <workItem from="1601545545321" duration="3361000" />
     </task>
     <servers />
   </component>
@@ -133,11 +128,11 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.864/-1920.-422.1536.864@0.0.1536.864" timestamp="1600851056467" />
-    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1601316238075">
+    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1601548234759">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
-    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1601316238075" />
+    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1601548234759" />
     <state x="425" y="197" key="run.anything.popup" timestamp="1601469402889">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
