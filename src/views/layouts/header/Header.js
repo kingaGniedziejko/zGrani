@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {withRouter, NavLink} from "react-router-dom";
 
-import "../../styles/header_style.css"
+import "../../../resources/styles/header_style.css"
 
 import LoggedInButtons from "./LoggedInButtons";
 import LoggedOutButtons from "./LoggedOutButtons";

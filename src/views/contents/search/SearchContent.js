@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {Col, Container, Form, Row} from "react-bootstrap";
 
-import "../../../styles/browse_style.css"
+import "../../../resources/styles/browse_style.css"
 import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
 
 import ProfileShortcut from "../profiles/ProfileShortcut";
 
 class SearchContent extends Component{
     state = {
-        isExtended: true
+        isExtended: false
     }
 
     selectInput = (slug, placeHolder, disabled=false) => {

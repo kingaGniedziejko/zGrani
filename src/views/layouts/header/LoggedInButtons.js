@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button, Image, Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-import userPhoto from '../../images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
+import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
 
 class LoggedInButtons extends Component{
     render() {

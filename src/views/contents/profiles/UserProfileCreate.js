@@ -46,7 +46,7 @@ class UserProfileCreate extends Component{
         return (
             <div id={"signup-artist"} className={"page-content"}>
                 <Container>
-                    <Row className={"section section-card d-flex flex-column align-items-center"}>
+            dd        <Row className={"section section-card d-flex flex-column align-items-center"}>
                         <Col className={"background-light p-3 p-sm-5 my-2 my-sm-5 text-center"} xs={11} sm={10} md={8} lg={5}>
                             <h3 className={"mb-2"}>Rejestracja</h3>
                             <h6 className={"mb-5"}>{userType.title}</h6>

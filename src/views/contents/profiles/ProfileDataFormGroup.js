@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 
-import userPhoto from '../../../images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
+import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
 
 import Blocks from "./Blocks";
 import ImageBlocksDisplay from "./ImageBlocksDisplay";

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import MVVM from "react-mvvm";
 
-class Login extends MVVM.ViewComponent{
+class Login extends Component{
     state = {
         login: '',
         password: ''

@@ -6,9 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //custom style
-import "./styles/style.css"
+import "./resources/styles/style.css"
 
-import Header from "./views/layouts/Header";
+import Header from "./views/layouts/header/Header";
 import Content from "./views/layouts/Content";
 import Footer from "./views/layouts/Footer";
 

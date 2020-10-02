@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Nav } from "react-bootstrap";
 import { NavLink, withRouter, Switch, Route } from "react-router-dom";
 
-import "../../../styles/browse_style.css"
+import "../../../resources/styles/browse_style.css"
 
 import BrowseContent from "./BrowseContent";
 

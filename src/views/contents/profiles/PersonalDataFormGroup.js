@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Modal } from "react-bootstrap";
 
-import "../../../styles/modal_style.css";
+import "../../../resources/styles/modal_style.css";
 
 import Blocks from "./Blocks";
 import BlocksMembers from "./BlocksMembers";

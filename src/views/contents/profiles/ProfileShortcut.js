@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Image} from "react-bootstrap";
 
-import "../../../styles/profile_style.css"
+import "../../../resources/styles/profile_style.css"
 
-import userPhoto from '../../../images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
+import userPhoto from '../../../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faGuitar, faMusic } from "@fortawesome/free-solid-svg-icons";

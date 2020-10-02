@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import '../../styles/content_style.css'
+import '../../resources/styles/content_style.css'
 
-import Home from "../contents/main_functions/Home";
-import Browse from "../contents/main_functions/Browse";
-import Search from "../contents/main_functions/Search";
+import Home from "../contents/Home";
+import Browse from "../contents/browse/Browse";
+import Search from "../contents/search/Search";
 import Login from "../contents/auth/Login";
 import Signup from "../contents/auth/Signup";
 import UserProfile from "../contents/profiles/UserProfile";

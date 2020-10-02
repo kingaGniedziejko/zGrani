@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-import "../../styles/footer_style.css"
+import "../../resources/styles/footer_style.css"
 
 class Footer extends Component{
     render() {

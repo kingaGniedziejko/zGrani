@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import  {Container, Row, Col, Button, Nav, Image} from "react-bootstrap";
 
-import photo1 from '../../../images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
-import photo2 from '../../../images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
-import photo3 from '../../../images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
+import photo1 from '../../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
+import photo2 from '../../resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
+import photo3 from '../../resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
 
 class Home extends Component{
     render() {

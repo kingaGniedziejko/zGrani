@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Col, Container, Form, Row} from "react-bootstrap";
 
-import "../../../styles/browse_style.css"
+import "../../../resources/styles/browse_style.css"
 import { ChevronDown } from "react-bootstrap-icons";
 
 import ProfileShortcut from "../profiles/ProfileShortcut";

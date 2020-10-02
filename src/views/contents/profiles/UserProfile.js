@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import Gallery from "react-photo-gallery";
+import { connect } from "react-redux"
 
-import "../../../styles/profile_style.css"
+import "../../../resources/styles/profile_style.css"
 
-import userPhoto from '../../../images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
-import photo1 from '../../../images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
-import photo2 from '../../../images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
-import photo3 from '../../../images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
+import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
+import photo1 from '../../../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
+import photo2 from '../../../resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
+import photo3 from '../../../resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faGuitar, faMusic } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +21,7 @@ import ReactPlayer from "react-player";
 class UserProfile extends Component{
     render() {
         const { login } = this.props.match.params;
+        const { description } = this.props.profile;
 
         const photos = [
             {
@@ -80,7 +82,7 @@ class UserProfile extends Component{
                         <Row>
                             <Col className={"text-center"}>
                                 <h5 className={"mb-3"}>Opis</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque lacus quis vulputate finibus. Donec et arcu euismod, pharetra diam in, faucibus massa. Mauris ultricies nisi ac pulvinar luctus. Suspendisse odio libero, pulvinar non lorem eu, aliquet porta enim. Aenean dignissim metus ut tincidunt mollis. Sed suscipit, nunc sit amet tincidunt feugiat, nunc lacus varius nunc, ut lobortis orci erat at velit. Duis commodo tincidunt ligula, cursus semper enim hendrerit vel.</p>
+                                <p>{description}</p>
                             </Col>
                         </Row>
                     </Container>
@@ -134,4 +136,10 @@ class UserProfile extends Component{
     }
 }
 
-export default UserProfile;
+const mapStateToProps = (state) => {
+    return {
+        profile: state.profile
+    }
+}
+
+export default connect(mapStateToProps)(UserProfile);
