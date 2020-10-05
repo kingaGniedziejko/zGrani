@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
+import { connect } from "react-redux";
+import { createUser } from "../../../store/actions/userActions";
+
 import PersonalDataFormGroup from "./PersonalDataFormGroup";
 
 class UserProfileCreate extends Component{
@@ -23,7 +26,8 @@ class UserProfileCreate extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        // console.log(this.state);
+        this.props.createUser(this.state);
     }
 
     render() {
@@ -46,7 +50,7 @@ class UserProfileCreate extends Component{
         return (
             <div id={"signup-artist"} className={"page-content"}>
                 <Container>
-            dd        <Row className={"section section-card d-flex flex-column align-items-center"}>
+                    <Row className={"section section-card d-flex flex-column align-items-center"}>
                         <Col className={"background-light p-3 p-sm-5 my-2 my-sm-5 text-center"} xs={11} sm={10} md={8} lg={5}>
                             <h3 className={"mb-2"}>Rejestracja</h3>
                             <h6 className={"mb-5"}>{userType.title}</h6>
@@ -70,4 +74,10 @@ class UserProfileCreate extends Component{
     }
 }
 
-export default UserProfileCreate;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createUser: (user) => dispatch(createUser(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(UserProfileCreate);

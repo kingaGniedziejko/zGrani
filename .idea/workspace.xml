@@ -20,44 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/authReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/browseReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/profileReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/rootReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/searchReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/actions/userActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/diego-sulivan-iDa5Mf7GqRg-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/diego-sulivan-iDa5Mf7GqRg-unsplash.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fire.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebaseConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/browse_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/browse_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/content_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/footer_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/footer_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/header_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/header_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/modal_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/modal_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/profile_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/profile_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/Browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/browse/Browse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/BrowseContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/browse/BrowseContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/search/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/main_functions/SearchContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/search/SearchContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileDataFormGroup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/userReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileCreate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/LoggedInButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/header/LoggedInButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/LoggedOutButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/header/LoggedOutButtons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +94,7 @@
       <workItem from="1601374820617" duration="12767000" />
       <workItem from="1601463266286" duration="15665000" />
       <workItem from="1601545545321" duration="16568000" />
-      <workItem from="1601627184964" duration="4518000" />
+      <workItem from="1601627184964" duration="12106000" />
     </task>
     <servers />
   </component>

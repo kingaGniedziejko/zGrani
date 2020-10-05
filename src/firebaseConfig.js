@@ -1,6 +1,8 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/firestore'
+import 'firebase/auth'
 
-var firebaseConfig = {
+var config = {
     apiKey: "AIzaSyC-FZFdogk9TaNPwItz-fhB_eeF4GiPubg",
     authDomain: "zgrani.firebaseapp.com",
     databaseURL: "https://zgrani.firebaseio.com",
@@ -11,5 +13,9 @@ var firebaseConfig = {
     measurementId: "G-H9R69W1X9X"
 };
 
-var fire = firebase.initializeApp(firebaseConfig);
-export default fire;
+firebase.initializeApp(config);
+
+//deleted in future release
+// firebase.firestore().settings({timestampsInSnapshots: true})
+
+export default firebase;
