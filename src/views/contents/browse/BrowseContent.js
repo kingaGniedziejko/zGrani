@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Col, Container, Form, Row} from "react-bootstrap";
+// import { firestoreConnect } from "react-redux-firebase";
 
 import "../../../resources/styles/browse_style.css"
 import { ChevronDown } from "react-bootstrap-icons";

@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import Gallery from "react-photo-gallery";
 import { connect } from "react-redux"
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux"
 
 import "../../../resources/styles/profile_style.css"
 
@@ -137,9 +139,14 @@ class UserProfile extends Component{
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
+        // profile: state.firestore.ordered.users
         profile: state.profile
     }
 }
 
-export default connect(mapStateToProps)(UserProfile);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect(() => ['users'])
+)(UserProfile);
