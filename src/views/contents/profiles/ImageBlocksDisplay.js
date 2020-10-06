@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Image, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import ImageBlock from "./ImageBlock";
 

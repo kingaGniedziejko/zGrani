@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Col, Form, Row} from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 
 import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
 
@@ -65,7 +65,7 @@ class ProfileDataFormGroup extends Component{
     }
 
     render() {
-        const { type, operation } = this.props;
+        // const { type, operation } = this.props;
         const { profilePhotoSrc, profileBackgroundSrc, gallery } = this.state;
 
         return (

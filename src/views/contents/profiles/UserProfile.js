@@ -14,11 +14,11 @@ import photo2 from '../../../resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsp
 import photo3 from '../../../resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faGuitar, faMusic } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 import Blocks from "./Blocks";
 import BlocksWithButton from "./BlocksWithButton";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 
 class UserProfile extends Component{
     render() {

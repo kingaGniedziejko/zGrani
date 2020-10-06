@@ -6,6 +6,9 @@ import "../../../resources/styles/browse_style.css"
 import { ChevronDown } from "react-bootstrap-icons";
 
 import ProfileShortcut from "../profiles/ProfileShortcut";
+import {firestoreConnect} from "react-redux-firebase";
+import {compose} from "redux";
+import {connect} from "react-redux";
 
 class BrowseContent extends Component{
 
@@ -15,7 +18,7 @@ class BrowseContent extends Component{
                 <Col className={"d-flex flex-column flex-sm-row align-items-center justify-content-center"} xs={8} sm={10} md={8} lg={6} xl={5}>
                     <h6 className={"mr-sm-4 mb-4 mb-sm-0 mt-1"}>Filtruj:</h6>
 
-                    <Form.Control id={"genre"} as={"select"} value={-1} size="sm" onChange={this.handleChange}
+                    <Form.Control id={"genre"} as={"select"} defaultValue={-1} size="sm" onChange={this.handleChange}
                                   className={"mr-sm-4 mb-3 mb-sm-0 dark-text"}>
                         <option disabled value={-1} key={-1}>Gatunek</option>
                         <option>Rock</option>
@@ -23,7 +26,7 @@ class BrowseContent extends Component{
                     </Form.Control>
 
                     {type === "artysta" ?
-                        <Form.Control id={"instrument"} as={"select"} value={-1} size="sm" onChange={this.handleChange}
+                        <Form.Control id={"instrument"} as={"select"} defaultValue={-1} size="sm" onChange={this.handleChange}
                                       className={"dark-text"}>
                             <option disabled value={-1} key={-1}>Instrument</option>
                             <option>Rock</option>
@@ -37,20 +40,16 @@ class BrowseContent extends Component{
     }
 
     browseContent = (type) => {
+        const { users } = this.props;
         return (
             <div className={"section d-flex flex-column align-items-center"}>
                 <Container>
                     <Row>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
-                    </Row>
-                    <Row>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
-                        <Col sm={6} lg><ProfileShortcut/></Col>
+                        {users && users.map((elem, index) => {
+                            return (
+                                <Col key={index} sm={6} lg><ProfileShortcut/></Col>
+                            )
+                        })}
                     </Row>
                 </Container>
                 <div className={"d-flex flex-column align-items-center"}>
@@ -74,4 +73,17 @@ class BrowseContent extends Component{
     }
 }
 
-export default BrowseContent;
+
+
+const mapStateToProps = (state) => {
+
+    console.log(state.firestore.ordered.users);
+    return {
+        users: state.firestore.ordered.users
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect(() => ['users'])
+)(BrowseContent);

@@ -85,6 +85,7 @@ class PersonalDataFormGroup extends Component{
             case "delete":
                 elements[index].userId = "";
                 break;
+            default:
         }
 
         this.setState({

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
-import Blocks from "./Blocks";
-import BlocksMembers from "./BlocksMembers";
 import PersonalDataFormGroup from "./PersonalDataFormGroup";
 import ProfileDataFormGroup from "./ProfileDataFormGroup";
 
@@ -29,7 +26,7 @@ class UserProfileEdit extends Component{
     }
 
     render() {
-        const { login } = this.props.match.params;
+        // const { login } = this.props.match.params;
 
         let type = "artysta";
         let userType;

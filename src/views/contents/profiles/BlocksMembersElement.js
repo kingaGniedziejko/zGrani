@@ -33,7 +33,7 @@ class BlocksMembersElement extends Component{
     }
 
     handleCheck = () => {
-        let email = this.state.userEmail;
+        // let email = this.state.userEmail;
 
         // check if user exists
         let exists = true;

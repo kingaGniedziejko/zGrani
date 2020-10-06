@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 import "../../resources/styles/footer_style.css"

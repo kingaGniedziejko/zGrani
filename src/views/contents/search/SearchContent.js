@@ -13,7 +13,7 @@ class SearchContent extends Component{
 
     selectInput = (slug, placeHolder, disabled=false) => {
         return (
-            <Form.Control id={slug} as={"select"} value={-1} size="sm" onChange={this.handleChange}
+            <Form.Control id={slug} as={"select"} defaultValue={-1} size="sm" onChange={this.handleChange}
                           className={"dark-text mb-3"} >
                 <option disabled value={-1} key={-1}>{placeHolder}</option>
                 <option>Rock</option>
@@ -26,9 +26,8 @@ class SearchContent extends Component{
         this.setState({isExtended: !this.state.isExtended})
     }
 
-    browseFilters = () => {
+    browseFilters = (type) => {
         const {isExtended} = this.state;
-        const {type} = this.props;
 
         return (
             <Container className={"mb-5 d-flex flex-column align-items-center"}>
@@ -91,7 +90,7 @@ class SearchContent extends Component{
         )
     }
 
-    browseContent = () => {
+    browseContent = (_) => {
         return (
             <div className={"section d-flex flex-column align-items-center"}>
                 <Container>
@@ -122,8 +121,8 @@ class SearchContent extends Component{
 
         return (
             <div id={"browse-content d-flex flex-column align-items-center"}>
-                {this.browseFilters()}
-                {this.browseContent()}
+                {this.browseFilters(type)}
+                {this.browseContent(type)}
             </div>
         );
     }
