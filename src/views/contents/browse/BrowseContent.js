@@ -47,7 +47,7 @@ class BrowseContent extends Component{
                     <Row>
                         {users && users.map((user, index) => {
                             return (
-                                <Col key={index} sm={6} lg><ProfileShortcut user={user}/></Col>
+                                <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
                             )
                         })}
                     </Row>

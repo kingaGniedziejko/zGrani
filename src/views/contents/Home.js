@@ -34,11 +34,11 @@ class Home extends Component{
                             </Col>
                             <Col className="col-12 col-sm-8 col-lg-4 mt-5 mt-lg-0 d-flex flex-column align-items-center">
                                 <Image src={photo2} fluid className="my-5"/>
-                                <h5 className="text-center mb-3">Stwórz konto swojego zespołu</h5>
+                                <h5 className="text-center mb-3">Stwórzcie konto zespołu</h5>
                                 <p className="text-center dark-text mb-4">
-                                    Stwórz portfolio zespołu, szukaj nowych członków,
-                                    znajdź szybko zastępstwo w okolicy.
-                                    Zostań zauważony przez pracodawców.
+                                    Pokażcie swoje portfolio, szukajcie nowych członków,
+                                    znajdźcie szybko zastępstwo w okolicy.
+                                    Zostańcie zauważeni przez pracodawców.
                                 </p>
                                 <Link to={"/rejestracja/zespol"} className="mt-auto">
                                     <Button variant="outline-accent" size="sm">Rozpocznij</Button>
@@ -50,6 +50,7 @@ class Home extends Component{
                                 <p className="text-center dark-text mb-4">
                                     Organizujesz wydarzenie?
                                     Szukasz artysty lub zespołu?
+                                    Skorzystaj z naszej wyszukiwarki twórców.
                                 </p>
                                 <Link to={"/szukaj"} className="mt-auto">
                                     <Button variant="outline-accent" size="sm">Szukaj</Button>

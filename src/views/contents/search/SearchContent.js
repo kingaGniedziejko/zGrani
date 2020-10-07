@@ -66,6 +66,12 @@ class SearchContent extends Component{
                                             onChange={this.handleChange}
                                             label={<p style={{paddingTop: "2px"}}>Zastępstwo</p>}/>
 
+                                {type === "artysta" ? "" :
+                                    <div className={"pl-4 mb-3"}>
+                                        {this.selectInput("instrument", "Instrument", true)}
+                                    </div>
+                                }
+
                                 <Form.Check id={"purpose"} name={"purpose"} value={"4"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
                                             onChange={this.handleChange}
                                             label={<p style={{paddingTop: "2px"}}>Brak</p>}/>

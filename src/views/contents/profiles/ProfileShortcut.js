@@ -13,16 +13,19 @@ import {Link} from "react-router-dom";
 
 class ProfileShortcut extends Component{
     render() {
+        const { user } = this.props;
+        console.log(user);
+
         return (
             <div className={"profile-shortcut mb-5"}>
-                <Link to={"/profil/anna21"} className={"mb-2 d-block"}>
+                <Link to={"/profil/" + user.login} className={"mb-2 d-block"}>
                     <Image src={userPhoto} fluid/>
                 </Link>
-                <Link to={"/profil/anna21"}>
-                    <h5>Anna Kowalska</h5>
+                <Link to={"/profil/" + user.login}>
+                    <h5>{user.name}</h5>
                 </Link>
-                <Link to={"/profil/anna21"}>
-                    <small className={"d-block mb-2"}>anna21</small>
+                <Link to={"/profil/" + user.login}>
+                    <small className={"d-block mb-2"}>{user.login}</small>
                 </Link>
                 <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>
                 <div>
@@ -30,7 +33,7 @@ class ProfileShortcut extends Component{
                         <div className={"icon-container mr-2"}>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>
                         </div>
-                        <p className={"m-0"}>Polska, Wrocław</p>
+                        <p className={"m-0"}>{user.city}</p>
                     </div>
                     <div className={"d-flex flex-row mb-1"}>
                         <div className={"icon-container mr-2"}>
