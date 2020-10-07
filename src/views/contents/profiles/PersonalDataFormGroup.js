@@ -19,6 +19,7 @@ class PersonalDataFormGroup extends Component{
         instruments: [],
         currentMember: '',
         members: [],
+        status: [],
 
         modalShow: false,
         actualPassword: '',
@@ -207,17 +208,13 @@ class PersonalDataFormGroup extends Component{
                     : ""
                 }
 
-
                 <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <Form.Control id={"voivodeship"} type={"text"} placeholder={"Województwo"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
 
-                {this.blockInput("Gatunki", "genres")}
-
-                {userType.type === "artysta" ?
-                    this.blockInput("Instrumenty", "instruments")
-                    : this.membersInput()
-                }
+                { this.blockInput("Gatunki", "genres") }
+                { userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
+                { this.blockInput("Status", "status") }
             </Form.Group>
         );
     }

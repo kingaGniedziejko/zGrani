@@ -45,9 +45,9 @@ class BrowseContent extends Component{
             <div className={"section d-flex flex-column align-items-center"}>
                 <Container>
                     <Row>
-                        {users && users.map((elem, index) => {
+                        {users && users.map((user, index) => {
                             return (
-                                <Col key={index} sm={6} lg><ProfileShortcut/></Col>
+                                <Col key={index} sm={6} lg><ProfileShortcut user={user}/></Col>
                             )
                         })}
                     </Row>

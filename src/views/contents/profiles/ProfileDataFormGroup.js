@@ -10,7 +10,6 @@ class ProfileDataFormGroup extends Component{
     state = {
         profilePhotoSrc: userPhoto,
         profileBackgroundSrc: userPhoto,
-        status: [],
         description: '',
         gallery: [userPhoto, userPhoto, userPhoto, userPhoto],
         videos: []
@@ -81,13 +80,10 @@ class ProfileDataFormGroup extends Component{
                     </Col>
                 </Form.Group>
 
-                {this.blockInput("Status", "status")}
-
                 <Form.Control id={"description"} as={"textarea"} rows={5} placeholder={"Opis"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
 
                 <h6 className={"mb-3"}>Nagrania</h6>
                 <Form.File id="recordings" multiple className={"mb-5 default-file-input"}/>
-
 
                 <h6 className={"mb-3"}>Galeria</h6>
                 <ImageBlocksDisplay type={"multiple"} elementsList={gallery} slug={"gallery"} deleteHandler={this.handleArrayDelete}/>
