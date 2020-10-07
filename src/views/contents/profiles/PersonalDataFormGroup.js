@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, Dropdown } from "react-bootstrap";
 
 import "../../../resources/styles/modal_style.css";
 
@@ -95,15 +95,58 @@ class PersonalDataFormGroup extends Component{
     }
 
     blockInput = (title, slug) => {
+        let list = [
+            {
+                id: 1,
+                name: "Classic",
+                selected: false,
+                key: slug
+            },
+            {
+                id: 2,
+                name: "Rock",
+                selected: false,
+                key: slug
+            },
+            {
+                id: 3,
+                title: "Rock & Roll",
+                selected: false,
+                key: slug
+            }
+        ]
+
         return (
-            <Form.Group className={"mb-5"} style={{width: "100%"}}>
+            <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-3"}>{title}</h6>
-                <Form.Control id={slug} as={"select"} value={-1} size="sm"
-                              onChange={this.handleChange} className={"mb-3 dark-text"}>
-                    <option disabled value={-1} key={-1}>Wybierz z listy</option>
-                    <option>Rock</option>
-                    <option>Classic</option>
-                </Form.Control>
+
+                <Dropdown title="Wybierz z listy" list={list} />
+
+                {/*<div className="list-select-wrapper">*/}
+                {/*    <div className="list-select-header">*/}
+                {/*        <div className="list-select-header-title">Wybierz z listy</div>*/}
+                {/*    </div>*/}
+                {/*    <ul className="list-select-list">*/}
+                {/*        <li className="list-select-list-item">Classic</li>*/}
+                {/*        <li className="list-select-list-item">Rock</li>*/}
+                {/*        <li className="list-select-list-item">Rock & Roll</li>*/}
+                {/*    </ul>*/}
+                {/*</div>*/}
+
+                {/*<ul className="list-unstyled">*/}
+                {/*    <li className="init">Wybierz z listy</li>*/}
+                {/*    <li data-value="value 1">Rock</li>*/}
+                {/*    <li data-value="value 2">Rock & Roll</li>*/}
+                {/*    <li data-value="value 3">Classic</li>*/}
+                {/*</ul>*/}
+
+                {/*<Form.Control id={slug} as={"select"} value={-1} size="sm"*/}
+                {/*              onChange={this.handleChange} className={"mb-3 dark-text"}>*/}
+                {/*    <option disabled value={-1} key={-1}>Wybierz z listy</option>*/}
+                {/*    <option>Rock</option>*/}
+                {/*    <option>Classic</option>*/}
+                {/*</Form.Control>*/}
+
                 <Blocks elementsList={this.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleDelete}/>
             </Form.Group>
         )

@@ -201,6 +201,24 @@ a:active {
 }
 
 /*   select   */
+select option {
+    padding: 10px;
+    background-color: var(--background-light);
+    border: none;
+    box-shadow: none;
+}
+
+option:disabled {
+    /*background-color: var(--background-lighter);*/
+    color: var(--text-color-dark);
+}
+
+select option:hover {
+    background-color: var(--accent-1);
+    border: none;
+    box-shadow: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -213,6 +231,34 @@ input:-webkit-autofill {
     -webkit-text-fill-color: var(--text-color) !important;
     caret-color: var(--text-color);
 }
+
+
+
+
+
+
+/*.list-select ul {*/
+/*    height: 30px;*/
+/*    border-bottom: 1px solid var(--text-color-light);*/
+/*    font-size: .875rem;*/
+/*    text-align: left;*/
+/*}*/
+/*.list-select ul li {*/
+/*    padding: 5px 10px; z-index: 2;*/
+/*}*/
+/*.list-select ul li:not(.init) {*/
+/*    float: left; width: 130px; display: none; background: #ddd;*/
+/*}*/
+/*.list-select ul li:not(.init):hover, ul li.selected:not(.init) {*/
+/*    background: #ffcd80;*/
+/*}*/
+/*.list-select li.init {*/
+/*    cursor: pointer;*/
+/*}*/
+/*.list-select a#submit {*/
+/*    z-index: 1;*/
+/*}*/
+
 
 
 /*   checkbox   */
