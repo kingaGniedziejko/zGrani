@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Form, Modal, Dropdown } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 
 import "../../../resources/styles/modal_style.css";
 
 import Blocks from "./Blocks";
 import BlocksMembers from "./BlocksMembers";
+import Dropdown from "./Dropdown";
 
 class PersonalDataFormGroup extends Component{
     state = {
@@ -29,23 +30,9 @@ class PersonalDataFormGroup extends Component{
     }
 
     handleChange = (e) => {
-        if (e.target.nodeName === "SELECT") {
-            let value = e.target.value;
-            let id = e.target.id;
-            let elements = this.state[id];
-
-            if (value !== "Wybierz z listy") {
-                if (!elements.includes(value)) elements.push(value);
-
-                this.setState({
-                    [id]: elements
-                })
-            }
-        } else {
-            this.setState({
-                [e.target.id]: e.target.value
-            })
-        }
+        this.setState({
+            [e.target.id]: e.target.value
+        })
     }
 
     handleDelete = (slug, value) => {
@@ -94,17 +81,26 @@ class PersonalDataFormGroup extends Component{
         })
     }
 
+    toggleSelected = (id, title, key) => {
+        let elements = this.state[key];
+        if (!elements.includes(title)) elements.push(title);
+
+        this.setState({
+            [key]: elements
+        })
+    }
+
     blockInput = (title, slug) => {
         let list = [
             {
                 id: 1,
-                name: "Classic",
+                title: "Classic",
                 selected: false,
                 key: slug
             },
             {
                 id: 2,
-                name: "Rock",
+                title: "Rock",
                 selected: false,
                 key: slug
             },
@@ -120,25 +116,7 @@ class PersonalDataFormGroup extends Component{
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-3"}>{title}</h6>
 
-                <Dropdown title="Wybierz z listy" list={list} />
-
-                {/*<div className="list-select-wrapper">*/}
-                {/*    <div className="list-select-header">*/}
-                {/*        <div className="list-select-header-title">Wybierz z listy</div>*/}
-                {/*    </div>*/}
-                {/*    <ul className="list-select-list">*/}
-                {/*        <li className="list-select-list-item">Classic</li>*/}
-                {/*        <li className="list-select-list-item">Rock</li>*/}
-                {/*        <li className="list-select-list-item">Rock & Roll</li>*/}
-                {/*    </ul>*/}
-                {/*</div>*/}
-
-                {/*<ul className="list-unstyled">*/}
-                {/*    <li className="init">Wybierz z listy</li>*/}
-                {/*    <li data-value="value 1">Rock</li>*/}
-                {/*    <li data-value="value 2">Rock & Roll</li>*/}
-                {/*    <li data-value="value 3">Classic</li>*/}
-                {/*</ul>*/}
+                <Dropdown title="Wybierz z listy" list={list} toggleItem={this.toggleSelected}/>
 
                 {/*<Form.Control id={slug} as={"select"} value={-1} size="sm"*/}
                 {/*              onChange={this.handleChange} className={"mb-3 dark-text"}>*/}

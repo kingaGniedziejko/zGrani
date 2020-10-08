@@ -233,7 +233,33 @@ input:-webkit-autofill {
 }
 
 
+.dd-wrapper {
+    position: relative;
+    font-size: .875rem;
+}
 
+.dd-header {
+    border-bottom: 1px solid var(--text-color-light);
+    text-align: left;
+    padding: 4px 8px;
+}
+
+.dd-list {
+    width: 100%;
+    position: absolute;
+    background-color: var(--background-lighter);
+    box-shadow: 2px 2px 10px black;
+}
+
+.dd-list-item {
+    padding: 4px 8px;
+}
+
+.dd-list-item:hover {
+    background-color: var(--accent-1);
+    color: var(--background-dark);
+    font-weight: 500;
+}
 
 
 
