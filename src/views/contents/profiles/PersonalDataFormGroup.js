@@ -5,7 +5,7 @@ import "../../../resources/styles/modal_style.css";
 
 import Blocks from "./Blocks";
 import BlocksMembers from "./BlocksMembers";
-import Dropdown from "./Dropdown";
+import Dropdown from "./DropdownInput";
 import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {connect} from "react-redux";
@@ -84,40 +84,31 @@ class PersonalDataFormGroup extends Component{
         })
     }
 
-    toggleSelected = (id, name, key) => {
-        let elements = this.state[key];
-        if (!elements.includes(name)) elements.push(name);
+    toggleSelected = (id, name, slug, isMultiple) => {
+        if (!isMultiple) {
+            this.setState({
+                [slug]: name
+            })
+        } else {
+            let elements = this.state[slug];
+            if (!elements.includes(name)) elements.push(name);
 
-        this.setState({
-            [key]: elements
-        })
+            this.setState({
+                [slug]: elements
+            })
+        }
     }
 
     blockInput = (title, slug) => {
         let list = this.props[slug];
-        let elemList = [];
-
-        console.log(list);
-
-        if (list) {
-            list.forEach(element => {
-                elemList.push({
-                    id: element.id,
-                    name: element.name,
-                    selected: false,
-                    key: slug
-                })
-            })
-        }
-
-        console.log(elemList);
 
         return (
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-3"}>{title}</h6>
 
-                <Dropdown title="Wybierz z listy" list={elemList} toggleItem={this.toggleSelected}/>
+                <Dropdown placeholder="Wybierz z listy" list={list} slug={slug} toggleItem={this.toggleSelected} isMultiple={true}/>
 
+                {/*   old select   */}
                 {/*<Form.Control id={slug} as={"select"} value={-1} size="sm"*/}
                 {/*              onChange={this.handleChange} className={"mb-3 dark-text"}>*/}
                 {/*    <option disabled value={-1} key={-1}>Wybierz z listy</option>*/}
@@ -187,7 +178,6 @@ class PersonalDataFormGroup extends Component{
                         :
                         <Button variant="outline-accent" size="sm" onClick={this.saveNewPassword}>Zapisz zmiany</Button>
                     }
-
                 </Modal.Footer>
             </Modal>
         );
@@ -200,7 +190,7 @@ class PersonalDataFormGroup extends Component{
         const type1 = {type: "artysta", nameFieldText: "Pseudonim"}
         const type2 = {type: "zespol", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation } = this.props;
+        const { type, operation, voivodeships } = this.props;
 
         if (type === type1.type) userType = type1;
         else if (type === type2.type) userType = type2;
@@ -230,11 +220,14 @@ class PersonalDataFormGroup extends Component{
                 }
 
                 <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} onChange={this.handleChange} size="sm" className={"mb-4"}/>
-                <Form.Control id={"voivodeship"} type={"text"} placeholder={"Województwo"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
+
+                <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"} toggleItem={this.toggleSelected} />
+
+                {/*<Form.Control id={"voivodeship"} type={"text"} placeholder={"Województwo"} onChange={this.handleChange} size="sm" className={"mb-4"}/>*/}
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
 
                 { this.blockInput("Gatunki", "genres") }
-                {/*{ userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }*/}
+                { userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
                 {/*{ this.blockInput("Status", "status") }*/}
             </Form.Group>
         );
@@ -244,11 +237,13 @@ class PersonalDataFormGroup extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        genres: state.firestore.ordered.genres
+        voivodeships: state.firestore.ordered.voivodeships,
+        genres: state.firestore.ordered.genres,
+        instruments: state.firestore.ordered.instruments
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect(() => ['genres'])
+    firestoreConnect(() => ['voivodeships', 'genres', 'instruments'])
 )(PersonalDataFormGroup);

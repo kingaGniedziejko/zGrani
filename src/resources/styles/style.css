@@ -177,6 +177,10 @@ a:active {
     color: var(--text-color);
 }
 
+.form-control:hover {
+    border-bottom: 1px solid var(--text-color-light);
+}
+
 .form-control:focus {
     background: none;
     border-bottom: 1px solid var(--text-color-light);
@@ -238,26 +242,43 @@ input:-webkit-autofill {
     font-size: .875rem;
 }
 
-.dd-header {
+.dd-wrapper .dd-header {
+    border-bottom: 1px solid var(--text-color);
+    text-align: left;
+    padding: 4px 8px;
+}
+
+.dd-wrapper .dd-header:hover {
     border-bottom: 1px solid var(--text-color-light);
     text-align: left;
     padding: 4px 8px;
 }
 
-.dd-list {
+.dd-wrapper .dd-header .dd-header-title {
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.dd-wrapper .dd-header .dd-header-title.placeholder {
+    color: var(--text-color-dark);
+}
+
+.dd-wrapper .dd-list {
     width: 100%;
     max-height: 200px;
     overflow-y: scroll;
     position: absolute;
+    z-index: 5;
     background-color: var(--background-lighter);
     box-shadow: 2px 2px 10px black;
 }
 
-.dd-list-item {
-    padding: 4px 8px;
+.dd-wrapper .dd-list-item {
+    padding: 5px 8px;
+    font-weight: 400;
 }
 
-.dd-list-item:hover {
+.dd-wrapper .dd-list-item:hover {
     background-color: var(--accent-1);
     color: var(--background-dark);
     font-weight: 500;

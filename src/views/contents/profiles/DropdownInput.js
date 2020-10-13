@@ -3,15 +3,13 @@ import {ChevronDown, ChevronUp} from "react-bootstrap-icons";
 import listensToClickOutside from 'react-onclickoutside';
 
 
-class Dropdown extends Component {
+class DropdownInput extends Component {
     constructor(props){
         super(props)
         this.state = {
-            listOpen: false,
-            headerTitle: this.props.title
+            listOpen: false
         }
     }
-
 
     handleClickOutside(){
         this.setState({
@@ -26,19 +24,19 @@ class Dropdown extends Component {
     }
 
     render(){
-        const { list, toggleItem } = this.props
-        const { listOpen, headerTitle } = this.state
+        const { placeholder, value = '', list, slug, toggleItem, isMultiple = false } = this.props
+        const { listOpen } = this.state
         return(
-            <div className="dd-wrapper mb-3">
+            <div className="dd-wrapper mb-3" style={{width: "100%"}}>
                 <div className="dd-header d-flex flex-row align-items-center justify-content-between" onClick={() => this.toggleList()}>
-                    <div className="dd-header-title">{headerTitle}</div>
+                    <div className={"dd-header-title" + (value ? "" : " placeholder")}>{ value ? value : placeholder }</div>
                     { listOpen ? <ChevronUp/> : <ChevronDown/> }
                 </div>
                 {listOpen && <ul className="dd-list list-unstyled text-left">
                     {list.map((item) => (
-                        <li className="dd-list-item clickable" key={item.id}
+                        <li className={ "dd-list-item clickable" + (!isMultiple && value === item.name ? " selected" : "")}  key={item.id}
                             onClick={() => {
-                                toggleItem(item.id, item.name, item.key);
+                                toggleItem(item.id, item.name, slug, isMultiple);
                                 this.toggleList();
                             }}>
                             {item.name}
@@ -48,7 +46,6 @@ class Dropdown extends Component {
             </div>
         )
     }
-
 }
 
-export default listensToClickOutside(Dropdown)
+export default listensToClickOutside(DropdownInput)
