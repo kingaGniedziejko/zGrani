@@ -12,9 +12,9 @@ class Blocks extends Component{
             <div className={"blocks-container mb-1 d-flex flex-row flex-wrap justify-content-"+align}>
                 {elementsList.map((elem, index) => {
                     return (
-                        <div key={index} className={"d-flex flex-row align-items-center background-lighter mr-2 mb-2 py-1" + (editable ? " pl-3 pr-2" : " px-3")}>
-                            {elem}
-                            {editable ? <X className={"ml-2"} onClick={()=>handler(slug, elem)}/> : ""}
+                        <div key={index} className={"d-flex flex-row align-items-center background-lighter mr-2 mb-2 py-1 pl-2 pr-2"} style={{flex: 1}}>
+                            <p className={"ml-1 mr-3"}>{elem.replace(/ /g, "\u00a0")}</p>
+                            {editable ? <X className={"ml-auto"} onClick={()=>handler(slug, elem)}/> : ""}
                         </div>
                     )
                 })}

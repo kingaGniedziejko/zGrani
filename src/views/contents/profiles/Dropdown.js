@@ -38,10 +38,10 @@ class Dropdown extends Component {
                     {list.map((item) => (
                         <li className="dd-list-item clickable" key={item.id}
                             onClick={() => {
-                                toggleItem(item.id, item.title, item.key);
+                                toggleItem(item.id, item.name, item.key);
                                 this.toggleList();
                             }}>
-                            {item.title}
+                            {item.name}
                         </li>
                     ))}
                 </ul>}

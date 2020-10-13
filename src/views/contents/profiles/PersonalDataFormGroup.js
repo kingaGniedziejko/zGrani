@@ -6,6 +6,9 @@ import "../../../resources/styles/modal_style.css";
 import Blocks from "./Blocks";
 import BlocksMembers from "./BlocksMembers";
 import Dropdown from "./Dropdown";
+import {compose} from "redux";
+import {firestoreConnect} from "react-redux-firebase";
+import {connect} from "react-redux";
 
 class PersonalDataFormGroup extends Component{
     state = {
@@ -81,9 +84,9 @@ class PersonalDataFormGroup extends Component{
         })
     }
 
-    toggleSelected = (id, title, key) => {
+    toggleSelected = (id, name, key) => {
         let elements = this.state[key];
-        if (!elements.includes(title)) elements.push(title);
+        if (!elements.includes(name)) elements.push(name);
 
         this.setState({
             [key]: elements
@@ -91,32 +94,29 @@ class PersonalDataFormGroup extends Component{
     }
 
     blockInput = (title, slug) => {
-        let list = [
-            {
-                id: 1,
-                title: "Classic",
-                selected: false,
-                key: slug
-            },
-            {
-                id: 2,
-                title: "Rock",
-                selected: false,
-                key: slug
-            },
-            {
-                id: 3,
-                title: "Rock & Roll",
-                selected: false,
-                key: slug
-            }
-        ]
+        let list = this.props[slug];
+        let elemList = [];
+
+        console.log(list);
+
+        if (list) {
+            list.forEach(element => {
+                elemList.push({
+                    id: element.id,
+                    name: element.name,
+                    selected: false,
+                    key: slug
+                })
+            })
+        }
+
+        console.log(elemList);
 
         return (
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-3"}>{title}</h6>
 
-                <Dropdown title="Wybierz z listy" list={list} toggleItem={this.toggleSelected}/>
+                <Dropdown title="Wybierz z listy" list={elemList} toggleItem={this.toggleSelected}/>
 
                 {/*<Form.Control id={slug} as={"select"} value={-1} size="sm"*/}
                 {/*              onChange={this.handleChange} className={"mb-3 dark-text"}>*/}
@@ -234,11 +234,21 @@ class PersonalDataFormGroup extends Component{
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
 
                 { this.blockInput("Gatunki", "genres") }
-                { userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
-                { this.blockInput("Status", "status") }
+                {/*{ userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }*/}
+                {/*{ this.blockInput("Status", "status") }*/}
             </Form.Group>
         );
     }
 }
 
-export default PersonalDataFormGroup;
+
+const mapStateToProps = (state) => {
+    return {
+        genres: state.firestore.ordered.genres
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect(() => ['genres'])
+)(PersonalDataFormGroup);
