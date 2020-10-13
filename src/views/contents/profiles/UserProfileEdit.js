@@ -64,7 +64,7 @@ class UserProfileEdit extends Component{
                                     </Row>
                                     <Row className="justify-content-center">
                                         <Col xs={10} lg={6} xl={5}>
-                                            <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Załóż konto</Button>
+                                            <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Zapisz</Button>
                                         </Col>
                                     </Row>
                                 </Container>

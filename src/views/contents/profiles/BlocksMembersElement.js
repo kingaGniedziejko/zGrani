@@ -12,7 +12,7 @@ class BlocksMembersElement extends Component{
 
     linkingUserComponent = (elem) => {
         return (
-            <div className={"find-member block d-flex flex-row align-items-center mx-5 mb-3 p-2"} style={{border: "3px solid var(--background-lighter)"}}>
+            <div className={"find-member block d-flex flex-row align-items-center mb-3 p-2"} style={{border: "3px solid var(--background-lighter)"}}>
                 <Form.Control id={"userEmail"} type={"text"} value={this.state.userEmail} placeholder={"Email użytkownika"} onChange={this.handleChange} size="sm"/>
                 <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-2"}/>
                 <X onClick={this.handleExit} size={28} className={"clickable ml-2"}/>

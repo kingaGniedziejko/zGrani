@@ -20,15 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/instrumentsReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/voivodeshipsReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contents/profiles/SelectInput.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/rootReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/rootReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/Dropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/DropdownInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +92,7 @@
       <workItem from="1601545545321" duration="16568000" />
       <workItem from="1601627184964" duration="43490000" />
       <workItem from="1602582040539" duration="5823000" />
-      <workItem from="1602605663121" duration="7401000" />
+      <workItem from="1602605663121" duration="7875000" />
     </task>
     <servers />
   </component>
