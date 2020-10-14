@@ -12,7 +12,7 @@ import Dropdown from "../profiles/DropdownInput";
 
 class SearchContent extends Component{
     state = {
-        isExtended: true,
+        isExtended: false,
         voivodeship: '',
         genre: '',
         instrument: '',
@@ -125,32 +125,24 @@ class SearchContent extends Component{
                             }
                         </Col>
                     </Row>
-
                     : ""
-
                 }
-
-
             </Container>
         )
     }
 
     browseContent = (_) => {
+        const { users } = this.props;
         return (
             <div className={"section d-flex flex-column align-items-center"}>
                 <Container>
-                    {/*<Row>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*</Row>*/}
-                    {/*<Row>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*    <Col sm={6} lg><ProfileShortcut/></Col>*/}
-                    {/*</Row>*/}
+                    <Row>
+                        {users && users.map((user, index) => {
+                            return (
+                                <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
+                            )
+                        })}
+                    </Row>
                 </Container>
                 <div className={"d-flex flex-column align-items-center"}>
                     <p className={"m-0"}>Więcej</p>
