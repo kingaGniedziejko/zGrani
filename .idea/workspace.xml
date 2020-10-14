@@ -21,9 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/browse/BrowseContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/browse/BrowseContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/DropdownInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/DropdownInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +92,7 @@
       <workItem from="1601545545321" duration="16568000" />
       <workItem from="1601627184964" duration="43490000" />
       <workItem from="1602582040539" duration="5823000" />
-      <workItem from="1602605663121" duration="7875000" />
+      <workItem from="1602605663121" duration="13744000" />
     </task>
     <servers />
   </component>
@@ -138,11 +138,11 @@
       <screen x="1920" y="-524" width="1920" height="1080" />
     </state>
     <state x="2013" y="-492" width="1173" height="787" key="dock-window-1/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602066304951" />
-    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1602101659110">
+    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1602674182087">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
-    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1602101659110" />
+    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1602674182087" />
     <state x="425" y="197" key="run.anything.popup" timestamp="1601469402889">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

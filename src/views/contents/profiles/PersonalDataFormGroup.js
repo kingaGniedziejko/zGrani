@@ -220,12 +220,11 @@ class PersonalDataFormGroup extends Component{
                 }
 
                 <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} onChange={this.handleChange} size="sm" className={"mb-4"}/>
-
-                <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"} toggleItem={this.toggleSelected} />
-
-                {/*<Form.Control id={"voivodeship"} type={"text"} placeholder={"Województwo"} onChange={this.handleChange} size="sm" className={"mb-4"}/>*/}
+                <div className={"block mb-4"}>
+                    <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"}
+                              toggleItem={this.toggleSelected} />
+                </div>
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
-
                 { this.blockInput("Gatunki", "genres") }
                 { userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
                 {/*{ this.blockInput("Status", "status") }*/}

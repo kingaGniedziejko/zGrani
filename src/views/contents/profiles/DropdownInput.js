@@ -27,7 +27,7 @@ class DropdownInput extends Component {
         const { placeholder, value = '', list, slug, toggleItem, isMultiple = false } = this.props
         const { listOpen } = this.state
         return(
-            <div className="dd-wrapper mb-3" style={{width: "100%"}}>
+            <div className="dd-wrapper" style={{width: "100%"}}>
                 <div className="dd-header d-flex flex-row align-items-center justify-content-between" onClick={() => this.toggleList()}>
                     <div className={"dd-header-title" + (value ? "" : " placeholder")}>{ value ? value : placeholder }</div>
                     { listOpen ? <ChevronUp/> : <ChevronDown/> }

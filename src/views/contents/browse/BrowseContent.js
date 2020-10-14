@@ -1,37 +1,53 @@
 import React, { Component } from 'react';
-import {Col, Container, Form, Row} from "react-bootstrap";
-// import { firestoreConnect } from "react-redux-firebase";
+import {Col, Container, Row} from "react-bootstrap";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {firestoreConnect} from "react-redux-firebase";
 
 import "../../../resources/styles/browse_style.css"
 import { ChevronDown } from "react-bootstrap-icons";
 
 import ProfileShortcut from "../profiles/ProfileShortcut";
-import {firestoreConnect} from "react-redux-firebase";
-import {compose} from "redux";
-import {connect} from "react-redux";
+import Dropdown from "../profiles/DropdownInput";
 
 class BrowseContent extends Component{
+    state = {
+        genre: '',
+        instrument: ''
+    }
+
+    toggleSelected = (id, name, slug, isMultiple) => {
+        if (!isMultiple) {
+            this.setState({
+                [slug]: name
+            })
+        }
+        // else {
+        //     let elements = this.state[slug];
+        //     if (!elements.includes(name)) elements.push(name);
+        //
+        //     this.setState({
+        //         [slug]: elements
+        //     })
+        // }
+    }
 
     browseFilters = (type) => {
+        const { genres, instruments } = this.props;
+
         return (
             <Row className={"mb-5 justify-content-center"}>
-                <Col className={"d-flex flex-column flex-sm-row align-items-center justify-content-center"} xs={8} sm={10} md={8} lg={6} xl={5}>
+                <Col className={"d-flex flex-column flex-sm-row align-items-center justify-content-center"} xs={8} sm={12} md={9} lg={7} xl={6}>
                     <h6 className={"mr-sm-4 mb-4 mb-sm-0 mt-1"}>Filtruj:</h6>
 
-                    <Form.Control id={"genre"} as={"select"} defaultValue={-1} size="sm" onChange={this.handleChange}
-                                  className={"mr-sm-4 mb-3 mb-sm-0 dark-text"}>
-                        <option disabled value={-1} key={-1}>Gatunek</option>
-                        <option>Rock</option>
-                        <option>Classic</option>
-                    </Form.Control>
+                    <div className={"mr-sm-3 mb-3 mb-sm-0 block"}>
+                        <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genres} slug={"genre"} toggleItem={this.toggleSelected} />
+                    </div>
 
                     {type === "artysta" ?
-                        <Form.Control id={"instrument"} as={"select"} defaultValue={-1} size="sm" onChange={this.handleChange}
-                                      className={"dark-text"}>
-                            <option disabled value={-1} key={-1}>Instrument</option>
-                            <option>Rock</option>
-                            <option>Classic</option>
-                        </Form.Control>
+                        <div className={"block "}>
+                            <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instruments} slug={"instrument"} toggleItem={this.toggleSelected}/>
+                        </div>
                         : ""
                     }
                 </Col>
@@ -52,7 +68,7 @@ class BrowseContent extends Component{
                         })}
                     </Row>
                 </Container>
-                <div className={"d-flex flex-column align-items-center"}>
+                <div className={"d-flex flex-column align-items-center clickable"}>
                     <p className={"m-0"}>Więcej</p>
                     <ChevronDown/>
                 </div>
@@ -74,15 +90,16 @@ class BrowseContent extends Component{
 }
 
 
-
 const mapStateToProps = (state) => {
     console.log(state.firestore.ordered.users);
     return {
-        users: state.firestore.ordered.users
+        users: state.firestore.ordered.users,
+        genres: state.firestore.ordered.genres,
+        instruments: state.firestore.ordered.instruments
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect(() => ['users'])
+    firestoreConnect(() => ['users', 'genres', 'instruments'])
 )(BrowseContent);
