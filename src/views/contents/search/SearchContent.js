@@ -12,7 +12,7 @@ import Dropdown from "../profiles/DropdownInput";
 
 class SearchContent extends Component{
     state = {
-        isExtended: false,
+        isExtended: true,
         voivodeship: '',
         genre: '',
         instrument: '',
@@ -71,9 +71,9 @@ class SearchContent extends Component{
                 {isExtended ?
 
                     <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
-                        <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={4} lg={3}>
+                        <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={5} lg={4} xl={3}>
                             <h6 className={"mb-4"}>Cel</h6>
-                            <Form.Group>
+                            <Form.Group className={"block"}>
                                 <Form.Check id={"purpose"} name={"purpose"} value={"1"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
                                             onChange={this.handleChange}
                                             label={<p style={{paddingTop: "2px"}}>Zlecenie</p>}/>
@@ -104,7 +104,7 @@ class SearchContent extends Component{
                             </Form.Group>
 
                         </Col>
-                        <Col className={"d-flex flex-column align-items-center"} xs={11} sm={6} md={4} lg={3}>
+                        <Col className={"d-flex flex-column align-items-center"} xs={11} sm={6} md={5} lg={4} xl={3}>
                             <h6 className={"mb-4"}>Parametry</h6>
 
                             <div className={"block mb-3"}>
