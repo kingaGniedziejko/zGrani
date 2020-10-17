@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {Button, Image, Nav} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import { Button, Image, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../../../store/actions/authActions";
 
 import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
 
@@ -14,12 +16,18 @@ class LoggedInButtons extends Component{
                         </Link>
                         <Link to={"/profil/anna21"} className={"pt-1"}>userName</Link>
                     </div>
-                <Link to={"/"} className="mt-1 mt-md-0">
-                    <Button block variant="outline-white" size="sm">Wyloguj</Button>
+                <Link to={"/"} className="mt-1 mt-md-0 ml-auto">
+                    <Button block variant="outline-white" size="sm" onClick={this.props.logout}>Wyloguj</Button>
                 </Link>
             </Nav.Item>
         );
     }
 }
 
-export default LoggedInButtons;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logout())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(LoggedInButtons);

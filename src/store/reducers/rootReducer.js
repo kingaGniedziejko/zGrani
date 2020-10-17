@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 import { firestoreReducer } from "redux-firestore"
+import { firebaseReducer } from "react-redux-firebase";
 
+import authReducer from "./authReducer";
 import userReducer from "./userReducer";
 import profileReducer from "./profileReducer";
 import browseReducer from "./browseReducer";
@@ -11,6 +13,7 @@ import instrumentsReducer from "./instrumentsReducer";
 
 
 const rootReducer = combineReducers({
+    auth: authReducer,
     user: userReducer,
     profile: profileReducer,
     browse: browseReducer,
@@ -18,7 +21,8 @@ const rootReducer = combineReducers({
     voivodeships: voivodeshipsReducer,
     genres: genresReducer,
     instruments: instrumentsReducer,
-    firestore: firestoreReducer
+    firestore: firestoreReducer,
+    firebase: firebaseReducer
 })
 
 export default rootReducer;

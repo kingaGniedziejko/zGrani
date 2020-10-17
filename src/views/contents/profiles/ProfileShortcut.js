@@ -18,13 +18,13 @@ class ProfileShortcut extends Component{
 
         return (
             <div className={"profile-shortcut mb-5"}>
-                <Link to={"/profil/" + user.login} className={"mb-2 d-block"}>
+                <Link to={"/profil/" + user.id} className={"mb-2 d-block"}>
                     <Image src={userPhoto} fluid/>
                 </Link>
-                <Link to={"/profil/" + user.login}>
+                <Link to={"/profil/" + user.id}>
                     <h5>{user.name}</h5>
                 </Link>
-                <Link to={"/profil/" + user.login}>
+                <Link to={"/profil/" + user.id}>
                     <small className={"d-block mb-2"}>{user.login}</small>
                 </Link>
                 <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>

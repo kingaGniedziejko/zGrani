@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Col, Container, Form, Row} from "react-bootstrap";
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
 import {compose} from "redux";
 import {connect} from "react-redux";
@@ -68,65 +68,66 @@ class SearchContent extends Component{
                     </Col>
                 </Row>
 
-                {isExtended ?
+                <Form className={"block d-flex flex-column align-items-center"}>
+                    {isExtended ?
+                        <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
+                            <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={5} lg={4} xl={3}>
+                                <h6 className={"mb-4"}>Cel</h6>
+                                <Form.Group className={"block"}>
+                                    <Form.Check id={"purpose"} name={"purpose"} value={"1"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
+                                                onChange={this.handleChange}
+                                                label={<p style={{paddingTop: "2px"}}>Zlecenie</p>}/>
 
-                    <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
-                        <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={5} lg={4} xl={3}>
-                            <h6 className={"mb-4"}>Cel</h6>
-                            <Form.Group className={"block"}>
-                                <Form.Check id={"purpose"} name={"purpose"} value={"1"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                            onChange={this.handleChange}
-                                            label={<p style={{paddingTop: "2px"}}>Zlecenie</p>}/>
+                                    <Form.Check id={"purpose"} name={"purpose"} value={"2"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
+                                                onChange={this.handleChange}
+                                                label={<p style={{paddingTop: "2px"}}>{type === "artysta" ? "Zaproszenie do zespołu" : "Dołączenie do zespołu"}</p>}/>
 
-                                <Form.Check id={"purpose"} name={"purpose"} value={"2"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                            onChange={this.handleChange}
-                                            label={<p style={{paddingTop: "2px"}}>{type === "artysta" ? "Zaproszenie do zespołu" : "Dołączenie do zespołu"}</p>}/>
+                                    {type === "artysta" ? "" :
+                                        <div className={"block pl-4 mb-3"}>
+                                            <Dropdown placeholder={"Instrument"} value={this.state.instrument1} list={instruments} slug={"instrument1"} toggleItem={this.toggleSelected} />
+                                        </div>
+                                    }
 
-                                {type === "artysta" ? "" :
-                                    <div className={"block pl-4 mb-3"}>
-                                        <Dropdown placeholder={"Instrument"} value={this.state.instrument1} list={instruments} slug={"instrument1"} toggleItem={this.toggleSelected} />
-                                    </div>
-                                }
+                                    <Form.Check id={"purpose"} name={"purpose"} value={"3"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
+                                                onChange={this.handleChange}
+                                                label={<p style={{paddingTop: "2px"}}>Zastępstwo</p>}/>
 
-                                <Form.Check id={"purpose"} name={"purpose"} value={"3"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                            onChange={this.handleChange}
-                                            label={<p style={{paddingTop: "2px"}}>Zastępstwo</p>}/>
+                                    {type === "artysta" ? "" :
+                                        <div className={"block pl-4 mb-3"}>
+                                            <Dropdown placeholder={"Instrument"} value={this.state.instrument2} list={instruments} slug={"instrument2"} toggleItem={this.toggleSelected} />
+                                        </div>
+                                    }
 
-                                {type === "artysta" ? "" :
-                                    <div className={"block pl-4 mb-3"}>
-                                        <Dropdown placeholder={"Instrument"} value={this.state.instrument2} list={instruments} slug={"instrument2"} toggleItem={this.toggleSelected} />
-                                    </div>
-                                }
+                                    <Form.Check id={"purpose"} name={"purpose"} value={"4"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
+                                                onChange={this.handleChange}
+                                                label={<p style={{paddingTop: "2px"}}>Brak</p>}/>
+                                </Form.Group>
+                            </Col>
+                            <Col className={"d-flex flex-column align-items-center"} xs={11} sm={6} md={5} lg={4} xl={3}>
+                                <h6 className={"mb-4"}>Parametry</h6>
 
-                                <Form.Check id={"purpose"} name={"purpose"} value={"4"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                            onChange={this.handleChange}
-                                            label={<p style={{paddingTop: "2px"}}>Brak</p>}/>
-                            </Form.Group>
-
-                        </Col>
-                        <Col className={"d-flex flex-column align-items-center"} xs={11} sm={6} md={5} lg={4} xl={3}>
-                            <h6 className={"mb-4"}>Parametry</h6>
-
-                            <div className={"block mb-3"}>
-                                <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"} toggleItem={this.toggleSelected} />
-                            </div>
-
-                            <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-3"}/>
-
-                            <div className={"block mb-3"}>
-                                <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genres} slug={"genre"} toggleItem={this.toggleSelected} />
-                            </div>
-
-                            {type === "artysta" ?
                                 <div className={"block mb-3"}>
-                                    <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instruments} slug={"instrument"} toggleItem={this.toggleSelected} />
+                                    <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"} toggleItem={this.toggleSelected} />
                                 </div>
-                                : ""
-                            }
-                        </Col>
-                    </Row>
-                    : ""
-                }
+
+                                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-3"}/>
+
+                                <div className={"block mb-3"}>
+                                    <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genres} slug={"genre"} toggleItem={this.toggleSelected} />
+                                </div>
+
+                                {type === "artysta" ?
+                                    <div className={"block mb-3"}>
+                                        <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instruments} slug={"instrument"} toggleItem={this.toggleSelected} />
+                                    </div>
+                                    : ""
+                                }
+                            </Col>
+                        </Row>
+                        : ""
+                    }
+                    <Button type="submit" variant="outline-accent" size="sm" className={"mt-3 px-4"}>Szukaj</Button>
+                </Form>
             </Container>
         )
     }
@@ -134,7 +135,7 @@ class SearchContent extends Component{
     browseContent = (_) => {
         const { users } = this.props;
         return (
-            <div className={"section d-flex flex-column align-items-center"}>
+            <div className={"section d-flex flex-column align-items-center background-dark block pb-4 pt-5"}>
                 <Container>
                     <Row>
                         {users && users.map((user, index) => {
@@ -157,7 +158,7 @@ class SearchContent extends Component{
         const { type } = this.props;
 
         return (
-            <div id={"browse-content"} className={"d-flex flex-column align-items-center block"}>
+            <div id={"search-content"} className={"d-flex flex-column align-items-center block"}>
                 {this.browseFilters(type)}
                 {this.browseContent(type)}
             </div>

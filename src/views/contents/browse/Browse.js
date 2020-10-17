@@ -11,7 +11,7 @@ class Browse extends Component{
         const { location } = this.props;
         return (
            <div id={"browse"} className={"page-content"}>
-                <div className={"section-light d-flex flex-column align-items-center py-5"}>
+                <div className={"section-light d-flex flex-column align-items-center pt-5 pb-4"}>
                     <h3>Przeglądaj</h3>
                     <Nav className="mb-5" activeKey={location.pathname}>
                         <NavLink className="py-1 mx-2" to="/przegladaj" exact>Artyści</NavLink>

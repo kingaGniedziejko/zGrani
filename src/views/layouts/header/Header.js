@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Nav, Navbar} from "react-bootstrap";
-import {withRouter, NavLink} from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
+import { withRouter, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "../../../resources/styles/header_style.css"
 
@@ -34,7 +35,10 @@ class Header extends Component{
 
 
     render() {
-        const { location } = this.props;
+        const { location, auth } = this.props;
+        // console.log(auth);
+        const buttons = auth.uid ? <LoggedInButtons/> : <LoggedOutButtons/>;
+
         return (
             <Navbar id="header" variant="dark" expand="md" fixed="top" className="px-3 px-sm-5 py-3"
                     style={{backgroundColor: (this.props.location.pathname === "/" ?
@@ -48,13 +52,18 @@ class Header extends Component{
                         <NavLink className="px-0 mx-md-2 py-1" to="/przegladaj">Przeglądaj</NavLink>
                         <NavLink className="px-0 mx-md-2 py-1" to="/szukaj">Szukaj</NavLink>
                     </Nav>
-                    <LoggedInButtons/>
-                    <LoggedOutButtons/>
+                    { buttons }
                 </Navbar.Collapse>
             </Navbar>
         );
     }
 }
 
-export default withRouter(Header);
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(Header));
 

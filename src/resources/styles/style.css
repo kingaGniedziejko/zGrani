@@ -5,11 +5,11 @@
     /*--accent-1: #d35e2a;*/
     --accent-1: #ffcd80;
 
-    --accent-2: #B0030F;
-    --accent-3: #850015;
+    /*--accent-2: #B0030F;*/
+    /*--accent-3: #850015;*/
     /*--accent-4: #57021B;*/
     /*--accent-4: #430000;*/
-    --accent-4: #3c1414;
+    /*--accent-4: #3c1414;*/
 
     /*--background: #000000;*/
     --background-dark: #070707;
@@ -22,6 +22,8 @@
     --text-color-light: rgb(255, 255, 255);
     --text-color: rgb(214, 214, 214);
     --text-color-dark: rgb(157, 157, 157);
+
+    --text-color-error: rgb(227, 57, 57);
 
     --transparent: rgba(0, 0, 0, 0);
 }
@@ -332,4 +334,10 @@ textarea.form-control:focus {
 
 .default-file-input .form-control-file {
     font-weight: 500;
+}
+
+/*   error   */
+.error {
+    color: var(--text-color-error);
+    font-style: italic;
 }

@@ -25,8 +25,8 @@ class Content extends Component{
                     <Route exact path={"/rejestracja"} component={Signup}/>
                     <Route exact path={"/rejestracja/:type"} component={UserProfileCreate}/>
 
-                    <Route exact path={"/profil/:login"} component={UserProfile}/>
-                    <Route path={"/profil/:login/edytowanie"} component={UserProfileEdit}/>
+                    <Route exact path={"/profil/:id"} component={UserProfile}/>
+                    <Route path={"/profil/:id/edytowanie"} component={UserProfileEdit}/>
 
                 </Switch>
             </div>
