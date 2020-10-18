@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"
+import { Redirect } from "react-router-dom"
+
 import { login } from "../../../store/actions/authActions";
 
 class Login extends Component{
@@ -22,7 +24,10 @@ class Login extends Component{
     }
 
     render() {
-        const { authError } = this.props;
+        const { authError, auth } = this.props;
+
+        if (auth.uid) return <Redirect to={"/"} />;
+
         return (
             <div id={"login"} className={"page-content d-flex justify-content-center"}>
                 <Container>
@@ -53,7 +58,8 @@ class Login extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        auth: state.firebase.auth
     }
 }
 

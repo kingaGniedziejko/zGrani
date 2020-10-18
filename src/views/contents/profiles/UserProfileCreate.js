@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom"
+
 import { createUser } from "../../../store/actions/userActions";
 
 import PersonalDataFormGroup from "./PersonalDataFormGroup";
@@ -31,6 +32,10 @@ class UserProfileCreate extends Component{
     }
 
     render() {
+        const { auth } = this.props;
+
+        if (auth.uid) return <Redirect to={"/"} />;
+
         let userType;
         const type1 = {
             type: "artysta",
@@ -74,10 +79,16 @@ class UserProfileCreate extends Component{
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         createUser: (user) => dispatch(createUser(user))
     }
 }
 
-export default connect(null, mapDispatchToProps)(UserProfileCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfileCreate);

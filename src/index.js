@@ -9,7 +9,9 @@ import { ReactReduxFirebaseProvider, getFirebase, isLoaded } from "react-redux-f
 import { createFirestoreInstance, reduxFirestore, getFirestore } from "redux-firestore";
 import firebase from "firebase/app";
 import 'firebase/database';
-import firebaseConfig from "./firebaseConfig"
+import firebaseConfig from "./firebaseConfig";
+
+import Loader from "./resources/images/loader.svg";
 
 const store = createStore(rootReducer,
     compose (
@@ -35,7 +37,14 @@ const rrfProps = {
 
 function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth)
-    if (!isLoaded(auth)) return <div>Loading Screen...</div>;
+    if (!isLoaded(auth)) {
+        return (
+            <div className={"fullscreen d-flex flex-row align-items-center justify-content-center"}>
+                <object type="image/svg+xml" data={Loader}>svg-animation</object>
+            </div>
+        );
+    }
+
     return children
 }
 
