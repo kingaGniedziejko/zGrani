@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import {compose} from "redux";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import PersonalDataFormGroup from "./PersonalDataFormGroup";
 import ProfileDataFormGroup from "./ProfileDataFormGroup";
+import {firestoreConnect} from "react-redux-firebase";
 
 class UserProfileEdit extends Component{
     state = {
@@ -26,7 +30,10 @@ class UserProfileEdit extends Component{
     }
 
     render() {
-        // const { login } = this.props.match.params;
+        const { user, auth } = this.props;
+        const { id } = this.props.match.params;
+
+        if (!auth.uid || auth.uid !== id) return <Redirect to={"/logowanie"} />
 
         let type = "artysta";
         let userType;
@@ -55,7 +62,7 @@ class UserProfileEdit extends Component{
                                     <Row className={"d-flex justify-content-center"}>
                                         <Col xs={11} lg={5} className={"mr-2"}>
                                             <h5 className={"mt-2 mb-5"}>Podstawowe dane</h5>
-                                            <PersonalDataFormGroup type={type} operation={"edit"} />
+                                            <PersonalDataFormGroup type={type} operation={"edit"} user={user}/>
                                         </Col>
                                         <Col xs={11} lg={5} className={"ml-2"}>
                                             <h5 className={"mt-2 mb-5"}>Dodatkowe dane</h5>
@@ -77,4 +84,19 @@ class UserProfileEdit extends Component{
     }
 }
 
-export default UserProfileEdit;
+const mapStateToProps = (state, ownProps) => {
+    const { id } = ownProps.match.params;
+    const users = state.firestore.data.users;
+
+    const user = users ? users[id] : null
+
+    return {
+        user: user,
+        auth: state.firebase.auth
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect(() => ['users'])
+)(UserProfileEdit);

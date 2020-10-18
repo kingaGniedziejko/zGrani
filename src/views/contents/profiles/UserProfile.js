@@ -45,7 +45,18 @@ class UserProfile extends Component{
             }
         ]
 
-        const { user } = this.props;
+        const { user, auth } = this.props;
+        const { id } = this.props.match.params;
+
+        const button = auth.uid && auth.uid === id ?
+            <Link to={"/profil/" + id + "/edytowanie"} className={""}>
+                <Button variant="outline-accent" size="sm">Edytuj profil</Button>
+            </Link>
+            :
+            <Link to={""} className="mt-auto">
+                <Button variant="outline-accent" size="sm">Skontaktuj się</Button>
+            </Link>
+
 
         if(user) {
             console.log(user);
@@ -70,12 +81,7 @@ class UserProfile extends Component{
                                             <p className={"m-0"}>{ "--Województwo--, " + user.city }</p>
                                         </div>
                                     </div>
-                                    <Link to={""} className="mt-auto">
-                                        <Button variant="outline-accent" size="sm">Skontaktuj się</Button>
-                                    </Link>
-                                    <Link to={"/profil/anna21/edytowanie"} className={""}>
-                                        <Button variant="outline-accent" size="sm">Edytuj profil</Button>
-                                    </Link>
+                                    { button }
                                 </Col>
                             </Row>
                         </Container>
@@ -149,7 +155,8 @@ const mapStateToProps = (state, ownProps) => {
     const user = users ? users[id] : null
 
     return {
-        user: user
+        user: user,
+        auth: state.firebase.auth
     }
 }
 

@@ -185,25 +185,24 @@ class PersonalDataFormGroup extends Component{
 
     render() {
         let userType;
-        let userOperation;
 
         const type1 = {type: "artysta", nameFieldText: "Pseudonim"}
         const type2 = {type: "zespol", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation, voivodeships } = this.props;
+        const { type, operation = "create", user = undefined, voivodeships } = this.props;
 
         if (type === type1.type) userType = type1;
         else if (type === type2.type) userType = type2;
 
-        if (operation === undefined) userOperation = "create";
-        else userOperation = operation;
+        const isEdit = operation === "edit" && user;
+
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
-                <Form.Control id={"login"} type={"text"} placeholder={"Login"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
-                <Form.Control id={"email"} type={"email"} placeholder={"Email"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
+                <Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
+                <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? user.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
 
-                {userOperation === "create" ?
+                {operation === "create" ?
                     <>
                         <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                         <Form.Control id={"passwordRep"} type={"password"} placeholder={"Powtórz hasło"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
@@ -211,7 +210,7 @@ class PersonalDataFormGroup extends Component{
                     : ""
                 }
 
-                {userOperation === "edit" ?
+                {operation === "edit" ?
                     <>
                         <Button block variant="outline-white" size="sm" className={"mt-2 mb-5"} onClick={() => this.setState({modalShow: true})}>Zmień hasło</Button>
                         {this.displayPasswordEdit()}
@@ -219,12 +218,12 @@ class PersonalDataFormGroup extends Component{
                     : ""
                 }
 
-                <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} onChange={this.handleChange} size="sm" className={"mb-4"}/>
+                <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} defaultValue={isEdit ? user.name : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <div className={"block mb-4"}>
                     <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"}
                               toggleItem={this.toggleSelected} />
                 </div>
-                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
+                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"}/>
                 { this.blockInput("Gatunki", "genres") }
                 { userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
                 {/*{ this.blockInput("Status", "status") }*/}
