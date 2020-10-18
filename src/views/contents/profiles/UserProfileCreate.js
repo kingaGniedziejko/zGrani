@@ -10,7 +10,25 @@ import PersonalDataFormGroup from "./PersonalDataFormGroup";
 
 class UserProfileCreate extends Component{
     state = {
+        login: '',
+        email: '',
+        password: '',
+        passwordRep: '',
+        name: '',
+        voivodeship: '',
+        city: '',
+
+        genres: [],
+        instruments: [],
+
+        members: [],
+        status: [],
+
         agreement: false
+    }
+
+    handleUpdate = (slug, value) => {
+        this.setState({ [slug]: value })
     }
 
     handleChange = (e) => {
@@ -27,7 +45,7 @@ class UserProfileCreate extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(this.state);
+        console.log(this.state);
         this.props.createUser(this.state);
     }
 
@@ -61,7 +79,7 @@ class UserProfileCreate extends Component{
                             <h6 className={"mb-5"}>{userType.title}</h6>
 
                             <Form id={"personal-data-form"} onSubmit={this.handleSubmit} style={{width: "100%"}}>
-                                <PersonalDataFormGroup type={type} operation={"create"} />
+                                <PersonalDataFormGroup type={type} operation={"create"} handleUpdate={this.handleUpdate} state={this.state}/>
                                 <Form.Group className={"d-flex flex-column"}>
                                     <Form.Check id={"agreement"} type={"checkbox"} custom
                                                 className={"align-self-start mb-2 d-flex flex-row align-items-center"}

@@ -12,17 +12,12 @@ import {connect} from "react-redux";
 
 class PersonalDataFormGroup extends Component{
     state = {
-        login: '',
-        email: '',
-        password: '',
-        passwordRep: '',
-        name: '',
-        voivodeship: '',
-        city: '',
         genres: [],
         instruments: [],
+
         currentMember: '',
         members: [],
+
         status: [],
 
         modalShow: false,
@@ -33,23 +28,21 @@ class PersonalDataFormGroup extends Component{
     }
 
     handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
+        this.props.handleUpdate(e.target.id, e.target.value);
     }
 
     handleDelete = (slug, value) => {
-        let elements = this.state[slug];
+        let elements = this.props.state[slug];
         let index = elements.indexOf(value)
         if (index !== -1) {
             elements.splice(index, 1);
-            this.setState({[slug]: elements});
+            this.props.handleUpdate(slug, elements);
         }
     }
 
     handleAddMember = () => {
         let currentMember = this.state.currentMember.trim();
-        let members = this.state.members;
+        let members = this.props.state.members;
 
         if (currentMember !== ""){
             members.push(
@@ -58,8 +51,11 @@ class PersonalDataFormGroup extends Component{
                     userId: ""
                 });
             console.log(members);
+
+            this.props.handleUpdate("members", members);
+
             this.setState({
-                members: members,
+                // members: members,
                 currentMember: ''
             })
             document.getElementById("currentMember").value = "";
@@ -79,23 +75,25 @@ class PersonalDataFormGroup extends Component{
             default:
         }
 
-        this.setState({
-            [slug]: elements
-        })
+        this.props.handleUpdate(slug, elements);
+
+        // this.setState({
+        //     [slug]: elements
+        // })
     }
 
     toggleSelected = (id, name, slug, isMultiple) => {
         if (!isMultiple) {
-            this.setState({
-                [slug]: name
-            })
+            this.props.handleUpdate(slug, name);
         } else {
-            let elements = this.state[slug];
+            let elements = this.props.state[slug];
             if (!elements.includes(name)) elements.push(name);
 
-            this.setState({
-                [slug]: elements
-            })
+            this.props.handleUpdate(slug, elements);
+
+            // this.setState({
+            //     [slug]: elements
+            // })
         }
     }
 
@@ -106,17 +104,11 @@ class PersonalDataFormGroup extends Component{
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-3"}>{title}</h6>
 
-                <Dropdown placeholder="Wybierz z listy" list={list} slug={slug} toggleItem={this.toggleSelected} isMultiple={true}/>
+                <div className={"block mb-3"}>
+                    <Dropdown placeholder="Wybierz z listy" list={list} slug={slug} toggleItem={this.toggleSelected} isMultiple={true}/>
+                </div>
 
-                {/*   old select   */}
-                {/*<Form.Control id={slug} as={"select"} value={-1} size="sm"*/}
-                {/*              onChange={this.handleChange} className={"mb-3 dark-text"}>*/}
-                {/*    <option disabled value={-1} key={-1}>Wybierz z listy</option>*/}
-                {/*    <option>Rock</option>*/}
-                {/*    <option>Classic</option>*/}
-                {/*</Form.Control>*/}
-
-                <Blocks elementsList={this.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleDelete}/>
+                <Blocks elementsList={this.props.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleDelete}/>
             </Form.Group>
         )
     }
@@ -189,7 +181,7 @@ class PersonalDataFormGroup extends Component{
         const type1 = {type: "artysta", nameFieldText: "Pseudonim"}
         const type2 = {type: "zespol", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation = "create", user = undefined, voivodeships } = this.props;
+        const { type, operation = "create", user = undefined, state, voivodeships } = this.props;
 
         if (type === type1.type) userType = type1;
         else if (type === type2.type) userType = type2;
@@ -220,7 +212,7 @@ class PersonalDataFormGroup extends Component{
 
                 <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} defaultValue={isEdit ? user.name : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <div className={"block mb-4"}>
-                    <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"}
+                    <Dropdown placeholder={"Województwo"} value={state.voivodeship} list={voivodeships} slug={"voivodeship"}
                               toggleItem={this.toggleSelected} />
                 </div>
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"}/>
