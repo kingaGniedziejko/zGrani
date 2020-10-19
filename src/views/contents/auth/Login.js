@@ -24,7 +24,7 @@ class Login extends Component{
     }
 
     render() {
-        const { authError, auth } = this.props;
+        const { auth, authError } = this.props;
 
         if (auth.uid) return <Redirect to={"/"} />;
 
@@ -58,8 +58,8 @@ class Login extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        authError: state.auth.authError,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        authError: state.auth.authError
     }
 }
 

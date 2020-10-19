@@ -69,9 +69,9 @@ class UserProfile extends Component{
                                     <Image className={"user-photo"} src={ userPhoto } fluid />
                                 </Col>
                                 <Col className={"pt-3"}>
-                                    <h5 className={"m-0"}>{ user.name }</h5>
-                                    <small className={"d-block mb-2"}>{ user.login }</small>
-                                    <h6 className={"mb-3"}>{ user.isArtist ? "Artysta" : "Zespół" }</h6>
+                                    <h4 className={"mb-1"}>{ user.name }</h4>
+                                    {/*<small className={"d-block mb-2"}>{ user.login }</small>*/}
+                                    <p className={"mb-3"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
                                     <Blocks elementsList={["--szuka zespołu--", "--szuka zleceń--"]} align={"start"}/>
                                     <div className={"mb-4"}>
                                         <div className={"d-flex flex-row mb-1"}>

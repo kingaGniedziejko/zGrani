@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom"
 
-import { createUser } from "../../../store/actions/userActions";
+import { signup } from "../../../store/actions/authActions";
 
 import PersonalDataFormGroup from "./PersonalDataFormGroup";
 
@@ -24,7 +24,8 @@ class UserProfileCreate extends Component{
         members: [],
         status: [],
 
-        agreement: false
+        agreement: false,
+        isArtist: this.props.match.params === "artysta"
     }
 
     handleUpdate = (slug, value) => {
@@ -46,11 +47,11 @@ class UserProfileCreate extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
-        this.props.createUser(this.state);
+        this.props.signup(this.state);
     }
 
     render() {
-        const { auth } = this.props;
+        const { auth, authError } = this.props;
 
         if (auth.uid) return <Redirect to={"/"} />;
 
@@ -66,9 +67,9 @@ class UserProfileCreate extends Component{
 
         const { type } = this.props.match.params;
 
-        if (type === type1.type) userType = type1
-        else if (type === type2.type) userType = type2
-        else return "404"
+        if (type === type1.type) userType = type1;
+        else if (type === type2.type) userType = type2;
+        else return "404";
 
         return (
             <div id={"signup-artist"} className={"page-content"}>
@@ -76,9 +77,11 @@ class UserProfileCreate extends Component{
                     <Row className={"section section-card d-flex flex-column align-items-center"}>
                         <Col className={"background-light p-3 p-sm-5 my-2 my-sm-5 text-center"} xs={11} sm={10} md={8} lg={5}>
                             <h3 className={"mb-2"}>Rejestracja</h3>
-                            <h6 className={"mb-5"}>{userType.title}</h6>
+                            <h6 className={"mb-2"}>{userType.title}</h6>
 
-                            <Form id={"personal-data-form"} onSubmit={this.handleSubmit} style={{width: "100%"}}>
+                            { authError ? <p className={"error"}>{authError}</p> : null}
+
+                            <Form id={"personal-data-form"} className={"mt-5"} onSubmit={this.handleSubmit} style={{width: "100%"}}>
                                 <PersonalDataFormGroup type={type} operation={"create"} handleUpdate={this.handleUpdate} state={this.state}/>
                                 <Form.Group className={"d-flex flex-column"}>
                                     <Form.Check id={"agreement"} type={"checkbox"} custom
@@ -99,13 +102,14 @@ class UserProfileCreate extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        authError: state.auth.authError
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createUser: (user) => dispatch(createUser(user))
+        signup: (newUser) => dispatch(signup(newUser))
     }
 }
 

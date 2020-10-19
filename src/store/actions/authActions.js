@@ -33,9 +33,31 @@ export const signup = (newUser) => {
             newUser.email,
             newUser.password
         ).then((response) => {
-            return firestore.collection('users').doc(response.user.uid).set({
-                firstName: newUser.login
-            })
+            if (newUser.isArtist){
+                return firestore.collection('users').doc(response.user.uid).set({
+                    name: newUser.name,
+                    voivodeship: newUser.voivodeship,
+                    city: newUser.city,
+                    isArtist: true,
+                    isActive: true,
+                    genres: newUser.genres,
+                    instruments: newUser.instruments
+                })
+            } else {
+                return firestore.collection('users').doc(response.user.uid).set({
+                    name: newUser.name,
+                    voivodeship: newUser.voivodeship,
+                    city: newUser.city,
+                    isArtist: false,
+                    isActive: true,
+                    genres: newUser.genres,
+                    // members: newUser.members
+                })
+            }
+        }).then(() => {
+            dispatch({ type: 'SIGNUP_SUCCESS' })
+        }).catch(err => {
+            dispatch({ type: 'SIGNUP_ERROR', err })
         })
 
     }

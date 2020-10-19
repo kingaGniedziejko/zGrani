@@ -191,7 +191,7 @@ class PersonalDataFormGroup extends Component{
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
-                <Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
+                {/*<Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>*/}
                 <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? user.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
 
                 {operation === "create" ?

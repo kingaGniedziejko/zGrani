@@ -10,8 +10,7 @@ import { createFirestoreInstance, reduxFirestore, getFirestore } from "redux-fir
 import firebase from "firebase/app";
 import 'firebase/database';
 import firebaseConfig from "./firebaseConfig";
-
-import Loader from "./resources/images/loader.svg";
+import Loader from "./views/layouts/Loader";
 
 const store = createStore(rootReducer,
     compose (
@@ -22,7 +21,7 @@ const store = createStore(rootReducer,
 
 const rrfConfig = {
     userProfile: 'users',
-    // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+    useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
 }
 const rrfProps = {
     firebase,
@@ -37,11 +36,7 @@ const rrfProps = {
 function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth)
     if (!isLoaded(auth)) {
-        return (
-            <div className={"fullscreen d-flex flex-row align-items-center justify-content-center"}>
-                <object type="image/svg+xml" data={Loader}>svg-animation</object>
-            </div>
-        );
+        return <Loader/>;
     }
 
     return children

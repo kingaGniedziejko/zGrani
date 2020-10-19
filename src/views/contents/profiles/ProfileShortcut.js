@@ -21,12 +21,12 @@ class ProfileShortcut extends Component{
                 <Link to={"/profil/" + user.id} className={"mb-2 d-block"}>
                     <Image src={userPhoto} fluid/>
                 </Link>
-                <Link to={"/profil/" + user.id}>
+                <Link to={"/profil/" + user.id} className={"mb-2 block"}>
                     <h5>{user.name}</h5>
                 </Link>
-                <Link to={"/profil/" + user.id}>
-                    <small className={"d-block mb-2"}>{user.login}</small>
-                </Link>
+                {/*<Link to={"/profil/" + user.id}>*/}
+                {/*    <small className={"d-block mb-2"}>{user.login}</small>*/}
+                {/*</Link>*/}
                 <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>
                 <div>
                     <div className={"d-flex flex-row mb-1"}>
