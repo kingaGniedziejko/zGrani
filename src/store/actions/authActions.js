@@ -41,7 +41,7 @@ export const signup = (newUser) => {
                     isArtist: true,
                     isActive: true,
                     genres: newUser.genres,
-                    instruments: newUser.instruments
+                    instruments: newUser.instruments,
                 })
             } else {
                 return firestore.collection('users').doc(response.user.uid).set({

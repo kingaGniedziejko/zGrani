@@ -101,5 +101,10 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect(() => ['users', 'genres', 'instruments'])
+    firestoreConnect(() => [
+            {collection: "users"},
+            {collection: "genres", orderBy: "name"},
+            {collection: "instruments", orderBy: "name"}
+        ]
+    )
 )(BrowseContent);

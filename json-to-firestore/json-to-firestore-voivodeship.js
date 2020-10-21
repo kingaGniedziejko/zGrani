@@ -66,6 +66,16 @@ var fire = firebase.initializeApp(firebaseConfig);
 
 var db = fire.firestore();
 
+// voivodeship.forEach(function(obj) {
+//     db.collection("voivodeships2").doc(obj.name)
+//         .then(function(docRef) {
+//             console.log("Document written with ID: ", docRef.id);
+//         })
+//         .catch(function(error) {
+//             console.error("Error adding document: ", error);
+//         });
+// });
+
 voivodeship.forEach(function(obj) {
     db.collection("voivodeships")
         .add({

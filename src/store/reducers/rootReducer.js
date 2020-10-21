@@ -11,7 +11,6 @@ import voivodeshipsReducer from "./voivodeshipsReducer";
 import genresReducer from "./genresReducer";
 import instrumentsReducer from "./instrumentsReducer";
 
-
 const rootReducer = combineReducers({
     auth: authReducer,
     user: userReducer,

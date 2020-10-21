@@ -35,8 +35,8 @@ class Header extends Component{
 
 
     render() {
-        const { location, auth, profile } = this.props;
-        const buttons = auth.uid ? <LoggedInButtons profile={profile} uid={auth.uid}/> : <LoggedOutButtons />;
+        const { location, auth, user } = this.props;
+        const buttons = auth.uid ? <LoggedInButtons user={user} uid={auth.uid}/> : <LoggedOutButtons />;
 
         return (
             <Navbar id="header" variant="dark" expand="md" fixed="top" className="px-3 px-sm-5 py-3"
@@ -61,7 +61,7 @@ class Header extends Component{
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        profile: state.firebase.profile
+        user: state.firebase.profile
     }
 }
 

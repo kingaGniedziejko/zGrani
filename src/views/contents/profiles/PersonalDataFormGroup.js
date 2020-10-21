@@ -235,5 +235,10 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect(() => ['voivodeships', 'genres', 'instruments'])
+    firestoreConnect(() => [
+        {collection: "voivodeships", orderBy: "name"},
+        {collection: "genres", orderBy: "name"},
+        {collection: "instruments", orderBy: "name"},
+        {collection: "status"}
+    ])
 )(PersonalDataFormGroup);
