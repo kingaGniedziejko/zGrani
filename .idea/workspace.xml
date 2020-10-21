@@ -20,19 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/layouts/Loader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/authActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/userActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/authReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileCreate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layouts/header/LoggedInButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layouts/header/LoggedInButtons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +91,8 @@
       <workItem from="1602582040539" duration="5823000" />
       <workItem from="1602605663121" duration="18180000" />
       <workItem from="1602862743847" duration="355000" />
-      <workItem from="1602941762558" duration="33156000" />
+      <workItem from="1602941762558" duration="33400000" />
+      <workItem from="1603269764409" duration="613000" />
     </task>
     <servers />
   </component>
