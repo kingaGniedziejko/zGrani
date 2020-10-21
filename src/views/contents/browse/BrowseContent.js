@@ -62,9 +62,13 @@ class BrowseContent extends Component{
                 <Container>
                     <Row>
                         {users && users.map((user, index) => {
-                            return (
-                                <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
-                            )
+                            if (user) {
+                                return (
+                                    <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
+                                )
+                            } else {
+                                return "";
+                            }
                         })}
                     </Row>
                 </Container>

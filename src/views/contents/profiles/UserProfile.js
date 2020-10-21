@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import Gallery from "react-photo-gallery";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux"
+import { compose } from "redux";
 
-import "../../../resources/styles/profile_style.css"
+import "../../../resources/styles/profile_style.css";
 
 import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
 import photo1 from '../../../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';

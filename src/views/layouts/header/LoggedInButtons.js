@@ -16,7 +16,7 @@ class LoggedInButtons extends Component{
                     <Link to={ "/profil/" + uid }>
                         <Image src={user.imageUrl} roundedCircle height={31} width={31} className={"cover mr-2"}/>
                     </Link>
-                    <Link to={ "/profil/" + uid } className={"pt-1"}>
+                    <Link to={ "/profil/" + uid } className={"pt-1 ml-1"}>
                         {user.name}
                     </Link>
                 </div>
