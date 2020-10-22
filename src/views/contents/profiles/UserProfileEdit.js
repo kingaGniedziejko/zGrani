@@ -10,6 +10,23 @@ import {firestoreConnect} from "react-redux-firebase";
 
 class UserProfileEdit extends Component{
     state = {
+        login: '',
+        email: '',
+        password: '',
+        passwordRep: '',
+        name: '',
+        voivodeship: '',
+        city: '',
+
+        genres: [],
+        instruments: [],
+
+        members: [],
+        status: [],
+    }
+
+    handleUpdate = (slug, value) => {
+        this.setState({ [slug]: value })
     }
 
     handleChange = (e) => {
@@ -39,10 +56,12 @@ class UserProfileEdit extends Component{
         let userType;
         const type1 = {
             type: "artysta",
+            typeSlug: "artist",
             title: "Artysta"
         }
         const type2 = {
             type: "zespol",
+            typeSlug: "band",
             title: "Zespół"
         }
 
@@ -62,11 +81,11 @@ class UserProfileEdit extends Component{
                                     <Row className={"d-flex justify-content-center"}>
                                         <Col xs={11} lg={5} className={"mr-2"}>
                                             <h5 className={"mt-2 mb-5"}>Podstawowe dane</h5>
-                                            <PersonalDataFormGroup type={type} operation={"edit"} user={user}/>
+                                            <PersonalDataFormGroup type={userType.typeSlug} operation={"edit"} user={user} handleUpdate={this.handleUpdate} state={this.state}/>
                                         </Col>
                                         <Col xs={11} lg={5} className={"ml-2"}>
                                             <h5 className={"mt-2 mb-5"}>Dodatkowe dane</h5>
-                                            <ProfileDataFormGroup type={type} operation={"edit"} />
+                                            <ProfileDataFormGroup type={userType.typeSlug} operation={"edit"} />
                                         </Col>
                                     </Row>
                                     <Row className="justify-content-center">

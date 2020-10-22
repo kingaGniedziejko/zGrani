@@ -9,6 +9,8 @@ import Dropdown from "./DropdownInput";
 import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {connect} from "react-redux";
+import ErrorPage from "../../layouts/ErrorPage";
+import Loader from "../../layouts/Loader";
 
 class PersonalDataFormGroup extends Component{
     state = {
@@ -98,7 +100,7 @@ class PersonalDataFormGroup extends Component{
     }
 
     blockInput = (title, slug) => {
-        let list = this.props[slug];
+        let list;
 
         return (
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
@@ -181,17 +183,20 @@ class PersonalDataFormGroup extends Component{
         const type1 = {type: "artysta", typeSlug: "artist", nameFieldText: "Pseudonim"}
         const type2 = {type: "zespol", typeSlug: "band", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation = "create", user = undefined, state, voivodeships, status } = this.props;
+        const { type, operation = "create", user = undefined, state, auth, voivodeships, voivodeshipsOrdered, status, genres, instruments } = this.props;
 
         if (type === type1.typeSlug) userType = type1;
         else if (type === type2.typeSlug) userType = type2;
 
         const isEdit = operation === "edit" && user;
 
+        if (!status || !voivodeships || !voivodeshipsOrdered || !instruments || !genres) return <Loader/>
+
+        console.log(voivodeships);
+
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
-                {/*<Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>*/}
-                <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? user.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
+                <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? auth.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
 
                 {operation === "create" ?
                     <>
@@ -211,7 +216,7 @@ class PersonalDataFormGroup extends Component{
 
                 <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} defaultValue={isEdit ? user.name : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <div className={"block mb-4"}>
-                    <Dropdown placeholder={"Województwo"} value={state.voivodeship} list={voivodeships} slug={"voivodeship"}
+                    <Dropdown placeholder={"Województwo"} defaultValue={isEdit ? voivodeships[user.voivodeshipId].name : ""} value={state.voivodeship} list={voivodeshipsOrdered} slug={"voivodeship"}
                               toggleItem={this.toggleSelected} />
                 </div>
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"}/>
@@ -226,7 +231,9 @@ class PersonalDataFormGroup extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        voivodeships: state.firestore.ordered.voivodeships,
+        auth: state.firebase.auth,
+        voivodeships: state.firestore.data.voivodeships,
+        voivodeshipsOrdered: state.firestore.ordered.voivodeships,
         genres: state.firestore.ordered.genres,
         instruments: state.firestore.ordered.instruments,
         status: state.firestore.ordered.status

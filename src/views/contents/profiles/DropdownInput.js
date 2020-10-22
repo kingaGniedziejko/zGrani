@@ -24,12 +24,14 @@ class DropdownInput extends Component {
     }
 
     render(){
-        const { placeholder, value = '', list, slug, toggleItem, isMultiple = false } = this.props
+        const { placeholder, defaultValue, value = '', list, slug, toggleItem, isMultiple = false } = this.props
         const { listOpen } = this.state
         return(
             <div className="dd-wrapper" style={{width: "100%"}}>
                 <div className="dd-header d-flex flex-row align-items-center justify-content-between" onClick={() => this.toggleList()}>
-                    <div className={"dd-header-title" + (value ? "" : " placeholder")}>{ value ? value : placeholder }</div>
+                    <div className={"dd-header-title" + (value || defaultValue ? "" : " placeholder")}>
+                        { value ? value : (defaultValue ? defaultValue : placeholder) }
+                    </div>
                     { listOpen ? <ChevronUp/> : <ChevronDown/> }
                 </div>
                 {listOpen && <ul className="dd-list list-unstyled text-left">
