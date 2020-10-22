@@ -69,9 +69,10 @@ import Loader from "../../layouts/Loader";
 class ProfileShortcut extends Component{
 
     render () {
-        const { user, voivodeships, instruments, genres } = this.props;
-        if (!voivodeships || !instruments || !genres) return <Loader/>
+        const { user, status, voivodeships, instruments, genres } = this.props;
+        if (!status || !voivodeships || !instruments || !genres) return <Loader/>
 
+        let statusArray = user.statusId && user.statusId.map(stat => status[stat].name);
         let voivodeship = voivodeships[user.voivodeshipId].name;
 
         let genresNames = [];
@@ -88,11 +89,14 @@ class ProfileShortcut extends Component{
                 <Link to={ "/profil/" + user.id } className={"mb-2 d-block"}>
                     <Image src={ user.imageUrl } fluid/>
                 </Link>
-                <Link to={ "/profil/" + user.id } className={"mb-2 block"}>
+                <Link to={ "/profil/" + user.id } className={"mb-3 block"}>
                     <h5>{ user.name }</h5>
                 </Link>
-                <Blocks elementsList={["szuka zespołu", "szuka zleceń"]}/>
-                <div>
+                {statusArray
+                    ? <Blocks elementsList={statusArray}/>
+                    : null
+                }
+                <div className={"mt-2"}>
                     <div className={"d-flex flex-row mb-1"}>
                         <div className={"icon-container mr-2"}>
                             <FontAwesomeIcon icon={ faMapMarkerAlt }/>
@@ -115,12 +119,11 @@ class ProfileShortcut extends Component{
             </div>
         );
     }
-
 }
-
 
 const mapStateToProps = (state) => {
     return {
+        status: state.firestore.data.status,
         voivodeships: state.firestore.data.voivodeships,
         genres: state.firestore.data.genres,
         instruments: state.firestore.data.instruments
@@ -130,9 +133,9 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
+        {collection: "status"},
         {collection: "voivodeships"},
         {collection: "genres", orderBy: "name"},
-        {collection: "instruments", orderBy: "name"},
-        {collection: "status"}
+        {collection: "instruments", orderBy: "name"}
     ])
 )(ProfileShortcut);

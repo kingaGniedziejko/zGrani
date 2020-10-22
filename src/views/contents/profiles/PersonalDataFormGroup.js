@@ -108,7 +108,7 @@ class PersonalDataFormGroup extends Component{
                     <Dropdown placeholder="Wybierz z listy" list={list} slug={slug} toggleItem={this.toggleSelected} isMultiple={true}/>
                 </div>
 
-                <Blocks elementsList={this.props.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleDelete}/>
+                <Blocks elementsList={this.props.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleDelete} flex_1={true}/>
             </Form.Group>
         )
     }
@@ -121,7 +121,7 @@ class PersonalDataFormGroup extends Component{
                     <Form.Control id={"currentMember"} type={"text"} placeholder={"Pseudonim"} onChange={this.handleChange} size="sm" className={"mr-2"}/>
                     <Button variant="outline-accent" size="sm" onClick={this.handleAddMember}>Dodaj</Button>
                 </div>
-                <BlocksMembers elementsList={this.state.members} align={"start"} editable={true} slug={"members"} handler={this.handleDelete} linkingHandler={this.handleLinking}/>
+                <BlocksMembers elementsList={this.state.members} align={"start"} editable={true} slug={"members"} handler={this.handleDelete} linkingHandler={this.handleLinking} flex_1={true}/>
             </Form.Group>
         )
     }

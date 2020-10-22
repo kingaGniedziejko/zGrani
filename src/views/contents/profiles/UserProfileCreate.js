@@ -47,7 +47,7 @@ class UserProfileCreate extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
-        // this.props.signup(this.state);
+        this.props.signup(this.state);
     }
 
     render() {
