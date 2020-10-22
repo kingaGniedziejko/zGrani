@@ -178,16 +178,15 @@ class PersonalDataFormGroup extends Component{
     render() {
         let userType;
 
-        const type1 = {type: "artysta", nameFieldText: "Pseudonim"}
-        const type2 = {type: "zespol", nameFieldText: "Nazwa zespołu"}
+        const type1 = {type: "artysta", typeSlug: "artist", nameFieldText: "Pseudonim"}
+        const type2 = {type: "zespol", typeSlug: "band", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation = "create", user = undefined, state, voivodeships } = this.props;
+        const { type, operation = "create", user = undefined, state, voivodeships, status } = this.props;
 
-        if (type === type1.type) userType = type1;
-        else if (type === type2.type) userType = type2;
+        if (type === type1.typeSlug) userType = type1;
+        else if (type === type2.typeSlug) userType = type2;
 
         const isEdit = operation === "edit" && user;
-
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
@@ -217,8 +216,8 @@ class PersonalDataFormGroup extends Component{
                 </div>
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"}/>
                 { this.blockInput("Gatunki", "genres") }
-                { userType.type === "artysta" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
-                {/*{ this.blockInput("Status", "status") }*/}
+                { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
+                { this.blockInput("Status", "status") }
             </Form.Group>
         );
     }
@@ -229,16 +228,17 @@ const mapStateToProps = (state) => {
     return {
         voivodeships: state.firestore.ordered.voivodeships,
         genres: state.firestore.ordered.genres,
-        instruments: state.firestore.ordered.instruments
+        instruments: state.firestore.ordered.instruments,
+        status: state.firestore.ordered.status
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect(() => [
+    firestoreConnect((props) => [
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},
         {collection: "instruments", orderBy: "name"},
-        {collection: "status"}
+        {collection: "status", where: ["type", "in", [props.type, "all"]]}
     ])
 )(PersonalDataFormGroup);

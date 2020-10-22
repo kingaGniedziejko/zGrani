@@ -69,11 +69,18 @@ import Loader from "../../layouts/Loader";
 class ProfileShortcut extends Component{
 
     render () {
-        const { user, instruments } = this.props;
-        if (!instruments) return <Loader/>
+        const { user, voivodeships, instruments, genres } = this.props;
+        if (!voivodeships || !instruments || !genres) return <Loader/>
 
+        let voivodeship = voivodeships[user.voivodeshipId].name;
+
+        let genresNames = [];
         let instrumentsNames = [];
-        user.instrumentsId && user.instrumentsId.forEach( instr => instrumentsNames.push(instruments[instr].name));
+
+        user.genresId && user.genresId.forEach(genre => genresNames.push(genres[genre].name));
+        user.instrumentsId && user.instrumentsId.forEach(instr => instrumentsNames.push(instruments[instr].name));
+
+        let genresDisplay = genresNames.join(", ");
         let instrumentsDisplay = instrumentsNames.join(", ");
 
         return(
@@ -90,17 +97,17 @@ class ProfileShortcut extends Component{
                         <div className={"icon-container mr-2"}>
                             <FontAwesomeIcon icon={ faMapMarkerAlt }/>
                         </div>
-                        <p className={"m-0"}>{ user.city }</p>
-                    </div>
-                    <div className={"d-flex flex-row mb-1"}>
-                        <div className={"icon-container mr-2"}>
-                            <FontAwesomeIcon icon={ faGuitar }/>
-                        </div>
-                        <p className={"m-0"}>Rock, Blues</p>
+                        <p className={"m-0"}>{ voivodeship + ", " + user.city }</p>
                     </div>
                     <div className={"d-flex flex-row mb-1"}>
                         <div className={"icon-container mr-2"}>
                             <FontAwesomeIcon icon={ faMusic }/>
+                        </div>
+                        <p className={"m-0"}>{ genresDisplay }</p>
+                    </div>
+                    <div className={"d-flex flex-row mb-1"}>
+                        <div className={"icon-container mr-2"}>
+                            <FontAwesomeIcon icon={ faGuitar }/>
                         </div>
                         <p className={"m-0"}>{ instrumentsDisplay }</p>
                     </div>
@@ -114,8 +121,8 @@ class ProfileShortcut extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        // voivodeships: state.firestore.ordered.voivodeships,
-        // genres: state.firestore.ordered.genres,
+        voivodeships: state.firestore.data.voivodeships,
+        genres: state.firestore.data.genres,
         instruments: state.firestore.data.instruments
     }
 }
@@ -123,7 +130,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
-        {collection: "voivodeships", orderBy: "name"},
+        {collection: "voivodeships"},
         {collection: "genres", orderBy: "name"},
         {collection: "instruments", orderBy: "name"},
         {collection: "status"}

@@ -47,7 +47,7 @@ class UserProfileCreate extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
-        this.props.signup(this.state);
+        // this.props.signup(this.state);
     }
 
     render() {
@@ -58,10 +58,12 @@ class UserProfileCreate extends Component{
         let userType;
         const type1 = {
             type: "artysta",
+            typeSlug: "artist",
             title: "Artysta"
         }
         const type2 = {
             type: "zespol",
+            typeSlug: "band",
             title: "Zespół"
         }
 
@@ -82,7 +84,7 @@ class UserProfileCreate extends Component{
                             { authError ? <p className={"error"}>{authError}</p> : null}
 
                             <Form id={"personal-data-form"} className={"mt-5"} onSubmit={this.handleSubmit} style={{width: "100%"}}>
-                                <PersonalDataFormGroup type={type} operation={"create"} handleUpdate={this.handleUpdate} state={this.state}/>
+                                <PersonalDataFormGroup type={userType.typeSlug} operation={"create"} handleUpdate={this.handleUpdate} state={this.state}/>
                                 <Form.Group className={"d-flex flex-column"}>
                                     <Form.Check id={"agreement"} type={"checkbox"} custom
                                                 className={"align-self-start mb-2 d-flex flex-row align-items-center"}
