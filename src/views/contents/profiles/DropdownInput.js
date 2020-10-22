@@ -30,7 +30,7 @@ class DropdownInput extends Component {
             <div className="dd-wrapper" style={{width: "100%"}}>
                 <div className="dd-header d-flex flex-row align-items-center justify-content-between" onClick={() => this.toggleList()}>
                     <div className={"dd-header-title" + (value || defaultValue ? "" : " placeholder")}>
-                        { value ? value : (defaultValue ? defaultValue : placeholder) }
+                        { value ? value.name : (defaultValue ? defaultValue : placeholder) }
                     </div>
                     { listOpen ? <ChevronUp/> : <ChevronDown/> }
                 </div>
@@ -38,7 +38,7 @@ class DropdownInput extends Component {
                     {list.map((item) => (
                         <li className={ "dd-list-item clickable" + (!isMultiple && value === item.name ? " selected" : "")}  key={item.id}
                             onClick={() => {
-                                toggleItem(item.id, item.name, slug, isMultiple);
+                                toggleItem(item.id, item, slug, isMultiple);
                                 this.toggleList();
                             }}>
                             {item.name}

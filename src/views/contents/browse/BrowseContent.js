@@ -9,6 +9,7 @@ import { ChevronDown } from "react-bootstrap-icons";
 
 import ProfileShortcut from "../profiles/ProfileShortcut";
 import Dropdown from "../profiles/DropdownInput";
+import BrowseDisplay from "./BrowseDisplay";
 
 class BrowseContent extends Component{
     state = {
@@ -16,11 +17,18 @@ class BrowseContent extends Component{
         instrument: ''
     }
 
-    toggleSelected = (id, name, slug, isMultiple) => {
+
+    toggleSelected = (id, item, slug, isMultiple) => {
         if (!isMultiple) {
-            this.setState({
-                [slug]: name
-            })
+            if (item.id === "all") {
+                this.setState({
+                    [slug]: ""
+                })
+            } else {
+                this.setState({
+                    [slug]: item
+                })
+            }
         }
         // else {
         //     let elements = this.state[slug];
@@ -35,18 +43,21 @@ class BrowseContent extends Component{
     browseFilters = (type) => {
         const { genres, instruments } = this.props;
 
+        let genresArray = [{id: "all", name: "-"}].concat(genres);
+        let instrumentsArray = [{id: "all", name: "-"}].concat(instruments);
+
         return (
             <Row className={"mb-5 justify-content-center"}>
                 <Col className={"d-flex flex-column flex-sm-row align-items-center justify-content-center"} xs={8} sm={12} md={9} lg={7} xl={6}>
                     <h6 className={"mr-sm-4 mb-4 mb-sm-0 mt-1"}>Filtruj:</h6>
 
                     <div className={"mr-sm-3 mb-3 mb-sm-0 block"}>
-                        <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genres} slug={"genre"} toggleItem={this.toggleSelected} />
+                        <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genresArray} slug={"genre"} toggleItem={this.toggleSelected} />
                     </div>
 
                     {type === "artysta" ?
                         <div className={"block "}>
-                            <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instruments} slug={"instrument"} toggleItem={this.toggleSelected}/>
+                            <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instrumentsArray} slug={"instrument"} toggleItem={this.toggleSelected}/>
                         </div>
                         : ""
                     }
@@ -56,28 +67,7 @@ class BrowseContent extends Component{
     }
 
     browseContent = (type) => {
-        const { users } = this.props;
-        return (
-            <div className={"section d-flex flex-column align-items-center"}>
-                <Container>
-                    <Row>
-                        {users && users.map((user, index) => {
-                            if (user) {
-                                return (
-                                    <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
-                                )
-                            } else {
-                                return "";
-                            }
-                        })}
-                    </Row>
-                </Container>
-                <div className={"d-flex flex-column align-items-center clickable"}>
-                    <p className={"m-0"}>Więcej</p>
-                    <ChevronDown/>
-                </div>
-            </div>
-        );
+        return <BrowseDisplay type={type} genre={this.state.genre} instrument={this.state.instrument}/>
     }
 
 
@@ -95,9 +85,7 @@ class BrowseContent extends Component{
 
 
 const mapStateToProps = (state) => {
-    console.log(state.firestore.ordered.users);
     return {
-        users: state.firestore.ordered.users,
         genres: state.firestore.ordered.genres,
         instruments: state.firestore.ordered.instruments
     }
@@ -105,8 +93,7 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect(() => [
-            {collection: "users"},
+    firestoreConnect ( () => [
             {collection: "genres", orderBy: "name"},
             {collection: "instruments", orderBy: "name"}
         ]

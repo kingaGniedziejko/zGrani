@@ -168,7 +168,6 @@ class SearchContent extends Component{
 
 
 const mapStateToProps = (state) => {
-    console.log(state.firestore.ordered.users);
     return {
         users: state.firestore.ordered.users,
         voivodeships: state.firestore.ordered.voivodeships,
