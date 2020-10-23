@@ -15,7 +15,7 @@ class ProfileShortcut extends Component {
         const { user, status, voivodeships, instruments, genres } = this.props;
         if (!status || !voivodeships || !instruments || !genres) return ""
 
-        let statusArray = user.statusId && user.statusId.map(stat => status[stat].name);
+        let statusArray = user.statusId && user.statusId.map(stat => status[stat]);
         let voivodeship = voivodeships[user.voivodeshipId].name;
 
         let genresNames = [];

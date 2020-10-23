@@ -64,7 +64,7 @@ class UserProfile extends Component{
 
     userInfoSection = (user, profile, auth, id, status, voivodeships) => {
 
-        let statusArray = user.statusId && user.statusId.map(stat => status[stat].name);
+        let statusArray = user.statusId && user.statusId.map(stat => status[stat]);
         let voivodeship = voivodeships[user.voivodeshipId].name;
 
         const button = auth.uid && auth.uid === id ?
@@ -131,8 +131,8 @@ class UserProfile extends Component{
         let genresNames = [];
         let instrumentsNames = [];
 
-        user.genresId && user.genresId.forEach(genre => genresNames.push(genres[genre].name));
-        user.instrumentsId && user.instrumentsId.forEach(instr => instrumentsNames.push(instruments[instr].name));
+        user.genresId && user.genresId.forEach(genre => genresNames.push(genres[genre]));
+        user.instrumentsId && user.instrumentsId.forEach(instr => instrumentsNames.push(instruments[instr]));
 
         return (
             <Row>
