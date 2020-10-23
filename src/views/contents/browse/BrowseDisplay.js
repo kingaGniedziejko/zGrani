@@ -28,7 +28,7 @@ class BrowseDisplay extends Component{
         if (instrument && genre) {
             users = users.filter(user => user.genresId.includes(genre.id));
         }
-        
+
         let usersList = [];
         let isMore = users.length > limit;
 

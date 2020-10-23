@@ -21,7 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/authActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/browse/BrowseDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/browse/BrowseDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileCreate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +106,8 @@
       <workItem from="1602605663121" duration="18180000" />
       <workItem from="1602862743847" duration="355000" />
       <workItem from="1602941762558" duration="33400000" />
-      <workItem from="1603269764409" duration="53778000" />
+      <workItem from="1603269764409" duration="53944000" />
+      <workItem from="1603444036746" duration="13052000" />
     </task>
     <servers />
   </component>
@@ -128,6 +135,10 @@
     </state>
     <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600258962379" />
     <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602065348763" />
+    <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1603443857822">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1603443857822" />
     <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600171230000">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

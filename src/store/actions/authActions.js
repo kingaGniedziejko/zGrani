@@ -36,22 +36,24 @@ export const signup = (newUser) => {
             if (newUser.isArtist){
                 return firestore.collection('users').doc(response.user.uid).set({
                     name: newUser.name,
-                    voivodeship: newUser.voivodeship,
+                    voivodeshipId: newUser.voivodeshipId,
                     city: newUser.city,
+                    genresId: newUser.genresId,
+                    instrumentsId: newUser.instrumentsId,
+                    statusId: newUser.statusId,
                     isArtist: true,
-                    isActive: true,
-                    genres: newUser.genres,
-                    instruments: newUser.instruments,
+                    isActive: true
                 })
             } else {
                 return firestore.collection('users').doc(response.user.uid).set({
                     name: newUser.name,
-                    voivodeship: newUser.voivodeship,
+                    voivodeshipId: newUser.voivodeshipId,
                     city: newUser.city,
-                    isArtist: false,
-                    isActive: true,
-                    genres: newUser.genres,
+                    genresId: newUser.genresId,
                     // members: newUser.members
+                    statusId: newUser.statusId,
+                    isArtist: false,
+                    isActive: true
                 })
             }
         }).then(() => {
@@ -59,6 +61,5 @@ export const signup = (newUser) => {
         }).catch(err => {
             dispatch({ type: 'SIGNUP_ERROR', err })
         })
-
     }
 }

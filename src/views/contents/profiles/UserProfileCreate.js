@@ -20,7 +20,6 @@ class UserProfileCreate extends Component{
 
         genres: [],
         instruments: [],
-
         members: [],
         status: [],
 
@@ -28,8 +27,8 @@ class UserProfileCreate extends Component{
         isArtist: this.props.match.params === "artysta"
     }
 
-    handleUpdate = (slug, value) => {
-        this.setState({ [slug]: value })
+    handleUpdate = (slug, item) => {
+        this.setState({ [slug]: item })
     }
 
     handleChange = (e) => {
@@ -46,8 +45,22 @@ class UserProfileCreate extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
-        this.props.signup(this.state);
+        const { email, password, name, voivodeship, city, genres, instruments, status, isArtist } = this.state;
+
+        let newUser = {
+            email: email,
+            password: password,
+            name: name,
+            voivodeshipId: voivodeship.id,
+            city: city,
+            genresId: genres && genres.map(genre => genre.id),
+            instrumentsId: instruments && instruments.map(instrument => instrument.id),
+            members: [],
+            statusId: status && status.map(stat => stat.id),
+            isArtist: isArtist
+        }
+        console.log(newUser);
+        this.props.signup(newUser);
     }
 
     render() {

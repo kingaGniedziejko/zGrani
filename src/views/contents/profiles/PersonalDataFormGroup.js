@@ -9,18 +9,10 @@ import Dropdown from "./DropdownInput";
 import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {connect} from "react-redux";
-import ErrorPage from "../../layouts/ErrorPage";
-import Loader from "../../layouts/Loader";
 
 class PersonalDataFormGroup extends Component{
     state = {
-        genres: [],
-        instruments: [],
-
         currentMember: '',
-        members: [],
-
-        status: [],
 
         modalShow: false,
         actualPassword: '',
@@ -33,74 +25,34 @@ class PersonalDataFormGroup extends Component{
         this.props.handleUpdate(e.target.id, e.target.value);
     }
 
-    handleDelete = (slug, value) => {
+    handleLocalChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleDelete = (slug, item) => {
         let elements = this.props.state[slug];
-        let index = elements.indexOf(value)
+        let index = elements.indexOf(item)
         if (index !== -1) {
             elements.splice(index, 1);
             this.props.handleUpdate(slug, elements);
         }
     }
 
-    handleAddMember = () => {
-        let currentMember = this.state.currentMember.trim();
-        let members = this.props.state.members;
-
-        if (currentMember !== ""){
-            members.push(
-                {
-                    name: currentMember,
-                    userId: ""
-                });
-            console.log(members);
-
-            this.props.handleUpdate("members", members);
-
-            this.setState({
-                // members: members,
-                currentMember: ''
-            })
-            document.getElementById("currentMember").value = "";
-        }
-    }
-
-    handleLinking = (slug, operation, index, userId) => {
-        let elements = this.state[slug];
-        switch (operation){
-            case "add":
-                console.log(elements[index]);
-                elements[index].userId = userId;
-                break;
-            case "delete":
-                elements[index].userId = "";
-                break;
-            default:
-        }
-
-        this.props.handleUpdate(slug, elements);
-
-        // this.setState({
-        //     [slug]: elements
-        // })
-    }
-
-    toggleSelected = (id, name, slug, isMultiple) => {
+    toggleSelected = (id, item, slug, isMultiple) => {
         if (!isMultiple) {
-            this.props.handleUpdate(slug, name);
+            this.props.handleUpdate(slug, item);
         } else {
             let elements = this.props.state[slug];
-            if (!elements.includes(name)) elements.push(name);
+            if (!elements.includes(item)) elements.push(item);
 
             this.props.handleUpdate(slug, elements);
-
-            // this.setState({
-            //     [slug]: elements
-            // })
         }
     }
 
     blockInput = (title, slug) => {
-        let list;
+        let list = this.props[slug];
 
         return (
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
@@ -115,15 +67,51 @@ class PersonalDataFormGroup extends Component{
         )
     }
 
+    handleAddMember = () => {
+        let currentMember = this.state.currentMember.trim();
+        let members = this.props.state.members;
+
+        if (currentMember !== ""){
+            members.push(
+                {
+                    name: currentMember,
+                    user: ""
+                });
+            this.props.handleUpdate("members", members);
+            this.setState({ currentMember: '' })
+            document.getElementById("currentMember").value = "";
+        }
+    }
+
+    handleLinkingMember = (slug, operation, index, login) => {
+        let elements = this.props.state[slug];
+        switch (operation){
+            case "add":
+                let linkedUser = this.props.users && this.props.users.find(user => user.login === login);
+                if (linkedUser) {
+                    elements[index].user = login;
+                    return true;
+                } else
+                    return false;
+            case "delete":
+                elements[index].user = "";
+                return true;
+            default:
+        }
+
+        this.props.handleUpdate(slug, elements);
+    }
+
     membersInput = () => {
         return (
             <Form.Group className={"mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-2"}>Członkowie</h6>
                 <div className={"d-flex flex-row mb-3"}>
-                    <Form.Control id={"currentMember"} type={"text"} placeholder={"Pseudonim"} onChange={this.handleChange} size="sm" className={"mr-2"}/>
+                    <Form.Control id={"currentMember"} type={"text"} placeholder={"Pseudonim"} onChange={this.handleLocalChange} size="sm" className={"mr-2"}/>
                     <Button variant="outline-accent" size="sm" onClick={this.handleAddMember}>Dodaj</Button>
                 </div>
-                <BlocksMembers elementsList={this.state.members} align={"start"} editable={true} slug={"members"} handler={this.handleDelete} linkingHandler={this.handleLinking} flex_1={true}/>
+                <BlocksMembers elementsList={this.props.state.members} align={"start"} editable={true} slug={"members"}
+                               handler={this.handleDelete} linkingHandler={this.handleLinkingMember} flex_1={true}/>
             </Form.Group>
         )
     }
@@ -163,8 +151,6 @@ class PersonalDataFormGroup extends Component{
                             <Form.Control id={"newPasswordRep"} type={"password"} placeholder={"Powtórz hasło"} onChange={this.handleChange} size="sm" className={"mb-4"} style={{width: "60%"}}/>
                         </div>
                     }
-
-
                 </Modal.Body>
                 <Modal.Footer className={"justify-content-center"}>
                     {!isPasswordCorrect ?
@@ -190,12 +176,11 @@ class PersonalDataFormGroup extends Component{
 
         const isEdit = operation === "edit" && user;
 
-        if (!status || !voivodeships || !voivodeshipsOrdered || !instruments || !genres) return <Loader/>
-
-        console.log(voivodeships);
+        if (!status || !voivodeships || !voivodeshipsOrdered || !instruments || !genres) return ""
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
+                <Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
                 <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? auth.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"}/>
 
                 {operation === "create" ?
@@ -226,6 +211,9 @@ class PersonalDataFormGroup extends Component{
             </Form.Group>
         );
     }
+
+
+
 }
 
 
@@ -236,7 +224,8 @@ const mapStateToProps = (state) => {
         voivodeshipsOrdered: state.firestore.ordered.voivodeships,
         genres: state.firestore.ordered.genres,
         instruments: state.firestore.ordered.instruments,
-        status: state.firestore.ordered.status
+        status: state.firestore.ordered.status,
+        users: state.firestore.ordered.users
     }
 }
 
@@ -246,6 +235,7 @@ export default compose(
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},
         {collection: "instruments", orderBy: "name"},
-        {collection: "status", where: ["type", "in", [props.type, "all"]]}
+        {collection: "status", where: ["type", "in", [props.type, "all"]]},
+        {collection: "users"}
     ])
 )(PersonalDataFormGroup);

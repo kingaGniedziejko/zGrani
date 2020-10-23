@@ -13,7 +13,7 @@ class Blocks extends Component{
                 {elementsList.map((elem, index) => {
                     return (
                         <div key={index} className={"d-flex flex-row align-items-center background-lighter mr-2 mb-2 py-1 pl-2 pr-2"} style={flex_1 ? {flex: 1} : {}}                            >
-                            <p className={(editable ? "ml-1 mr-3" : "ml-2 mr-2")}>{elem.replace(/ /g, "\u00a0")}</p>
+                            <p className={(editable ? "ml-1 mr-3" : "ml-2 mr-2")}>{elem.name.replace(/ /g, "\u00a0")}</p>
                             {editable ? <X className={"ml-auto"} onClick={()=>handler(slug, elem)}/> : ""}
                         </div>
                     )

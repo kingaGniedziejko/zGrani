@@ -6,18 +6,9 @@ import {Button, Form} from "react-bootstrap";
 class BlocksMembersElement extends Component{
     state = {
         isLinking: false,
-        userEmail: "",
-        isLinked: false
-    }
-
-    linkingUserComponent = (elem) => {
-        return (
-            <div className={"find-member block d-flex flex-row align-items-center mb-3 p-2"} style={{border: "3px solid var(--background-lighter)"}}>
-                <Form.Control id={"userEmail"} type={"text"} value={this.state.userEmail} placeholder={"Email użytkownika"} onChange={this.handleChange} size="sm"/>
-                <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-2"}/>
-                <X onClick={this.handleExit} size={28} className={"clickable ml-2"}/>
-            </div>
-        )
+        userLogin: "",
+        isLinked: false,
+        linkingError: false
     }
 
     displayLinking = () => {
@@ -28,25 +19,23 @@ class BlocksMembersElement extends Component{
 
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            userLogin: e.target.value
         })
     }
 
     handleCheck = () => {
-        // let email = this.state.userEmail;
+        let login = this.state.userLogin;
 
-        // check if user exists
-        let exists = true;
-        let userId = "1";
-
-        if (exists){
+        if (this.props.linkingHandler(this.props.slug, "add", this.props.index, login)){
             this.setState({
                 isLinked: true,
                 isLinking: false,
+                linkingError: false
             })
-
-            this.props.linkingHandler(this.props.slug, "add", this.props.index, userId);
         } else {
+            this.setState({
+                linkingError: true
+            })
             console.log("Doesn't exist")
         }
     }
@@ -54,14 +43,16 @@ class BlocksMembersElement extends Component{
     handleExit = () => {
         this.setState({
             isLinked: false,
-            userEmail: "",
-            isLinking: false
+            userLogin: "",
+            isLinking: false,
+            linkingError: false
         })
+        // document.getElementById("user-login-" + this.props.index).value = "";
         this.props.linkingHandler(this.props.slug, "delete", this.props.index);
     }
 
     render() {
-        const { isLinking, isLinked } = this.state;
+        const { isLinking, isLinked, linkingError } = this.state;
         const { elem, editable, slug, handler } = this.props;
 
         return (
@@ -73,10 +64,22 @@ class BlocksMembersElement extends Component{
                     </Button>
                     {editable ? <X className={"clickable ml-2"} size={25} onClick={()=>handler(slug, elem)}/> : ""}
                 </div>
-                {isLinking ? this.linkingUserComponent(elem) : "" }
+
+
+                {isLinking ?
+                    <div className={"find-member block d-flex flex-column mb-3 p-2"} style={{border: "3px solid var(--background-lighter)"}}>
+                        <div className={"find-member block d-flex flex-row align-items-center"}>
+                            <Form.Control id={"user-login-" + this.props.index} type={"text"} defaultValue={this.state.userLogin} placeholder={"Login użytkownika"} onChange={this.handleChange} size="sm"/>
+                            <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-2"}/>
+                            <X onClick={this.handleExit} size={28} className={"clickable ml-2"}/>
+                        </div>
+                        { linkingError ? <p className={"error"}>Nie ma takiego artysty</p> : "" }
+                    </div>
+                    : "" }
             </>
         );
     }
 }
+
 
 export default BlocksMembersElement;
