@@ -89,7 +89,7 @@ class PersonalDataFormGroup extends Component{
             case "add":
                 let linkedUser = this.props.users && this.props.users.find(user => user.login === login);
                 if (linkedUser) {
-                    elements[index].user = login;
+                    elements[index].user = linkedUser;
                     return true;
                 } else
                     return false;

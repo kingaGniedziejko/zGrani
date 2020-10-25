@@ -45,7 +45,7 @@ class UserProfileCreate extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { email, password, name, voivodeship, city, genres, instruments, status, isArtist } = this.state;
+        const { email, password, name, voivodeship, city, genres, instruments, members, status, isArtist } = this.state;
 
         let newUser = {
             email: email,
@@ -55,11 +55,11 @@ class UserProfileCreate extends Component{
             city: city,
             genresId: genres && genres.map(genre => genre.id),
             instrumentsId: instruments && instruments.map(instrument => instrument.id),
-            members: [],
+            members: members && members.map(member => (member.user ? member.user.id : ("_" + member.name))),
             statusId: status && status.map(stat => stat.id),
             isArtist: isArtist
         }
-        console.log(newUser);
+        console.log(newUser, members);
         this.props.signup(newUser);
     }
 

@@ -50,7 +50,7 @@ export const signup = (newUser) => {
                     voivodeshipId: newUser.voivodeshipId,
                     city: newUser.city,
                     genresId: newUser.genresId,
-                    // members: newUser.members
+                    members: newUser.members,
                     statusId: newUser.statusId,
                     isArtist: false,
                     isActive: true

@@ -5,9 +5,7 @@ import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 
 import "../../../resources/styles/browse_style.css"
-import { ChevronDown } from "react-bootstrap-icons";
 
-import ProfileShortcut from "../profiles/ProfileShortcut";
 import Dropdown from "../profiles/DropdownInput";
 import BrowseDisplay from "./BrowseDisplay";
 

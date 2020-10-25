@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../../store/actions/authActions";
 
-import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
-
 class LoggedInButtons extends Component{
     render() {
         const { user, uid } = this.props;

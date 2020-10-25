@@ -74,11 +74,13 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect ( (props) => {
+        let isArtist = props.type === "artysta";
         if (props.instrument && props.genre)
             return [
                 {collection: "users",
                     where: [
-                        ["instrumentsId", "array-contains", props.instrument.id]
+                        ["instrumentsId", "array-contains", props.instrument.id],
+                        ["isArtist", "==", isArtist]
                     ]
                 }
             ]
@@ -86,7 +88,8 @@ export default compose(
             return [
                 {collection: "users",
                     where: [
-                        ["instrumentsId", "array-contains", props.instrument.id]
+                        ["instrumentsId", "array-contains", props.instrument.id],
+                        ["isArtist", "==", isArtist]
                     ]
                 }
             ]
@@ -94,11 +97,16 @@ export default compose(
             return [
                 {collection: "users",
                     where: [
-                        ["genresId", "array-contains", props.genre.id]
+                        ["genresId", "array-contains", props.genre.id],
+                        ["isArtist", "==", isArtist]
                     ]
                 }
             ]
         else
-            return [{collection: "users"}]
+            return [
+                {collection: "users",
+                    where: ["isArtist", "==", isArtist]
+                }
+            ]
     })
 )(BrowseDisplay);
