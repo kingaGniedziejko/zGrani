@@ -7,12 +7,12 @@ import {firestoreConnect} from "react-redux-firebase";
 
 import "../../../resources/styles/browse_style.css"
 
-import ProfileShortcut from "../profiles/ProfileShortcut";
 import Dropdown from "../profiles/DropdownInput";
+import SearchDisplay from "./SearchDisplay";
 
 class SearchContent extends Component{
     state = {
-        isExtended: true,
+        isExtended: false,
         voivodeship: '',
         genre: '',
         instrument: '',
@@ -51,7 +51,7 @@ class SearchContent extends Component{
         // }
     }
 
-    browseFilters = (type) => {
+    searchFilters = (type) => {
         const {isExtended} = this.state;
         const { voivodeships, genres, instruments } = this.props;
 
@@ -132,25 +132,10 @@ class SearchContent extends Component{
         )
     }
 
-    browseContent = (_) => {
-        const { users } = this.props;
-        return (
-            <div className={"section d-flex flex-column align-items-center background-dark block pb-4 pt-5"}>
-                <Container>
-                    <Row>
-                        {users && users.map((user, index) => {
-                            return (
-                                <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
-                            )
-                        })}
-                    </Row>
-                </Container>
-                <div className={"d-flex flex-column align-items-center"}>
-                    <p className={"m-0"}>Więcej</p>
-                    <ChevronDown/>
-                </div>
-            </div>
-        );
+    searchContent = (type) => {
+        console.log(this.props.type);
+
+        return <SearchDisplay type={type}/>
     }
 
 
@@ -159,8 +144,8 @@ class SearchContent extends Component{
 
         return (
             <div id={"search-content"} className={"d-flex flex-column align-items-center block"}>
-                {this.browseFilters(type)}
-                {this.browseContent(type)}
+                {this.searchFilters(type)}
+                {this.searchContent(type)}
             </div>
         );
     }
@@ -169,7 +154,6 @@ class SearchContent extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        users: state.firestore.ordered.users,
         voivodeships: state.firestore.ordered.voivodeships,
         genres: state.firestore.ordered.genres,
         instruments: state.firestore.ordered.instruments

@@ -65,6 +65,7 @@ class BrowseContent extends Component{
     }
 
     browseContent = (type) => {
+        console.log(type);
         return <BrowseDisplay type={type} genre={this.state.genre} instrument={this.state.instrument}/>
     }
 

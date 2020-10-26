@@ -10,7 +10,7 @@ class Browse extends Component{
     render() {
         const { location } = this.props;
         return (
-           <div id={"browse"} className={"page-content"}>
+            <div id={"browse"} className={"page-content"}>
                 <div className={"section-light d-flex flex-column align-items-center pt-5 pb-4"}>
                     <h3>Przeglądaj</h3>
                     <Nav className="mb-5" activeKey={location.pathname}>
@@ -26,7 +26,7 @@ class Browse extends Component{
                         </Route>
                     </Switch>
                 </div>
-           </div>
+            </div>
         );
     }
 }
