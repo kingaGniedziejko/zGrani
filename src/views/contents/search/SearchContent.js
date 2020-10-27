@@ -13,24 +13,27 @@ import SearchDisplay from "./SearchDisplay";
 
 class SearchContent extends Component {
     state = {
-        isExtended: true,
+        purpose: '',
         voivodeship: '',
+        city: '',
         genre: '',
         instrument: '',
-        instrument1: '',
-        instrument2: ''
+
+        isExtended: true,
+
+        searchParams: []
     }
 
-    selectInput = (slug, placeHolder, disabled=false) => {
-        return (
-            <Form.Control id={slug} as={"select"} defaultValue={-1} size="sm" onChange={this.handleChange}
-                          className={"dark-text mb-3"} >
-                <option disabled value={-1} key={-1}>{placeHolder}</option>
-                <option>Rock</option>
-                <option>Classic</option>
-            </Form.Control>
-        )
-    }
+    // selectInput = (slug, placeHolder, disabled=false) => {
+    //     return (
+    //         <Form.Control id={slug} as={"select"} defaultValue={-1} size="sm" onChange={this.handleChange}
+    //                       className={"dark-text mb-3"} >
+    //             <option disabled value={-1} key={-1}>{placeHolder}</option>
+    //             <option>Rock</option>
+    //             <option>Classic</option>
+    //         </Form.Control>
+    //     )
+    // }
 
     changeIsExtended = () => {
         this.setState({isExtended: !this.state.isExtended})
@@ -52,8 +55,36 @@ class SearchContent extends Component {
         // }
     }
 
-    handleOnChange = (e) => {
-        console.log(e);
+    handleInputChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleRadioChange = (e) => {
+        this.setState({ purpose: e })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        const { purpose, voivodeship, city, genre, instrument } = this.state;
+        let searchParams = [];
+
+        if (purpose) {
+            searchParams.push({ param: "status", value: purpose})
+
+            if (this.state["instrument-" + purpose])
+                searchParams.push({ param: "statusInstrument", value: this.state["instrument-" + purpose].id})
+        }
+
+        searchParams.push(voivodeship ? { param: "voivodeshipId", value: voivodeship.id} : null);
+        searchParams.push(city ? { param: "city", value: city} : null);
+        searchParams.push(genre ? { param: "genreId", value: genre.id} : null);
+        searchParams.push(instrument ? { param: "instrumentId", value: instrument.id} : null);
+        searchParams = searchParams.filter(Boolean);
+
+        this.setState({searchParams: searchParams});
     }
 
     searchFilters = (isArtist) => {
@@ -75,13 +106,13 @@ class SearchContent extends Component {
                     </Col>
                 </Row>
 
-                <Form className={"block d-flex flex-column align-items-center"}>
+                <Form className={"block d-flex flex-column align-items-center"} onSubmit={this.handleSubmit}>
                     {isExtended ?
                         <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
                             <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={5} lg={4} xl={3}>
                                 <h6 className={"mb-4"}>Cel</h6>
 
-                                <RadioGroup name="purpose" onChange={(e) => this.handleOnChange(e)}>
+                                <RadioGroup name="purpose" selectedValue={this.state.purpose} onChange={(e) => this.handleRadioChange(e)}>
                                     {filteredStatus.map((status, index) => {
                                         return (
                                             <div className="radio-button-background mb-2" key={index}>
@@ -104,7 +135,7 @@ class SearchContent extends Component {
                                         )
                                     })}
                                     <div className="radio-button-background">
-                                        <Radio value={""} className="radio-button mr-2"/>
+                                        <Radio value={""} checked className="radio-button mr-2"/>
                                         <p className={"d-inline-block"}>Brak</p>
                                     </div>
                                 </RadioGroup>
@@ -116,7 +147,7 @@ class SearchContent extends Component {
                                     <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"} toggleItem={this.toggleSelected} />
                                 </div>
 
-                                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleChange} size="sm" className={"mb-3"}/>
+                                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleInputChange} size="sm" className={"mb-3"}/>
 
                                 <div className={"block mb-3"}>
                                     <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genres} slug={"genre"} toggleItem={this.toggleSelected} />
@@ -139,7 +170,9 @@ class SearchContent extends Component {
     }
 
     searchContent = (isArtist) => {
-        return <SearchDisplay isArtist={isArtist}/>
+        const { searchParams } = this.state;
+        if (searchParams.length === 0) return "";
+        return <SearchDisplay isArtist={isArtist} searchParams={searchParams}/>
     }
 
 
