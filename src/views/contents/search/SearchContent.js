@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import { Button, Col, Container, Form, Row} from "react-bootstrap";
 import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {firestoreConnect} from "react-redux-firebase";
+import { Radio, RadioGroup } from 'react-radio-group';
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
 
 import "../../../resources/styles/browse_style.css"
 
 import Dropdown from "../profiles/DropdownInput";
 import SearchDisplay from "./SearchDisplay";
 
-class SearchContent extends Component{
+class SearchContent extends Component {
     state = {
-        isExtended: false,
+        isExtended: true,
         voivodeship: '',
         genre: '',
         instrument: '',
@@ -51,9 +52,15 @@ class SearchContent extends Component{
         // }
     }
 
-    searchFilters = (type) => {
-        const {isExtended} = this.state;
-        const { voivodeships, genres, instruments } = this.props;
+    handleOnChange = (e) => {
+        console.log(e);
+    }
+
+    searchFilters = (isArtist) => {
+        const { isExtended } = this.state;
+        const { filteredStatus, voivodeships, genres, instruments } = this.props;
+
+        if (!filteredStatus || !voivodeships || !genres || !instruments) return "";
 
         return (
             <Container className={"mb-5 d-flex flex-column align-items-center"}>
@@ -73,35 +80,34 @@ class SearchContent extends Component{
                         <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
                             <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={5} lg={4} xl={3}>
                                 <h6 className={"mb-4"}>Cel</h6>
-                                <Form.Group className={"block"}>
-                                    <Form.Check id={"purpose"} name={"purpose"} value={"1"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                                onChange={this.handleChange}
-                                                label={<p style={{paddingTop: "2px"}}>Zlecenie</p>}/>
 
-                                    <Form.Check id={"purpose"} name={"purpose"} value={"2"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                                onChange={this.handleChange}
-                                                label={<p style={{paddingTop: "2px"}}>{type === "artysta" ? "Zaproszenie do zespołu" : "Dołączenie do zespołu"}</p>}/>
-
-                                    {type === "artysta" ? "" :
-                                        <div className={"block pl-4 mb-3"}>
-                                            <Dropdown placeholder={"Instrument"} value={this.state.instrument1} list={instruments} slug={"instrument1"} toggleItem={this.toggleSelected} />
-                                        </div>
-                                    }
-
-                                    <Form.Check id={"purpose"} name={"purpose"} value={"3"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                                onChange={this.handleChange}
-                                                label={<p style={{paddingTop: "2px"}}>Zastępstwo</p>}/>
-
-                                    {type === "artysta" ? "" :
-                                        <div className={"block pl-4 mb-3"}>
-                                            <Dropdown placeholder={"Instrument"} value={this.state.instrument2} list={instruments} slug={"instrument2"} toggleItem={this.toggleSelected} />
-                                        </div>
-                                    }
-
-                                    <Form.Check id={"purpose"} name={"purpose"} value={"4"} type={"radio"} custom className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                                onChange={this.handleChange}
-                                                label={<p style={{paddingTop: "2px"}}>Brak</p>}/>
-                                </Form.Group>
+                                <RadioGroup name="purpose" onChange={(e) => this.handleOnChange(e)}>
+                                    {filteredStatus.map((status, index) => {
+                                        return (
+                                            <div className="radio-button-background mb-2" key={index}>
+                                                <div className={"d-flex flex-row align-items-center mb-1"}>
+                                                    <Radio value={status.id} className="radio-button mr-2"/>
+                                                    <p className={"d-inline-block"}>{status.purposeName.charAt(0).toUpperCase() + status.purposeName.slice(1)}</p>
+                                                </div>
+                                                {
+                                                    status.withInstrument ?
+                                                        <div className={"block pl-4 mb-3"}>
+                                                            <Dropdown placeholder={"Instrument"}
+                                                                      value={this.state["instrument-" + status.id]}
+                                                                      list={instruments}
+                                                                      slug={"instrument-" + status.id}
+                                                                      toggleItem={this.toggleSelected} />
+                                                        </div>
+                                                        : ""
+                                                }
+                                            </div>
+                                        )
+                                    })}
+                                    <div className="radio-button-background">
+                                        <Radio value={""} className="radio-button mr-2"/>
+                                        <p className={"d-inline-block"}>Brak</p>
+                                    </div>
+                                </RadioGroup>
                             </Col>
                             <Col className={"d-flex flex-column align-items-center"} xs={11} sm={6} md={5} lg={4} xl={3}>
                                 <h6 className={"mb-4"}>Parametry</h6>
@@ -116,7 +122,7 @@ class SearchContent extends Component{
                                     <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genres} slug={"genre"} toggleItem={this.toggleSelected} />
                                 </div>
 
-                                {type === "artysta" ?
+                                {isArtist ?
                                     <div className={"block mb-3"}>
                                         <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instruments} slug={"instrument"} toggleItem={this.toggleSelected} />
                                     </div>
@@ -132,20 +138,18 @@ class SearchContent extends Component{
         )
     }
 
-    searchContent = (type) => {
-        console.log(this.props.type);
-
-        return <SearchDisplay type={type}/>
+    searchContent = (isArtist) => {
+        return <SearchDisplay isArtist={isArtist}/>
     }
 
 
     render() {
-        const { type } = this.props;
+        const { isArtist } = this.props;
 
         return (
             <div id={"search-content"} className={"d-flex flex-column align-items-center block"}>
-                {this.searchFilters(type)}
-                {this.searchContent(type)}
+                {this.searchFilters(isArtist)}
+                {this.searchContent(isArtist)}
             </div>
         );
     }
@@ -154,6 +158,7 @@ class SearchContent extends Component{
 
 const mapStateToProps = (state) => {
     return {
+        filteredStatus: state.firestore.ordered.filteredStatus,
         voivodeships: state.firestore.ordered.voivodeships,
         genres: state.firestore.ordered.genres,
         instruments: state.firestore.ordered.instruments
@@ -162,6 +167,13 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect(() => ['users', 'voivodeships', 'genres', 'instruments'])
+    firestoreConnect((props) => [
+        { collection: "status",
+            where: ["type", "in", [(props.isArtist ? "artist" : "band") , "all"]],
+            storeAs: "filteredStatus"},
+        { collection: 'voivodeships', orderBy: "name" },
+        { collection: 'genres', orderBy: "name" },
+        { collection: 'instruments', orderBy: "name"}
+    ])
 )(SearchContent);
 

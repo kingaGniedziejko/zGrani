@@ -34,8 +34,6 @@ class SearchDisplay extends Component{
             usersList = users;
         }
 
-        console.log(usersList);
-
         return (
             <div className={"section d-flex flex-column align-items-center block background-dark block pb-4 pt-5"}>
                 <Container>
@@ -65,18 +63,16 @@ class SearchDisplay extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        users: state.firestore.ordered.users
+        users: state.firestore.ordered.filteredUsers
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect ( (props) => {
-        let isArtist = props.type === "artysta";
-        return [
-            {collection: "users",
-                where: ["isArtist", "==", isArtist]
-            }
-        ]
-    })
+    firestoreConnect ( (props) => [
+        {collection: "users",
+            where: ["isArtist", "==", props.isArtist],
+            storeAs: "filteredUsers"
+        }]
+    )
 )(SearchDisplay);

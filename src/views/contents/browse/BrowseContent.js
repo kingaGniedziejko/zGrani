@@ -38,7 +38,7 @@ class BrowseContent extends Component{
         // }
     }
 
-    browseFilters = (type) => {
+    browseFilters = (isArtist) => {
         const { genres, instruments } = this.props;
 
         let genresArray = [{id: "all", name: "-"}].concat(genres);
@@ -53,9 +53,10 @@ class BrowseContent extends Component{
                         <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genresArray} slug={"genre"} toggleItem={this.toggleSelected} />
                     </div>
 
-                    {type === "artysta" ?
+                    {isArtist ?
                         <div className={"block "}>
-                            <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instrumentsArray} slug={"instrument"} toggleItem={this.toggleSelected}/>
+                            <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instrumentsArray}
+                                      slug={"instrument"} toggleItem={this.toggleSelected}/>
                         </div>
                         : ""
                     }
@@ -64,19 +65,18 @@ class BrowseContent extends Component{
         )
     }
 
-    browseContent = (type) => {
-        console.log(type);
-        return <BrowseDisplay type={type} genre={this.state.genre} instrument={this.state.instrument}/>
+    browseContent = (isArtist) => {
+        return <BrowseDisplay isArtist={isArtist} genre={this.state.genre} instrument={this.state.instrument}/>
     }
 
 
     render() {
-        const { type } = this.props;
+        const { isArtist } = this.props;
 
         return (
             <Container id={"browse-content d-flex flex-column align-items-center"}>
-                {this.browseFilters(type)}
-                {this.browseContent(type)}
+                {this.browseFilters(isArtist)}
+                {this.browseContent(isArtist)}
             </Container>
         );
     }
