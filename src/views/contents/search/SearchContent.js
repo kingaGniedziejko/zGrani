@@ -39,11 +39,17 @@ class SearchContent extends Component {
         this.setState({isExtended: !this.state.isExtended})
     }
 
-    toggleSelected = (id, name, slug, isMultiple) => {
+    toggleSelected = (id, item, slug, isMultiple) => {
         if (!isMultiple) {
-            this.setState({
-                [slug]: name
-            })
+            if (item.id === "all") {
+                this.setState({
+                    [slug]: ""
+                })
+            } else {
+                this.setState({
+                    [slug]: item
+                })
+            }
         }
         // else {
         //     let elements = this.state[slug];
@@ -69,7 +75,10 @@ class SearchContent extends Component {
         e.preventDefault();
 
         const { purpose, voivodeship, city, genre, instrument } = this.state;
+        const { isArtist } = this.props;
         let searchParams = [];
+
+        searchParams.push({param: "isArtist", value: isArtist});
 
         if (purpose) {
             searchParams.push({ param: "status", value: purpose})
@@ -92,6 +101,11 @@ class SearchContent extends Component {
         const { filteredStatus, voivodeships, genres, instruments } = this.props;
 
         if (!filteredStatus || !voivodeships || !genres || !instruments) return "";
+
+
+        let voivodeshipsArray = [{id: "all", name: "-"}].concat(voivodeships);
+        let genresArray = [{id: "all", name: "-"}].concat(genres);
+        let instrumentsArray = [{id: "all", name: "-"}].concat(instruments);
 
         return (
             <Container className={"mb-5 d-flex flex-column align-items-center"}>
@@ -144,18 +158,18 @@ class SearchContent extends Component {
                                 <h6 className={"mb-4"}>Parametry</h6>
 
                                 <div className={"block mb-3"}>
-                                    <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeships} slug={"voivodeship"} toggleItem={this.toggleSelected} />
+                                    <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeshipsArray} slug={"voivodeship"} toggleItem={this.toggleSelected} />
                                 </div>
 
                                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleInputChange} size="sm" className={"mb-3"}/>
 
                                 <div className={"block mb-3"}>
-                                    <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genres} slug={"genre"} toggleItem={this.toggleSelected} />
+                                    <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genresArray} slug={"genre"} toggleItem={this.toggleSelected} />
                                 </div>
 
                                 {isArtist ?
                                     <div className={"block mb-3"}>
-                                        <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instruments} slug={"instrument"} toggleItem={this.toggleSelected} />
+                                        <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instrumentsArray} slug={"instrument"} toggleItem={this.toggleSelected} />
                                     </div>
                                     : ""
                                 }
@@ -175,6 +189,19 @@ class SearchContent extends Component {
         return <SearchDisplay isArtist={isArtist} searchParams={searchParams}/>
     }
 
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+        if (prevProps.isArtist !== this.props.isArtist ) {
+            this.setState({
+                purpose: '',
+                voivodeship: '',
+                city: '',
+                genre: '',
+                instrument: '',
+                isExtended: false,
+                searchParams: []
+            })
+        }
+    }
 
     render() {
         const { isArtist } = this.props;

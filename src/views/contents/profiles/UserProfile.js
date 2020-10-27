@@ -25,11 +25,11 @@ import Loader from "../../layouts/Loader";
 
 class UserProfile extends Component{
     render() {
-        const { user, userStatus, profile, auth, status, voivodeships, genres, instruments } = this.props;
+        const { user, profile, auth, status, voivodeships, genres, instruments } = this.props;
         const { id } = this.props.match.params;
 
         if (user === null) return <ErrorPage/>
-        if (user === undefined || !userStatus || !status || !voivodeships || !instruments || !genres) return <Loader/>
+        if (user === undefined || !status || !voivodeships || !instruments || !genres) return <Loader/>
 
         let sectionArray = [];
 
@@ -45,7 +45,7 @@ class UserProfile extends Component{
 
         return (
             <div id={"user-profile"} className={"page-content"}>
-                {this.userInfoSection(user, userStatus, profile, auth, id, status, voivodeships, instruments)}
+                {this.userInfoSection(user, profile, auth, id, status, voivodeships, instruments)}
 
                 {sectionArray.map((section, index) => {
                     isBackgroundLight = !isBackgroundLight;
@@ -62,9 +62,9 @@ class UserProfile extends Component{
         );
     }
 
-    userInfoSection = (user, userStatus, profile, auth, id, status, voivodeships, instruments) => {
+    userInfoSection = (user, profile, auth, id, status, voivodeships, instruments) => {
 
-        let statusArray = userStatus && userStatus.map(stat => {
+        let statusArray = user.status && user.status.map(stat => {
             return {
                 name: status[stat.statusId].name + (stat.instrumentId ? (": " + instruments[stat.instrumentId].name) : "")
             }});
@@ -220,7 +220,6 @@ class UserProfile extends Component{
 const mapStateToProps = (state, ownProps) => {
     return {
         user: state.firestore.data.users && state.firestore.data.users[ownProps.match.params.id],
-        userStatus: state.firestore.ordered.userStatus,
         profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
         auth: state.firebase.auth,
         status: state.firestore.data.status,
@@ -234,7 +233,6 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
         {collection: "users", doc: props.match.params.id},
-        {collection: "users", doc: props.match.params.id, subcollections: [{collection: "status"}], storeAs: "userStatus"},
         {collection: "profiles", where: ["userId", "==", props.match.params.id]},
         {collection: "status"},
         {collection: "voivodeships"},

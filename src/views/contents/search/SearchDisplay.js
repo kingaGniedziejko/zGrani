@@ -4,7 +4,7 @@ import ProfileShortcut from "../profiles/ProfileShortcut";
 import { ChevronDown } from "react-bootstrap-icons";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
+import { firestoreConnect   } from "react-redux-firebase";
 import Loader from "../../layouts/Loader";
 
 class SearchDisplay extends Component{
@@ -19,11 +19,43 @@ class SearchDisplay extends Component{
         })
     }
 
+    handleGetState = () => {
+
+    }
+
+    // getStatus = (userId) => {
+    //     useFirebaseConnect([{
+    //         collection: "users",
+    //         doc: userId,
+    //         subcollections: [{ collections: "status" }],
+    //         storeAs: "status-" + userId
+    //     }]);
+    //     return useSelector(state => state.firestore.ordered["status-" + userId]);
+    // }
+
     render() {
-        let { users } = this.props;
+        let { users, searchParams } = this.props;
         const { limit } = this.state;
 
         if (!users) return <Loader/>
+
+        searchParams.forEach(elem => {
+            if (elem.param === "genreId")
+                users = users.filter(user => user.genresId.includes(elem.value));
+            if (elem.param === "instrumentId")
+                users = users.filter(user => user.instrumentsId.includes(elem.value));
+        })
+
+
+        let usersData = [];
+        users.forEach(user => {
+
+            usersData.push({
+                ...user
+            })
+        })
+
+        console.log(usersData);
 
         let usersList = [];
         let isMore = users.length > limit;
@@ -41,7 +73,9 @@ class SearchDisplay extends Component{
                         {usersList && usersList.map((user, index) => {
                             if (user) {
                                 return (
-                                    <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
+                                    <Col key={index} sm={6} lg={3}>
+                                        <ProfileShortcut user={user}/>
+                                    </Col>
                                 )
                             } else {
                                 return "";
@@ -69,10 +103,16 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect ( (props) => [
-        {collection: "users",
-            where: ["isArtist", "==", props.isArtist],
-            storeAs: "filteredUsers"
-        }]
+    firestoreConnect ( (props) => {
+        return [
+            {collection: "users",
+                where: props.searchParams.map(elem => (
+                    elem.param === "isArtist" || elem.param === "voivodeshipId" || elem.param === "city"
+                        ? [elem.param, "==", elem.value]
+                        : null )).filter(Boolean),
+                storeAs: "filteredUsers"
+            }]
+        }
     )
 )(SearchDisplay);
+
