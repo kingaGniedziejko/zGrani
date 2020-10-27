@@ -39,23 +39,29 @@ class SearchDisplay extends Component{
 
         if (!users) return <Loader/>
 
+        console.log(searchParams);
+
         searchParams.forEach(elem => {
-            if (elem.param === "genreId")
-                users = users.filter(user => user.genresId.includes(elem.value));
-            if (elem.param === "instrumentId")
-                users = users.filter(user => user.instrumentsId.includes(elem.value));
+            switch (elem.param) {
+                case "genreId":
+                    users = users.filter(user => user.genresId.includes(elem.value));
+                    break;
+                case "instrumentId":
+                    users = users.filter(user => user.instrumentsId.includes(elem.value));
+                    break;
+                case "status":
+                    users = users.filter(user => (
+                        user.status.some(stat => elem.statusInstrumentId
+                            ? stat.statusId === elem.value && stat.instrumentId === elem.statusInstrumentId
+                            : stat.statusId === elem.value
+                        )
+                    ));
+                    break;
+                default:
+            }
         })
 
-
-        let usersData = [];
-        users.forEach(user => {
-
-            usersData.push({
-                ...user
-            })
-        })
-
-        console.log(usersData);
+        console.log(users);
 
         let usersList = [];
         let isMore = users.length > limit;

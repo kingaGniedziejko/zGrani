@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/contents/search/UserStatus.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/search/SearchContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/search/SearchContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/search/SearchDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/search/SearchDisplay.js" afterDir="false" />
     </list>
@@ -111,7 +106,7 @@
       <workItem from="1603572421919" duration="1322000" />
       <workItem from="1603657863785" duration="6559000" />
       <workItem from="1603793604602" duration="17907000" />
-      <workItem from="1603819010829" duration="12255000" />
+      <workItem from="1603819010829" duration="14292000" />
     </task>
     <servers />
   </component>

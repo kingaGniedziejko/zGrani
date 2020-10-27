@@ -20,7 +20,6 @@ class SearchContent extends Component {
         instrument: '',
 
         isExtended: true,
-
         searchParams: []
     }
 
@@ -81,10 +80,11 @@ class SearchContent extends Component {
         searchParams.push({param: "isArtist", value: isArtist});
 
         if (purpose) {
-            searchParams.push({ param: "status", value: purpose})
-
             if (this.state["instrument-" + purpose])
-                searchParams.push({ param: "statusInstrument", value: this.state["instrument-" + purpose].id})
+                searchParams.push({ param: "status", value: purpose,
+                    statusInstrumentId: this.state["instrument-" + purpose].id});
+            else
+                searchParams.push({ param: "status", value: purpose});
         }
 
         searchParams.push(voivodeship ? { param: "voivodeshipId", value: voivodeship.id} : null);
