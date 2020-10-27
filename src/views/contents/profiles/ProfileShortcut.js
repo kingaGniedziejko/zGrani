@@ -12,10 +12,13 @@ import Blocks from "./Blocks";
 
 class ProfileShortcut extends Component {
     render () {
-        const { user, status, voivodeships, instruments, genres } = this.props;
-        if (!status || !voivodeships || !instruments || !genres) return ""
+        const { user, userStatus, status, voivodeships, instruments, genres } = this.props;
+        if (!userStatus || !status || !voivodeships || !instruments || !genres) return "";
 
-        let statusArray = user.statusId && user.statusId.map(stat => status[stat]);
+        let statusArray = userStatus && userStatus.map(stat => {
+            return {
+                name: status[stat.statusId].name + (stat.instrumentId ? (": " + instruments[stat.instrumentId].name) : "")
+            }});
         let voivodeship = voivodeships[user.voivodeshipId].name;
 
         let genresNames = [];
@@ -66,6 +69,7 @@ class ProfileShortcut extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        userStatus: state.firestore.ordered.userStatus,
         status: state.firestore.data.status,
         voivodeships: state.firestore.data.voivodeships,
         genres: state.firestore.data.genres,
@@ -76,6 +80,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
+        {collection: "users", doc: props.user.id, subcollections: [{collection: "status"}], storeAs: "userStatus"},
         {collection: "status"},
         {collection: "voivodeships"},
         {collection: "genres", orderBy: "name"},

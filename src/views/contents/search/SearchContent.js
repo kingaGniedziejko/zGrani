@@ -159,21 +159,19 @@ class SearchContent extends Component {
 const mapStateToProps = (state) => {
     return {
         filteredStatus: state.firestore.ordered.filteredStatus,
-        voivodeships: state.firestore.ordered.voivodeships,
-        genres: state.firestore.ordered.genres,
-        instruments: state.firestore.ordered.instruments
+        voivodeships: state.firestore.ordered.voivodeshipsOrdered,
+        genres: state.firestore.ordered.genresOrdered,
+        instruments: state.firestore.ordered.instrumentsOrdered
     }
 }
 
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
-        { collection: "status",
-            where: ["type", "in", [(props.isArtist ? "artist" : "band") , "all"]],
-            storeAs: "filteredStatus"},
-        { collection: 'voivodeships', orderBy: "name" },
-        { collection: 'genres', orderBy: "name" },
-        { collection: 'instruments', orderBy: "name"}
+        { collection: "status", where: ["type", "in", [(props.isArtist ? "artist" : "band") , "all"]], storeAs: "filteredStatus"},
+        { collection: 'voivodeships', orderBy: "name", storeAs: "voivodeshipsOrdered" },
+        { collection: 'genres', orderBy: "name", storeAs: "genresOrdered" },
+        { collection: 'instruments', orderBy: "name", storeAs: "instrumentsOrdered"}
     ])
 )(SearchContent);
 

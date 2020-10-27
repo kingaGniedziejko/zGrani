@@ -163,11 +163,15 @@ a:active {
 
 /*   link in nav   */
 .navbar-nav a.active,
-.nav a.active {
+.nav a.active,
+.nav h6.active {
     border-bottom: 1px solid white;
     color: var(--text-color-light);
 }
 
+.nav h6 {
+    line-height: 1.5;
+}
 
 /*   images   */
 .cover {
