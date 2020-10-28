@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Modal } from "react-bootstrap";
+import cloneDeep from 'lodash/cloneDeep';
 
 import "../../../resources/styles/modal_style.css";
 
@@ -9,10 +10,13 @@ import Dropdown from "./DropdownInput";
 import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {connect} from "react-redux";
+import BlocksStatus from "./BlocksStatus";
 
 class PersonalDataFormGroup extends Component{
     state = {
         currentMember: '',
+
+        statusError: '',
 
         modalShow: false,
         actualPassword: '',
@@ -37,15 +41,28 @@ class PersonalDataFormGroup extends Component{
         if (index !== -1) {
             elements.splice(index, 1);
             this.props.handleUpdate(slug, elements);
+            this.setState({ statusError: "" });
         }
     }
 
     toggleSelected = (id, item, slug, isMultiple) => {
         if (!isMultiple) {
-            this.props.handleUpdate(slug, item);
+            this.props.handleUpdate(slug, cloneDeep(item));
         } else {
             let elements = this.props.state[slug];
-            if (!elements.includes(item)) elements.push(item);
+
+            if (slug === "status") {
+                if (!elements.some( elem => elem.id === item.id)) elements.unshift(cloneDeep(item));
+                else {
+                    if (elements.find( elem => elem.id === item.id).withInstrument) {
+                        if (elements.find(elem => elem.id === item.id).instrument) elements.unshift(cloneDeep(item));
+                        else {
+                            this.setState({statusError: "Aby dodać kolejny status musisz wybrać instrument"});
+                        }
+                    }
+                }
+            } else
+                if (!elements.includes(item)) elements.unshift(item);
 
             this.props.handleUpdate(slug, elements);
         }
@@ -72,7 +89,7 @@ class PersonalDataFormGroup extends Component{
         let members = this.props.state.members;
 
         if (currentMember !== ""){
-            members.push(
+            members.unshift(
                 {
                     name: currentMember,
                     user: ""
@@ -85,21 +102,24 @@ class PersonalDataFormGroup extends Component{
 
     handleLinkingMember = (slug, operation, index, login) => {
         let elements = this.props.state[slug];
+        const { usersArtists } = this.props;
+
         switch (operation){
             case "add":
-                let linkedUser = this.props.users && this.props.users.find(user => user.login === login);
+                let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
                 if (linkedUser) {
                     elements[index].user = linkedUser;
+                    this.props.handleUpdate(slug, elements);
                     return true;
                 } else
                     return false;
             case "delete":
                 elements[index].user = "";
+                this.props.handleUpdate(slug, elements);
                 return true;
             default:
+                break;
         }
-
-        this.props.handleUpdate(slug, elements);
     }
 
     membersInput = () => {
@@ -112,6 +132,39 @@ class PersonalDataFormGroup extends Component{
                 </div>
                 <BlocksMembers elementsList={this.props.state.members} align={"start"} editable={true} slug={"members"}
                                handler={this.handleDelete} linkingHandler={this.handleLinkingMember} flex_1={true}/>
+            </Form.Group>
+        )
+    }
+
+    handleStatusInstrument = (slug, index, instrument) => {
+        let elements = this.props.state[slug];
+        let statusElement = elements[index];
+
+        if (elements.some(elem => statusElement.id === elem.id && elem.instrument && elem.instrument.id === instrument.id))
+            this.setState({statusError: "Status z wybranym instrumentem został już dodany"});
+        else {
+            elements[index].instrument = instrument;
+            this.setState({ statusError: "" });
+            this.props.handleUpdate(slug, elements);
+        }
+    }
+
+    statusInput = () => {
+        const list = this.props.statusFiltered;
+        const { statusError } = this.state;
+
+        return (
+            <Form.Group className={"mb-5"} style={{width: "100%"}}>
+                <h6 className={"mb-2"}>Status</h6>
+                <div className={"block mb-3"}>
+                    <Dropdown placeholder="Wybierz z listy" list={list} slug={"status"} toggleItem={this.toggleSelected} isMultiple={true}/>
+                </div>
+                { statusError
+                    ? <p className={"error mb-3"}>{statusError}</p>
+                    : ""
+                }
+                <BlocksStatus elementsList={this.props.state.status} instrumentList={this.props.instruments} slug={"status"}
+                               deleteHandler={this.handleDelete} instrumentHandler={this.handleStatusInstrument}/>
             </Form.Group>
         )
     }
@@ -169,14 +222,14 @@ class PersonalDataFormGroup extends Component{
         const type1 = {type: "artysta", typeSlug: "artist", nameFieldText: "Pseudonim"}
         const type2 = {type: "zespol", typeSlug: "band", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation = "create", user = undefined, state, auth, voivodeships, voivodeshipsOrdered, status, genres, instruments } = this.props;
+        const { type, operation = "create", user = undefined, state, auth, voivodeships, voivodeshipsOrdered, statusFiltered, genres, instruments } = this.props;
 
         if (type === type1.typeSlug) userType = type1;
         else if (type === type2.typeSlug) userType = type2;
 
         const isEdit = operation === "edit" && user;
 
-        if (!status || !voivodeships || !voivodeshipsOrdered || !instruments || !genres) return ""
+        if (!statusFiltered || !voivodeships || !voivodeshipsOrdered || !instruments || !genres) return ""
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
@@ -207,13 +260,10 @@ class PersonalDataFormGroup extends Component{
                 <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"}/>
                 { this.blockInput("Gatunki", "genres") }
                 { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
-                { this.blockInput("Status", "status") }
+                { this.statusInput() }
             </Form.Group>
         );
     }
-
-
-
 }
 
 
@@ -224,8 +274,8 @@ const mapStateToProps = (state) => {
         voivodeshipsOrdered: state.firestore.ordered.voivodeships,
         genres: state.firestore.ordered.genres,
         instruments: state.firestore.ordered.instruments,
-        status: state.firestore.ordered.status,
-        users: state.firestore.ordered.users
+        statusFiltered: state.firestore.ordered.statusFiltered,
+        usersArtists: state.firestore.ordered.usersArtists
     }
 }
 
@@ -235,7 +285,7 @@ export default compose(
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},
         {collection: "instruments", orderBy: "name"},
-        {collection: "status", where: ["type", "in", [props.type, "all"]]},
-        {collection: "users"}
+        {collection: "status", where: ["type", "in", [props.type, "all"]], storeAs: "statusFiltered"},
+        {collection: "users", where: ["isArtist", "==", true], storeAs: "usersArtists"}
     ])
 )(PersonalDataFormGroup);

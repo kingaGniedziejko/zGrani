@@ -141,7 +141,8 @@ class SearchContent extends Component {
                                                                       value={this.state["instrument-" + status.id]}
                                                                       list={instruments}
                                                                       slug={"instrument-" + status.id}
-                                                                      toggleItem={this.toggleSelected} />
+                                                                      toggleItem={this.toggleSelected}
+                                                                      disabled={this.state.purpose !== status.id} />
                                                         </div>
                                                         : ""
                                                 }

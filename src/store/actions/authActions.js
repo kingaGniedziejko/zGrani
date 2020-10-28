@@ -35,23 +35,25 @@ export const signup = (newUser) => {
         ).then((response) => {
             if (newUser.isArtist){
                 return firestore.collection('users').doc(response.user.uid).set({
+                    login: newUser.login,
                     name: newUser.name,
                     voivodeshipId: newUser.voivodeshipId,
                     city: newUser.city,
                     genresId: newUser.genresId,
                     instrumentsId: newUser.instrumentsId,
-                    statusId: newUser.statusId,
+                    status: newUser.status,
                     isArtist: true,
                     isActive: true
                 })
             } else {
                 return firestore.collection('users').doc(response.user.uid).set({
+                    login: newUser.login,
                     name: newUser.name,
                     voivodeshipId: newUser.voivodeshipId,
                     city: newUser.city,
                     genresId: newUser.genresId,
                     members: newUser.members,
-                    statusId: newUser.statusId,
+                    status: newUser.status,
                     isArtist: false,
                     isActive: true
                 })

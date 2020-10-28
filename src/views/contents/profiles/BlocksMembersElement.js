@@ -58,7 +58,7 @@ class BlocksMembersElement extends Component{
         return (
             <>
                 <div className={"block d-flex flex-row align-items-center background-lighter mb-2 py-2" + (editable ? " pl-3 pr-2" : " px-3")}>
-                    <p>{elem.name}</p>
+                    <p>{elem.user ? elem.user.name : elem.name}</p>
                     <Button variant="outline-white" onClick={this.displayLinking} size="sm" className={"ml-auto"} style={{fontSize: "0.8rem"}}>
                         {isLinked ? "Edytuj" : "Załącz profil"}
                     </Button>
@@ -73,7 +73,7 @@ class BlocksMembersElement extends Component{
                             <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-2"}/>
                             <X onClick={this.handleExit} size={28} className={"clickable ml-2"}/>
                         </div>
-                        { linkingError ? <p className={"error"}>Nie ma takiego artysty</p> : "" }
+                        { linkingError ? <p className={"error mt-2 text-left"}>* Nie ma takiego artysty</p> : "" }
                     </div>
                     : "" }
             </>

@@ -22,8 +22,9 @@
     --text-color-light: rgb(255, 255, 255);
     --text-color: rgb(214, 214, 214);
     --text-color-dark: rgb(157, 157, 157);
+    --text-color-darker: rgb(112, 112, 112);
 
-    --text-color-error: rgb(227, 57, 57);
+    --text-color-error: rgb(231, 99, 99);
 
     --transparent: rgba(0, 0, 0, 0);
 }
@@ -293,6 +294,23 @@ input:-webkit-autofill {
     font-weight: 500;
 }
 
+.dd-wrapper .dd-header.disabled {
+    border-bottom-color: var(--text-color-darker);
+    color: var(--text-color-darker);
+}
+
+.dd-wrapper .dd-header.disabled .dd-header-title {
+    color: var(--text-color-darker);
+}
+
+.dd-wrapper .dd-header.disabled .dd-header-title.placeholder {
+    color: var(--text-color-darker);
+}
+
+.dd-wrapper .dd-header.disabled svg {
+    fill: var(--text-color-darker);
+}
+
 
 /*   checkbox   */
 .custom-checkbox .custom-control-label::before {
@@ -348,4 +366,5 @@ textarea.form-control:focus {
 .error {
     color: var(--text-color-error);
     font-style: italic;
+    font-size: 0.8rem;
 }

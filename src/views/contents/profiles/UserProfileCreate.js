@@ -29,6 +29,8 @@ class UserProfileCreate extends Component{
 
     handleUpdate = (slug, item) => {
         this.setState({ [slug]: item })
+
+        console.log(this.state);
     }
 
     handleChange = (e) => {
@@ -45,9 +47,12 @@ class UserProfileCreate extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { email, password, name, voivodeship, city, genres, instruments, members, status, isArtist } = this.state;
+        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist } = this.state;
+
+        // walidacja statusu, czy z instrumentem
 
         let newUser = {
+            login: login,
             email: email,
             password: password,
             name: name,
@@ -55,11 +60,11 @@ class UserProfileCreate extends Component{
             city: city,
             genresId: genres && genres.map(genre => genre.id),
             instrumentsId: instruments && instruments.map(instrument => instrument.id),
-            members: members && members.map(member => (member.user ? member.user.id : ("_" + member.name))),
-            statusId: status && status.map(stat => stat.id),
+            members: members && members.map(member => (member.user ? {name: member.name, userId: member.user.id} : {name: member.name})),
+            status: status && status.map(stat => (stat.withInstrument ? {instrumentId: stat.instrument.id, statusId: stat.id} : {statusId: stat.id})),
             isArtist: isArtist
         }
-        console.log(newUser, members);
+        console.log(newUser);
         this.props.signup(newUser);
     }
 
