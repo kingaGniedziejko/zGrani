@@ -1,16 +1,46 @@
-// export const createUser = (user) => {
-//     return (dispatch, getState, { getFirebase, getFirestore }) => {
-//         // make async call to database
-//         const firestore = getFirestore();
-//
-//         firestore.collection('users').add({
-//             ...user,
-//             signupDate: new Date(),
-//             type: 'test'
-//         })
-//             .then(() => dispatch({ type: 'CREATE_USER', user }))
-//             .catch((err) => dispatch({ type: 'CREATE_USER_ERROR', err }))
-//
-//     }
-//
-// }
+import {emailUpdate, passwordUpdate} from "./authActions";
+
+const editProfile = (user, profile) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+
+
+    }
+}
+
+
+export const editUser = (user, profile) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+
+        emailUpdate(user.email);
+        passwordUpdate(user.password);
+        if (profile) editProfile(user, profile);
+
+        if (user.isArtist) {
+            return firestore.collection('users').doc(user.id).set({
+                login: user.login,
+                name: user.name,
+                voivodeshipId: user.voivodeshipId,
+                city: user.city,
+                genresId: user.genresId,
+                instrumentsId: user.instrumentsId,
+                status: user.status,
+                isArtist: true,
+                isActive: true
+            })
+        } else {
+            return firestore.collection('users').doc(user.uid).set({
+                login: user.login,
+                name: user.name,
+                voivodeshipId: user.voivodeshipId,
+                city: user.city,
+                genresId: user.genresId,
+                members: user.members,
+                status: user.status,
+                isArtist: false,
+                isActive: true
+            })
+        }
+    }
+}

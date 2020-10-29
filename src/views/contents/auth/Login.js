@@ -37,7 +37,7 @@ class Login extends Component{
                             { authError ? <p className={"error"}>{authError}</p> : null}
                             <Form onSubmit={this.handleSubmit} className={"mt-5"} style={{width: "100%"}}>
                                 <Form.Group className={"d-flex flex-column align-items-center"}>
-                                    <Form.Control id={"email"} type={"email"} placeholder={"Email"} onChange={this.handleChange} size="sm" className={"mb-3"}/>
+                                    <Form.Control id={"email"} type={"email"} placeholder={"Email"} onChange={this.handleChange} size="sm" className={"mb-3"} autocomplete={"off"}/>
                                     <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
 
                                     <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Zaloguj się</Button>

@@ -69,7 +69,7 @@ class BlocksMembersElement extends Component{
                 {isLinking ?
                     <div className={"find-member block d-flex flex-column mb-3 p-2"} style={{border: "3px solid var(--background-lighter)"}}>
                         <div className={"find-member block d-flex flex-row align-items-center"}>
-                            <Form.Control id={"user-login-" + this.props.index} type={"text"} defaultValue={this.state.userLogin} placeholder={"Login użytkownika"} onChange={this.handleChange} size="sm"/>
+                            <Form.Control id={"user-login-" + this.props.index} type={"text"} defaultValue={this.state.userLogin} placeholder={"Login użytkownika"} onChange={this.handleChange} size="sm" autocomplete={"off"}/>
                             <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-2"}/>
                             <X onClick={this.handleExit} size={28} className={"clickable ml-2"}/>
                         </div>

@@ -19,7 +19,7 @@ class SearchContent extends Component {
         genre: '',
         instrument: '',
 
-        isExtended: true,
+        isExtended: false,
         searchParams: []
     }
 
@@ -162,7 +162,7 @@ class SearchContent extends Component {
                                     <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeshipsArray} slug={"voivodeship"} toggleItem={this.toggleSelected} />
                                 </div>
 
-                                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleInputChange} size="sm" className={"mb-3"}/>
+                                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleInputChange} size="sm" className={"mb-3"} autocomplete={"off"}/>
 
                                 <div className={"block mb-3"}>
                                     <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genresArray} slug={"genre"} toggleItem={this.toggleSelected} />

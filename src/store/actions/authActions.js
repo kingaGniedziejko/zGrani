@@ -7,8 +7,8 @@ export const login = (credentials) => {
             credentials.password
         ).then(() => {
             dispatch({ type: 'LOGIN_SUCCESS' });
-        }).catch((err) => {
-            dispatch({ type: 'LOGIN_ERROR', err });
+        }).catch((error) => {
+            dispatch({ type: 'LOGIN_ERROR', error });
         })
     }
 }
@@ -60,8 +60,39 @@ export const signup = (newUser) => {
             }
         }).then(() => {
             dispatch({ type: 'SIGNUP_SUCCESS' })
-        }).catch(err => {
-            dispatch({ type: 'SIGNUP_ERROR', err })
+        }).catch(error => {
+            dispatch({ type: 'SIGNUP_ERROR', error })
         })
+    }
+}
+
+export const emailUpdate = (newEmail) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase();
+        const currentUser = firebase.auth().currentUser;
+
+        if (newEmail !== currentUser.email) {
+            currentUser.updateEmail(newEmail)
+                .then(function () {
+                    dispatch({type: "EMAIL_UPDATE_SUCCESS"});
+                }).catch(function (error) {
+                dispatch({type: "EMAIL_UPDATE_ERROR", error});
+            });
+        }
+    }
+}
+
+export const passwordUpdate = (newPassword) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase();
+        const currentUser = firebase.auth().currentUser;
+
+        if (newPassword) {
+            currentUser.updatePassword(newPassword).then(function () {
+                dispatch({ type: "PASSWORD_UPDATE_SUCCESS"});
+            }).catch(function (error) {
+                dispatch({ type: "PASSWORD_UPDATE_ERROR", error});
+            });
+        }
     }
 }
