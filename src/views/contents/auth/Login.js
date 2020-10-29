@@ -1,26 +1,67 @@
 import React, { Component } from 'react';
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux"
-import { Redirect } from "react-router-dom"
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { Formik } from "formik";
 
 import { login } from "../../../store/actions/authActions";
 
 class Login extends Component{
     state = {
-        email: '',
-        password: ''
+        email: "",
+        password: "",
+        errors: {
+            email: "",
+            password: ""
+        },
+    }
+
+    handleBlur = (e) => {
+        const { id, value } = e.target;
+        const { errors } = this.state;
+        let errorMessage = "";
+
+        switch (id) {
+            case "email":
+                if (!value) errorMessage = "* Wymagane pole"
+                else {
+                    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
+                    else errorMessage = "";
+                }
+                break;
+            case "password":
+                if (!value) errorMessage = "* Wymagane pole"
+                else if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków"
+                else errorMessage = ""
+                break;
+            default:
+                break;
+        }
+        this.setState({ errors: {
+            ...errors,
+            [id]: errorMessage
+        }});
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
+
+        if (this.state.errors[e.target.id] !== "") {
+            this.handleBlur(e);
+        }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.signIn(this.state);
+
+        const { errors } = this.state;
+
+        if (!Object.keys(errors).some((key) => errors[key] !== "")){
+            this.props.signIn(this.state);
+        }
     }
 
     render() {
@@ -35,18 +76,41 @@ class Login extends Component{
                         <Col className={"background-light p-5 my-2 my-sm-5 text-center"} xs={11} sm={8} md={7} lg={4}>
                             <h3 className={"mb-2"}>Logowanie</h3>
                             { authError ? <p className={"error"}>{authError}</p> : null}
-                            <Form onSubmit={this.handleSubmit} className={"mt-5"} style={{width: "100%"}}>
-                                <Form.Group className={"d-flex flex-column align-items-center"}>
-                                    <Form.Control id={"email"} type={"email"} placeholder={"Email"} onChange={this.handleChange} size="sm" className={"mb-3"} autocomplete={"off"}/>
-                                    <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
-
-                                    <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Zaloguj się</Button>
-
-                                    <p className={"mb-3"}>lub</p>
-                                    <Link to={"/rejestracja"} className={"d-block"} style={{width: "100%"}}>
-                                        <Button block variant="outline-white" size="sm">Załóż konto</Button>
-                                    </Link>
+                            <Form onSubmit={this.handleSubmit} className={"mt-5 d-flex flex-column align-items-center"} style={{width: "100%"}}>
+                                <Form.Group className={"block mb-4"}>
+                                    <Form.Control
+                                        id={"email"}
+                                        name={"email"}
+                                        type={"email"}
+                                        placeholder={"Email"}
+                                        size="sm"
+                                        autoComplete={"off"}
+                                        onChange={this.handleChange}
+                                        onBlur={this.handleBlur}
+                                        isInvalid={this.state.errors.email}
+                                    />
+                                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.email}</Form.Control.Feedback>
                                 </Form.Group>
+                                <Form.Group className={"block mb-5"}>
+                                    <Form.Control
+                                        id={"password"}
+                                        name={"password"}
+                                        type={"password"}
+                                        placeholder={"Hasło"}
+                                        size="sm"
+                                        onChange={this.handleChange}
+                                        onBlur={this.handleBlur}
+                                        isInvalid={this.state.errors.password}
+                                    />
+                                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.password}</Form.Control.Feedback>
+                                </Form.Group>
+
+                                <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Zaloguj się</Button>
+                                <p className={"mb-3"}>lub</p>
+                                <Link to={"/rejestracja"} className={"d-block"} style={{width: "100%"}}>
+                                    <Button block variant="outline-white" size="sm">Załóż konto</Button>
+                                </Link>
+
                             </Form>
                         </Col>
                     </Row>

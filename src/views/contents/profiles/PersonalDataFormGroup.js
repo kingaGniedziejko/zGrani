@@ -127,7 +127,7 @@ class PersonalDataFormGroup extends Component{
             <Form.Group className={"mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-2"}>Członkowie</h6>
                 <div className={"d-flex flex-row mb-3"}>
-                    <Form.Control id={"currentMember"} type={"text"} placeholder={"Pseudonim"} onChange={this.handleLocalChange} size="sm" className={"mr-2"} autocomplete={"off"}/>
+                    <Form.Control id={"currentMember"} type={"text"} placeholder={"Pseudonim"} onChange={this.handleLocalChange} size="sm" className={"mr-2"} autoComplete={"off"}/>
                     <Button variant="outline-accent" size="sm" onClick={this.handleAddMember}>Dodaj</Button>
                 </div>
                 <BlocksMembers elementsList={this.props.state.members} align={"start"} editable={true} slug={"members"}
@@ -233,8 +233,8 @@ class PersonalDataFormGroup extends Component{
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
-                <Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autocomplete={"off"}/>
-                <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? auth.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autocomplete={"off"}/>
+                <Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autoComplete={"off"}/>
+                <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? auth.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autoComplete={"off"}/>
 
                 {operation === "create" ?
                     <>
@@ -252,12 +252,12 @@ class PersonalDataFormGroup extends Component{
                     : ""
                 }
 
-                <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} defaultValue={isEdit ? user.name : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autocomplete={"off"}/>
+                <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} defaultValue={isEdit ? user.name : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autoComplete={"off"}/>
                 <div className={"block mb-4"}>
                     <Dropdown placeholder={"Województwo"} defaultValue={isEdit ? voivodeships[user.voivodeshipId].name : ""} value={state.voivodeship} list={voivodeshipsOrdered} slug={"voivodeship"}
                               toggleItem={this.toggleSelected} />
                 </div>
-                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"} autocomplete={"off"}/>
+                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"} autoComplete={"off"}/>
                 { this.blockInput("Gatunki", "genres") }
                 { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
                 { this.statusInput() }

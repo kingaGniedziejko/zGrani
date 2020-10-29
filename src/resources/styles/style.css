@@ -24,7 +24,8 @@
     --text-color-dark: rgb(157, 157, 157);
     --text-color-darker: rgb(112, 112, 112);
 
-    --text-color-error: rgb(231, 99, 99);
+    --text-color-error: #dc3545;
+    --text-color-error-light: rgb(233, 91, 91);
 
     --transparent: rgba(0, 0, 0, 0);
 }
@@ -192,6 +193,10 @@ a:active {
     border-bottom: 1px solid var(--text-color-light);
 }
 
+.form-control.is-invalid:hover {
+     border-bottom: 1px solid var(--text-color-error-light);
+ }
+
 .form-control:focus {
     background: none;
     border-bottom: 1px solid var(--text-color-light);
@@ -199,20 +204,44 @@ a:active {
     box-shadow: none;
 }
 
+.form-control.is-invalid:focus {
+    border-bottom: 1px solid var(--text-color-error-light);
+    box-shadow: none;
+}
+
 ::-webkit-input-placeholder {
     color: var(--text-color-dark) !important;
 }
+.is-invalid::-webkit-input-placeholder {
+    color: var(--text-color-error) !important;
+}
+
 :-ms-input-placeholder {
     color: var(--text-color-dark) !important;
 }
+.is-invalid:-ms-input-placeholder{
+    color: var(--text-color-error) !important;
+}
+
 ::-ms-input-placeholder {
     color: var(--text-color-dark) !important;
 }
+.is-invalid::-ms-input-placeholder {
+    color: var(--text-color-error) !important;
+}
+
 :-moz-placeholder {
     color: var(--text-color-dark) !important;
 }
+.is-invalid:-moz-placeholder {
+    color: var(--text-color-error) !important;
+}
+
 ::placeholder {
     color: var(--text-color-dark) !important;
+}
+.is-invalid::placeholder {
+    color: var(--text-color-error) !important;
 }
 
 /*   select   */
