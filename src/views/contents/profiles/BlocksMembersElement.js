@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 import {X, Check2} from 'react-bootstrap-icons';
 import {Button, Form} from "react-bootstrap";
+import isEmpty from "validator/es/lib/isEmpty";
 
 class BlocksMembersElement extends Component{
     state = {
         isLinking: false,
         userLogin: "",
         isLinked: false,
-        linkingError: false
+        linkingError: false,
+        linkingErrorMessage: ""
     }
 
     displayLinking = () => {
@@ -26,17 +28,25 @@ class BlocksMembersElement extends Component{
     handleCheck = () => {
         let login = this.state.userLogin;
 
-        if (this.props.linkingHandler(this.props.slug, "add", this.props.index, login)){
+        if (isEmpty(login)){
             this.setState({
-                isLinked: true,
-                isLinking: false,
-                linkingError: false
+                linkingError: true,
+                linkingErrorMessage: "* Należy podać unikalny login aktywnego użytkownika aplikacji - artysty"
             })
         } else {
-            this.setState({
-                linkingError: true
-            })
-            console.log("Doesn't exist")
+            if (this.props.linkingHandler(this.props.slug, "add", this.props.index, login)) {
+                this.setState({
+                    isLinked: true,
+                    isLinking: false,
+                    linkingError: false,
+                    linkingErrorMessage: ""
+                })
+            } else {
+                this.setState({
+                    linkingError: true,
+                    linkingErrorMessage: "* Nie ma takiego artysty"
+                })
+            }
         }
     }
 
@@ -52,7 +62,7 @@ class BlocksMembersElement extends Component{
     }
 
     render() {
-        const { isLinking, isLinked, linkingError } = this.state;
+        const { isLinking, isLinked, linkingError, linkingErrorMessage } = this.state;
         const { elem, editable, slug, handler } = this.props;
 
         return (
@@ -67,13 +77,25 @@ class BlocksMembersElement extends Component{
 
 
                 {isLinking ?
-                    <div className={"find-member block d-flex flex-column mb-3 p-2"} style={{border: "3px solid var(--background-lighter)"}}>
+                    <div className={"find-member block d-flex flex-column mb-3 px-2 py-1 pt-2"} style={{border: "3px solid var(--background-lighter)"}}>
                         <div className={"find-member block d-flex flex-row align-items-center"}>
-                            <Form.Control id={"user-login-" + this.props.index} type={"text"} defaultValue={this.state.userLogin} placeholder={"Login użytkownika"} onChange={this.handleChange} size="sm" autocomplete={"off"}/>
-                            <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-2"}/>
+                            <Form.Group className={"block mb-1"}>
+                                <Form.Control
+                                    id={"user-login-" + this.props.index}
+                                    type={"text"}
+                                    defaultValue={this.state.userLogin}
+                                    placeholder={"Login użytkownika"}
+                                    size="sm"
+                                    autocomplete={"off"}
+                                    onChange={this.handleChange}
+                                    isInvalid={linkingError}
+                                />
+                                <Form.Control.Feedback type="invalid" className={"text-left"} as={"small"}>{linkingErrorMessage}</Form.Control.Feedback>
+                            </Form.Group>
+                            <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-3"}/>
                             <X onClick={this.handleExit} size={28} className={"clickable ml-2"}/>
                         </div>
-                        { linkingError ? <p className={"error mt-2 text-left"}>* Nie ma takiego artysty</p> : "" }
+                        {/*{ linkingError ? <p className={"error mt-2 text-left"}>* Nie ma takiego artysty</p> : "" }*/}
                     </div>
                     : "" }
             </>

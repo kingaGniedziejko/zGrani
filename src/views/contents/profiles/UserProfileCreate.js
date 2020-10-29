@@ -24,7 +24,9 @@ class UserProfileCreate extends Component{
         status: [],
 
         agreement: false,
-        isArtist: this.props.match.params === "artysta"
+        isArtist: this.props.match.params === "artysta",
+
+        errors: {}
     }
 
     handleUpdate = (slug, item) => {
@@ -41,31 +43,37 @@ class UserProfileCreate extends Component{
         }
     }
 
-    getPersonalData = (personalData) => {
-
-    }
-
     handleSubmit = (e) => {
         e.preventDefault();
-        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist } = this.state;
+        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist, errors } = this.state;
 
-        // walidacja statusu, czy z instrumentem
+        console.log(this.state);
 
-        let newUser = {
-            login: login,
-            email: email,
-            password: password,
-            name: name,
-            voivodeshipId: voivodeship.id,
-            city: city,
-            genresId: genres && genres.map(genre => genre.id),
-            instrumentsId: instruments && instruments.map(instrument => instrument.id),
-            members: members && members.map(member => (member.user ? {name: member.name, userId: member.user.id} : {name: member.name})),
-            status: status && status.map(stat => (stat.withInstrument ? {instrumentId: stat.instrument.id, statusId: stat.id} : {statusId: stat.id})),
-            isArtist: isArtist
+        if (!Object.keys(errors).some((key) => errors[key])) {
+            // walidacja statusu, czy z instrumentem
+
+            let newUser = {
+                login: login,
+                email: email,
+                password: password,
+                name: name,
+                voivodeshipId: voivodeship.id,
+                city: city,
+                genresId: genres && genres.map(genre => genre.id),
+                instrumentsId: instruments && instruments.map(instrument => instrument.id),
+                members: members && members.map(member => (member.user ? {
+                    name: member.name,
+                    userId: member.user.id
+                } : {name: member.name})),
+                status: status && status.map(stat => (stat.withInstrument ? {
+                    instrumentId: stat.instrument.id,
+                    statusId: stat.id
+                } : {statusId: stat.id})),
+                isArtist: isArtist
+            }
+            console.log(newUser);
+            this.props.signup(newUser);
         }
-        console.log(newUser);
-        this.props.signup(newUser);
     }
 
     render() {

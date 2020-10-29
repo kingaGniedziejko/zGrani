@@ -11,11 +11,12 @@ import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {connect} from "react-redux";
 import BlocksStatus from "./BlocksStatus";
+import isEmpty from "validator/es/lib/isEmpty";
+import equals from "validator/es/lib/equals";
 
 class PersonalDataFormGroup extends Component{
     state = {
         currentMember: '',
-
         statusError: '',
 
         modalShow: false,
@@ -26,7 +27,49 @@ class PersonalDataFormGroup extends Component{
     }
 
     handleChange = (e) => {
-        this.props.handleUpdate(e.target.id, e.target.value);
+        const { id, value } = e.target;
+        const { errors } = this.props.state;
+
+        this.props.handleUpdate(id, value);
+
+        if (errors[id]) {
+            this.props.handleUpdate("errors", { ...errors, [id]: "" });
+        }
+    }
+
+    handleBlur = (e) => {
+        const { id, value } = e.target;
+        const { errors } = this.props.state;
+        let errorMessage = "";
+
+        if (isEmpty(value)) errorMessage = "* Wymagane pole";
+        else {
+            switch (id) {
+                case "login":
+                    if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
+                    else {
+                        if (this.props.users.some(user => user.login === value)) errorMessage = "* Login jest już zajęty";
+                        else errorMessage = "";
+                    }
+                    break;
+                case "email":
+                    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
+                    else errorMessage = "";
+                    break;
+                case "password":
+                    if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków";
+                    else errorMessage = "";
+                    break;
+                case "passwordRep":
+                    if (equals(value, this.props.state.password)) errorMessage = "* Hasła muszą być takie same"
+                    else errorMessage = "";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        this.props.handleUpdate("errors", { ...errors, [id]: errorMessage });
     }
 
     handleLocalChange = (e) => {
@@ -232,36 +275,124 @@ class PersonalDataFormGroup extends Component{
         if (!statusFiltered || !voivodeships || !voivodeshipsOrdered || !instruments || !genres) return ""
 
         return (
-            <Form.Group className={"d-flex flex-column align-items-center"}>
-                <Form.Control id={"login"} type={"text"} placeholder={"Login"} defaultValue={isEdit ? user.login : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autoComplete={"off"}/>
-                <Form.Control id={"email"} type={"email"} placeholder={"Email"} defaultValue={isEdit ? auth.email : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autoComplete={"off"}/>
+            <div className={"d-flex flex-column align-items-center"}>
+                <Form.Group className={"block mb-4"}>
+                    <Form.Control
+                        id={"login"}
+                        type={"text"}
+                        placeholder={"Login"}
+                        defaultValue={isEdit ? user.login : ""}
+                        size="sm"
+                        autoComplete={"off"}
+                        maxLength={"50"}
+                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
+                        isInvalid={this.props.state.errors.login}
+                    />
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.login}</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className={"block mb-4"}>
+                    <Form.Control
+                        id={"email"}
+                        type={"email"}
+                        placeholder={"Email"}
+                        defaultValue={isEdit ? auth.email : ""}
+                        size="sm"
+                        autoComplete={"off"}
+                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
+                        isInvalid={this.props.state.errors.email}
+                    />
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.email}</Form.Control.Feedback>
+                </Form.Group>
 
                 {operation === "create" ?
                     <>
-                        <Form.Control id={"password"} type={"password"} placeholder={"Hasło"} onChange={this.handleChange} size="sm" className={"mb-4"}/>
-                        <Form.Control id={"passwordRep"} type={"password"} placeholder={"Powtórz hasło"} onChange={this.handleChange} size="sm" className={"mb-5"}/>
+                        <Form.Group className={"block mb-4"}>
+                            <Form.Control
+                                id={"password"}
+                                type={"password"}
+                                placeholder={"Hasło"}
+                                size="sm"
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={this.props.state.errors.password}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.password}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group className={"block mb-5"}>
+                            <Form.Control
+                                id={"passwordRep"}
+                                type={"password"}
+                                placeholder={"Powtórz hasło"}
+                                size="sm"
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={this.props.state.errors.passwordRep}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.passwordRep}</Form.Control.Feedback>
+                        </Form.Group>
                     </>
                     : ""
                 }
 
                 {operation === "edit" ?
                     <>
-                        <Button block variant="outline-white" size="sm" className={"mt-2 mb-5"} onClick={() => this.setState({modalShow: true})}>Zmień hasło</Button>
+                        <Button block variant="outline-white" size="sm" className={"mt-2 mb-5"} onClick={() => this.setState({modalShow: true})}>
+                            Zmień hasło
+                        </Button>
                         {this.displayPasswordEdit()}
                     </>
                     : ""
                 }
 
-                <Form.Control id={"name"} type={"text"} placeholder={userType.nameFieldText} defaultValue={isEdit ? user.name : ""} onChange={this.handleChange} size="sm" className={"mb-4"} autoComplete={"off"}/>
-                <div className={"block mb-4"}>
-                    <Dropdown placeholder={"Województwo"} defaultValue={isEdit ? voivodeships[user.voivodeshipId].name : ""} value={state.voivodeship} list={voivodeshipsOrdered} slug={"voivodeship"}
-                              toggleItem={this.toggleSelected} />
-                </div>
-                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} defaultValue={isEdit ? user.city : ""} onChange={this.handleChange} size="sm" className={"mb-5"} autoComplete={"off"}/>
+                <Form.Group className={"block mb-4"}>
+                    <Form.Control
+                        id={"name"}
+                        type={"text"}
+                        placeholder={userType.nameFieldText}
+                        defaultValue={isEdit ? user.name : ""}
+                        size="sm"
+                        autoComplete={"off"}
+                        maxLength={"100"}
+                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
+                        isInvalid={this.props.state.errors.name}
+                    />
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.name}</Form.Control.Feedback>
+                </Form.Group>
+
+
+                <Form.Group className={"block mb-4"}>
+                    <Dropdown
+                        placeholder={"Województwo"}
+                        defaultValue={isEdit ? voivodeships[user.voivodeshipId].name : ""}
+                        value={state.voivodeship}
+                        list={voivodeshipsOrdered}
+                        slug={"voivodeship"}
+                        toggleItem={this.toggleSelected}
+                    />
+                </Form.Group>
+                <Form.Group className={"block mb-5"}>
+                    <Form.Control
+                        id={"city"}
+                        type={"text"}
+                        placeholder={"Miasto"}
+                        defaultValue={isEdit ? user.city : ""}
+                        size="sm"
+                        autoComplete={"off"}
+                        maxLength={"50"}
+                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
+                        isInvalid={this.props.state.errors.city}
+                    />
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.city}</Form.Control.Feedback>
+                </Form.Group>
+
                 { this.blockInput("Gatunki", "genres") }
                 { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
                 { this.statusInput() }
-            </Form.Group>
+            </div>
         );
     }
 }
@@ -275,7 +406,8 @@ const mapStateToProps = (state) => {
         genres: state.firestore.ordered.genres,
         instruments: state.firestore.ordered.instruments,
         statusFiltered: state.firestore.ordered.statusFiltered,
-        usersArtists: state.firestore.ordered.usersArtists
+        usersArtists: state.firestore.ordered.usersArtists,
+        users: state.firestore.ordered.users
     }
 }
 
@@ -286,6 +418,7 @@ export default compose(
         {collection: "genres", orderBy: "name"},
         {collection: "instruments", orderBy: "name"},
         {collection: "status", where: ["type", "in", [props.type, "all"]], storeAs: "statusFiltered"},
-        {collection: "users", where: ["isArtist", "==", true], storeAs: "usersArtists"}
+        {collection: "users", where: ["isArtist", "==", true], storeAs: "usersArtists"},
+        {collection: "users"}
     ])
 )(PersonalDataFormGroup);

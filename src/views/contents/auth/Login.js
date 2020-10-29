@@ -3,18 +3,16 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Formik } from "formik";
 
 import { login } from "../../../store/actions/authActions";
+import isEmail from "validator/es/lib/isEmail";
+import isEmpty from "validator/es/lib/isEmpty";
 
 class Login extends Component{
     state = {
         email: "",
         password: "",
-        errors: {
-            email: "",
-            password: ""
-        },
+        errors: {},
     }
 
     handleBlur = (e) => {
@@ -24,14 +22,14 @@ class Login extends Component{
 
         switch (id) {
             case "email":
-                if (!value) errorMessage = "* Wymagane pole"
+                if (isEmpty(value)) errorMessage = "* Wymagane pole"
                 else {
-                    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
+                    if (!isEmail(value)) errorMessage = "* Nieprawidłowy adres email"
                     else errorMessage = "";
                 }
                 break;
             case "password":
-                if (!value) errorMessage = "* Wymagane pole"
+                if (isEmpty(value)) errorMessage = "* Wymagane pole"
                 else if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków"
                 else errorMessage = ""
                 break;
@@ -49,8 +47,14 @@ class Login extends Component{
             [e.target.id]: e.target.value
         })
 
-        if (this.state.errors[e.target.id] !== "") {
-            this.handleBlur(e);
+        if (this.state.errors[e.target.id]) {
+            // this.handleBlur(e);
+            this.setState({
+                errors: {
+                    ...this.state.errors,
+                    [e.target.id]: ""
+                }
+            })
         }
     }
 
@@ -59,7 +63,7 @@ class Login extends Component{
 
         const { errors } = this.state;
 
-        if (!Object.keys(errors).some((key) => errors[key] !== "")){
+        if (!Object.keys(errors).some((key) => errors[key])){
             this.props.signIn(this.state);
         }
     }
@@ -80,7 +84,6 @@ class Login extends Component{
                                 <Form.Group className={"block mb-4"}>
                                     <Form.Control
                                         id={"email"}
-                                        name={"email"}
                                         type={"email"}
                                         placeholder={"Email"}
                                         size="sm"
@@ -94,7 +97,6 @@ class Login extends Component{
                                 <Form.Group className={"block mb-5"}>
                                     <Form.Control
                                         id={"password"}
-                                        name={"password"}
                                         type={"password"}
                                         placeholder={"Hasło"}
                                         size="sm"
