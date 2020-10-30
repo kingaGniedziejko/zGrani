@@ -37,42 +37,53 @@ class UserProfileCreate extends Component{
 
     handleChange = (e) => {
         if (e.target.type === "checkbox") {
-            this.setState({
-                [e.target.id]: e.target.checked
-            })
+            if (this.state.errors.agreement){
+                this.setState({
+                    [e.target.id]: e.target.checked,
+                    errors: {...this.state.errors, agreement: ""}
+                })
+            } else {
+                this.setState({
+                    [e.target.id]: e.target.checked
+                })
+            }
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist, errors } = this.state;
+        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist, errors, agreement } = this.state;
 
         console.log(this.state);
 
-        if (!Object.keys(errors).some((key) => errors[key])) {
-            // walidacja statusu, czy z instrumentem
+        if (!agreement){
+            this.setState({"errors": { ...errors, agreement: "* Wymagana zgoda" }});
+        } else {
+            if (!Object.keys(errors).some((key) => errors[key])) {
+                // walidacja statusu, czy z instrumentem
 
-            let newUser = {
-                login: login,
-                email: email,
-                password: password,
-                name: name,
-                voivodeshipId: voivodeship.id,
-                city: city,
-                genresId: genres && genres.map(genre => genre.id),
-                instrumentsId: instruments && instruments.map(instrument => instrument.id),
-                members: members && members.map(member => (member.user ? {
-                    name: member.name,
-                    userId: member.user.id
-                } : {name: member.name})),
-                status: status && status.map(stat => (stat.withInstrument ? {
-                    instrumentId: stat.instrument.id,
-                    statusId: stat.id
-                } : {statusId: stat.id})),
-                isArtist: isArtist
+                let newUser = {
+                    login: login,
+                    email: email,
+                    password: password,
+                    name: name,
+                    voivodeshipId: voivodeship.id,
+                    city: city,
+                    genresId: genres && genres.map(genre => genre.id),
+                    instrumentsId: instruments && instruments.map(instrument => instrument.id),
+                    members: members && members.map(member => (member.user ? {
+                        name: member.name,
+                        userId: member.user.id
+                    } : {name: member.name})),
+                    status: status && status.map(stat => (stat.withInstrument ? {
+                        instrumentId: stat.instrument.id,
+                        statusId: stat.id
+                    } : {statusId: stat.id})),
+                    isArtist: isArtist
+                }
+                console.log(newUser);
+                this.props.signup(newUser);
             }
-            console.log(newUser);
-            this.props.signup(newUser);
         }
     }
 
@@ -109,16 +120,27 @@ class UserProfileCreate extends Component{
 
                             { authError ? <p className={"error"}>{authError}</p> : null}
 
-                            <Form id={"personal-data-form"} className={"mt-5"} onSubmit={this.handleSubmit} style={{width: "100%"}}>
+                            <Form id={"personal-data-form"} className={"mt-5 d-flex flex-column"} onSubmit={this.handleSubmit} style={{width: "100%"}}>
                                 <PersonalDataFormGroup type={userType.typeSlug} operation={"create"} handleUpdate={this.handleUpdate} state={this.state}/>
-                                <Form.Group className={"d-flex flex-column"}>
-                                    <Form.Check id={"agreement"} type={"checkbox"} custom
-                                                className={"align-self-start mb-2 d-flex flex-row align-items-center"}
-                                                onChange={this.handleChange}
-                                                label={<p style={{paddingTop: "2px"}}>Akceptuję <Link to="/regulamin" className={"underline"}>regulamin</Link></p>}/>
-
-                                    <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Załóż konto</Button>
+                                <Form.Group className={"block mb-2"}>
+                                    <>
+                                        <Form.Check
+                                            id={"agreement"}
+                                            type={"checkbox"}
+                                            custom
+                                            className={"align-self-start mb-2 d-flex flex-row align-items-center"}
+                                            label={
+                                                <p style={{paddingTop: "2px"}}>
+                                                    Akceptuję&nbsp;
+                                                    <Link to="/regulamin" className={"underline"}>regulamin</Link>
+                                                </p> }
+                                            onChange={this.handleChange}
+                                            isInvalid={this.state.errors.agreement}
+                                        />
+                                    </>
+                                    {/*<Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.agreement}</Form.Control.Feedback>*/}
                                 </Form.Group>
+                                <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Załóż konto</Button>
                             </Form>
                         </Col>
                     </Row>

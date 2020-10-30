@@ -8,6 +8,8 @@ class Blocks extends Component{
 
         editable = editable !== undefined
 
+        console.log(slug, elementsList);
+
         return (
             <div className={"blocks-container mb-1 d-flex flex-row flex-wrap justify-content-"+align}>
                 {elementsList.map((elem, index) => {

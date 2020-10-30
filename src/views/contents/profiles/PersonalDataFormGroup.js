@@ -61,7 +61,7 @@ class PersonalDataFormGroup extends Component{
                     else errorMessage = "";
                     break;
                 case "passwordRep":
-                    if (equals(value, this.props.state.password)) errorMessage = "* Hasła muszą być takie same"
+                    if (!equals(value, this.props.state.password)) errorMessage = "* Hasła muszą być takie same"
                     else errorMessage = "";
                     break;
                 default:
@@ -105,7 +105,7 @@ class PersonalDataFormGroup extends Component{
                     }
                 }
             } else
-                if (!elements.includes(item)) elements.unshift(item);
+                if (!elements.some(elem => elem.id === item.id )) elements.unshift(item);
 
             this.props.handleUpdate(slug, elements);
         }

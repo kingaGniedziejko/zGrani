@@ -355,9 +355,19 @@ input:-webkit-autofill {
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
-    background-color: #ffcd80;
+    background-color: var(--accent-1);
     border-radius: 50%;
 }
+
+.custom-checkbox .custom-control-input.is-invalid~.custom-control-label::before {
+    border-width: 3px;
+}
+
+.custom-checkbox .custom-control-input.is-invalid+label p,
+.custom-checkbox .custom-control-input.is-invalid+label p *{
+    color: var(--text-color-error);
+}
+
 
 
 /*   textarea   */

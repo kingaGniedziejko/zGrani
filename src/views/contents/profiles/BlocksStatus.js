@@ -8,7 +8,7 @@ class BlocksStatus extends Component{
 
         return (
             <div className={"blocks-container mb-1 d-flex flex-column"}>
-                {elementsList.map((elem, index) => {
+                {elementsList && elementsList.map((elem, index) => {
                     return (
                         <BlocksStatusElement key={index} index={index} elem={elem} slug={slug} instrumentList={instrumentList}
                                              deleteHandler={deleteHandler} instrumentHandler={instrumentHandler}/>
