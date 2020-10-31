@@ -45,9 +45,11 @@ class UserProfileEdit extends Component{
 
         profilePhotoSrcPrev: this.props.user && this.props.user.imageUrl,
         profilePhotoSrc: this.props.user && this.props.user.imageUrl,
+        profilePhoto: '',
 
         profileBackgroundSrcPrev: this.props.profile && this.props.profile.backgroundImageUrl,
         profileBackgroundSrc: this.props.profile && this.props.profile.backgroundImageUrl,
+        profileBackground: '',
 
         description: this.props.profile && this.props.profile.description,
 
@@ -79,7 +81,11 @@ class UserProfileEdit extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         const { auth } = this.props;
-        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist, errors, agreement } = this.state;
+        const { email, password,
+            login, name, voivodeship, city, genres, instruments, members, status, isArtist,
+            profilePhoto, profilePhotoSrc, profileBackground, profileBackgroundSrc, description, recordings, gallery, videos,
+            profilePhotoSrcPrev, profileBackgroundSrcPrev, recordingsPrev, galleryPrev, videosPrev,
+            errors, agreement } = this.state;
 
         console.log(this.state);
 
@@ -107,10 +113,18 @@ class UserProfileEdit extends Component{
             isArtist: isArtist
         }
 
-        let editedProfile = {}
+        let editedProfile = {
+            imageUrl: profilePhoto,
+            profileBackgroundUrl: profileBackground
+        }
 
+        this.clean(editedAuth);
         this.clean(editedUser);
+        this.clean(editedProfile);
+
+        console.log(editedAuth);
         console.log(editedUser);
+        console.log(editedProfile);
 
         this.props.editUser(editedAuth, editedUser, editedProfile);
     }

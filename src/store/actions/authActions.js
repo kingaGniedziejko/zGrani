@@ -1,3 +1,5 @@
+import 'firebase/storage';
+
 export const login = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase();
@@ -28,36 +30,42 @@ export const signup = (newUser) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
+        const storage = firebase.storage().ref();
 
         firebase.auth().createUserWithEmailAndPassword(
             newUser.email,
             newUser.password
         ).then((response) => {
-            if (newUser.isArtist){
-                return firestore.collection('users').doc(response.user.uid).set({
-                    login: newUser.login,
-                    name: newUser.name,
-                    voivodeshipId: newUser.voivodeshipId,
-                    city: newUser.city,
-                    genresId: newUser.genresId,
-                    instrumentsId: newUser.instrumentsId,
-                    status: newUser.status,
-                    isArtist: true,
-                    isActive: true
-                })
-            } else {
-                return firestore.collection('users').doc(response.user.uid).set({
-                    login: newUser.login,
-                    name: newUser.name,
-                    voivodeshipId: newUser.voivodeshipId,
-                    city: newUser.city,
-                    genresId: newUser.genresId,
-                    members: newUser.members,
-                    status: newUser.status,
-                    isArtist: false,
-                    isActive: true
-                })
-            }
+            storage.child("default_user_picture.png").getDownloadURL().then((url) => {
+                if (newUser.isArtist){
+                    return firestore.collection('users').doc(response.user.uid).set({
+                        login: newUser.login,
+                        name: newUser.name,
+                        voivodeshipId: newUser.voivodeshipId,
+                        city: newUser.city,
+                        genresId: newUser.genresId,
+                        instrumentsId: newUser.instrumentsId,
+                        status: newUser.status,
+                        isArtist: true,
+                        isActive: true,
+                        imageUrl: url
+                    })
+                } else {
+                    return firestore.collection('users').doc(response.user.uid).set({
+                        login: newUser.login,
+                        name: newUser.name,
+                        voivodeshipId: newUser.voivodeshipId,
+                        city: newUser.city,
+                        genresId: newUser.genresId,
+                        members: newUser.members,
+                        status: newUser.status,
+                        isArtist: false,
+                        isActive: true,
+                        imageUrl: url
+                    })
+                }
+            })
+
         }).then(() => {
             dispatch({ type: 'SIGNUP_SUCCESS' })
         }).catch(error => {
@@ -76,7 +84,7 @@ export const emailUpdate = (newEmail) => {
                 .then(function () {
                     dispatch({type: "EMAIL_UPDATE_SUCCESS"});
                 }).catch(function (error) {
-                dispatch({type: "EMAIL_UPDATE_ERROR", error});
+                    dispatch({type: "EMAIL_UPDATE_ERROR", error});
             });
         }
     }

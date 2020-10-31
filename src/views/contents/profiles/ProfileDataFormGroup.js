@@ -1,44 +1,46 @@
 import React, { Component } from 'react';
 import { Col, Form, Row } from "react-bootstrap";
 
-import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
-
-import Blocks from "./Blocks";
 import ImageBlocksDisplay from "./ImageBlocksDisplay";
 
-class ProfileDataFormGroup extends Component{
-    // state = {
-    //     profilePhotoSrc: userPhoto,
-    //     profileBackgroundSrc: userPhoto,
-    //     description: '',
-    //     gallery: [userPhoto, userPhoto, userPhoto, userPhoto],
-    //     videos: []
-    // }
+class ProfileDataFormGroup extends Component {
 
     handleChange = (e) => {
         this.props.handleUpdate(e.target.id, e.target.value);
     }
 
-    handleDelete = (slug, _) => {
+    handleAdd = (slug, imageSlug, imageUrl, image) => {
+        this.props.handleUpdate(slug, imageUrl);
+        this.props.handleUpdate(imageSlug, image);
+    }
+
+    handleDelete = (slug, imageSlug, _) => {
         this.props.handleUpdate(slug, undefined);
+        this.props.handleUpdate(imageSlug, undefined);
     }
 
-    handleArrayAdd = (slug, value) => {
-        let elements = this.props.state[slug];
+    handleArrayAdd = (slug, imageSlug, imageUrl, image) => {
+        let elementsUrl = this.props.state[slug];
+        let elements = this.props.state[imageSlug];
 
-        if (!elements.includes(value)) {
-            elements.push(value);
-        }
+        if (!elementsUrl.includes(imageUrl)) elementsUrl.push(imageUrl);
+        if (!elements.includes(image)) elements.push(image);
 
-        this.props.handleUpdate(slug, elements);
+        this.props.handleUpdate(slug, elementsUrl);
+        this.props.handleUpdate(imageSlug, elements);
     }
 
-    handleArrayDelete = (slug, value) => {
-        let elements = this.props.state[slug];
-        let index = elements.indexOf(value)
+    handleArrayDelete = (slug, imageSlug, imageUrl) => {
+        let elementsUrl = this.props.state[slug];
+        let elements = this.props.state[imageSlug];
+
+        let index = elementsUrl.indexOf(imageUrl);
+
         if (index !== -1) {
+            elementsUrl.splice(index, 1);
             elements.splice(index, 1);
-            this.props.handleUpdate(slug, elements);
+            this.props.handleUpdate(slug, elementsUrl);
+            this.props.handleUpdate(imageSlug, elements);
         }
     }
 
@@ -54,8 +56,9 @@ class ProfileDataFormGroup extends Component{
                             type={"single"}
                             elementsList={state.profilePhotoSrc}
                             slug={"profilePhotoSrc"}
+                            imageSlug={"profilePhoto"}
                             deleteHandler={this.handleDelete}
-                            addHandler={handleUpdate}/>
+                            addHandler={this.handleAdd}/>
                     </Col>
                     <Col className={"xs-5 p-0 ml-1"} style={{width: "100%"}}>
                         <h6 className={"mb-3"}>Tło</h6>
@@ -63,8 +66,9 @@ class ProfileDataFormGroup extends Component{
                             type={"single"}
                             elementsList={state.profileBackgroundSrc}
                             slug={"profileBackgroundSrc"}
+                            imageSlug={"profileBackground"}
                             deleteHandler={this.handleDelete}
-                            addHandler={handleUpdate}
+                            addHandler={this.handleAdd}
                         />
                     </Col>
                 </Form.Group>

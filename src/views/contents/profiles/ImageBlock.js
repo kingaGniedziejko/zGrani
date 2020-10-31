@@ -5,12 +5,12 @@ import {Image} from "react-bootstrap";
 
 class ImageBlock extends Component{
     render() {
-        let { image, slug, deleteHandler } = this.props;
+        let { imageUrl, slug, imageSlug, deleteHandler } = this.props;
 
         return (
             <div className={"image-block position-relative"}>
-                <Image src={image} className={"shadow"}/>
-                <X size={20} className={"position-absolute clickable background-dark"} onClick={()=>deleteHandler(slug, image)}/>
+                <Image src={imageUrl} className={"shadow"}/>
+                <X size={20} className={"position-absolute clickable background-dark"} onClick={()=>deleteHandler(slug, imageSlug, imageUrl)}/>
             </div>
         )
     }
