@@ -89,7 +89,7 @@ class UserProfile extends Component{
                     <Container className={"user-info"}>
                         <Row>
                             <Col md={5}>
-                                <Image className={"user-photo"} src={user.imageUrl} fluid />
+                                <Image className={"user-photo shadow"} src={user.imageUrl} fluid />
                             </Col>
                             <Col className={"pt-3"}>
                                 <h4 className={"mb-1"}>{ user.name }</h4>

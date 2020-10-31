@@ -24,11 +24,18 @@ class UserProfileEdit extends Component{
                 id: genreId,
                 name: this.props.genres[genreId].name
             }}),
-        instruments: [],
-        // instruments: this.props.user && this.props.user.isArtist && this.props.instruments && this.props.user.instrumentsId.map( instrumentId => {
-        //     return { id: instrumentId, name: this.props.instruments[instrumentId].name }}),
+
+        instruments: this.props.user && this.props.user.isArtist && this.props.instruments && this.props.user.instrumentsId.map( instrumentId => {
+            return {
+                id: instrumentId,
+                name: this.props.instruments[instrumentId].name
+            }}),
+
         members: this.props.user && !this.props.user.isArtist && this.props.users && this.props.user.members.map(member => {
-            return member.userId ? { name: member.name, user: this.props.users[member.userId] } : { name: member.name }}),
+            return member.userId
+                ? { name: member.name, user: this.props.users[member.userId] }
+                : { name: member.name }}),
+
         status: this.props.user && this.props.status && this.props.instruments && this.props.user.status.map( stat => {
             return (
                 stat.instrumentId
@@ -36,11 +43,29 @@ class UserProfileEdit extends Component{
                     : { ...this.props.status[stat.statusId], id: stat.statusId }
                 )}),
 
+        profilePhotoSrcPrev: this.props.user && this.props.user.imageUrl,
+        profilePhotoSrc: this.props.user && this.props.user.imageUrl,
+
+        profileBackgroundSrcPrev: this.props.profile && this.props.profile.backgroundImageUrl,
+        profileBackgroundSrc: this.props.profile && this.props.profile.backgroundImageUrl,
+
+        description: this.props.profile && this.props.profile.description,
+
+        recordingsPrev: this.props.profile && this.props.profile.recordings,
+        recordings: this.props.profile && this.props.profile.recordings || [],
+
+        galleryPrev: this.props.profile && this.props.profile.imageGallery,
+        gallery: this.props.profile && this.props.profile.imageGallery || [],
+
+        videosPrev: this.props.profile && this.props.profile.videos,
+        videos: this.props.profile && this.props.profile.videos || [],
+
         errors: {}
     }
 
     handleUpdate = (slug, value) => {
-        this.setState({ [slug]: value })
+        this.setState({ [slug]: value });
+        console.log(this.state);
     }
 
     // handleChange = (e) => {
@@ -101,18 +126,8 @@ class UserProfileEdit extends Component{
         return obj;
     }
 
-    // componentDidMount() {
-    //
-    //     if (user && status && voivodeships && genres && instruments) {
-    //         this.setState({
-    //             genres: user.genresId.map( genreId => genres[genreId])
-    //         })
-    //     }
-    // }
-
     render() {
-        const { status, voivodeships, genres, instruments } = this.props
-        const { user, auth } = this.props;
+        const { user, profile, auth } = this.props;
         const { id } = this.props.match.params;
 
         if (!auth.uid || auth.uid !== id) return <Redirect to={"/logowanie"} />
@@ -132,18 +147,7 @@ class UserProfileEdit extends Component{
 
         if (user.isArtist) userType = type1;
         else userType = type2;
-        //
-        // if (user && status && voivodeships && genres && instruments) {
-        //     this.setState({
-        //         genres: user.genresId.map( genreId => genres[genreId])
-        //     })
-        // }
 
-        if (this.props.user) {
-            console.log(this.props.genres);
-            console.log(this.props.user.genresId);
-            console.log(this.state.genres);
-        }
         return (
             <div id={"signup-artist"} className={"page-content"}>
                 <Container>
@@ -161,7 +165,7 @@ class UserProfileEdit extends Component{
                                         </Col>
                                         <Col xs={11} lg={5} className={"ml-2"}>
                                             <h5 className={"mt-2 mb-5"}>Dodatkowe dane</h5>
-                                            <ProfileDataFormGroup type={userType.typeSlug} operation={"edit"} />
+                                            <ProfileDataFormGroup user={user} profile={profile} handleUpdate={this.handleUpdate} state={this.state}/>
                                         </Col>
                                     </Row>
                                     <Row className="justify-content-center">
@@ -184,6 +188,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         user: state.firestore.data.users && state.firestore.data.users[ownProps.match.params.id],
         users: state.firestore.data.users,
+        profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
         auth: state.firebase.auth,
         status: state.firestore.data.status,
         voivodeships: state.firestore.data.voivodeships,
@@ -202,6 +207,7 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) => [
         {collection: "users"},
+        {collection: "profiles", where: ["userId", "==", props.match.params.id]},
         {collection: "status"},
         {collection: "voivodeships"},
         {collection: "genres", orderBy: "name"},

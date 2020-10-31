@@ -9,7 +9,7 @@ class ImageBlock extends Component{
 
         return (
             <div className={"image-block position-relative"}>
-                <Image src={image}/>
+                <Image src={image} className={"shadow"}/>
                 <X size={20} className={"position-absolute clickable background-dark"} onClick={()=>deleteHandler(slug, image)}/>
             </div>
         )
