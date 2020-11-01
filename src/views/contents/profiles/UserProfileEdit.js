@@ -33,7 +33,7 @@ class UserProfileEdit extends Component{
 
         members: this.props.user && !this.props.user.isArtist && this.props.users && this.props.user.members.map(member => {
             return member.userId
-                ? { name: member.name, user: this.props.users[member.userId] }
+                ? { name: member.name, user: this.props.users.find(u => u.id === member.userId) }
                 : { name: member.name }}),
         newMembers: [],
 
@@ -129,7 +129,6 @@ class UserProfileEdit extends Component{
         this.clean(editedAuth);
         this.clean(editedUser);
         this.clean(userPhoto);
-        if (profile) this.clean(editedProfile);
 
         console.log(editedAuth);
         console.log(editedUser);
@@ -211,7 +210,7 @@ const mapStateToProps = (state, ownProps) => {
     console.log(state);
     return {
         user: state.firestore.data.users && state.firestore.data.users[ownProps.match.params.id],
-        users: state.firestore.data.users,
+        users: state.firestore.ordered.users,
         profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
         auth: state.firebase.auth,
         status: state.firestore.data.status,

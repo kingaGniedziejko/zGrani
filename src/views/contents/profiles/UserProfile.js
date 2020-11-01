@@ -111,7 +111,7 @@ class UserProfile extends Component{
                         </Row>
                     </Container>
                 </div>
-                <div style={{height: "3rem"}}/>
+                <div className={"p-0 p-lg-2"}/>
             </>
         );
     }

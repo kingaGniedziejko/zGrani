@@ -95,7 +95,7 @@ class BlocksMembersElement extends Component{
                                     defaultValue={this.state.userLogin}
                                     placeholder={"Login użytkownika"}
                                     size="sm"
-                                    autocomplete={"off"}
+                                    autoComplete={"off"}
                                     onChange={this.handleChange}
                                     isInvalid={linkingError}
                                 />
