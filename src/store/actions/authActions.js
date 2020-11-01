@@ -48,7 +48,8 @@ export const signup = (newUser) => {
                         status: newUser.status,
                         isArtist: true,
                         isActive: true,
-                        imageUrl: url
+                        imageUrl: url,
+                        bandsId: []
                     })
                 } else {
                     return firestore.collection('users').doc(response.user.uid).set({

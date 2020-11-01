@@ -26,11 +26,11 @@ import BlocksMembers from "./BlocksMembers";
 
 class UserProfile extends Component{
     render() {
-        const { user, profile, auth, status, voivodeships, genres, instruments } = this.props;
+        const { user, profile, auth, users, status, voivodeships, genres, instruments } = this.props;
         const { id } = this.props.match.params;
 
         if (user === null) return <ErrorPage/>
-        if (user === undefined || !status || !voivodeships || !instruments || !genres) return <Loader/>
+        if (user === undefined || !users || !status || !voivodeships || !instruments || !genres) return <Loader/>
 
         let sectionArray = [];
 
@@ -167,11 +167,24 @@ class UserProfile extends Component{
     }
 
     bandsSection = () => {
+        const { user, users } = this.props;
+
+        let bands = [];
+
+        user.bandsId && user.bandsId.forEach(bandId => {
+            let band = users.find( elem => elem.id === bandId)
+            bands.push({
+                name: band.name,
+                path: "/profil/" + bandId,
+                buttonText: "Odwiedź profil"
+            });
+        });
+
         return (
             <Row className={"justify-content-center"}>
                 <Col className={"text-center align-self-center"} md={10} lg={8}>
                     <h5 className={"mb-3"}>Zespoły</h5>
-                    <BlocksWithButton elementsList={[{name: "Zespoleni", path: "", buttonText: "Odwiedź profil"}]}/>
+                    <BlocksWithButton elementsList={bands}/>
                 </Col>
             </Row>
         );

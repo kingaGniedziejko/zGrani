@@ -145,19 +145,29 @@ class PersonalDataFormGroup extends Component{
 
     handleLinkingMember = (slug, operation, index, login) => {
         let elements = this.props.state[slug];
+        let newMembers = this.props.state.newMembers;
         const { usersArtists } = this.props;
+        let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
 
         switch (operation){
             case "add":
-                let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
                 if (linkedUser) {
                     elements[index].user = linkedUser;
+                    newMembers.push(linkedUser.id);
                     this.props.handleUpdate(slug, elements);
+                    this.props.handleUpdate("newMembers", newMembers);
                     return true;
                 } else
                     return false;
             case "delete":
                 elements[index].user = "";
+
+                let memberIndex = newMembers.indexOf(linkedUser.id);
+                if (memberIndex !== -1) {
+                    elements.splice(memberIndex, 1);
+                    this.props.handleUpdate("newMembers", newMembers);
+                }
+
                 this.props.handleUpdate(slug, elements);
                 return true;
             default:

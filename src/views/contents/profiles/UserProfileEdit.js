@@ -35,6 +35,7 @@ class UserProfileEdit extends Component{
             return member.userId
                 ? { name: member.name, user: this.props.users[member.userId] }
                 : { name: member.name }}),
+        newMembers: [],
 
         status: this.props.user && this.props.status && this.props.instruments && this.props.user.status.map( stat => {
             return (
@@ -76,13 +77,12 @@ class UserProfileEdit extends Component{
         e.preventDefault();
         const { auth, profile } = this.props;
         const { email, password,
-            login, name, voivodeship, city, genres, instruments, members, status, isArtist,
+            login, name, voivodeship, city, genres, instruments, members, newMembers, status, isArtist,
             profilePhoto, profilePhotoSrcPrev, profilePhotoSrc,
             profileBackground, profileBackgroundSrcPrev, profileBackgroundSrc,
-            description,
-            gallerySrc, galleryNew, galleryDeleted,
+            description, gallerySrc, galleryNew, galleryDeleted,
             recordings,videos, recordingsPrev, videosPrev,
-            errors, agreement } = this.state;
+            errors } = this.state;
 
         console.log(this.state);
 
@@ -136,7 +136,7 @@ class UserProfileEdit extends Component{
         console.log(userPhoto);
         console.log(editedProfile);
 
-        this.props.editUser(editedAuth, editedUser, userPhoto, editedProfile);
+        this.props.editUser(editedAuth, editedUser, userPhoto, newMembers, editedProfile);
     }
 
     clean = (obj) => {
@@ -223,7 +223,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editUser: (auth, user, userPhoto, profile) => dispatch(editUser(auth, user, userPhoto, profile))
+        editUser: (auth, user, userPhoto, newMembers, profile) => dispatch(editUser(auth, user, userPhoto, newMembers, profile))
     }
 }
 

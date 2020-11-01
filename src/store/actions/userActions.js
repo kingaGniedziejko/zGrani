@@ -1,8 +1,38 @@
 import {emailUpdate, passwordUpdate} from "./authActions";
 import { v1 as uuidv1 } from 'uuid';
 
-const createProfile = (auth, profile, firestore, storage) => {
+export const editUser = (auth, user, userPhoto, newMembers, profile) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+        const storage = firebase.storage().ref();
 
+        if (auth.email) emailUpdate(auth.email);
+        if (auth.password) passwordUpdate(auth.password);
+
+        if (auth.hasProfile){
+            if (profile) editProfile(auth, profile, firestore, storage);
+        } else
+            if (profile) createProfile(auth, profile, firestore, storage);
+
+
+        putSingleImage(userPhoto.image, firestore, storage, "user/", "users", auth.id, "imageUrl");
+        deleteItemFromStorage(userPhoto.imageUrlDeleted, storage);
+
+        newMembers.forEach(member => {
+            firestore.collection('users').doc(member).update({
+                bandsId: firestore.FieldValue.arrayUnion(auth.id)
+            })
+        })
+
+
+        return firestore.collection('users').doc(auth.id).set({
+            ...user
+        }, { merge: true })
+    }
+}
+
+const createProfile = (auth, profile, firestore, storage) => {
     firestore.collection('profiles').add({
         userId: auth.id,
         description: profile.description,
@@ -38,31 +68,6 @@ const editProfile = (auth, profile, firestore, storage) => {
                 deleteItemFromStorage(imageUrl, storage);
             })
         })
-}
-
-
-export const editUser = (auth, user, userPhoto, profile) => {
-    return (dispatch, getState, {getFirebase, getFirestore}) => {
-        const firebase = getFirebase();
-        const firestore = getFirestore();
-        const storage = firebase.storage().ref();
-
-        if (auth.email) emailUpdate(auth.email);
-        if (auth.password) passwordUpdate(auth.password);
-
-        if (auth.hasProfile){
-            if (profile) editProfile(auth, profile, firestore, storage);
-        } else
-            if (profile) createProfile(auth, profile, firestore, storage);
-
-
-        putSingleImage(userPhoto.image, firestore, storage, "user/", "users", auth.id, "imageUrl");
-        deleteItemFromStorage(userPhoto.imageUrlDeleted, storage);
-
-        return firestore.collection('users').doc(auth.id).set({
-            ...user
-        }, { merge: true })
-    }
 }
 
 const putSingleImage = (image, firestore, storage, storagePath, collection, id, field) => {
@@ -106,5 +111,3 @@ const deleteItemFromStorage = (deletedItemUrl, storage) => {
         }
     }
 }
-
-

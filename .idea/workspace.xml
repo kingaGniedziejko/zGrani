@@ -21,9 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksMembersElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/ProfileShortcut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/authActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/userActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/PersonalDataFormGroup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +115,7 @@
       <workItem from="1603883042370" duration="16701000" />
       <workItem from="1603964674700" duration="32641000" />
       <workItem from="1604062054843" duration="40817000" />
-      <workItem from="1604229979139" duration="12427000" />
+      <workItem from="1604229979139" duration="16161000" />
     </task>
     <servers />
   </component>
@@ -169,11 +171,11 @@
     </state>
     <state x="2013" y="-492" width="1173" height="787" key="dock-window-1/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602066304951" />
     <state x="380" y="257" width="1145" height="844" key="dock-window-1/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1603366611523" />
-    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1604077359147">
+    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1604249420361">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
-    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1604077359147" />
+    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1604249420361" />
     <state x="425" y="197" key="run.anything.popup" timestamp="1603896105702">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
