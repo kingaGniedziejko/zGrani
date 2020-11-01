@@ -33,7 +33,7 @@ class ProfileShortcut extends Component {
         return(
             <div className={"profile-shortcut mb-5"}>
                 <Link to={ "/profil/" + user.id } className={"mb-2 d-block"}>
-                    <Image src={ user.imageUrl } fluid/>
+                    <Image src={ user.imageUrl } className={"profile-shortcut-picture"} fluid/>
                 </Link>
                 <Link to={ "/profil/" + user.id } className={"mb-3 block"}>
                     <h5>{ user.name }</h5>

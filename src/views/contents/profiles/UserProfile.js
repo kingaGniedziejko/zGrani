@@ -85,13 +85,13 @@ class UserProfile extends Component{
 
         return (
             <>
-                <div className={"section py-4 py-md-0"} style={{backgroundColor: "var(--background-light)"}}>
+                <div className={"section py-4 py-lg-0"} style={{backgroundColor: "var(--background-light)"}}>
                     <Container className={"user-info"}>
                         <Row>
-                            <Col md={5}>
-                                <Image className={"user-photo shadow"} src={user.imageUrl} fluid />
+                            <Col md={5} className={"d-flex flex-row"}>
+                                <Image className={"user-photo shadow "} src={user.imageUrl} fluid />
                             </Col>
-                            <Col className={"pt-3"}>
+                            <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3"}>
                                 <h4 className={"mb-1"}>{ user.name }</h4>
                                 <p className={"mb-3"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
                                 {statusArray
