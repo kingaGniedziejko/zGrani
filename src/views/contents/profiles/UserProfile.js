@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import { Button, Col, Container, Image as Img, Row } from "react-bootstrap";
 import Gallery from "react-photo-gallery";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -24,7 +24,7 @@ import Loader from "../../layouts/Loader";
 import BlocksMembers from "./BlocksMembers";
 // import ReactPlayer from "react-player";
 
-class UserProfile extends Component{
+class UserProfile extends Component {
     render() {
         const { user, profile, auth, users, status, voivodeships, genres, instruments } = this.props;
         const { id } = this.props.match.params;
@@ -38,10 +38,12 @@ class UserProfile extends Component{
         sectionArray.push(this.genresInstrumentsMembersSection);
         if (user.isArtist && user.bandsId) sectionArray.push(this.bandsSection);
         if (profile && profile.records) sectionArray.push(this.recordsSection);
-        if (profile && profile.gallery && profile.gallery.length !== 0) sectionArray.push(this.gallerySection);
+        if (profile && profile.imageGallery && profile.imageGallery.length !== 0) sectionArray.push(this.gallerySection);
         if (profile && profile.videos) sectionArray.push(this.videoSection);
 
         let isBackgroundLight = true;
+
+        console.log(sectionArray);
 
         return (
             <div id={"user-profile"} className={"page-content"}>
@@ -89,7 +91,7 @@ class UserProfile extends Component{
                     <Container className={"user-info"}>
                         <Row>
                             <Col md={5} className={"d-flex flex-row"}>
-                                <Image className={"user-photo shadow "} src={user.imageUrl} fluid />
+                                <Img className={"user-photo"} src={user.imageUrl} />
                             </Col>
                             <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3"}>
                                 <h4 className={"mb-1"}>{ user.name }</h4>
@@ -111,7 +113,7 @@ class UserProfile extends Component{
                         </Row>
                     </Container>
                 </div>
-                <div className={"p-0 p-lg-2"}/>
+                <div className={"p-0 p-lg-2 p-xl-4"}/>
             </>
         );
     }
@@ -139,25 +141,28 @@ class UserProfile extends Component{
         user.genresId && user.genresId.forEach(genre => genresNames.push(genres[genre]));
         user.instrumentsId && user.instrumentsId.forEach(instr => instrumentsNames.push(instruments[instr]));
         user.members && user.members.forEach(member => {
-            if (member.userId) members.push({ name: member.name, user: users.find( elem => elem.id === member.userId) });
-            else members.push({ name: member.name })
+            members.push({
+                name: member.userId ? users.find(elem => elem.id === member.userId).name : member.name,
+                path: member.userId ? "/profil/" + member.userId : "",
+                buttonText: "Odwiedź profil"
+            })
         });
 
         return (
             <Row className={"justify-content-center"}>
-                <Col md={6} className={"text-center"}>
+                <Col md={6} className={"text-center mb-2 mb-md-0"}>
                     <h5 className={"mb-3"}>Gatunki</h5>
                     <Blocks elementsList={ genresNames } align={"center"}/>
                 </Col>
                 { user.isArtist ?
-                    <Col md={6} className={"text-center"}>
+                    <Col md={6} className={"text-center mt-5 mt-md-0"}>
                         <h5 className={"mb-3"}>Instrumenty</h5>
                         <Blocks elementsList={ instrumentsNames } align={"center"}/>
                     </Col>
                     : members.length !== 0 ?
-                        <Col md={6} className={"text-center"}>
-                            <h5 className={"mb-3"}>Członkowie</h5>
-                            <BlocksMembers elementsList={members} align={"center"}/>
+                        <Col md={6} className={"text-center mt-5 mt-md-0"}>
+                            <h5 className={"mb-4"}>Członkowie</h5>
+                            <BlocksWithButton elementsList={members}/>
                         </Col>
                         : ""
                 }
@@ -183,7 +188,7 @@ class UserProfile extends Component{
         return (
             <Row className={"justify-content-center"}>
                 <Col className={"text-center align-self-center"} md={10} lg={8}>
-                    <h5 className={"mb-3"}>Zespoły</h5>
+                    <h5 className={"mb-4"}>Zespoły</h5>
                     <BlocksWithButton elementsList={bands}/>
                 </Col>
             </Row>
@@ -195,34 +200,20 @@ class UserProfile extends Component{
     }
 
     gallerySection = () => {
-        const photos = [
-            {
-                src: userPhoto,
-                width: 3,
-                height: 4
-            },
-            {
-                src: photo1,
-                width: 4,
-                height: 3
-            },
-            {
-                src: photo2,
-                width: 4,
-                height: 3
-            },
-            {
-                src: photo3,
-                width: 4,
-                height: 3
-            }
-        ]
+        const {profile} = this.props;
 
         return (
             <Row className={"justify-content-center"}>
                 <Col className={"text-center align-self-center"}>
-                    <h5 className={"mb-4"}>Galeria</h5>
-                    <Gallery photos={photos} direction={"column"} margin={10}/>
+                    <h5 className={"mb-5"}>Galeria</h5>
+                    <div className={"img-grid"}>
+                        { profile.imageGallery.map((imageUrl, index) =>
+                            <div className={"img-wrap"} key={index}>
+                                <Img src={imageUrl} key={index} alt={"zdjęcie"}/>
+                            </div>
+                        )}
+                    </div>
+                    {/*<Gallery photos={images ? images : photos} direction={"column"} margin={10}/>*/}
                 </Col>
             </Row>
         );

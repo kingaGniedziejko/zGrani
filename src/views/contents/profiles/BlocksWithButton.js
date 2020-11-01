@@ -12,9 +12,12 @@ class BlocksWithButton extends Component{
                     return (
                         <div key={index} className={"d-flex flex-row background-light mb-2 px-3 py-2"}>
                             <p className={"pt-1"}>{elem.name}</p>
-                            <Link to={elem.path} className="ml-auto">
-                                <Button variant="outline-accent" size="sm">{elem.buttonText}</Button>
-                            </Link>
+                            { elem.path ?
+                                <Link to={elem.path} className="ml-auto">
+                                    <Button variant="outline-accent" size="sm">{elem.buttonText}</Button>
+                                </Link>
+                                : ""
+                            }
                         </div>
                     )
                 })}
