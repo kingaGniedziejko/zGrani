@@ -38,7 +38,7 @@ class UserProfile extends Component{
         if (user.isArtist && user.bandsId) sectionArray.push(this.bandsSection);
         if (!user.isArtist && user.members) sectionArray.push(this.membersSection);
         if (profile && profile.records) sectionArray.push(this.recordsSection);
-        if (profile && profile.gallery) sectionArray.push(this.gallerySection);
+        if (profile && profile.gallery.length !== 0) sectionArray.push(this.gallerySection);
         if (profile && profile.videos) sectionArray.push(this.videoSection);
 
         let isBackgroundLight = true;

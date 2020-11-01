@@ -51,13 +51,15 @@ class UserProfileEdit extends Component{
         profileBackgroundSrc: this.props.profile && this.props.profile.backgroundImageUrl,
         profileBackground: '',
 
-        description: this.props.profile && this.props.profile.description,
+        description: this.props.profile && this.props.profile.description || "",
 
         recordingsPrev: this.props.profile && this.props.profile.recordings,
         recordings: this.props.profile && this.props.profile.recordings || [],
 
-        galleryPrev: this.props.profile && this.props.profile.imageGallery,
-        gallery: this.props.profile && this.props.profile.imageGallery || [],
+        gallerySrc: this.props.profile && this.props.profile.imageGallery || [],
+        gallerySrcNew: [],
+        galleryNew: [],
+        galleryDeleted: [],
 
         videosPrev: this.props.profile && this.props.profile.videos,
         videos: this.props.profile && this.props.profile.videos || [],
@@ -70,21 +72,16 @@ class UserProfileEdit extends Component{
         console.log(this.state);
     }
 
-    // handleChange = (e) => {
-    //     if (e.target.type === "checkbox") {
-    //         this.setState({
-    //             [e.target.id]: e.target.checked
-    //         })
-    //     }
-    // }
-
     handleSubmit = (e) => {
         e.preventDefault();
-        const { auth } = this.props;
+        const { auth, profile } = this.props;
         const { email, password,
             login, name, voivodeship, city, genres, instruments, members, status, isArtist,
-            profilePhoto, profilePhotoSrc, profileBackground, profileBackgroundSrc, description, recordings, gallery, videos,
-            profilePhotoSrcPrev, profileBackgroundSrcPrev, recordingsPrev, galleryPrev, videosPrev,
+            profilePhoto, profilePhotoSrcPrev, profilePhotoSrc,
+            profileBackground, profileBackgroundSrcPrev, profileBackgroundSrc,
+            description,
+            gallerySrc, galleryNew, galleryDeleted,
+            recordings,videos, recordingsPrev, videosPrev,
             errors, agreement } = this.state;
 
         console.log(this.state);
@@ -92,7 +89,8 @@ class UserProfileEdit extends Component{
         let editedAuth = {
             id: auth.uid,
             email: email,
-            password: password
+            password: password,
+            hasProfile: profile
         }
 
         let editedUser = {
@@ -113,20 +111,32 @@ class UserProfileEdit extends Component{
             isArtist: isArtist
         }
 
+        let userPhoto = {
+            image: profilePhoto,
+            imageUrlDeleted: profilePhotoSrcPrev !== profilePhotoSrc ? profilePhotoSrcPrev : ""
+        }
+
         let editedProfile = {
-            imageUrl: profilePhoto,
-            profileBackgroundUrl: profileBackground
+            id: profile && profile.id,
+            profileBackground: profileBackground,
+            profileBackgroundUrlDeleted: profileBackgroundSrcPrev !== profileBackgroundSrc ? profileBackgroundSrcPrev : "",
+            description: description,
+            gallerySrc: gallerySrc,
+            galleryNew: galleryNew,
+            galleryDeleted: galleryDeleted
         }
 
         this.clean(editedAuth);
         this.clean(editedUser);
-        this.clean(editedProfile);
+        this.clean(userPhoto);
+        if (profile) this.clean(editedProfile);
 
         console.log(editedAuth);
         console.log(editedUser);
+        console.log(userPhoto);
         console.log(editedProfile);
 
-        this.props.editUser(editedAuth, editedUser, editedProfile);
+        this.props.editUser(editedAuth, editedUser, userPhoto, editedProfile);
     }
 
     clean = (obj) => {
@@ -213,7 +223,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editUser: (auth, user, profile) => dispatch(editUser(auth, user, profile))
+        editUser: (auth, user, userPhoto, profile) => dispatch(editUser(auth, user, userPhoto, profile))
     }
 }
 

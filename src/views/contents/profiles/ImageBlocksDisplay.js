@@ -50,7 +50,7 @@ class ImageBlocksDisplay extends Component{
 
     render() {
         let { type, elementsList, slug, imageSlug, deleteHandler } = this.props;
-
+        console.log(elementsList)
         return (
             <div className={"blocks-container mb-5 d-flex flex-column align-items-center " + type}>
                 <div className={"d-flex flex-row flex-wrap justify-content-center"}>
@@ -60,7 +60,7 @@ class ImageBlocksDisplay extends Component{
                         elementsList === undefined ? ""
                             : elementsList.map((elem, index) => {
                                 return (
-                                    <ImageBlock key={index} imageUrl={elem} slug={slug} imageSlug={imageSlug} deleteHandler={deleteHandler}/>
+                                    <ImageBlock key={index} index={index} imageUrl={elem} slug={slug} imageSlug={imageSlug} deleteHandler={deleteHandler}/>
                                 )})
                     }
                 </div>

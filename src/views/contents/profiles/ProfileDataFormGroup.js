@@ -19,7 +19,7 @@ class ProfileDataFormGroup extends Component {
         this.props.handleUpdate(imageSlug, undefined);
     }
 
-    handleArrayAdd = (slug, imageSlug, imageUrl, image) => {
+    handleImageArrayAdd = (slug, imageSlug, imageUrl, image) => {
         let elementsUrl = this.props.state[slug];
         let elements = this.props.state[imageSlug];
 
@@ -30,17 +30,27 @@ class ProfileDataFormGroup extends Component {
         this.props.handleUpdate(imageSlug, elements);
     }
 
-    handleArrayDelete = (slug, imageSlug, imageUrl) => {
-        let elementsUrl = this.props.state[slug];
-        let elements = this.props.state[imageSlug];
+    handleImageArrayDelete = (_, __, index) => {
+        let gallerySrc = this.props.state.gallerySrc;
+        let gallerySrcNew = this.props.state.gallerySrcNew;
+        let galleryNew = this.props.state.galleryNew;
+        let galleryDeleted = this.props.state.galleryDeleted;
 
-        let index = elementsUrl.indexOf(imageUrl);
+        let globalGalleryLength = gallerySrc.length;
 
-        if (index !== -1) {
-            elementsUrl.splice(index, 1);
-            elements.splice(index, 1);
-            this.props.handleUpdate(slug, elementsUrl);
-            this.props.handleUpdate(imageSlug, elements);
+        if ((index + 1) <= globalGalleryLength) {
+            let imageUrl = gallerySrc[index];
+            gallerySrc.splice(index, 1);
+            galleryDeleted.push(imageUrl);
+
+            this.props.handleUpdate("gallerySrc", gallerySrc);
+            this.props.handleUpdate("galleryDeleted", galleryDeleted);
+        } else {
+            gallerySrcNew.splice((index - globalGalleryLength), 1);
+            galleryNew.splice((index - globalGalleryLength), 1);
+
+            this.props.handleUpdate("gallerySrcNew", gallerySrcNew);
+            this.props.handleUpdate("galleryNew", galleryNew);
         }
     }
 
@@ -57,8 +67,9 @@ class ProfileDataFormGroup extends Component {
                             elementsList={state.profilePhotoSrc}
                             slug={"profilePhotoSrc"}
                             imageSlug={"profilePhoto"}
+                            addHandler={this.handleAdd}
                             deleteHandler={this.handleDelete}
-                            addHandler={this.handleAdd}/>
+                        />
                     </Col>
                     <Col className={"xs-5 p-0 ml-1"} style={{width: "100%"}}>
                         <h6 className={"mb-3"}>Tło</h6>
@@ -67,8 +78,8 @@ class ProfileDataFormGroup extends Component {
                             elementsList={state.profileBackgroundSrc}
                             slug={"profileBackgroundSrc"}
                             imageSlug={"profileBackground"}
-                            deleteHandler={this.handleDelete}
                             addHandler={this.handleAdd}
+                            deleteHandler={this.handleDelete}
                         />
                     </Col>
                 </Form.Group>
@@ -91,10 +102,11 @@ class ProfileDataFormGroup extends Component {
                 <h6 className={"mb-3"}>Galeria</h6>
                 <ImageBlocksDisplay
                     type={"multiple"}
-                    elementsList={state.gallery}
-                    slug={"gallery"}
-                    deleteHandler={this.handleArrayDelete}
-                    addHandler={this.handleArrayAdd}
+                    elementsList={state.gallerySrc.concat(state.gallerySrcNew)}
+                    slug={"gallerySrcNew"}
+                    imageSlug={"galleryNew"}
+                    addHandler={this.handleImageArrayAdd}
+                    deleteHandler={this.handleImageArrayDelete}
                 />
 
                 <h6 className={"mb-5"}>Filmy</h6>
