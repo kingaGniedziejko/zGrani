@@ -38,7 +38,7 @@ class ProfileShortcut extends Component {
                 <Link to={ "/profil/" + user.id } className={"mb-3 block"}>
                     <h5>{ user.name }</h5>
                 </Link>
-                {statusArray
+                { statusArray
                     ? <Blocks elementsList={statusArray}/>
                     : null
                 }
@@ -55,12 +55,15 @@ class ProfileShortcut extends Component {
                         </div>
                         <p className={"m-0"}>{ genresDisplay }</p>
                     </div>
-                    <div className={"d-flex flex-row mb-1"}>
-                        <div className={"icon-container mr-2"}>
-                            <FontAwesomeIcon icon={ faGuitar }/>
+                    { user.isArtist ?
+                        <div className={"d-flex flex-row mb-1"}>
+                            <div className={"icon-container mr-2"}>
+                                <FontAwesomeIcon icon={faGuitar}/>
+                            </div>
+                            <p className={"m-0"}>{instrumentsDisplay}</p>
                         </div>
-                        <p className={"m-0"}>{ instrumentsDisplay }</p>
-                    </div>
+                        : ""
+                    }
                 </div>
             </div>
         );

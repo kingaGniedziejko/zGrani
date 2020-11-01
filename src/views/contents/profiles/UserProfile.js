@@ -21,6 +21,7 @@ import Blocks from "./Blocks";
 import BlocksWithButton from "./BlocksWithButton";
 import ErrorPage from "../../layouts/ErrorPage";
 import Loader from "../../layouts/Loader";
+import BlocksMembers from "./BlocksMembers";
 // import ReactPlayer from "react-player";
 
 class UserProfile extends Component{
@@ -34,11 +35,10 @@ class UserProfile extends Component{
         let sectionArray = [];
 
         if (profile && profile.description) sectionArray.push(this.descriptionSection);
-        sectionArray.push(this.genresInstrumentsSection);
+        sectionArray.push(this.genresInstrumentsMembersSection);
         if (user.isArtist && user.bandsId) sectionArray.push(this.bandsSection);
-        if (!user.isArtist && user.members) sectionArray.push(this.membersSection);
         if (profile && profile.records) sectionArray.push(this.recordsSection);
-        if (profile && profile.gallery.length !== 0) sectionArray.push(this.gallerySection);
+        if (profile && profile.gallery && profile.gallery.length !== 0) sectionArray.push(this.gallerySection);
         if (profile && profile.videos) sectionArray.push(this.videoSection);
 
         let isBackgroundLight = true;
@@ -129,25 +129,39 @@ class UserProfile extends Component{
         );
     }
 
-    genresInstrumentsSection = () => {
-        const { user, genres, instruments } = this.props;
+    genresInstrumentsMembersSection = () => {
+        const { user, genres, instruments, users } = this.props;
 
         let genresNames = [];
         let instrumentsNames = [];
+        let members = [];
 
         user.genresId && user.genresId.forEach(genre => genresNames.push(genres[genre]));
         user.instrumentsId && user.instrumentsId.forEach(instr => instrumentsNames.push(instruments[instr]));
+        user.members && user.members.forEach(member => {
+            if (member.userId) members.push({ name: member.name, user: users.find( elem => elem.id === member.userId) });
+            else members.push({ name: member.name })
+        });
 
         return (
-            <Row>
+            <Row className={"justify-content-center"}>
                 <Col md={6} className={"text-center"}>
                     <h5 className={"mb-3"}>Gatunki</h5>
                     <Blocks elementsList={ genresNames } align={"center"}/>
                 </Col>
-                <Col md={6} className={"text-center"}>
-                    <h5 className={"mb-3"}>Instrumenty</h5>
-                    <Blocks elementsList={ instrumentsNames } align={"center"}/>
-                </Col>
+                { user.isArtist ?
+                    <Col md={6} className={"text-center"}>
+                        <h5 className={"mb-3"}>Instrumenty</h5>
+                        <Blocks elementsList={ instrumentsNames } align={"center"}/>
+                    </Col>
+                    : members.length !== 0 ?
+                        <Col md={6} className={"text-center"}>
+                            <h5 className={"mb-3"}>Członkowie</h5>
+                            <BlocksMembers elementsList={members} align={"center"}/>
+                        </Col>
+                        : ""
+                }
+
             </Row>
         )
     }
@@ -161,10 +175,6 @@ class UserProfile extends Component{
                 </Col>
             </Row>
         );
-    }
-
-    membersSection = () => {
-
     }
 
     recordsSection = () => {
@@ -220,6 +230,7 @@ class UserProfile extends Component{
 const mapStateToProps = (state, ownProps) => {
     return {
         user: state.firestore.data.users && state.firestore.data.users[ownProps.match.params.id],
+        users: state.firestore.ordered.users,
         profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
         auth: state.firebase.auth,
         status: state.firestore.data.status,
@@ -232,7 +243,7 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
-        {collection: "users", doc: props.match.params.id},
+        {collection: "users"},
         {collection: "profiles", where: ["userId", "==", props.match.params.id]},
         {collection: "status"},
         {collection: "voivodeships"},

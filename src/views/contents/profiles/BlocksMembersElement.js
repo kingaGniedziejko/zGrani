@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {X, Check2} from 'react-bootstrap-icons';
 import {Button, Form} from "react-bootstrap";
 import isEmpty from "validator/es/lib/isEmpty";
+import {Link} from "react-router-dom";
 
 class BlocksMembersElement extends Component{
     state = {
@@ -65,13 +66,21 @@ class BlocksMembersElement extends Component{
         const { isLinking, isLinked, linkingError, linkingErrorMessage } = this.state;
         const { elem, editable, slug, handler } = this.props;
 
+        console.log(elem);
+
         return (
             <>
                 <div className={"block d-flex flex-row align-items-center background-lighter mb-2 py-2" + (editable ? " pl-3 pr-2" : " px-3")}>
                     <p>{elem.user ? elem.user.name : elem.name}</p>
-                    <Button variant="outline-white" onClick={this.displayLinking} size="sm" className={"ml-auto"} style={{fontSize: "0.8rem"}}>
-                        {isLinked ? "Edytuj" : "Załącz profil"}
-                    </Button>
+                    { editable ?
+                        <Button variant="outline-white" onClick={this.displayLinking} size="sm" className={"ml-auto"} style={{fontSize: "0.8rem"}}>
+                            {isLinked ? "Edytuj" : "Załącz profil"}
+                        </Button>
+                        :
+                        <Link to={"/profil/" + elem.user.id } className="mt-1 mt-md-0 ml-auto">
+                            <Button block variant="outline-white" size="sm" onClick={this.props.logout}>Odwiedź profil</Button>
+                        </Link>
+                    }
                     {editable ? <X className={"clickable ml-2"} size={25} onClick={()=>handler(slug, elem)}/> : ""}
                 </div>
 
