@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Col, Form, Row } from "react-bootstrap";
 
 import ImageBlocksDisplay from "./ImageBlocksDisplay";
+import BlocksRecordsDisplay from "./BlocksRecordsDisplay";
 
 class ProfileDataFormGroup extends Component {
 
@@ -14,43 +15,43 @@ class ProfileDataFormGroup extends Component {
         this.props.handleUpdate(imageSlug, image);
     }
 
-    handleDelete = (slug, imageSlug, _) => {
+    handleDelete = (slug, fileSlug, _, __, ___) => {
         this.props.handleUpdate(slug, undefined);
-        this.props.handleUpdate(imageSlug, undefined);
+        this.props.handleUpdate(fileSlug, undefined);
     }
 
-    handleImageArrayAdd = (slug, imageSlug, imageUrl, image) => {
+    handleImageArrayAdd = (slug, fileSlug, fileUrl, file) => {
         let elementsUrl = this.props.state[slug];
-        let elements = this.props.state[imageSlug];
+        let elements = this.props.state[fileSlug];
 
-        if (!elementsUrl.includes(imageUrl)) elementsUrl.push(imageUrl);
-        if (!elements.includes(image)) elements.push(image);
+        if (!elementsUrl.includes(fileUrl)) elementsUrl.push(fileUrl);
+        if (!elements.includes(file)) elements.push(file);
 
         this.props.handleUpdate(slug, elementsUrl);
-        this.props.handleUpdate(imageSlug, elements);
+        this.props.handleUpdate(fileSlug, elements);
     }
 
-    handleImageArrayDelete = (_, __, index) => {
-        let gallerySrc = this.props.state.gallerySrc;
-        let gallerySrcNew = this.props.state.gallerySrcNew;
-        let galleryNew = this.props.state.galleryNew;
-        let galleryDeleted = this.props.state.galleryDeleted;
+    handleImageArrayDelete = (slug, fileSlug, srcSlug, deletedSlug, index) => {
+        let elementsSrc = this.props.state[srcSlug];
+        let elementsSrcNew = this.props.state[slug];
+        let elementsNew = this.props.state[fileSlug];
+        let elementsDeleted = this.props.state[deletedSlug];
 
-        let globalGalleryLength = gallerySrc.length;
+        let globalElementsLength = elementsSrc.length;
 
-        if ((index + 1) <= globalGalleryLength) {
-            let imageUrl = gallerySrc[index];
-            gallerySrc.splice(index, 1);
-            galleryDeleted.push(imageUrl);
+        if ((index + 1) <= globalElementsLength) {
+            let fileUrl = elementsSrc[index];
+            elementsSrc.splice(index, 1);
+            elementsDeleted.push(fileUrl);
 
-            this.props.handleUpdate("gallerySrc", gallerySrc);
-            this.props.handleUpdate("galleryDeleted", galleryDeleted);
+            this.props.handleUpdate(srcSlug, elementsSrc);
+            this.props.handleUpdate(deletedSlug, elementsDeleted);
         } else {
-            gallerySrcNew.splice((index - globalGalleryLength), 1);
-            galleryNew.splice((index - globalGalleryLength), 1);
+            elementsSrcNew.splice((index - globalElementsLength), 1);
+            elementsNew.splice((index - globalElementsLength), 1);
 
-            this.props.handleUpdate("gallerySrcNew", gallerySrcNew);
-            this.props.handleUpdate("galleryNew", galleryNew);
+            this.props.handleUpdate(slug, elementsSrcNew);
+            this.props.handleUpdate(fileSlug, elementsNew);
         }
     }
 
@@ -96,15 +97,25 @@ class ProfileDataFormGroup extends Component {
                     onChange={this.handleChange}
                 />
 
-                <h6 className={"mb-3"}>Nagrania</h6>
-                <Form.File id="recordings" multiple className={"mb-5 default-file-input"}/>
+                <h6 className={"mb-4 mt-2"}>Nagrania</h6>
+                <BlocksRecordsDisplay
+                    elementsList={state.recordingsSrc.concat(state.recordingsSrcNew)}
+                    srcSlug={"recordingsSrc"}
+                    slug={"recordingsSrcNew"}
+                    fileSlug={"recordingsNew"}
+                    deletedSlug={"recordingsDeleted"}
+                    addHandler={this.handleImageArrayAdd}
+                    deleteHandler={this.handleImageArrayDelete}
+                />
 
-                <h6 className={"mb-3"}>Galeria</h6>
+                <h6 className={"mb-4 mt-2"}>Galeria</h6>
                 <ImageBlocksDisplay
                     type={"multiple"}
                     elementsList={state.gallerySrc.concat(state.gallerySrcNew)}
+                    srcSlug={"gallerySrc"}
                     slug={"gallerySrcNew"}
-                    imageSlug={"galleryNew"}
+                    fileSlug={"galleryNew"}
+                    deletedSlug={"galleryDeleted"}
                     addHandler={this.handleImageArrayAdd}
                     deleteHandler={this.handleImageArrayDelete}
                 />

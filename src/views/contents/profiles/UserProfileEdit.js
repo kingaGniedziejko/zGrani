@@ -54,8 +54,10 @@ class UserProfileEdit extends Component{
 
         description: (this.props.profile && this.props.profile.description) || "",
 
-        recordingsPrev: this.props.profile && this.props.profile.recordings,
-        recordings: (this.props.profile && this.props.profile.recordings) || [],
+        recordingsSrc: (this.props.profile && this.props.profile.recordings) || [],
+        recordingsSrcNew: [],
+        recordingsNew: [],
+        recordingsDeleted: [],
 
         gallerySrc: (this.props.profile && this.props.profile.imageGallery) || [],
         gallerySrcNew: [],

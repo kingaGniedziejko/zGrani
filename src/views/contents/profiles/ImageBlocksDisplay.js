@@ -6,14 +6,14 @@ import ImageBlock from "./ImageBlock";
 class ImageBlocksDisplay extends Component{
 
     selectFiles = (e) => {
-        const { type, slug, imageSlug, addHandler } = this.props;
+        const { type, slug, fileSlug, addHandler } = this.props;
 
         function read(file) {
             if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
                 let reader = new FileReader();
 
                 reader.addEventListener("load", function () {
-                    addHandler(slug, imageSlug, this.result, file);
+                    addHandler(slug, fileSlug, this.result, file);
                 }, false);
 
                 reader.readAsDataURL(file);
@@ -49,17 +49,19 @@ class ImageBlocksDisplay extends Component{
 
 
     render() {
-        let { type, elementsList, slug, imageSlug, deleteHandler } = this.props;
+        let { type, elementsList, slug, fileSlug, srcSlug, deletedSlug, deleteHandler } = this.props;
         return (
             <div className={"blocks-container mb-5 d-flex flex-column align-items-center " + type}>
                 <div className={"d-flex flex-row flex-wrap justify-content-center"}>
                     {type === "single" ?
-                        elementsList === undefined ? this.buttonAdd(type) : <ImageBlock imageUrl={elementsList} slug={slug} imageSlug={imageSlug} deleteHandler={deleteHandler}/>
+                        elementsList === undefined
+                            ? this.buttonAdd(type)
+                            : <ImageBlock imageUrl={elementsList} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
                         :
                         elementsList === undefined ? ""
                             : elementsList.map((elem, index) => {
                                 return (
-                                    <ImageBlock key={index} index={index} imageUrl={elem} slug={slug} imageSlug={imageSlug} deleteHandler={deleteHandler}/>
+                                    <ImageBlock key={index} index={index} imageUrl={elem} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
                                 )})
                     }
                 </div>
