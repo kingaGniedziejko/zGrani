@@ -40,6 +40,7 @@ export const signup = (newUser) => {
                 if (newUser.isArtist){
                     return firestore.collection('users').doc(response.user.uid).set({
                         login: newUser.login,
+                        email: newUser.email,
                         name: newUser.name,
                         voivodeshipId: newUser.voivodeshipId,
                         city: newUser.city,

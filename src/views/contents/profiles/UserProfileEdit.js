@@ -95,6 +95,7 @@ class UserProfileEdit extends Component{
 
         let editedUser = {
             login: login,
+            email: email,
             name: name,
             voivodeshipId: voivodeship.id,
             city: city,

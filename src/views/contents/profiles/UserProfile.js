@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Button, Col, Container, Image as Img, Row } from "react-bootstrap";
-import Gallery from "react-photo-gallery";
+import {Button, Col, Container, Form, Image as Img, Modal, Row} from "react-bootstrap";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import emailjs from 'emailjs-com';
+// import ReactPlayer from "react-player";
+import isEmpty from "validator/es/lib/isEmpty";
+import isEmail from "validator/es/lib/isEmail";
 
 import "../../../resources/styles/profile_style.css";
-
-import userPhoto from '../../../resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg';
-import photo1 from '../../../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
-import photo2 from '../../../resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
-import photo3 from '../../../resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
@@ -21,13 +19,33 @@ import Blocks from "./Blocks";
 import BlocksWithButton from "./BlocksWithButton";
 import ErrorPage from "../../layouts/ErrorPage";
 import Loader from "../../layouts/Loader";
-import BlocksMembers from "./BlocksMembers";
-// import ReactPlayer from "react-player";
 
 class UserProfile extends Component {
+    state = {
+        modalShow: false,
+
+        name: this.props.activeUser.isLoaded && this.props.activeUser.isEmpty || !this.props.activeUser.isLoaded && this.props.activeUser.isEmpty ? '' : this.props.activeUser.name,
+        email: this.props.auth && this.props.auth.isLoaded && this.props.auth.isEmpty ? '' : this.props.auth.email,
+        subject: '',
+        message: '',
+
+        errors: {}
+    }
+
+    componentDidMount() {
+        if (this.props.activeUser.isLoaded){
+            this.setState({
+                name: this.props.activeUser.name
+            })
+        }
+    }
+
     render() {
         const { user, profile, auth, users, status, voivodeships, genres, instruments } = this.props;
         const { id } = this.props.match.params;
+
+        console.log(this.state)
+        console.log(this.props.activeUser)
 
         if (user === null) return <ErrorPage/>
         if (user === undefined || !users || !status || !voivodeships || !instruments || !genres) return <Loader/>
@@ -42,8 +60,6 @@ class UserProfile extends Component {
         if (profile && profile.videos) sectionArray.push(this.videoSection);
 
         let isBackgroundLight = true;
-
-        console.log(sectionArray);
 
         return (
             <div id={"user-profile"} className={"page-content"}>
@@ -65,7 +81,6 @@ class UserProfile extends Component {
     }
 
     userInfoSection = (user, profile, auth, id, status, voivodeships, instruments) => {
-
         let statusArray = user.status && user.status.map(stat => {
             return {
                 name: status[stat.statusId].name + (stat.instrumentId ? (": " + instruments[stat.instrumentId].name) : "")
@@ -81,9 +96,13 @@ class UserProfile extends Component {
                 { profile === undefined ? <ExclamationCircle className={"ml-3"} size={22}/> : ""}
             </>
             :
-            <Link to={""} className="mt-auto">
-                <Button variant="outline-accent" size="sm">Skontaktuj się</Button>
-            </Link>
+            <>
+                <Button variant="outline-accent" size="sm" onClick={() => {this.setState({
+                    modalShow:true,
+                    name: this.props.activeUser.isLoaded && this.props.activeUser.isEmpty || !this.props.activeUser.isLoaded && this.props.activeUser.isEmpty ? '' : this.props.activeUser.name,
+                })}}>Skontaktuj się</Button>
+                {this.displayMessageEdit()}
+            </>
 
         return (
             <>
@@ -229,6 +248,214 @@ class UserProfile extends Component {
             </Row>
         )
     }
+
+    displayMessageEdit = () => {
+        const { modalShow } = this.state;
+
+        return (
+            <Modal
+                show={modalShow}
+                onHide={() => this.setState({modalShow: false})}
+                size="md"
+                centered>
+                <Modal.Header closeButton className={"d-flex flex-row justify-content-center pt-4"}>
+                    <h5>Nowa wiadomość</h5>
+                </Modal.Header>
+                <Modal.Body className={"d-flex flex-row justify-content-center"}>
+                    <Form className={"block p-3 d-flex flex-column align-items-center"} onSubmit={this.handleSendMessage}>
+                        <Form.Group className={"block mb-4"}>
+                            <Form.Control
+                                id={"name"}
+                                name={"name"}
+                                type={"text"}
+                                placeholder={"Imię i nazwisko"}
+                                defaultValue={this.state.name}
+                                size="sm"
+                                autoComplete={"off"}
+                                maxLength={"100"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={this.state.errors.name}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.name}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group className={"block mb-4"}>
+                            <Form.Control
+                                id={"email"}
+                                name={"email"}
+                                type={"email"}
+                                placeholder={"Email"}
+                                defaultValue={this.state.email}
+                                size="sm"
+                                autoComplete={"off"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={this.state.errors.email}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.email}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group className={"block mb-5"}>
+                            <Form.Control
+                                id={"subject"}
+                                name={"subject"}
+                                type={"text"}
+                                placeholder={"Temat"}
+                                size="sm"
+                                autoComplete={"off"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={this.state.errors.subject}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.subject}</Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group className={"block mb-5"}>
+                            <Form.Control
+                                id={"message"}
+                                name={"message"}
+                                as={"textarea"}
+                                rows={5}
+                                placeholder={"Wiadomość"}
+                                maxLength={"1000"}
+                                size="sm"
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={this.state.errors.message}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.message}</Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group className={"block mb-5 d-none"}>
+                            <Form.Control
+                                id={"to_name"}
+                                name={"to_name"}
+                                type={"text"}
+                                size="sm"
+                                value={this.props.user.name}
+                                readOnly
+                                hidden
+                            />
+                        </Form.Group>
+                        <Form.Group className={"block mb-5 d-none"}>
+                            <Form.Control
+                                id={"to_email"}
+                                name={"to_email"}
+                                type={"text"}
+                                size="sm"
+                                value={this.props.user.email}
+                                readOnly
+                                hidden
+                            />
+                        </Form.Group>
+
+                        <Button variant="outline-accent" size="sm" type={"submit"} className={"px-4"}>Wyślij</Button>
+                    </Form>
+                </Modal.Body>
+            </Modal>
+        );
+    }
+
+    handleSendMessage = (e) => {
+        e.preventDefault();
+        const { user, auth } = this.props;
+        const { name, email, subject, message, errors } = this.state;
+
+        console.log(user, auth);
+
+        let messageData = {
+            from_name: name,
+            subject: subject,
+            to_name: user.name,
+            from_email: email,
+            message: message,
+            to_email: user.email,
+        }
+
+        console.log(this.state);
+        console.log(messageData);
+
+        console.log(e.target);
+
+        if (this.evaluateFields(["name", "email", "subject", "message"])){
+            console.log("eval");
+            if (!Object.keys(errors).some((key) => errors[key])) {
+                console.log("err");
+
+                console.log(messageData);
+                emailjs.sendForm('gmail', 'users_contact_template', e.target, 'user_W1PcscGeAalQnDU1stttN')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
+
+            }
+        }
+        e.target.reset();
+    }
+
+    handleChange = (e) => {
+        const { id, value } = e.target;
+        const { errors } = this.state;
+
+        this.setState({
+            [id]: value
+        })
+
+        if (errors[id]) {
+            this.setState({
+                errors: {
+                    ...errors,
+                    [id]: ""
+                }
+            });
+        }
+    }
+
+    handleBlur = (e) => {
+        this.evaluateFields([e.target.id]);
+    }
+
+    evaluateFields = (slugs) => {
+        const { errors } = this.state;
+        let newErrors = {};
+
+        slugs.forEach(slug => {
+            const value = this.state[slug];
+            let errorMessage = "";
+
+            if (isEmpty(value)) {
+                errorMessage = "* Wymagane pole";
+            }
+            else {
+                switch (slug) {
+                    case "email":
+                        if (!isEmail(value)) errorMessage = "* Nieprawidłowy adres email"
+                        else errorMessage = "";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            newErrors[slug] = errorMessage;
+        })
+
+
+        console.log(newErrors);
+
+
+
+
+        this.setState({
+            errors: {
+                ...errors,
+                ...newErrors
+            }
+        })
+
+        return !Object.keys(newErrors).some((key) => errors[key])
+    }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -237,6 +464,7 @@ const mapStateToProps = (state, ownProps) => {
         users: state.firestore.ordered.users,
         profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
         auth: state.firebase.auth,
+        activeUser: state.firebase.profile,
         status: state.firestore.data.status,
         voivodeships: state.firestore.data.voivodeships,
         genres: state.firestore.data.genres,

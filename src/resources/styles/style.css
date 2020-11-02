@@ -377,7 +377,7 @@ input:-webkit-autofill {
 /*   textarea   */
 textarea.form-control  {
     padding: 6px 10px;
-    border: 1px solid var(--text-color-dark);
+    border: 1px solid var(--text-color);
     /*border-bottom: 1px solid var(--text-color);*/
     /*background-color: var(--background);*/
     /*border-bottom-color: var(--text-color) ;*/
@@ -395,6 +395,10 @@ textarea.form-control:hover {
 textarea.form-control:focus {
     /*border: 1px solid var(--text-color);*/
     border-color: var(--text-color-light) ;
+}
+
+textarea.form-control:invalid:hover, textarea.form-control.is-invalid:hover {
+    border-color: var(--text-color-error-light);
 }
 
 /*   file inpyt   */

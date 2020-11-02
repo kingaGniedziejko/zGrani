@@ -23,10 +23,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/styles/profile_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/profile_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/authActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/Blocks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/BlocksWithButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/BlocksWithButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/contents/profiles/UserProfileEdit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +117,7 @@
       <workItem from="1603883042370" duration="16701000" />
       <workItem from="1603964674700" duration="32641000" />
       <workItem from="1604062054843" duration="40817000" />
-      <workItem from="1604229979139" duration="33034000" />
+      <workItem from="1604229979139" duration="46565000" />
     </task>
     <servers />
   </component>
@@ -172,16 +173,16 @@
     </state>
     <state x="2013" y="-492" width="1173" height="787" key="dock-window-1/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602066304951" />
     <state x="380" y="257" width="1145" height="844" key="dock-window-1/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1603366611523" />
-    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1604249420361">
+    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1604322867127">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
-    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1604249420361" />
-    <state x="425" y="197" key="run.anything.popup" timestamp="1603896105702">
+    <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1604322867127" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1604320890800">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1601402373360" />
-    <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1601469402889" />
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1604320890800" />
     <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1603896105702" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1604165230065">
       <screen x="0" y="0" width="1536" height="864" />
