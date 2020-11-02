@@ -19,6 +19,7 @@ import Blocks from "./Blocks";
 import BlocksWithButton from "./BlocksWithButton";
 import ErrorPage from "../../layouts/ErrorPage";
 import Loader from "../../layouts/Loader";
+import ReactAudioPlayer from "react-audio-player";
 
 class UserProfile extends Component {
     state = {
@@ -52,7 +53,7 @@ class UserProfile extends Component {
         if (profile && profile.description) sectionArray.push(this.descriptionSection);
         sectionArray.push(this.genresInstrumentsMembersSection);
         if (user.isArtist && user.bandsId) sectionArray.push(this.bandsSection);
-        if (profile && profile.records) sectionArray.push(this.recordsSection);
+        if (profile && profile.recordings) sectionArray.push(this.recordsSection);
         if (profile && profile.imageGallery && profile.imageGallery.length !== 0) sectionArray.push(this.gallerySection);
         if (profile && profile.videos) sectionArray.push(this.videoSection);
 
@@ -210,7 +211,20 @@ class UserProfile extends Component {
     }
 
     recordsSection = () => {
+        const {profile} = this.props;
 
+        return (
+            <Row className={"justify-content-center"}>
+                <Col md={8} lg={7} className={"text-center align-self-center"}>
+                    <h5 className={"mb-5"}>Nagrania</h5>
+                    <div className={"d-flex flex-column"}>
+                        { profile.recordings.map((recordingsUrl, index) =>
+                            <ReactAudioPlayer key={index} className={"mb-3"} src={recordingsUrl} title={"Sample " + (index + 1)} controls/>
+                        )}
+                    </div>
+                </Col>
+            </Row>
+        );
     }
 
     gallerySection = () => {

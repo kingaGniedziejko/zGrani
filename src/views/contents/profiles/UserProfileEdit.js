@@ -83,7 +83,8 @@ class UserProfileEdit extends Component{
             profilePhoto, profilePhotoSrcPrev, profilePhotoSrc,
             profileBackground, profileBackgroundSrcPrev, profileBackgroundSrc,
             description, gallerySrc, galleryNew, galleryDeleted,
-            // recordings,videos, recordingsPrev, videosPrev, errors
+            recordingsSrc, recordingsNew, recordingsDeleted,
+            // videos, videosPrev, errors
         } = this.state;
 
         let editedAuth = {
@@ -119,9 +120,16 @@ class UserProfileEdit extends Component{
 
         let editedProfile = {
             id: profile && profile.id,
+
             profileBackground: profileBackground,
             profileBackgroundUrlDeleted: profileBackgroundSrcPrev !== profileBackgroundSrc ? profileBackgroundSrcPrev : "",
+
             description: description,
+
+            recordingsSrc: recordingsSrc,
+            recordingsNew: recordingsNew,
+            recordingsDeleted: recordingsDeleted,
+
             gallerySrc: gallerySrc,
             galleryNew: galleryNew,
             galleryDeleted: galleryDeleted

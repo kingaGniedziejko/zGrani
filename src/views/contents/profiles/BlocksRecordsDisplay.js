@@ -53,7 +53,7 @@ class BlocksRecordsDisplay extends Component{
                     { elementsList === undefined ? ""
                         : elementsList.map((elem, index) => {
                             return (
-                                <div className={"block position-relative mb-2"}>
+                                <div key={index} className={"block position-relative mb-2"}>
                                     <ReactAudioPlayer src={elem} title={"Sample " + (index + 1)} controls/>
                                     <X
                                         size={20}

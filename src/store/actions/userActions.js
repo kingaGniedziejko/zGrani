@@ -36,7 +36,8 @@ const createProfile = (auth, profile, firestore, storage) => {
     firestore.collection('profiles').add({
         userId: auth.id,
         description: profile.description,
-        gallery: []
+        imageGallery: [],
+        recordings: []
     }).then( docRef => {
         putSingleImage(profile.profileBackground, firestore, storage, "profile/background/", "profiles", docRef.id, "backgroundImageUrl");
         deleteItemFromStorage(profile.imageUrlDeleted, storage);
@@ -48,13 +49,22 @@ const createProfile = (auth, profile, firestore, storage) => {
         profile.galleryDeleted.forEach( imageUrl => {
             deleteItemFromStorage(imageUrl, storage);
         })
+
+        profile.recordingsNew.forEach( recording => {
+            putImageToArray(recording, firestore, storage, "profile/recordings/", "profiles", docRef.id, "recordings");
+        })
+
+        profile.recordingsDeleted.forEach( recordingUrl => {
+            deleteItemFromStorage(recordingUrl, storage);
+        })
     })
 }
 
 const editProfile = (auth, profile, firestore, storage) => {
     firestore.collection('profiles').doc(profile.id).set({
         description: profile.description,
-        gallery: profile.gallerySrc
+        imageGallery: profile.gallerySrc,
+        recordings: profile.recordingsSrc
     }, { merge: true })
         .then(() => {
             putSingleImage(profile.profileBackground, firestore, storage, "profile/background/", "profiles", profile.id, "backgroundImageUrl");
@@ -66,6 +76,14 @@ const editProfile = (auth, profile, firestore, storage) => {
 
             profile.galleryDeleted.forEach( imageUrl => {
                 deleteItemFromStorage(imageUrl, storage);
+            })
+
+            profile.recordingsNew.forEach( recording => {
+                putImageToArray(recording, firestore, storage, "profile/recordings/", "profiles", profile.id, "recordings");
+            })
+
+            profile.recordingsDeleted.forEach( recordingUrl => {
+                deleteItemFromStorage(recordingUrl, storage);
             })
         })
 }
