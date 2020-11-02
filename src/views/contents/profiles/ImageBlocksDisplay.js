@@ -50,7 +50,6 @@ class ImageBlocksDisplay extends Component{
 
     render() {
         let { type, elementsList, slug, imageSlug, deleteHandler } = this.props;
-        console.log(elementsList)
         return (
             <div className={"blocks-container mb-5 d-flex flex-column align-items-center " + type}>
                 <div className={"d-flex flex-row flex-wrap justify-content-center"}>

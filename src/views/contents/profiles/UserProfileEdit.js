@@ -52,18 +52,18 @@ class UserProfileEdit extends Component{
         profileBackgroundSrc: this.props.profile && this.props.profile.backgroundImageUrl,
         profileBackground: '',
 
-        description: this.props.profile && this.props.profile.description || "",
+        description: (this.props.profile && this.props.profile.description) || "",
 
         recordingsPrev: this.props.profile && this.props.profile.recordings,
-        recordings: this.props.profile && this.props.profile.recordings || [],
+        recordings: (this.props.profile && this.props.profile.recordings) || [],
 
-        gallerySrc: this.props.profile && this.props.profile.imageGallery || [],
+        gallerySrc: (this.props.profile && this.props.profile.imageGallery) || [],
         gallerySrcNew: [],
         galleryNew: [],
         galleryDeleted: [],
 
         videosPrev: this.props.profile && this.props.profile.videos,
-        videos: this.props.profile && this.props.profile.videos || [],
+        videos: (this.props.profile && this.props.profile.videos) || [],
 
         errors: {}
     }
@@ -81,10 +81,8 @@ class UserProfileEdit extends Component{
             profilePhoto, profilePhotoSrcPrev, profilePhotoSrc,
             profileBackground, profileBackgroundSrcPrev, profileBackgroundSrc,
             description, gallerySrc, galleryNew, galleryDeleted,
-            recordings,videos, recordingsPrev, videosPrev,
-            errors } = this.state;
-
-        console.log(this.state);
+            // recordings,videos, recordingsPrev, videosPrev, errors
+        } = this.state;
 
         let editedAuth = {
             id: auth.uid,

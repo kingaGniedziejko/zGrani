@@ -24,7 +24,7 @@ class UserProfile extends Component {
     state = {
         modalShow: false,
 
-        name: this.props.activeUser.isLoaded && this.props.activeUser.isEmpty || !this.props.activeUser.isLoaded && this.props.activeUser.isEmpty ? '' : this.props.activeUser.name,
+        name: (this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) || (!this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) ? '' : this.props.activeUser.name,
         email: this.props.auth && this.props.auth.isLoaded && this.props.auth.isEmpty ? '' : this.props.auth.email,
         subject: '',
         message: '',
@@ -43,9 +43,6 @@ class UserProfile extends Component {
     render() {
         const { user, profile, auth, users, status, voivodeships, genres, instruments } = this.props;
         const { id } = this.props.match.params;
-
-        console.log(this.state)
-        console.log(this.props.activeUser)
 
         if (user === null) return <ErrorPage/>
         if (user === undefined || !users || !status || !voivodeships || !instruments || !genres) return <Loader/>
@@ -99,7 +96,7 @@ class UserProfile extends Component {
             <>
                 <Button variant="outline-accent" size="sm" onClick={() => {this.setState({
                     modalShow:true,
-                    name: this.props.activeUser.isLoaded && this.props.activeUser.isEmpty || !this.props.activeUser.isLoaded && this.props.activeUser.isEmpty ? '' : this.props.activeUser.name,
+                    name: (this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) || (!this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) ? '' : this.props.activeUser.name,
                 })}}>Skontaktuj się</Button>
                 {this.displayMessageEdit()}
             </>
@@ -185,14 +182,12 @@ class UserProfile extends Component {
                         </Col>
                         : ""
                 }
-
             </Row>
         )
     }
 
     bandsSection = () => {
         const { user, users } = this.props;
-
         let bands = [];
 
         user.bandsId && user.bandsId.forEach(bandId => {
@@ -232,7 +227,6 @@ class UserProfile extends Component {
                             </div>
                         )}
                     </div>
-                    {/*<Gallery photos={images ? images : photos} direction={"column"} margin={10}/>*/}
                 </Col>
             </Row>
         );
@@ -357,41 +351,20 @@ class UserProfile extends Component {
 
     handleSendMessage = (e) => {
         e.preventDefault();
-        const { user, auth } = this.props;
-        const { name, email, subject, message, errors } = this.state;
-
-        console.log(user, auth);
-
-        let messageData = {
-            from_name: name,
-            subject: subject,
-            to_name: user.name,
-            from_email: email,
-            message: message,
-            to_email: user.email,
-        }
-
-        console.log(this.state);
-        console.log(messageData);
-
-        console.log(e.target);
+        const { errors } = this.state;
 
         if (this.evaluateFields(["name", "email", "subject", "message"])){
-            console.log("eval");
             if (!Object.keys(errors).some((key) => errors[key])) {
-                console.log("err");
-
-                console.log(messageData);
                 emailjs.sendForm('gmail', 'users_contact_template', e.target, 'user_W1PcscGeAalQnDU1stttN')
                     .then((result) => {
                         console.log(result.text);
                     }, (error) => {
                         console.log(error.text);
                     });
-
             }
         }
         e.target.reset();
+        this.setState({ modalShow: false });
     }
 
     handleChange = (e) => {
@@ -437,15 +410,8 @@ class UserProfile extends Component {
                         break;
                 }
             }
-
             newErrors[slug] = errorMessage;
         })
-
-
-        console.log(newErrors);
-
-
-
 
         this.setState({
             errors: {

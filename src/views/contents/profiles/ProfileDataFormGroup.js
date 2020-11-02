@@ -55,7 +55,7 @@ class ProfileDataFormGroup extends Component {
     }
 
     render() {
-        const { profile, handleUpdate, state }  = this.props;
+        const { profile, state }  = this.props;
 
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
