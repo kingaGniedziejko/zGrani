@@ -57,7 +57,7 @@ class UserProfile extends Component {
         if (profile && profile.imageGallery && profile.imageGallery.length !== 0) sectionArray.push(this.gallerySection);
         if (profile && profile.videos) sectionArray.push(this.videoSection);
 
-        let isBackgroundLight = true;
+        let isBackgroundLight = false;
 
         return (
             <div id={"user-profile"} className={"page-content"}>
@@ -69,7 +69,7 @@ class UserProfile extends Component {
                         <div key={ index }
                              className={"section py-5" + (isBackgroundLight? " background-light" : "")}>
                             <Container>
-                                { section() }
+                                { section(isBackgroundLight) }
                             </Container>
                         </div>
                     );
@@ -102,9 +102,11 @@ class UserProfile extends Component {
                 {this.displayMessageEdit()}
             </>
 
+        console.log(profile);
+
         return (
             <>
-                <div className={"section py-4 py-lg-0"} style={{backgroundColor: "var(--background-light)"}}>
+                <div className={"section py-4 py-lg-0"} style={{backgroundColor: "var(--background)"}}>
                     <Container className={"user-info"}>
                         <Row>
                             <Col md={5} className={"d-flex flex-row"}>
@@ -130,12 +132,12 @@ class UserProfile extends Component {
                         </Row>
                     </Container>
                 </div>
-                <div className={"p-0 p-lg-2 p-xl-4"}/>
+                <div className={"p-0 p-lg-2 p-xl-4 background-light"}/>
             </>
         );
     }
 
-    descriptionSection = () => {
+    descriptionSection = (_) => {
         const { profile } = this.props;
 
         return (
@@ -148,7 +150,7 @@ class UserProfile extends Component {
         );
     }
 
-    genresInstrumentsMembersSection = () => {
+    genresInstrumentsMembersSection = (isBgLight) => {
         const { user, genres, instruments, users } = this.props;
 
         let genresNames = [];
@@ -179,7 +181,7 @@ class UserProfile extends Component {
                     : members.length !== 0 ?
                         <Col md={6} className={"text-center mt-5 mt-md-0"}>
                             <h5 className={"mb-4"}>Członkowie</h5>
-                            <BlocksWithButton elementsList={members}/>
+                            <BlocksWithButton elementsList={members} isBgLight={isBgLight}/>
                         </Col>
                         : ""
                 }
@@ -187,7 +189,7 @@ class UserProfile extends Component {
         )
     }
 
-    bandsSection = () => {
+    bandsSection = (isBgLight) => {
         const { user, users } = this.props;
         let bands = [];
 
@@ -204,13 +206,13 @@ class UserProfile extends Component {
             <Row className={"justify-content-center"}>
                 <Col className={"text-center align-self-center"} md={10} lg={8}>
                     <h5 className={"mb-4"}>Zespoły</h5>
-                    <BlocksWithButton elementsList={bands}/>
+                    <BlocksWithButton elementsList={bands} isBgLight={isBgLight}/>
                 </Col>
             </Row>
         );
     }
 
-    recordsSection = () => {
+    recordsSection = (_) => {
         const {profile} = this.props;
 
         return (
@@ -227,7 +229,7 @@ class UserProfile extends Component {
         );
     }
 
-    gallerySection = () => {
+    gallerySection = (_) => {
         const {profile} = this.props;
 
         return (
@@ -246,7 +248,7 @@ class UserProfile extends Component {
         );
     }
 
-    videoSection = () => {
+    videoSection = (_) => {
         return (
             <Row className={"justify-content-center"}>
                 <Col className={"text-center align-self-center d-flex flex-column align-items-center"}>
@@ -257,7 +259,7 @@ class UserProfile extends Component {
         )
     }
 
-    displayMessageEdit = () => {
+    displayMessageEdit = (_) => {
         const { modalShow } = this.state;
 
         return (

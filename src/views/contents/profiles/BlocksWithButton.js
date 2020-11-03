@@ -4,13 +4,13 @@ import {Button} from "react-bootstrap";
 
 class BlocksWithButton extends Component{
     render() {
-        const { elementsList } = this.props;
+        const { elementsList, isBgLight } = this.props;
 
         return (
             <div className={"blocks-container mb-1"}>
                 {elementsList.map((elem, index) => {
                     return (
-                        <div key={index} className={"d-flex flex-row background-light mb-2 px-3 py-2"}>
+                        <div key={index} className={"d-flex flex-row mb-2 px-3 py-2" + (isBgLight ? " background-lighter" : " background-light")}>
                             <p className={"pt-1"}>{elem.name}</p>
                             { elem.path ?
                                 <Link to={elem.path} className="ml-auto">
