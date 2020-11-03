@@ -67,7 +67,7 @@ class ProfileDataFormGroup extends Component {
                             type={"single"}
                             elementsList={state.profilePhotoSrc}
                             slug={"profilePhotoSrc"}
-                            imageSlug={"profilePhoto"}
+                            fileSlug={"profilePhoto"}
                             addHandler={this.handleAdd}
                             deleteHandler={this.handleDelete}
                         />
@@ -78,7 +78,7 @@ class ProfileDataFormGroup extends Component {
                             type={"single"}
                             elementsList={state.profileBackgroundSrc}
                             slug={"profileBackgroundSrc"}
-                            imageSlug={"profileBackground"}
+                            fileSlug={"profileBackground"}
                             addHandler={this.handleAdd}
                             deleteHandler={this.handleDelete}
                         />

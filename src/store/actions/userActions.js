@@ -11,13 +11,20 @@ export const editUser = (auth, user, userPhoto, newMembers, profile) => {
         if (auth.password) passwordUpdate(auth.password);
 
         if (auth.hasProfile){
-            if (profile) editProfile(auth, profile, firestore, storage);
+            if (profile) editProfile(auth, profile, firebase, firestore, storage);
         } else
-            if (profile) createProfile(auth, profile, firestore, storage);
+            if (profile) createProfile(auth, profile, firebase, firestore, storage);
 
-
-        putSingleImage(userPhoto.image, firestore, storage, "user/", "users", auth.id, "imageUrl");
-        deleteItemFromStorage(userPhoto.imageUrlDeleted, storage);
+        if (userPhoto.defaultImage){
+            storage.child("default_user_picture.png").getDownloadURL().then((url) => {
+                firestore.collection('users').doc(auth.id).set({
+                    imageUrl: url
+                }, { merge: true })
+            })
+        } else {
+            putSingleImage(userPhoto.image, firestore, storage, "user/", "users", auth.id, "imageUrl");
+        }
+        deleteItemFromStorage(userPhoto.imageUrlDeleted, firebase, storage);
 
         newMembers.forEach(member => {
             firestore.collection('users').doc(member).update({
@@ -32,7 +39,7 @@ export const editUser = (auth, user, userPhoto, newMembers, profile) => {
     }
 }
 
-const createProfile = (auth, profile, firestore, storage) => {
+const createProfile = (auth, profile, firebase, firestore, storage) => {
     firestore.collection('profiles').add({
         userId: auth.id,
         description: profile.description,
@@ -40,14 +47,14 @@ const createProfile = (auth, profile, firestore, storage) => {
         recordings: []
     }).then( docRef => {
         putSingleImage(profile.profileBackground, firestore, storage, "profile/background/", "profiles", docRef.id, "backgroundImageUrl");
-        deleteItemFromStorage(profile.imageUrlDeleted, storage);
+        deleteItemFromStorage(profile.imageUrlDeleted, firebase, storage);
 
         profile.galleryNew.forEach( image => {
             putImageToArray(image, firestore, storage, "profile/gallery/", "profiles", docRef.id, "imageGallery");
         })
 
         profile.galleryDeleted.forEach( imageUrl => {
-            deleteItemFromStorage(imageUrl, storage);
+            deleteItemFromStorage(imageUrl, firebase, storage);
         })
 
         profile.recordingsNew.forEach( recording => {
@@ -55,12 +62,12 @@ const createProfile = (auth, profile, firestore, storage) => {
         })
 
         profile.recordingsDeleted.forEach( recordingUrl => {
-            deleteItemFromStorage(recordingUrl, storage);
+            deleteItemFromStorage(recordingUrl, firebase, storage);
         })
     })
 }
 
-const editProfile = (auth, profile, firestore, storage) => {
+const editProfile = (auth, profile, firebase, firestore, storage) => {
     firestore.collection('profiles').doc(profile.id).set({
         description: profile.description,
         imageGallery: profile.gallerySrc,
@@ -68,14 +75,14 @@ const editProfile = (auth, profile, firestore, storage) => {
     }, { merge: true })
         .then(() => {
             putSingleImage(profile.profileBackground, firestore, storage, "profile/background/", "profiles", profile.id, "backgroundImageUrl");
-            deleteItemFromStorage(profile.imageUrlDeleted, storage);
+            deleteItemFromStorage(profile.imageUrlDeleted, firebase, storage);
 
             profile.galleryNew.forEach( image => {
                 putImageToArray(image, firestore, storage, "profile/gallery/", "profiles", profile.id, "imageGallery");
             })
 
             profile.galleryDeleted.forEach( imageUrl => {
-                deleteItemFromStorage(imageUrl, storage);
+                deleteItemFromStorage(imageUrl, firebase, storage);
             })
 
             profile.recordingsNew.forEach( recording => {
@@ -83,7 +90,7 @@ const editProfile = (auth, profile, firestore, storage) => {
             })
 
             profile.recordingsDeleted.forEach( recordingUrl => {
-                deleteItemFromStorage(recordingUrl, storage);
+                deleteItemFromStorage(recordingUrl, firebase, storage);
             })
         })
 }
@@ -116,16 +123,19 @@ const putImageToArray = (image, firestore, storage, storagePath, collection, id,
     }
 }
 
-const deleteItemFromStorage = (deletedItemUrl, storage) => {
+const deleteItemFromStorage = (deletedItemUrl, firebase, storage) => {
     if (deletedItemUrl) {
-        let deletedRef = storage.refFromURL(deletedItemUrl);
+        let deletedRef = firebase.storage().refFromURL(deletedItemUrl);
+        storage.child("default_user_picture.png").getDownloadURL().then((url) => {
+            if (url !== deletedItemUrl) {
+                deletedRef.delete().then(function () {
+                    console.log("usunięto pomyślnie")
+                }).catch(function (error) {
+                    console.log("Błąd usuwania")
+                });
+            }
+        })
 
-        if (deletedRef !== storage.child("default_user_picture.png")) {
-            deletedRef.delete().then(function () {
-                console.log("usunięto pomyślnie")
-            }).catch(function (error) {
-                console.log("Błąd usuwania")
-            });
-        }
+
     }
 }

@@ -115,7 +115,8 @@ class UserProfileEdit extends Component{
 
         let userPhoto = {
             image: profilePhoto,
-            imageUrlDeleted: profilePhotoSrcPrev !== profilePhotoSrc ? profilePhotoSrcPrev : ""
+            imageUrlDeleted: profilePhotoSrcPrev !== profilePhotoSrc ? profilePhotoSrcPrev : "",
+            defaultImage: profilePhotoSrc === undefined && profilePhoto === undefined
         }
 
         let editedProfile = {
