@@ -429,3 +429,7 @@ textarea.form-control:invalid:hover, textarea.form-control.is-invalid:hover {
     font-style: italic;
     font-size: 0.8rem;
 }
+
+*:focus {
+    outline: none !important;
+}

@@ -66,8 +66,6 @@ class BlocksMembersElement extends Component{
         const { isLinking, isLinked, linkingError, linkingErrorMessage } = this.state;
         const { elem, editable, slug, handler } = this.props;
 
-        console.log(elem);
-
         return (
             <>
                 <div className={"block d-flex flex-row align-items-center background-lighter mb-2 py-2" + (editable ? " pl-3 pr-2" : " px-3")}>

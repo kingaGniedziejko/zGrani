@@ -72,17 +72,17 @@ class ProfileDataFormGroup extends Component {
                             deleteHandler={this.handleDelete}
                         />
                     </Col>
-                    <Col className={"xs-5 p-0 ml-1"} style={{width: "100%"}}>
-                        <h6 className={"mb-3"}>Tło</h6>
-                        <ImageBlocksDisplay
-                            type={"single"}
-                            elementsList={state.profileBackgroundSrc}
-                            slug={"profileBackgroundSrc"}
-                            fileSlug={"profileBackground"}
-                            addHandler={this.handleAdd}
-                            deleteHandler={this.handleDelete}
-                        />
-                    </Col>
+                    {/*<Col className={"xs-5 p-0 ml-1"} style={{width: "100%"}}>*/}
+                    {/*    <h6 className={"mb-3"}>Tło</h6>*/}
+                    {/*    <ImageBlocksDisplay*/}
+                    {/*        type={"single"}*/}
+                    {/*        elementsList={state.profileBackgroundSrc}*/}
+                    {/*        slug={"profileBackgroundSrc"}*/}
+                    {/*        fileSlug={"profileBackground"}*/}
+                    {/*        addHandler={this.handleAdd}*/}
+                    {/*        deleteHandler={this.handleDelete}*/}
+                    {/*    />*/}
+                    {/*</Col>*/}
                 </Form.Group>
 
                 <Form.Control

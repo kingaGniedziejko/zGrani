@@ -111,8 +111,8 @@ class PersonalDataFormGroup extends Component{
         }
     }
 
-    blockInput = (title, slug) => {
-        let list = this.props[slug];
+    blockInput = (title, slug, dataSlug) => {
+        let list = this.props.data[dataSlug];
 
         return (
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
@@ -146,7 +146,7 @@ class PersonalDataFormGroup extends Component{
     handleLinkingMember = (slug, operation, index, login) => {
         let elements = this.props.state[slug];
         let newMembers = this.props.state.newMembers;
-        const { usersArtists } = this.props;
+        const { usersArtists } = this.props.data;
         let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
 
         switch (operation){
@@ -203,7 +203,7 @@ class PersonalDataFormGroup extends Component{
     }
 
     statusInput = () => {
-        const list = this.props.statusFiltered;
+        const list = this.props.data.statusFilteredOrdered;
         const { statusError } = this.state;
 
         return (
@@ -216,7 +216,7 @@ class PersonalDataFormGroup extends Component{
                     ? <p className={"error mb-3"}>{statusError}</p>
                     : ""
                 }
-                <BlocksStatus elementsList={this.props.state.status} instrumentList={this.props.instruments} slug={"status"}
+                <BlocksStatus elementsList={this.props.state.status} instrumentList={this.props.data.instrumentsOrdered} slug={"status"}
                                deleteHandler={this.handleDelete} instrumentHandler={this.handleStatusInstrument}/>
             </Form.Group>
         )
@@ -271,18 +271,17 @@ class PersonalDataFormGroup extends Component{
 
     render() {
         let userType;
-
         const type1 = {type: "artysta", typeSlug: "artist", nameFieldText: "Pseudonim"}
         const type2 = {type: "zespol", typeSlug: "band", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation = "create", user = undefined, state, auth, voivodeships, voivodeshipsOrdered, statusFiltered, genres, instruments } = this.props;
+        const { type, operation = "create", user = undefined, state, data
+            // auth, voivodeships, voivodeshipsOrdered, statusFiltered, genres, instruments
+        } = this.props;
 
         if (type === type1.typeSlug) userType = type1;
         else if (type === type2.typeSlug) userType = type2;
 
-        const isEdit = operation === "edit" && user;
-
-        if (!statusFiltered || !voivodeships || !voivodeshipsOrdered || !instruments || !genres) return ""
+        const isEdit = operation === "edit" && data.user;
 
         return (
             <div className={"d-flex flex-column align-items-center"}>
@@ -291,29 +290,29 @@ class PersonalDataFormGroup extends Component{
                         id={"login"}
                         type={"text"}
                         placeholder={"Login"}
-                        defaultValue={isEdit ? user.login : ""}
+                        defaultValue={isEdit ? data.user.login : ""}
                         size="sm"
                         autoComplete={"off"}
                         maxLength={"50"}
                         onChange={this.handleChange}
                         onBlur={this.handleBlur}
-                        isInvalid={this.props.state.errors.login}
+                        isInvalid={state.errors.login}
                     />
-                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.login}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.login}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className={"block mb-4"}>
                     <Form.Control
                         id={"email"}
                         type={"email"}
                         placeholder={"Email"}
-                        defaultValue={isEdit ? auth.email : ""}
+                        defaultValue={isEdit ? data.auth.email : ""}
                         size="sm"
                         autoComplete={"off"}
                         onChange={this.handleChange}
                         onBlur={this.handleBlur}
-                        isInvalid={this.props.state.errors.email}
+                        isInvalid={state.errors.email}
                     />
-                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.email}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.email}</Form.Control.Feedback>
                 </Form.Group>
 
                 {operation === "create" ?
@@ -326,9 +325,9 @@ class PersonalDataFormGroup extends Component{
                                 size="sm"
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
-                                isInvalid={this.props.state.errors.password}
+                                isInvalid={state.errors.password}
                             />
-                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.password}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.password}</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className={"block mb-5"}>
                             <Form.Control
@@ -338,9 +337,9 @@ class PersonalDataFormGroup extends Component{
                                 size="sm"
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
-                                isInvalid={this.props.state.errors.passwordRep}
+                                isInvalid={state.errors.passwordRep}
                             />
-                            <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.passwordRep}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.passwordRep}</Form.Control.Feedback>
                         </Form.Group>
                     </>
                     : ""
@@ -361,24 +360,24 @@ class PersonalDataFormGroup extends Component{
                         id={"name"}
                         type={"text"}
                         placeholder={userType.nameFieldText}
-                        defaultValue={isEdit ? user.name : ""}
+                        defaultValue={isEdit ? data.user.name : ""}
                         size="sm"
                         autoComplete={"off"}
                         maxLength={"100"}
                         onChange={this.handleChange}
                         onBlur={this.handleBlur}
-                        isInvalid={this.props.state.errors.name}
+                        isInvalid={state.errors.name}
                     />
-                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.name}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.name}</Form.Control.Feedback>
                 </Form.Group>
 
 
                 <Form.Group className={"block mb-4"}>
                     <Dropdown
                         placeholder={"Województwo"}
-                        defaultValue={isEdit ? voivodeships[user.voivodeshipId].name : ""}
+                        defaultValue={isEdit ? data.voivodeships[data.user.voivodeshipId].name : ""}
                         value={state.voivodeship}
-                        list={voivodeshipsOrdered}
+                        list={data.voivodeshipsOrdered}
                         slug={"voivodeship"}
                         toggleItem={this.toggleSelected}
                     />
@@ -388,47 +387,23 @@ class PersonalDataFormGroup extends Component{
                         id={"city"}
                         type={"text"}
                         placeholder={"Miasto"}
-                        defaultValue={isEdit ? user.city : ""}
+                        defaultValue={isEdit ? data.user.city : ""}
                         size="sm"
                         autoComplete={"off"}
                         maxLength={"50"}
                         onChange={this.handleChange}
                         onBlur={this.handleBlur}
-                        isInvalid={this.props.state.errors.city}
+                        isInvalid={state.errors.city}
                     />
-                    <Form.Control.Feedback type="invalid" className={"text-left"}>{this.props.state.errors.city}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.city}</Form.Control.Feedback>
                 </Form.Group>
 
-                { this.blockInput("Gatunki", "genres") }
-                { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments") : this.membersInput() }
+                { this.blockInput("Gatunki", "genres", "genresOrdered") }
+                { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments", "instrumentsOrdered") : this.membersInput() }
                 { this.statusInput() }
             </div>
         );
     }
 }
 
-
-const mapStateToProps = (state) => {
-    return {
-        auth: state.firebase.auth,
-        voivodeships: state.firestore.data.voivodeships,
-        voivodeshipsOrdered: state.firestore.ordered.voivodeships,
-        genres: state.firestore.ordered.genres,
-        instruments: state.firestore.ordered.instruments,
-        statusFiltered: state.firestore.ordered.statusFiltered,
-        usersArtists: state.firestore.ordered.usersArtists,
-        users: state.firestore.ordered.users
-    }
-}
-
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect((props) => [
-        {collection: "voivodeships", orderBy: "name"},
-        {collection: "genres", orderBy: "name"},
-        {collection: "instruments", orderBy: "name"},
-        {collection: "status", where: ["type", "in", [props.type, "all"]], storeAs: "statusFiltered"},
-        {collection: "users", where: ["isArtist", "==", true], storeAs: "usersArtists"},
-        {collection: "users"}
-    ])
-)(PersonalDataFormGroup);
+export default PersonalDataFormGroup;

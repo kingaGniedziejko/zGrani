@@ -53,9 +53,9 @@ class UserProfile extends Component {
         if (profile && profile.description) sectionArray.push(this.descriptionSection);
         sectionArray.push(this.genresInstrumentsMembersSection);
         if (user.isArtist && user.bandsId) sectionArray.push(this.bandsSection);
-        if (profile && profile.recordings) sectionArray.push(this.recordsSection);
+        if (profile && profile.recordings && profile.recordings.length !==0 ) sectionArray.push(this.recordsSection);
         if (profile && profile.imageGallery && profile.imageGallery.length !== 0) sectionArray.push(this.gallerySection);
-        if (profile && profile.videos) sectionArray.push(this.videoSection);
+        if (profile && profile.videos && profile.videos.length !== 0 ) sectionArray.push(this.videoSection);
 
         let isBackgroundLight = false;
 
@@ -101,8 +101,6 @@ class UserProfile extends Component {
                 })}}>Skontaktuj się</Button>
                 {this.displayMessageEdit()}
             </>
-
-        console.log(profile);
 
         return (
             <>

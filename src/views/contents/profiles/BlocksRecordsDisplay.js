@@ -45,8 +45,6 @@ class BlocksRecordsDisplay extends Component{
     render() {
         let { elementsList, slug, fileSlug, srcSlug, deletedSlug, deleteHandler  } = this.props;
 
-        console.log(elementsList);
-
         return (
             <div className={"block blocks-container mb-5 d-flex flex-column align-items-center"}>
                 <div className={"block d-flex flex-column"}>
