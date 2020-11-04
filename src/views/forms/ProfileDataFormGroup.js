@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Col, Form, Row } from "react-bootstrap";
 
-import ImageBlocksDisplay from "./ImageBlocksDisplay";
-import BlocksRecordsDisplay from "./BlocksRecordsDisplay";
+import BlocksImage from "../displays/BlocksImage";
+import BlocksRecords from "../displays/BlocksRecords";
 
 class ProfileDataFormGroup extends Component {
 
@@ -63,7 +63,7 @@ class ProfileDataFormGroup extends Component {
                 <Form.Group as={Row} className={"d-flex flex-row justify-content-center"} style={{width: "100%"}}>
                     <Col className={"xs-6 p-0 mr-1"} style={{width: "100%"}}>
                         <h6 className={"mb-3"}>Zdjęcie&nbsp;profilowe</h6>
-                        <ImageBlocksDisplay
+                        <BlocksImage
                             type={"single"}
                             elementsList={state.profilePhotoSrc}
                             slug={"profilePhotoSrc"}
@@ -74,7 +74,7 @@ class ProfileDataFormGroup extends Component {
                     </Col>
                     {/*<Col className={"xs-5 p-0 ml-1"} style={{width: "100%"}}>*/}
                     {/*    <h6 className={"mb-3"}>Tło</h6>*/}
-                    {/*    <ImageBlocksDisplay*/}
+                    {/*    <BlocksImage*/}
                     {/*        type={"single"}*/}
                     {/*        elementsList={state.profileBackgroundSrc}*/}
                     {/*        slug={"profileBackgroundSrc"}*/}
@@ -98,7 +98,7 @@ class ProfileDataFormGroup extends Component {
                 />
 
                 <h6 className={"mb-4 mt-2"}>Nagrania</h6>
-                <BlocksRecordsDisplay
+                <BlocksRecords
                     elementsList={state.recordingsSrc.concat(state.recordingsSrcNew)}
                     srcSlug={"recordingsSrc"}
                     slug={"recordingsSrcNew"}
@@ -109,7 +109,7 @@ class ProfileDataFormGroup extends Component {
                 />
 
                 <h6 className={"mb-4 mt-2"}>Galeria</h6>
-                <ImageBlocksDisplay
+                <BlocksImage
                     type={"multiple"}
                     elementsList={state.gallerySrc.concat(state.gallerySrcNew)}
                     srcSlug={"gallerySrc"}

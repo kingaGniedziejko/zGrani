@@ -4,12 +4,12 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom"
 
-import { signup } from "../../../store/actions/authActions";
+import { signup } from "../../store/actions/authActions";
 
-import PersonalDataFormGroup from "./PersonalDataFormGroup";
+import PersonalDataFormGroup from "../../views/forms/PersonalDataFormGroup";
 import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
-import Loader from "../../layouts/Loader";
+import Loader from "../../views/Loader";
 
 class UserProfileCreate extends Component{
     state = {

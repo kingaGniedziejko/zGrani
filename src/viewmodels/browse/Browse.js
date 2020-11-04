@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import "../../../resources/styles/browse_style.css"
+import "../../resources/styles/browse_style.css"
 
 import BrowseContent from "./BrowseContent";
 

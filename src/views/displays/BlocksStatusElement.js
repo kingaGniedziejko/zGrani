@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {X} from 'react-bootstrap-icons';
-import Dropdown from "./DropdownInput";
+import Dropdown from "../inputs/DropdownInput";
 
 class BlocksStatusElement extends Component{
     state = {

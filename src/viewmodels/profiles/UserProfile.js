@@ -9,16 +9,16 @@ import emailjs from 'emailjs-com';
 import isEmpty from "validator/es/lib/isEmpty";
 import isEmail from "validator/es/lib/isEmail";
 
-import "../../../resources/styles/profile_style.css";
+import "../../resources/styles/profile_style.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { ExclamationCircle } from "react-bootstrap-icons";
 
-import Blocks from "./Blocks";
-import BlocksWithButton from "./BlocksWithButton";
-import ErrorPage from "../../layouts/ErrorPage";
-import Loader from "../../layouts/Loader";
+import Blocks from "../../views/displays/Blocks";
+import BlocksWithButton from "../../views/displays/BlocksWithButton";
+import ErrorPage from "../../views/ErrorPage";
+import Loader from "../../views/Loader";
 import ReactAudioPlayer from "react-audio-player";
 
 class UserProfile extends Component {

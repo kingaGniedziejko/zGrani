@@ -6,9 +6,9 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 
-import "../../../resources/styles/browse_style.css"
+import "../../resources/styles/browse_style.css"
 
-import Dropdown from "../profiles/DropdownInput";
+import Dropdown from "../../views/inputs/DropdownInput";
 import SearchDisplay from "./SearchDisplay";
 
 class SearchContent extends Component {

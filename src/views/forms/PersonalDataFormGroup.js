@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Button, Form, Modal } from "react-bootstrap";
 import cloneDeep from 'lodash/cloneDeep';
 
-import "../../../resources/styles/modal_style.css";
+import "../../resources/styles/modal_style.css";
 
-import Blocks from "./Blocks";
-import BlocksMembers from "./BlocksMembers";
-import Dropdown from "./DropdownInput";
-import BlocksStatus from "./BlocksStatus";
+import Blocks from "../displays/Blocks";
+import BlocksMembers from "../displays/BlocksMembers";
+import Dropdown from "../inputs/DropdownInput";
+import BlocksStatus from "../displays/BlocksStatus";
 import isEmpty from "validator/es/lib/isEmpty";
 import equals from "validator/es/lib/equals";
 

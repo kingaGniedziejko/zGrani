@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from "react-bootstrap";
 
-import ImageBlock from "./ImageBlock";
+import BlocksImageElement from "./BlocksImageElement";
 
-class ImageBlocksDisplay extends Component{
+class BlocksImage extends Component{
 
     selectFiles = (e) => {
         const { type, slug, fileSlug, addHandler } = this.props;
@@ -56,12 +56,12 @@ class ImageBlocksDisplay extends Component{
                     {type === "single" ?
                         elementsList === undefined
                             ? this.buttonAdd(type)
-                            : <ImageBlock imageUrl={elementsList} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
+                            : <BlocksImageElement imageUrl={elementsList} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
                         :
                         elementsList === undefined ? ""
                             : elementsList.map((elem, index) => {
                                 return (
-                                    <ImageBlock key={index} index={index} imageUrl={elem} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
+                                    <BlocksImageElement key={index} index={index} imageUrl={elem} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
                                 )})
                     }
                 </div>
@@ -71,4 +71,4 @@ class ImageBlocksDisplay extends Component{
     }
 }
 
-export default ImageBlocksDisplay;
+export default BlocksImage;

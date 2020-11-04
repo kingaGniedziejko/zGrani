@@ -3,7 +3,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { withRouter, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "../../../resources/styles/header_style.css"
+import "../../resources/styles/header_style.css"
 
 import LoggedInButtons from "./LoggedInButtons";
 import LoggedOutButtons from "./LoggedOutButtons";

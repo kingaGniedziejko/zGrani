@@ -4,7 +4,7 @@ import ReactAudioPlayer from "react-audio-player";
 
 import {X} from "react-bootstrap-icons";
 
-class BlocksRecordsDisplay extends Component{
+class BlocksRecords extends Component{
 
     selectFiles = (e) => {
         const { slug, fileSlug, addHandler } = this.props;
@@ -69,4 +69,4 @@ class BlocksRecordsDisplay extends Component{
     }
 }
 
-export default BlocksRecordsDisplay;
+export default BlocksRecords;

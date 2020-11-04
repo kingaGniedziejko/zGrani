@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import "../../../resources/styles/profile_style.css"
+import "../../resources/styles/profile_style.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faGuitar, faMusic } from "@fortawesome/free-solid-svg-icons";
 
-import Blocks from "./Blocks";
+import Blocks from "../../views/displays/Blocks";
 
 class ProfileShortcut extends Component {
     render () {

@@ -4,11 +4,11 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import PersonalDataFormGroup from "./PersonalDataFormGroup";
-import ProfileDataFormGroup from "./ProfileDataFormGroup";
+import PersonalDataFormGroup from "../../views/forms/PersonalDataFormGroup";
+import ProfileDataFormGroup from "../../views/forms/ProfileDataFormGroup";
 import { firestoreConnect } from "react-redux-firebase";
-import { editUser } from "../../../store/actions/userActions";
-import Loader from "../../layouts/Loader";
+import { editUser } from "../../store/actions/userActions";
+import Loader from "../../views/Loader";
 
 class UserProfileEdit extends Component{
     state = {

@@ -5,7 +5,7 @@ import {ChevronDown} from "react-bootstrap-icons";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import Loader from "../../layouts/Loader";
+import Loader from "../../views/Loader";
 
 class BrowseDisplay extends Component{
     state = {

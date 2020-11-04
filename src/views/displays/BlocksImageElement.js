@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {X} from 'react-bootstrap-icons';
 import {Image} from "react-bootstrap";
 
-class ImageBlock extends Component{
+class BlocksImageElement extends Component{
     render() {
         let { imageUrl, slug, index, fileSlug, srcSlug, deletedSlug, deleteHandler } = this.props;
 
@@ -16,4 +16,4 @@ class ImageBlock extends Component{
     }
 }
 
-export default ImageBlock;
+export default BlocksImageElement;
