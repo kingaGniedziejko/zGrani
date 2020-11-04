@@ -107,8 +107,10 @@ class UserProfile extends Component {
                 <div className={"section py-4 py-lg-0"} style={{backgroundColor: "var(--background)"}}>
                     <Container className={"user-info"}>
                         <Row>
-                            <Col md={5} className={"d-flex flex-row"}>
-                                <Img className={"user-photo"} src={user.imageUrl} />
+                            <Col sm={6} md={5}>
+                                <div className={"img-wrap"}>
+                                    <Img src={user.imageUrl} />
+                                </div>
                             </Col>
                             <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3"}>
                                 <h4 className={"mb-1"}>{ user.name }</h4>
