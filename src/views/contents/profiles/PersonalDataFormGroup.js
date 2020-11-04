@@ -7,9 +7,6 @@ import "../../../resources/styles/modal_style.css";
 import Blocks from "./Blocks";
 import BlocksMembers from "./BlocksMembers";
 import Dropdown from "./DropdownInput";
-import {compose} from "redux";
-import {firestoreConnect} from "react-redux-firebase";
-import {connect} from "react-redux";
 import BlocksStatus from "./BlocksStatus";
 import isEmpty from "validator/es/lib/isEmpty";
 import equals from "validator/es/lib/equals";
@@ -274,9 +271,7 @@ class PersonalDataFormGroup extends Component{
         const type1 = {type: "artysta", typeSlug: "artist", nameFieldText: "Pseudonim"}
         const type2 = {type: "zespol", typeSlug: "band", nameFieldText: "Nazwa zespołu"}
 
-        const { type, operation = "create", user = undefined, state, data
-            // auth, voivodeships, voivodeshipsOrdered, statusFiltered, genres, instruments
-        } = this.props;
+        const { type, operation = "create", state, data } = this.props;
 
         if (type === type1.typeSlug) userType = type1;
         else if (type === type2.typeSlug) userType = type2;

@@ -7,6 +7,9 @@ import { Redirect } from "react-router-dom"
 import { signup } from "../../../store/actions/authActions";
 
 import PersonalDataFormGroup from "./PersonalDataFormGroup";
+import {compose} from "redux";
+import {firestoreConnect} from "react-redux-firebase";
+import Loader from "../../layouts/Loader";
 
 class UserProfileCreate extends Component{
     state = {
@@ -88,9 +91,10 @@ class UserProfileCreate extends Component{
     }
 
     render() {
-        const { auth, authError } = this.props;
+        const { auth, authError, usersArtists, statusFilteredOrdered, voivodeshipsOrdered, genresOrdered, instrumentsOrdered } = this.props;
 
         if (auth.uid) return <Redirect to={"/"} />;
+        if (!auth || !usersArtists || !statusFilteredOrdered || !voivodeshipsOrdered || !genresOrdered || !instrumentsOrdered) return <Loader/>;
 
         let userType;
         const type1 = {
@@ -121,7 +125,22 @@ class UserProfileCreate extends Component{
                             { authError ? <p className={"error"}>{authError}</p> : null}
 
                             <Form id={"personal-data-form"} className={"mt-5 d-flex flex-column"} onSubmit={this.handleSubmit} style={{width: "100%"}}>
-                                <PersonalDataFormGroup type={userType.typeSlug} operation={"create"} handleUpdate={this.handleUpdate} state={this.state}/>
+                                <PersonalDataFormGroup
+                                    type={userType.typeSlug}
+                                    operation={"create"}
+                                    data={{
+                                        auth: auth,
+                                        // user: user,
+                                        // usersOrdered: usersOrdered,
+                                        usersArtists: usersArtists,
+                                        statusFilteredOrdered: statusFilteredOrdered,
+                                        // voivodeships: voivodeships,
+                                        voivodeshipsOrdered: voivodeshipsOrdered,
+                                        genresOrdered: genresOrdered,
+                                        instrumentsOrdered: instrumentsOrdered,
+                                    }}
+                                    handleUpdate={this.handleUpdate}
+                                    state={this.state}/>
                                 <Form.Group className={"block mb-2"}>
                                     <>
                                         <Form.Check
@@ -153,7 +172,13 @@ class UserProfileCreate extends Component{
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        authError: state.auth.authError
+        authError: state.auth.authError,
+
+        usersArtists: state.firestore.ordered.users && state.firestore.ordered.users.filter(user => user.isArtist),
+        statusFilteredOrdered: state.firestore.ordered.statusFiltered,
+        voivodeshipsOrdered: state.firestore.ordered.voivodeships,
+        genresOrdered: state.firestore.ordered.genres,
+        instrumentsOrdered: state.firestore.ordered.instruments
     }
 }
 
@@ -163,4 +188,13 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfileCreate);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect((props) => [
+        {collection: "users"},
+        {collection: "status", where: ["type", "in", [props.user && props.user.isArtist ? "artist" : "band", "all"]], storeAs: "statusFiltered"},
+        {collection: "voivodeships", orderBy: "name"},
+        {collection: "genres", orderBy: "name"},
+        {collection: "instruments", orderBy: "name"}
+    ])
+)(UserProfileCreate);
