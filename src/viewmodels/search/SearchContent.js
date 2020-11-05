@@ -19,7 +19,7 @@ class SearchContent extends Component {
         genre: '',
         instrument: '',
 
-        isExtended: false,
+        isExtended: true,
         searchParams: []
     }
 
@@ -124,7 +124,7 @@ class SearchContent extends Component {
                     {isExtended ?
                         <Row className={"justify-content-center mt-2"} style={{width: "100%"}}>
                             <Col className={"d-flex flex-column align-items-center mb-3"} xs={11} sm={6} md={5} lg={4} xl={3}>
-                                <h6 className={"mb-4"}>Cel</h6>
+                                <h6 className={"mb-2 mb-sm-4"}>Cel</h6>
 
                                 <RadioGroup name="purpose" selectedValue={this.state.purpose} onChange={(e) => this.handleRadioChange(e)}>
                                     {filteredStatus.map((status, index) => {
@@ -155,8 +155,8 @@ class SearchContent extends Component {
                                     </div>
                                 </RadioGroup>
                             </Col>
-                            <Col className={"d-flex flex-column align-items-center"} xs={11} sm={6} md={5} lg={4} xl={3}>
-                                <h6 className={"mb-4"}>Parametry</h6>
+                            <Col className={"d-flex flex-column align-items-center mt-4 mt-sm-0"} xs={11} sm={6} md={5} lg={4} xl={3}>
+                                <h6 className={"mb-3 mb-sm-4"}>Parametry</h6>
 
                                 <div className={"block mb-3"}>
                                     <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeshipsArray} slug={"voivodeship"} toggleItem={this.toggleSelected} />
@@ -198,7 +198,7 @@ class SearchContent extends Component {
                 city: '',
                 genre: '',
                 instrument: '',
-                isExtended: false,
+                isExtended: true,
                 searchParams: []
             })
         }

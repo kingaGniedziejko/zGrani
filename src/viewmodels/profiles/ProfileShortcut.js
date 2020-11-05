@@ -32,7 +32,7 @@ class ProfileShortcut extends Component {
 
         return(
             <div className={"profile-shortcut mb-5"}>
-                <Link to={ "/profil/" + user.id } className={"mb-2 d-block"}>
+                <Link to={ "/profil/" + user.id } className={"mb-3 d-block"}>
                     <div className={"img-wrap"}>
                         <Image src={ user.imageUrl } className={"profile-shortcut-picture"}/>
                     </div>

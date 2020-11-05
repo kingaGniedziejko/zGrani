@@ -88,17 +88,22 @@ class UserProfile extends Component {
 
         const button = auth.uid && auth.uid === id ?
             <>
-                <Link to={"/profil/" + id + "/edytowanie"} className={""}>
+                <Link to={"/profil/" + id + "/edytowanie"} style={{width: "fit-content"}}>
                     <Button variant="outline-accent" size="sm">Edytuj profil</Button>
                 </Link>
                 { profile === undefined ? <ExclamationCircle className={"ml-3"} size={22}/> : ""}
             </>
             :
             <>
-                <Button variant="outline-accent" size="sm" onClick={() => {this.setState({
-                    modalShow:true,
-                    name: (this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) || (!this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) ? '' : this.props.activeUser.name,
-                })}}>Skontaktuj się</Button>
+                <Button
+                    variant="outline-accent"
+                    size="sm"
+                    onClick={() => {this.setState({
+                        modalShow:true,
+                        name: (this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) || (!this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) ? '' : this.props.activeUser.name,
+                    })}}>
+                    Skontaktuj się
+                </Button>
                 {this.displayMessageEdit()}
             </>
 
@@ -107,12 +112,12 @@ class UserProfile extends Component {
                 <div className={"section py-4 py-lg-0"} style={{backgroundColor: "var(--background)"}}>
                     <Container className={"user-info"}>
                         <Row>
-                            <Col sm={6} md={5}>
+                            <Col sm={6} md={5} xl={4}>
                                 <div className={"img-wrap"}>
                                     <Img src={user.imageUrl} />
                                 </div>
                             </Col>
-                            <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3"}>
+                            <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3 d-flex flex-column"}>
                                 <h4 className={"mb-1"}>{ user.name }</h4>
                                 <p className={"mb-3"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
                                 {statusArray
