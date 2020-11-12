@@ -31,6 +31,20 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 authError: action.err && action.err.message
             }
+        case 'FORGET_PASSWORD_SUCCESS':
+            console.log("forgot password success");
+            return {
+                ...state,
+                forgotPasswordError: "",
+                forgotPasswordAwaitMessage: "Link resetujący hasło został wysłany na podany adres email"
+            }
+        case 'FORGET_PASSWORD_ERROR':
+            console.log("forgot password error");
+            return {
+                ...state,
+                forgotPasswordError: "błędny email",
+                forgotPasswordAwaitMessage: ""
+            }
         default:
             return state;
     }

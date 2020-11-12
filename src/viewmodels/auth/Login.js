@@ -94,7 +94,7 @@ class Login extends Component{
                                     />
                                     <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.email}</Form.Control.Feedback>
                                 </Form.Group>
-                                <Form.Group className={"block mb-5"}>
+                                <Form.Group className={"block mb-1"}>
                                     <Form.Control
                                         id={"password"}
                                         type={"password"}
@@ -106,6 +106,10 @@ class Login extends Component{
                                     />
                                     <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.password}</Form.Control.Feedback>
                                 </Form.Group>
+
+                                <Link to={"/zapomnialem-hasla"} className={"align-self-end mb-5"}>
+                                    <small style={{fontSize: "0.8rem"}}>Zapomniałem/-am hasła</small>
+                                </Link>
 
                                 <Button block type="submit" variant="outline-accent" size="sm" className={"mb-3"}>Zaloguj się</Button>
                                 <p className={"mb-3"}>lub</p>

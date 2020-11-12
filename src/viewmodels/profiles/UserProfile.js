@@ -87,12 +87,12 @@ class UserProfile extends Component {
         let voivodeship = voivodeships[user.voivodeshipId].name;
 
         const button = auth.uid && auth.uid === id ?
-            <>
+            <div className={"d-flex flex-row align-items-center"}>
                 <Link to={"/profil/" + id + "/edytowanie"} style={{width: "fit-content"}}>
                     <Button variant="outline-accent" size="sm">Edytuj profil</Button>
                 </Link>
                 { profile === undefined ? <ExclamationCircle className={"ml-3"} size={22}/> : ""}
-            </>
+            </div>
             :
             <>
                 <Button
@@ -445,7 +445,7 @@ class UserProfile extends Component {
             }
         })
 
-        return !Object.keys(newErrors).some((key) => errors[key])
+        return !Object.keys(newErrors).some((key) => newErrors[key])
     }
 }
 

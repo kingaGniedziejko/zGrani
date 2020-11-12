@@ -45,7 +45,10 @@ class PersonalDataFormGroup extends Component{
                 case "login":
                     if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
                     else {
-                        if (this.props.users.some(user => user.login === value)) errorMessage = "* Login jest już zajęty";
+                        if (this.props.operation === "edit"){
+                            if (this.props.users.some(user => user.login === value)) errorMessage = "* Login jest już zajęty";
+                            else errorMessage = "";
+                        }
                         else errorMessage = "";
                     }
                     break;

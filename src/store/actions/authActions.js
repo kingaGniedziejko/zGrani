@@ -106,3 +106,31 @@ export const passwordUpdate = (newPassword) => {
         }
     }
 }
+
+export const forgotPassword = (email) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase();
+
+        const config = {
+            url: process.env.REACT_APP_FORGOT_PASSWORD_REDIRECT,
+            handleCodeInApp: true
+        }
+
+        firebase.auth().sendPasswordResetEmail(email, config)
+            .then(r => {
+                dispatch({ type: 'FORGET_PASSWORD_SUCCESS'})
+            })
+            .catch((error) => {
+                dispatch({ type: 'FORGET_PASSWORD_ERROR', error });
+            });
+
+        // firebase.auth().signInWithEmailAndPassword(
+        //     credentials.email,
+        //     credentials.password
+        // ).then(() => {
+        //     dispatch({ type: 'LOGIN_SUCCESS' });
+        // }).catch((error) => {
+        //     dispatch({ type: 'LOGIN_ERROR', error });
+        // })
+    }
+}

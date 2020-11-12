@@ -20,9 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/viewmodels/auth/ForgotPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/browse/BrowseContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/browse/BrowseContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/authActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/authReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/Content.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileCreate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Loader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +125,7 @@
       <workItem from="1604587373556" duration="1777000" />
       <workItem from="1604657391863" duration="991000" />
       <workItem from="1605035678578" duration="2270000" />
-      <workItem from="1605183612577" duration="1224000" />
+      <workItem from="1605183612577" duration="11115000" />
     </task>
     <servers />
   </component>
@@ -139,11 +148,12 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602065348763">
+    <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605187536753">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600258962379" />
     <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602065348763" />
+    <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1605187536753" />
     <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1603443857822">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

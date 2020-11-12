@@ -75,8 +75,6 @@ class UserProfileEdit extends Component{
     }
 
     static getDerivedStateFromProps(props, prevState) {
-
-
         if (!prevState.isLoaded) {
             let isLoaded = false;
             if (props.user && props.genres && props.instruments && props.users && props.statusFiltered && props.profile) isLoaded = true;
@@ -225,7 +223,7 @@ class UserProfileEdit extends Component{
         console.log(this.props);
 
         if (!auth.uid || auth.uid !== id) return <Redirect to={"/logowanie"} />
-        if (!auth || !user || !profile || !users || !usersOrdered || !usersArtists
+        if (!auth || !user || !users || !usersOrdered || !usersArtists
             || !statusFiltered || !statusFilteredOrdered || !voivodeships || !voivodeshipsOrdered
             || !genres || !genresOrdered || !instruments || !instrumentsOrdered) return <Loader/>;
 

@@ -27,7 +27,7 @@ class UserProfileCreate extends Component{
         status: [],
 
         agreement: false,
-        isArtist: this.props.match.params === "artysta",
+        isArtist: this.props.match.params.type === "artysta",
 
         errors: {}
     }
@@ -95,6 +95,8 @@ class UserProfileCreate extends Component{
 
         if (auth.uid) return <Redirect to={"/"} />;
         if (!auth || !usersArtists || !statusFilteredOrdered || !voivodeshipsOrdered || !genresOrdered || !instrumentsOrdered) return <Loader/>;
+
+        console.log(this.state.isArtist);
 
         let userType;
         const type1 = {
