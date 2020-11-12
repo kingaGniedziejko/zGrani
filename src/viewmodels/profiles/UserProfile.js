@@ -158,6 +158,8 @@ class UserProfile extends Component {
     genresInstrumentsMembersSection = (isBgLight) => {
         const { user, genres, instruments, users } = this.props;
 
+        console.log(users);
+
         let genresNames = [];
         let instrumentsNames = [];
         let members = [];
@@ -198,7 +200,9 @@ class UserProfile extends Component {
         const { user, users } = this.props;
         let bands = [];
 
-        user.bandsId && user.bandsId.forEach(bandId => {
+        console.log(users);
+
+        users && user.bandsId && user.bandsId.forEach(bandId => {
             let band = users.find( elem => elem.id === bandId)
             bands.push({
                 name: band.name,
@@ -447,8 +451,8 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        user: state.firestore.data.users && state.firestore.data.users[ownProps.match.params.id],
-        users: state.firestore.ordered.users,
+        user: state.firestore.data.allUsers && state.firestore.data.allUsers[ownProps.match.params.id],
+        users: state.firestore.ordered.allUsers,
         profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
         auth: state.firebase.auth,
         activeUser: state.firebase.profile,
@@ -462,7 +466,7 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
-        {collection: "users"},
+        {collection: "users", storeAs: "allUsers"},
         {collection: "profiles", where: ["userId", "==", props.match.params.id]},
         {collection: "status"},
         {collection: "voivodeships"},

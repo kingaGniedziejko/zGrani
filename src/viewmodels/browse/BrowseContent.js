@@ -15,7 +15,6 @@ class BrowseContent extends Component{
         instrument: ''
     }
 
-
     toggleSelected = (id, item, slug, isMultiple) => {
         if (!isMultiple) {
             if (item.id === "all") {
