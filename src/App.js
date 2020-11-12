@@ -11,11 +11,13 @@ import "./resources/styles/style.css"
 import Header from "./views/header/Header";
 import Content from "./viewmodels/Content";
 import Footer from "./views/Footer";
+import ScrollToTop from "./views/ScrollToTop";
 
 class App extends Component{
     render() {
         return (
             <BrowserRouter>
+                <ScrollToTop/>
                 <Header/>
                 <Content/>
                 <Footer/>
