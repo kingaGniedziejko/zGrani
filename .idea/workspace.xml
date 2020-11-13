@@ -20,18 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/viewmodels/auth/ForgotPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/authActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/authReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/Content.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/styles/profile_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/profile_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/ForgotPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/auth/ForgotPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileCreate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Loader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/displays/BlocksImage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksRecords.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/displays/BlocksRecords.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/forms/ProfileDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/ProfileDataFormGroup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +121,7 @@
       <workItem from="1604587373556" duration="1777000" />
       <workItem from="1604657391863" duration="991000" />
       <workItem from="1605035678578" duration="2270000" />
-      <workItem from="1605183612577" duration="11115000" />
+      <workItem from="1605183612577" duration="20939000" />
     </task>
     <servers />
   </component>

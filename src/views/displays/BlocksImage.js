@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from "react-bootstrap";
+import {Button, Image, Image as Img} from "react-bootstrap";
 
 import BlocksImageElement from "./BlocksImageElement";
+import {X} from "react-bootstrap-icons";
 
 class BlocksImage extends Component{
 
@@ -42,7 +43,7 @@ class BlocksImage extends Component{
                        style={{top: 0, right: 0, height: "31px"}}
                        {...(type === "multiple" ? {multiple:true} : {})}
                        onChange={this.selectFiles}/>
-                <Button variant="outline-accent" size="sm">Dodaj</Button>
+                <Button variant="outline-accent" size="sm" className={"px-4"}>Dodaj</Button>
             </div>
         );
     }
@@ -51,20 +52,30 @@ class BlocksImage extends Component{
     render() {
         let { type, elementsList, slug, fileSlug, srcSlug, deletedSlug, deleteHandler } = this.props;
         return (
-            <div className={"blocks-container mb-5 d-flex flex-column align-items-center " + type}>
-                <div className={"d-flex flex-row flex-wrap justify-content-center"}>
-                    {type === "single" ?
-                        elementsList === undefined
-                            ? this.buttonAdd(type)
-                            : <BlocksImageElement imageUrl={elementsList} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
+            <div className={"blocks-container mb-5 flex-column align-items-center " + type}>
+                {type === "single" ?
+                    (elementsList === undefined
+                        ? this.buttonAdd(type)
                         :
-                        elementsList === undefined ? ""
+                        <div className={"img-wrap"}>
+                            <Img src={elementsList} />
+                            <X size={20} className={"position-absolute clickable background-dark"}
+                               style={{top: "5px", right: "5px"}}
+                               onClick={()=>deleteHandler(slug, fileSlug, srcSlug, deletedSlug, "")}/>
+                        </div>
+                    )
+                        // <BlocksImageElement imageUrl={elementsList} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
+                    :
+                    <div className={"d-flex flex-row flex-wrap justify-content-center"}>
+                        {elementsList === undefined ? ""
                             : elementsList.map((elem, index) => {
                                 return (
                                     <BlocksImageElement key={index} index={index} imageUrl={elem} slug={slug} fileSlug={fileSlug} srcSlug={srcSlug} deletedSlug={deletedSlug} deleteHandler={deleteHandler}/>
-                                )})
-                    }
-                </div>
+                                )
+                            })
+                        }
+                    </div>
+                }
                 {type === "single" ? "" : this.buttonAdd(type) }
             </div>
         );

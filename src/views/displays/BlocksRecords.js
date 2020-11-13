@@ -36,7 +36,7 @@ class BlocksRecords extends Component{
                     style={{top: 0, right: 0, height: "31px"}}
                     multiple={true}
                     onChange={this.selectFiles}/>
-                <Button variant="outline-accent" size="sm">Dodaj</Button>
+                <Button variant="outline-accent" size="sm" className={"px-4"}>Dodaj</Button>
             </div>
         );
     }

@@ -88,7 +88,7 @@ class ForgotPassword extends Component{
             <div id={"forgot-password"} className={"page-content d-flex justify-content-center"}>
                 <Container>
                     <Row className={"section section-card d-flex flex-column align-items-center"}>
-                        <Col className={"background-light p-5 my-2 my-sm-5 text-center"} xs={11} sm={8} md={7} lg={4}>
+                        <Col className={"background-light p-5 my-2 my-sm-5 text-center"} xs={11} sm={8} md={7} lg={5} xl={4}>
                             <h3 className={"mb-2"}>Zapomniałem/-am hasła</h3>
                             { forgotPasswordError ? <p className={"error"}>{forgotPasswordError}</p> : null}
 

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Col, Form, Row } from "react-bootstrap";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faYoutube, faInstagram, faSoundcloud } from "@fortawesome/free-brands-svg-icons";
+import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
+
 import BlocksImage from "../displays/BlocksImage";
 import BlocksRecords from "../displays/BlocksRecords";
 
@@ -18,6 +22,7 @@ class ProfileDataFormGroup extends Component {
     handleDelete = (slug, fileSlug, _, __, ___) => {
         this.props.handleUpdate(slug, undefined);
         this.props.handleUpdate(fileSlug, undefined);
+        console.log("usuwanie")
     }
 
     handleImageArrayAdd = (slug, fileSlug, fileUrl, file) => {
@@ -61,8 +66,8 @@ class ProfileDataFormGroup extends Component {
         return (
             <Form.Group className={"d-flex flex-column align-items-center"}>
                 <Form.Group as={Row} className={"d-flex flex-row justify-content-center"} style={{width: "100%"}}>
-                    <Col className={"xs-6 p-0 mr-1"} style={{width: "100%"}}>
-                        <h6 className={"mb-3"}>Zdjęcie&nbsp;profilowe</h6>
+                    <Col className={"p-0"} style={{width: "100%"}}>
+                        <h6 className={"mb-4"}>Zdjęcie&nbsp;profilowe</h6>
                         <BlocksImage
                             type={"single"}
                             elementsList={state.profilePhotoSrc}
@@ -72,18 +77,96 @@ class ProfileDataFormGroup extends Component {
                             deleteHandler={this.handleDelete}
                         />
                     </Col>
-                    {/*<Col className={"xs-5 p-0 ml-1"} style={{width: "100%"}}>*/}
-                    {/*    <h6 className={"mb-3"}>Tło</h6>*/}
-                    {/*    <BlocksImage*/}
-                    {/*        type={"single"}*/}
-                    {/*        elementsList={state.profileBackgroundSrc}*/}
-                    {/*        slug={"profileBackgroundSrc"}*/}
-                    {/*        fileSlug={"profileBackground"}*/}
-                    {/*        addHandler={this.handleAdd}*/}
-                    {/*        deleteHandler={this.handleDelete}*/}
-                    {/*    />*/}
-                    {/*</Col>*/}
                 </Form.Group>
+
+                <h6 className={"mb-4 mt-2"}>Linki</h6>
+                <div id={"links"} className={"mb-5 block"}>
+                    <div className={"d-flex flex-row align-items-center"}>
+                        <FontAwesomeIcon icon={faFacebook} className={"mr-3"}/>
+                        <Form.Group className={"block mt-2 mb-2"}>
+                            <Form.Control
+                                id={"facebookLink"}
+                                type={"text"}
+                                placeholder={"Facebook"}
+                                size="sm"
+                                autoComplete={"off"}
+                                maxLength={"50"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={state.errors.facebookLink}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.facebookLink}</Form.Control.Feedback>
+                        </Form.Group>
+                    </div>
+                    <div className={"d-flex flex-row align-items-center"}>
+                        <FontAwesomeIcon icon={faYoutube} className={"mr-3"}/>
+                        <Form.Group className={"block mt-2 mb-2"}>
+                            <Form.Control
+                                id={"youtubeLink"}
+                                type={"text"}
+                                placeholder={"Youtube"}
+                                size="sm"
+                                autoComplete={"off"}
+                                maxLength={"50"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={state.errors.youtubeLink}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.youtubeLink}</Form.Control.Feedback>
+                        </Form.Group>
+                    </div>
+                    <div className={"d-flex flex-row align-items-center"}>
+                        <FontAwesomeIcon icon={faInstagram} className={"mr-3"}/>
+                        <Form.Group className={"block mt-2 mb-2"}>
+                            <Form.Control
+                                id={"instagramLink"}
+                                type={"text"}
+                                placeholder={"Instagram"}
+                                size="sm"
+                                autoComplete={"off"}
+                                maxLength={"50"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={state.errors.instagramLink}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.instagramLink}</Form.Control.Feedback>
+                        </Form.Group>
+                    </div>
+                    <div className={"d-flex flex-row align-items-center"}>
+                        <FontAwesomeIcon icon={faSoundcloud} className={"mr-3"}/>
+                        <Form.Group className={"block mt-2 mb-2"}>
+                            <Form.Control
+                                id={"soundcloudLink"}
+                                type={"text"}
+                                placeholder={"SoundCloud"}
+                                size="sm"
+                                autoComplete={"off"}
+                                maxLength={"50"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={state.errors.soundcloudLink}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.soundcloudLink}</Form.Control.Feedback>
+                        </Form.Group>
+                    </div>
+                    <div className={"d-flex flex-row align-items-center"}>
+                        <FontAwesomeIcon icon={faGlobeAmericas} className={"mr-3"}/>
+                        <Form.Group className={"block mt-2 mb-2"}>
+                            <Form.Control
+                                id={"websiteLink"}
+                                type={"text"}
+                                placeholder={"Strona"}
+                                size="sm"
+                                autoComplete={"off"}
+                                maxLength={"50"}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                                isInvalid={state.errors.websiteLink}
+                            />
+                            <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.websiteLink}</Form.Control.Feedback>
+                        </Form.Group>
+                    </div>
+                </div>
 
                 <Form.Control
                     id={"description"}

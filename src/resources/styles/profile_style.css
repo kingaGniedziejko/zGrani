@@ -177,10 +177,10 @@
     object-fit: cover;
     top: 0;
     left: 0;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-/*@media (min-width: 575px) {*/
-/*    #user-profile audio {*/
-
-/*    }*/
-/*}*/
+#links svg {
+    width: 20px;
+}
