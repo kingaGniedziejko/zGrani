@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Nav, Row } from "react-bootstrap";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
 import PersonalDataFormGroup from "../../views/forms/PersonalDataFormGroup";
 import ProfileDataFormGroup from "../../views/forms/ProfileDataFormGroup";
@@ -74,8 +74,7 @@ class UserProfileEdit extends Component{
         galleryNew: [],
         galleryDeleted: [],
 
-        videosPrev: this.props.profile && this.props.profile.videos,
-        videos: (this.props.profile && this.props.profile.videos) || [],
+        videoLink: (this.props.profile && this.props.profile.videoLink) || "",
 
         errors: {}
     }
@@ -126,6 +125,8 @@ class UserProfileEdit extends Component{
                 recordingsSrc: (props.profile && props.profile.recordings) || [],
                 gallerySrc: (props.profile && props.profile.imageGallery) || [],
 
+                videoLink: (props.profile && props.profile.videoLink) || "",
+
                 isLoaded: isLoaded
             }
         } else {
@@ -148,7 +149,7 @@ class UserProfileEdit extends Component{
             description,
             gallerySrc, galleryNew, galleryDeleted,
             recordingsSrc, recordingsNew, recordingsDeleted,
-            // videos, videosPrev, errors
+            videoLink
         } = this.state;
 
         let editedAuth = {
@@ -200,7 +201,9 @@ class UserProfileEdit extends Component{
 
             gallerySrc: gallerySrc,
             galleryNew: galleryNew,
-            galleryDeleted: galleryDeleted
+            galleryDeleted: galleryDeleted,
+
+            videoLink: videoLink
         }
 
         this.clean(editedAuth);
@@ -213,6 +216,9 @@ class UserProfileEdit extends Component{
         console.log(editedProfile);
 
         this.props.editUser(editedAuth, editedUser, userPhoto, newMembers, editedProfile);
+
+        this.props.history.push("/profil/" + auth.uid);
+        // window.location.href = "/profil/" + auth.uid;
     }
 
     clean = (obj) => {
@@ -344,5 +350,6 @@ export default compose(
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},
         {collection: "instruments", orderBy: "name"}
-    ])
+    ]),
+    withRouter
 )(UserProfileEdit);

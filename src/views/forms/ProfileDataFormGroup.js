@@ -3,7 +3,7 @@ import { Col, Form, Row } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faYoutube, faInstagram, faSoundcloud } from "@fortawesome/free-brands-svg-icons";
-import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
+import { faGlobeAmericas, faLink } from "@fortawesome/free-solid-svg-icons";
 
 import BlocksImage from "../displays/BlocksImage";
 import BlocksRecords from "../displays/BlocksRecords";
@@ -42,6 +42,7 @@ class ProfileDataFormGroup extends Component {
                 case "instagramLink":
                 case "soundcloudLink":
                 case "websiteLink":
+                case "videoLink":
                     if (!isEmpty(value)){
                         if (!isURL(value, {allow_underscores: true})) errorMessage = "* Nieprawidłowy adres url"
                         else errorMessage = "";
@@ -68,21 +69,6 @@ class ProfileDataFormGroup extends Component {
     handleBlur = (e) => {
         this.evaluateFields([e.target.id]);
     }
-
-    // handleChange = (e) => {
-    //     this.setState({
-    //         [e.target.id]: e.target.value
-    //     })
-    //
-    //     if (this.state.errors[e.target.id]) {
-    //         this.setState({
-    //             errors: {
-    //                 ...this.state.errors,
-    //                 [e.target.id]: ""
-    //             }
-    //         })
-    //     }
-    // }
 
     // handleSubmit = (e) => {
     //     e.preventDefault();
@@ -267,7 +253,7 @@ class ProfileDataFormGroup extends Component {
                     onChange={this.handleChange}
                 />
 
-                <h6 className={"mb-4 mt-2"}>Nagrania</h6>
+                <h6 className={"mb-4 mt-3"}>Nagrania</h6>
                 <BlocksRecords
                     elementsList={state.recordingsSrc.concat(state.recordingsSrcNew)}
                     srcSlug={"recordingsSrc"}
@@ -278,7 +264,7 @@ class ProfileDataFormGroup extends Component {
                     deleteHandler={this.handleImageArrayDelete}
                 />
 
-                <h6 className={"mb-4 mt-2"}>Galeria</h6>
+                <h6 className={"mb-4 mt-3"}>Galeria</h6>
                 <BlocksImage
                     type={"multiple"}
                     elementsList={state.gallerySrc.concat(state.gallerySrcNew)}
@@ -290,7 +276,25 @@ class ProfileDataFormGroup extends Component {
                     deleteHandler={this.handleImageArrayDelete}
                 />
 
-                <h6 className={"mb-5"}>Filmy</h6>
+                <h6 className={"mb-4 mt-3"}>Film</h6>
+                <div className={"block d-flex flex-row align-items-center mb-5"}>
+                    <FontAwesomeIcon icon={faLink} className={"mr-3"}/>
+                    <Form.Group className={"block mt-2 mb-2"}>
+                        <Form.Control
+                            id={"videoLink"}
+                            type={"text"}
+                            placeholder={"Link do filmu"}
+                            defaultValue={profile && profile.videoLink}
+                            size="sm"
+                            autoComplete={"off"}
+                            maxLength={"2083"}
+                            onChange={this.handleChange}
+                            onBlur={this.handleBlur}
+                            isInvalid={state.errors.videoLink}
+                        />
+                        <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.videoLink}</Form.Control.Feedback>
+                    </Form.Group>
+                </div>
             </Form.Group>
         );
     }

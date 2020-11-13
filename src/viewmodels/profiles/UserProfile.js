@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import emailjs from 'emailjs-com';
-// import ReactPlayer from "react-player";
+import ReactPlayer from "react-player";
 import isEmpty from "validator/es/lib/isEmpty";
 import isEmail from "validator/es/lib/isEmail";
 
@@ -56,7 +56,7 @@ class UserProfile extends Component {
         if (user.isArtist && user.bandsId) sectionArray.push(this.bandsSection);
         if (profile && profile.recordings && profile.recordings.length !==0 ) sectionArray.push(this.recordsSection);
         if (profile && profile.imageGallery && profile.imageGallery.length !== 0) sectionArray.push(this.gallerySection);
-        if (profile && profile.videos && profile.videos.length !== 0 ) sectionArray.push(this.videoSection);
+        if (profile && profile.videoLink) sectionArray.push(this.videoSection);
 
         let isBackgroundLight = false;
 
@@ -292,11 +292,13 @@ class UserProfile extends Component {
     }
 
     videoSection = (_) => {
+        const {profile} = this.props;
+
         return (
             <Row className={"justify-content-center"}>
                 <Col className={"text-center align-self-center d-flex flex-column align-items-center"}>
-                    <h5 className={"mb-4"}>Filmy</h5>
-                    {/*<ReactPlayer url={"https://www.youtube.com/watch?v=6bbv_W2kLSg&ab_channel=KickItCrew"}/>*/}
+                    <h5 className={"mb-4"}>Film</h5>
+                    <ReactPlayer url={profile.videoLink}/>
                 </Col>
             </Row>
         )

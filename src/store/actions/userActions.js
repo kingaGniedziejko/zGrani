@@ -49,7 +49,8 @@ const createProfile = (auth, profile, firebase, firestore, storage) => {
         websiteLink: profile.websiteLink,
         description: profile.description,
         imageGallery: [],
-        recordings: []
+        recordings: [],
+        videoLink: profile.videoLink
     }).then( docRef => {
         profile.galleryNew.forEach( image => {
             putImageToArray(image, firestore, storage, "profile/gallery/", "profiles", docRef.id, "imageGallery");
@@ -78,7 +79,8 @@ const editProfile = (auth, profile, firebase, firestore, storage) => {
         websiteLink: profile.websiteLink,
         description: profile.description,
         imageGallery: profile.gallerySrc,
-        recordings: profile.recordingsSrc
+        recordings: profile.recordingsSrc,
+        videoLink: profile.videoLink
     }, { merge: true })
         .then(() => {
             profile.galleryNew.forEach( image => {
