@@ -42,13 +42,15 @@ export const editUser = (auth, user, userPhoto, newMembers, profile) => {
 const createProfile = (auth, profile, firebase, firestore, storage) => {
     firestore.collection('profiles').add({
         userId: auth.id,
+        facebookLink: profile.facebookLink,
+        youtubeLink: profile.youtubeLink,
+        instagramLink: profile.instagramLink,
+        soundcloudLink: profile.soundcloudLink,
+        websiteLink: profile.websiteLink,
         description: profile.description,
         imageGallery: [],
         recordings: []
     }).then( docRef => {
-        putSingleImage(profile.profileBackground, firestore, storage, "profile/background/", "profiles", docRef.id, "backgroundImageUrl");
-        deleteItemFromStorage(profile.imageUrlDeleted, firebase, storage);
-
         profile.galleryNew.forEach( image => {
             putImageToArray(image, firestore, storage, "profile/gallery/", "profiles", docRef.id, "imageGallery");
         })
@@ -69,14 +71,16 @@ const createProfile = (auth, profile, firebase, firestore, storage) => {
 
 const editProfile = (auth, profile, firebase, firestore, storage) => {
     firestore.collection('profiles').doc(profile.id).set({
+        facebookLink: profile.facebookLink,
+        youtubeLink: profile.youtubeLink,
+        instagramLink: profile.instagramLink,
+        soundcloudLink: profile.soundcloudLink,
+        websiteLink: profile.websiteLink,
         description: profile.description,
         imageGallery: profile.gallerySrc,
         recordings: profile.recordingsSrc
     }, { merge: true })
         .then(() => {
-            putSingleImage(profile.profileBackground, firestore, storage, "profile/background/", "profiles", profile.id, "backgroundImageUrl");
-            deleteItemFromStorage(profile.imageUrlDeleted, firebase, storage);
-
             profile.galleryNew.forEach( image => {
                 putImageToArray(image, firestore, storage, "profile/gallery/", "profiles", profile.id, "imageGallery");
             })

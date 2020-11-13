@@ -56,6 +56,12 @@ class UserProfileEdit extends Component{
         // profileBackgroundSrc: this.props.profile && this.props.profile.backgroundImageUrl,
         // profileBackground: '',
 
+        facebookLink: (this.props.profile && this.props.profile.facebookLink) || "",
+        youtubeLink: (this.props.profile && this.props.profile.facebookLink) || "",
+        instagramLink: (this.props.profile && this.props.profile.facebookLink) || "",
+        soundcloudLink: (this.props.profile && this.props.profile.facebookLink) || "",
+        websiteLink: (this.props.profile && this.props.profile.facebookLink) || "",
+
         description: (this.props.profile && this.props.profile.description) || "",
 
         recordingsSrc: (this.props.profile && this.props.profile.recordings) || [],
@@ -110,6 +116,12 @@ class UserProfileEdit extends Component{
                             : { ...props.statusFiltered[stat.statusId], id: stat.statusId }
                     )})) || [],
 
+                facebookLink: (props.profile && props.profile.facebookLink) || "",
+                youtubeLink: (props.profile && props.profile.facebookLink) || "",
+                instagramLink: (props.profile && props.profile.facebookLink) || "",
+                soundcloudLink: (props.profile && props.profile.facebookLink) || "",
+                websiteLink: (props.profile && props.profile.facebookLink) || "",
+
                 description: (props.profile && props.profile.description) || "",
                 recordingsSrc: (props.profile && props.profile.recordings) || [],
                 gallerySrc: (props.profile && props.profile.imageGallery) || [],
@@ -132,8 +144,9 @@ class UserProfileEdit extends Component{
         const { email, password,
             login, name, voivodeship, city, genres, instruments, members, newMembers, status, isArtist,
             profilePhoto, profilePhotoSrcPrev, profilePhotoSrc,
-            // profileBackground, profileBackgroundSrcPrev, profileBackgroundSrc,
-            description, gallerySrc, galleryNew, galleryDeleted,
+            facebookLink, youtubeLink, instagramLink, soundcloudLink, websiteLink,
+            description,
+            gallerySrc, galleryNew, galleryDeleted,
             recordingsSrc, recordingsNew, recordingsDeleted,
             // videos, videosPrev, errors
         } = this.state;
@@ -173,8 +186,11 @@ class UserProfileEdit extends Component{
         let editedProfile = {
             id: profile && profile.id,
 
-            // profileBackground: profileBackground,
-            // profileBackgroundUrlDeleted: profileBackgroundSrcPrev !== profileBackgroundSrc ? profileBackgroundSrcPrev : "",
+            facebookLink: facebookLink,
+            youtubeLink: youtubeLink,
+            instagramLink: instagramLink,
+            soundcloudLink: soundcloudLink,
+            websiteLink: websiteLink,
 
             description: description,
 

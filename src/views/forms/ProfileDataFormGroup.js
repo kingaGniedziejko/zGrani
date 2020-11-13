@@ -7,12 +7,94 @@ import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
 
 import BlocksImage from "../displays/BlocksImage";
 import BlocksRecords from "../displays/BlocksRecords";
+import isURL from "validator/es/lib/isURL";
+import isEmpty from "validator/es/lib/isEmpty";
 
 class ProfileDataFormGroup extends Component {
 
     handleChange = (e) => {
-        this.props.handleUpdate(e.target.id, e.target.value);
+        const { id, value } = e.target;
+
+        this.props.handleUpdate(id, value);
+
+        if (this.props.state.errors[id]) {
+            this.props.handleUpdate(
+                "errors",
+                {
+                    ...this.props.state.errors,
+                    [id]: ""
+                }
+            )
+        }
     }
+
+    evaluateFields = (slugs) => {
+        const {errors} = this.props.state;
+        let newErrors = {};
+
+        slugs.forEach(slug => {
+            const value = this.props.state[slug];
+            let errorMessage = "";
+
+            switch (slug) {
+                case "facebookLink":
+                case "youtubeLink":
+                case "instagramLink":
+                case "soundcloudLink":
+                case "websiteLink":
+                    if (!isEmpty(value)){
+                        if (!isURL(value, {allow_underscores: true})) errorMessage = "* Nieprawidłowy adres url"
+                        else errorMessage = "";
+                    }
+                    else errorMessage = "";
+                    break;
+                default:
+                    break;
+            }
+            newErrors[slug] = errorMessage;
+        })
+        this.props.handleUpdate(
+            "errors",
+            {
+                ...errors,
+                ...newErrors
+            }
+        )
+        // console.log(newErrors);
+
+        return !Object.keys(newErrors).some((key) => newErrors[key])
+    }
+
+    handleBlur = (e) => {
+        this.evaluateFields([e.target.id]);
+    }
+
+    // handleChange = (e) => {
+    //     this.setState({
+    //         [e.target.id]: e.target.value
+    //     })
+    //
+    //     if (this.state.errors[e.target.id]) {
+    //         this.setState({
+    //             errors: {
+    //                 ...this.state.errors,
+    //                 [e.target.id]: ""
+    //             }
+    //         })
+    //     }
+    // }
+
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const { errors } = this.state;
+    //     console.log(this.evaluateFields(["email"]));
+    //
+    //     if (this.evaluateFields(["email"])) {
+    //         if (!Object.keys(errors).some((key) => errors[key])) {
+    //             this.props.forgotPassword(this.state.email);
+    //         }
+    //     }
+    // }
 
     handleAdd = (slug, imageSlug, imageUrl, image) => {
         this.props.handleUpdate(slug, imageUrl);
@@ -88,9 +170,10 @@ class ProfileDataFormGroup extends Component {
                                 id={"facebookLink"}
                                 type={"text"}
                                 placeholder={"Facebook"}
+                                defaultValue={profile && profile.facebookLink}
                                 size="sm"
                                 autoComplete={"off"}
-                                maxLength={"50"}
+                                maxLength={"2083"}
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.facebookLink}
@@ -105,9 +188,10 @@ class ProfileDataFormGroup extends Component {
                                 id={"youtubeLink"}
                                 type={"text"}
                                 placeholder={"Youtube"}
+                                defaultValue={profile && profile.youtubeLink}
                                 size="sm"
                                 autoComplete={"off"}
-                                maxLength={"50"}
+                                maxLength={"2083"}
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.youtubeLink}
@@ -122,9 +206,10 @@ class ProfileDataFormGroup extends Component {
                                 id={"instagramLink"}
                                 type={"text"}
                                 placeholder={"Instagram"}
+                                defaultValue={profile && profile.instagramLink}
                                 size="sm"
                                 autoComplete={"off"}
-                                maxLength={"50"}
+                                maxLength={"2083"}
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.instagramLink}
@@ -139,9 +224,10 @@ class ProfileDataFormGroup extends Component {
                                 id={"soundcloudLink"}
                                 type={"text"}
                                 placeholder={"SoundCloud"}
+                                defaultValue={profile && profile.soundcloudLink}
                                 size="sm"
                                 autoComplete={"off"}
-                                maxLength={"50"}
+                                maxLength={"2083"}
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.soundcloudLink}
@@ -156,9 +242,10 @@ class ProfileDataFormGroup extends Component {
                                 id={"websiteLink"}
                                 type={"text"}
                                 placeholder={"Strona"}
+                                defaultValue={profile && profile.websiteLink}
                                 size="sm"
                                 autoComplete={"off"}
-                                maxLength={"50"}
+                                maxLength={"2083"}
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.websiteLink}

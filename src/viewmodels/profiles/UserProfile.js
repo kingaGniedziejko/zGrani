@@ -12,8 +12,9 @@ import isEmail from "validator/es/lib/isEmail";
 import "../../resources/styles/profile_style.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
 import { ExclamationCircle } from "react-bootstrap-icons";
+import { faFacebook, faYoutube, faInstagram, faSoundcloud } from "@fortawesome/free-brands-svg-icons";
 
 import Blocks from "../../views/displays/Blocks";
 import BlocksWithButton from "../../views/displays/BlocksWithButton";
@@ -107,6 +108,16 @@ class UserProfile extends Component {
                 {this.displayMessageEdit()}
             </>
 
+        const links = (
+            <div className={"d-flex flex-row mb-4"}>
+                { profile.facebookLink ? <a href={profile.facebookLink} target={"_blank"}><FontAwesomeIcon icon={faFacebook} className={"mr-3"}/></a> : ""}
+                { profile.youtubeLink ? <a href={profile.youtubeLink} target={"_blank"}><FontAwesomeIcon icon={faYoutube} className={"mr-3"}/></a> : ""}
+                { profile.instagramLink ? <a href={profile.instagramLink} target={"_blank"}><FontAwesomeIcon icon={faInstagram} className={"mr-3"}/></a> : ""}
+                { profile.soundcloudLink ? <a href={profile.soundcloudLink} target={"_blank"}><FontAwesomeIcon icon={faSoundcloud} className={"mr-3"}/></a> : ""}
+                { profile.websiteLink ? <a href={profile.websiteLink} target={"_blank"}><FontAwesomeIcon icon={faGlobeAmericas} className={"mr-3"}/></a> : ""}
+            </div>
+        )
+
         return (
             <>
                 <div className={"section py-4 py-lg-0"} style={{backgroundColor: "var(--background)"}}>
@@ -119,8 +130,9 @@ class UserProfile extends Component {
                             </Col>
                             <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3 d-flex flex-column"}>
                                 <h4 className={"mb-1"}>{ user.name }</h4>
-                                <p className={"mb-3"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
-                                {statusArray
+                                <p className={"mb-2"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
+                                { links }
+                                { statusArray
                                     ? <Blocks elementsList={ statusArray } align={"start"}/>
                                     : null
                                 }
@@ -141,6 +153,28 @@ class UserProfile extends Component {
             </>
         );
     }
+
+    // linksSection = (_) => {
+    //     const { profile } = this.props;
+    //     let links = ["facebookLink", "youtubeLink", "instagramLink", "soundcloudLink", "websiteLink"];
+    //
+    //     return (
+    //         <Row>
+    //             <Col className={"text-center"}>
+    //                 <h5 className={"mb-3"}>Linki</h5>
+    //                 { profile.facebookLink ?
+    //                     <div className={"d-flex flex-row align-items-center"}>
+    //                         <FontAwesomeIcon icon={faFacebook} className={"mr-3"}/>
+    //                         <a href={profile.facebookLink}>profile.facebookLink</a>
+    //                     </div>
+    //                     : ""
+    //                 }
+    //
+    //             </Col>
+    //         </Row>
+    //     );
+    //
+    // }
 
     descriptionSection = (_) => {
         const { profile } = this.props;
