@@ -58,11 +58,11 @@ audio {
     height: 40px;
 }
 
-.form-group.animated-label {
+.animated-label {
     position: relative;
 }
 
-.form-group.animated-label .form-label {
+.animated-label .form-label {
     position: absolute;
     color: var(--text-color-dark);
     top: 5px;
@@ -70,26 +70,28 @@ audio {
     font-size: .875rem;
     font-weight: 400;
     transition: all ease-in-out 0.2s;
+    pointer-events: none;
 }
 
-.form-group.animated-label input:focus + .form-label,
-.form-group.animated-label input.not-empty + .form-label,
-.form-group.animated-label .not-empty + .form-label {
+.animated-label input:focus + .form-label,
+.animated-label input.not-empty + .form-label,
+.animated-label .not-empty + .form-label,
+.animated-label .focused + .form-label
+{
     top: -13px;
     font-size: 0.68rem;
 }
 
-.form-group.animated-label input:focus + .form-label,
-.form-group.animated-label .focused + .form-label {
+.animated-label input:focus + .form-label,
+.animated-label .focused + .form-label {
     color: var(--text-color-light);
 }
 
-.form-group.animated-label input:hover + .form-label {
+.animated-label input:hover + .form-label {
     color: var(--text-color-light);
 }
 
-
-.form-group.animated-label input.is-invalid + .form-label {
+.animated-label input.is-invalid + .form-label {
     color: var(--text-color-error);
 }
 

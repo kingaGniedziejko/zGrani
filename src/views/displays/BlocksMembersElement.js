@@ -86,17 +86,19 @@ class BlocksMembersElement extends Component{
                 {isLinking ?
                     <div className={"find-member block d-flex flex-column mb-3 px-2 py-1 pt-2"} style={{border: "3px solid var(--background-lighter)"}}>
                         <div className={"find-member block d-flex flex-row align-items-center"}>
-                            <Form.Group className={"block mb-1"}>
+                            <Form.Group className={"block mb-3 mt-3 text-left animated-label"}>
                                 <Form.Control
                                     id={"user-login-" + this.props.index}
                                     type={"text"}
-                                    defaultValue={this.state.userLogin}
-                                    placeholder={"Login użytkownika"}
+                                    className={this.state.userLogin ? "not-empty" : ""}
+                                    value={this.state.userLogin}
+                                    // placeholder={"Login użytkownika"}
                                     size="sm"
                                     autoComplete={"off"}
                                     onChange={this.handleChange}
                                     isInvalid={linkingError}
                                 />
+                                <Form.Label>Login użytkownika</Form.Label>
                                 <Form.Control.Feedback type="invalid" className={"text-left"} as={"small"}>{linkingErrorMessage}</Form.Control.Feedback>
                             </Form.Group>
                             <Check2 onClick={this.handleCheck} size={25} className={"clickable ml-3"}/>

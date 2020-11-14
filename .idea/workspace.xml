@@ -23,9 +23,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/content_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/browse/BrowseContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/browse/BrowseContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/search/SearchContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/search/SearchContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/search/SearchDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/search/SearchDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksMembersElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/displays/BlocksMembersElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksStatusElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/displays/BlocksStatusElement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/forms/ProfileDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/ProfileDataFormGroup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/inputs/DropdownInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/inputs/DropdownInput.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +124,7 @@
       <workItem from="1604587373556" duration="1777000" />
       <workItem from="1604657391863" duration="991000" />
       <workItem from="1605035678578" duration="2270000" />
-      <workItem from="1605183612577" duration="44756000" />
+      <workItem from="1605183612577" duration="49397000" />
     </task>
     <servers />
   </component>

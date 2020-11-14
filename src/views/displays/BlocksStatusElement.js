@@ -32,12 +32,15 @@ class BlocksStatusElement extends Component{
                     </div>
                     {
                         elem.withInstrument ?
-                            <div className={"mr-4 mt-1"}>
-                                <Dropdown placeholder={"Instrument"}
-                                          value={elem.instrument}
-                                          list={instrumentList}
-                                          slug={"instrument-" + index}
-                                          toggleItem={this.toggleSelected} />
+                            <div className={"mr-4 mt-3 text-left animated-label"}>
+                                <Dropdown
+                                    placeholder={"Instrument"}
+                                    value={elem.instrument}
+                                    list={instrumentList}
+                                    slug={"instrument-" + index}
+                                    toggleItem={this.toggleSelected}
+                                    animatedLabel
+                                />
                             </div>
                             : ""
                     }

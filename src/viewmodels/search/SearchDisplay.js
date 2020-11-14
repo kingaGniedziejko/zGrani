@@ -51,7 +51,7 @@ class SearchDisplay extends Component{
                     break;
                 case "status":
                     users = users.filter(user => (
-                        user.status.some(stat => elem.statusInstrumentId
+                        user.status && user.status.some(stat => elem.statusInstrumentId
                             ? stat.statusId === elem.value && stat.instrumentId === elem.statusInstrumentId
                             : stat.statusId === elem.value
                         )

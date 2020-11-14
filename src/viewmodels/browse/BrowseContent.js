@@ -48,14 +48,27 @@ class BrowseContent extends Component{
                 <Col className={"d-flex flex-column flex-sm-row align-items-center justify-content-center"} xs={8} sm={12} md={9} lg={7} xl={6}>
                     <h6 className={"mr-sm-4 mb-4 mb-sm-0 mt-1"}>Filtruj:</h6>
 
-                    <div className={"mr-sm-3 mb-3 mb-sm-0 block"}>
-                        <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genresArray} slug={"genre"} toggleItem={this.toggleSelected} />
+                    <div className={"mr-sm-3 mb-3 mb-sm-0 block text-left animated-label"}>
+                        <Dropdown
+                            placeholder={"Gatunek"}
+                            value={this.state.genre}
+                            list={genresArray}
+                            slug={"genre"}
+                            toggleItem={this.toggleSelected}
+                            animatedLabel
+                        />
                     </div>
 
                     {isArtist ?
-                        <div className={"block "}>
-                            <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instrumentsArray}
-                                      slug={"instrument"} toggleItem={this.toggleSelected}/>
+                        <div className={"block text-left animated-label"}>
+                            <Dropdown
+                                placeholder={"Instrument"}
+                                value={this.state.instrument}
+                                list={instrumentsArray}
+                                slug={"instrument"}
+                                toggleItem={this.toggleSelected}
+                                animatedLabel
+                            />
                         </div>
                         : ""
                     }

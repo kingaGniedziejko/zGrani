@@ -293,12 +293,11 @@ input:-webkit-autofill {
     border-bottom: 1px solid var(--text-color-dark);
     text-align: left;
     padding: 4px 8px;
+    height: 31px;
 }
 
 .dd-wrapper .dd-header:hover {
     border-bottom: 1px solid var(--text-color-light);
-    text-align: left;
-    padding: 4px 8px;
 }
 
 .dd-wrapper .dd-header:hover + .form-label {
@@ -344,6 +343,10 @@ input:-webkit-autofill {
     color: var(--text-color-darker);
 }
 
+.dd-wrapper .dd-header.disabled + .form-label {
+    color: var(--text-color-darker);
+}
+
 .dd-wrapper .dd-header.disabled .dd-header-title.placeholder {
     color: var(--text-color-darker);
 }
@@ -381,23 +384,15 @@ input:-webkit-autofill {
 /*   textarea   */
 textarea.form-control  {
     padding: 6px 10px;
-    border: 1px solid var(--text-color);
-    /*border-bottom: 1px solid var(--text-color);*/
-    /*background-color: var(--background);*/
-    /*border-bottom-color: var(--text-color) ;*/
+    border: 1px solid var(--text-color-dark);
 }
 
 textarea.form-control:hover {
     padding: 6px 10px;
-    border: 1px solid var(--text-color-dark);
-    /*border-bottom: 1px solid var(--text-color);*/
-    /*background-color: var(--background);*/
-    /*border-bottom-color: var(--text-color) ;*/
     border-color: var(--text-color-light);
 }
 
 textarea.form-control:focus {
-    /*border: 1px solid var(--text-color);*/
     border-color: var(--text-color-light) ;
 }
 

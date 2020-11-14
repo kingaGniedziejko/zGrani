@@ -46,7 +46,7 @@ class PersonalDataFormGroup extends Component{
                     if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
                     else {
                         if (this.props.operation === "edit"){
-                            if (this.props.users.some(user => user.login === value)) errorMessage = "* Login jest już zajęty";
+                            if (this.props.data.usersOrdered.some(user => user.login === value && user.id !== this.props.data.auth.uid)) errorMessage = "* Login jest już zajęty";
                             else errorMessage = "";
                         }
                         else errorMessage = "";
@@ -178,9 +178,18 @@ class PersonalDataFormGroup extends Component{
     membersInput = () => {
         return (
             <Form.Group className={"mb-5"} style={{width: "100%"}}>
-                <h6 className={"mb-2"}>Członkowie</h6>
-                <div className={"d-flex flex-row mb-3"}>
-                    <Form.Control id={"currentMember"} type={"text"} placeholder={"Pseudonim"} onChange={this.handleLocalChange} size="sm" className={"mr-2"} autoComplete={"off"}/>
+                <h6 className={"mb-3"}>Członkowie</h6>
+                <div className={"d-flex flex-row mb-3 text-left animated-label"}>
+                    <Form.Control
+                        id={"currentMember"}
+                        type={"text"}
+                        // placeholder={"Pseudonim"}
+                        onChange={this.handleLocalChange}
+                        size="sm"
+                        className={"mr-2"}
+                        autoComplete={"off"}
+                    />
+                    <Form.Label>Pseudonim</Form.Label>
                     <Button variant="outline-accent" size="sm" onClick={this.handleAddMember}>Dodaj</Button>
                 </div>
                 <BlocksMembers elementsList={this.props.state.members} align={"start"} editable={true} slug={"members"}

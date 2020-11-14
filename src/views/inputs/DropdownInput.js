@@ -39,7 +39,7 @@ class DropdownInput extends Component {
                         + (listOpen ? " focused" : "")}
                     onClick={() => this.toggleList()}>
                     <div className={"dd-header-title" + (value || defaultValue ? "" : " placeholder")}>
-                        { value ? value.name : (defaultValue ? defaultValue : placeholder) }
+                        { value ? value.name : (defaultValue ? defaultValue : (animatedLabel ? "" : placeholder)) }
                     </div>
                     { listOpen ? <ChevronUp className={"ml-2"}/> : <ChevronDown className={"ml-2"}/> }
                 </div>

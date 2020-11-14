@@ -149,14 +149,15 @@ class ProfileDataFormGroup extends Component {
 
                 <h6 className={"mb-4 mt-2"}>Linki</h6>
                 <div id={"links"} className={"mb-5 block"}>
-                    <div className={"d-flex flex-row align-items-center"}>
+                    <div className={"d-flex flex-row align-items-center mb-3"}>
                         <FontAwesomeIcon icon={faFacebook} className={"mr-3"}/>
-                        <Form.Group className={"block mt-2 mb-2"}>
+                        <Form.Group className={"block mt-2 mb-2 text-left animated-label"}>
                             <Form.Control
                                 id={"facebookLink"}
                                 type={"text"}
-                                placeholder={"Facebook"}
-                                defaultValue={profile && profile.facebookLink}
+                                // placeholder={"Facebook"}
+                                className={state.facebookLink ? "not-empty" : ""}
+                                value={state.facebookLink}
                                 size="sm"
                                 autoComplete={"off"}
                                 maxLength={"2083"}
@@ -164,17 +165,19 @@ class ProfileDataFormGroup extends Component {
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.facebookLink}
                             />
+                            <Form.Label>Facebook</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.facebookLink}</Form.Control.Feedback>
                         </Form.Group>
                     </div>
-                    <div className={"d-flex flex-row align-items-center"}>
+                    <div className={"d-flex flex-row align-items-center mb-3"}>
                         <FontAwesomeIcon icon={faYoutube} className={"mr-3"}/>
-                        <Form.Group className={"block mt-2 mb-2"}>
+                        <Form.Group className={"block mt-2 mb-2 text-left animated-label"}>
                             <Form.Control
                                 id={"youtubeLink"}
                                 type={"text"}
-                                placeholder={"Youtube"}
-                                defaultValue={profile && profile.youtubeLink}
+                                // placeholder={"Youtube"}
+                                className={state.youtubeLink ? "not-empty" : ""}
+                                value={state.youtubeLink}
                                 size="sm"
                                 autoComplete={"off"}
                                 maxLength={"2083"}
@@ -182,17 +185,19 @@ class ProfileDataFormGroup extends Component {
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.youtubeLink}
                             />
+                            <Form.Label>Youtube</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.youtubeLink}</Form.Control.Feedback>
                         </Form.Group>
                     </div>
-                    <div className={"d-flex flex-row align-items-center"}>
+                    <div className={"d-flex flex-row align-items-center mb-3"}>
                         <FontAwesomeIcon icon={faInstagram} className={"mr-3"}/>
-                        <Form.Group className={"block mt-2 mb-2"}>
+                        <Form.Group className={"block mt-2 mb-2 text-left animated-label"}>
                             <Form.Control
                                 id={"instagramLink"}
                                 type={"text"}
-                                placeholder={"Instagram"}
-                                defaultValue={profile && profile.instagramLink}
+                                // placeholder={"Instagram"}
+                                className={state.instagramLink ? "not-empty" : ""}
+                                value={state.instagramLink}
                                 size="sm"
                                 autoComplete={"off"}
                                 maxLength={"2083"}
@@ -200,17 +205,19 @@ class ProfileDataFormGroup extends Component {
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.instagramLink}
                             />
+                            <Form.Label>Instagram</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.instagramLink}</Form.Control.Feedback>
                         </Form.Group>
                     </div>
-                    <div className={"d-flex flex-row align-items-center"}>
+                    <div className={"d-flex flex-row align-items-center mb-3"}>
                         <FontAwesomeIcon icon={faSoundcloud} className={"mr-3"}/>
-                        <Form.Group className={"block mt-2 mb-2"}>
+                        <Form.Group className={"block mt-2 mb-2 text-left animated-label"}>
                             <Form.Control
                                 id={"soundcloudLink"}
                                 type={"text"}
-                                placeholder={"SoundCloud"}
-                                defaultValue={profile && profile.soundcloudLink}
+                                // placeholder={"SoundCloud"}
+                                className={state.soundcloudLink ? "not-empty" : ""}
+                                value={state.soundcloudLink}
                                 size="sm"
                                 autoComplete={"off"}
                                 maxLength={"2083"}
@@ -218,17 +225,19 @@ class ProfileDataFormGroup extends Component {
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.soundcloudLink}
                             />
+                            <Form.Label>SoundCloud</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.soundcloudLink}</Form.Control.Feedback>
                         </Form.Group>
                     </div>
-                    <div className={"d-flex flex-row align-items-center"}>
+                    <div className={"d-flex flex-row align-items-center mb-3"}>
                         <FontAwesomeIcon icon={faGlobeAmericas} className={"mr-3"}/>
-                        <Form.Group className={"block mt-2 mb-2"}>
+                        <Form.Group className={"block mt-2 mb-2 text-left animated-label"}>
                             <Form.Control
                                 id={"websiteLink"}
                                 type={"text"}
-                                placeholder={"Strona"}
-                                defaultValue={profile && profile.websiteLink}
+                                // placeholder={"Strona"}
+                                className={state.websiteLink ? "not-empty" : ""}
+                                value={state.websiteLink}
                                 size="sm"
                                 autoComplete={"off"}
                                 maxLength={"2083"}
@@ -236,16 +245,18 @@ class ProfileDataFormGroup extends Component {
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.websiteLink}
                             />
+                            <Form.Label>Strona</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.websiteLink}</Form.Control.Feedback>
                         </Form.Group>
                     </div>
                 </div>
 
+                <h6 className={"mb-4 mt-2"}>Opis</h6>
                 <Form.Control
                     id={"description"}
                     as={"textarea"}
                     rows={5}
-                    placeholder={"Opis"}
+                    // placeholder={"Opis"}
                     maxLength={"1000"}
                     defaultValue={profile && profile.description}
                     size="sm"
@@ -279,12 +290,13 @@ class ProfileDataFormGroup extends Component {
                 <h6 className={"mb-4 mt-3"}>Film</h6>
                 <div className={"block d-flex flex-row align-items-center mb-5"}>
                     <FontAwesomeIcon icon={faLink} className={"mr-3"}/>
-                    <Form.Group className={"block mt-2 mb-2"}>
+                    <Form.Group className={"block mt-2 mb-2 text-left animated-label"}>
                         <Form.Control
                             id={"videoLink"}
                             type={"text"}
-                            placeholder={"Link do filmu"}
-                            defaultValue={profile && profile.videoLink}
+                            // placeholder={"Link do filmu"}
+                            className={state.videoLink ? "not-empty" : ""}
+                            value={state.videoLink}
                             size="sm"
                             autoComplete={"off"}
                             maxLength={"2083"}
@@ -292,6 +304,7 @@ class ProfileDataFormGroup extends Component {
                             onBlur={this.handleBlur}
                             isInvalid={state.errors.videoLink}
                         />
+                        <Form.Label>Link do filmu</Form.Label>
                         <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.videoLink}</Form.Control.Feedback>
                     </Form.Group>
                 </div>

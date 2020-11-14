@@ -130,19 +130,22 @@ class SearchContent extends Component {
                                     {filteredStatus.map((status, index) => {
                                         return (
                                             <div className="radio-button-background mb-2" key={index}>
-                                                <div className={"d-flex flex-row align-items-center mb-1"}>
+                                                <div className={"d-flex flex-row align-items-center mb-2"}>
                                                     <Radio value={status.id} className="radio-button mr-2"/>
                                                     <p className={"d-inline-block"}>{status.purposeName.charAt(0).toUpperCase() + status.purposeName.slice(1)}</p>
                                                 </div>
                                                 {
                                                     status.withInstrument ?
-                                                        <div className={"block pl-4 mb-3"}>
-                                                            <Dropdown placeholder={"Instrument"}
-                                                                      value={this.state["instrument-" + status.id]}
-                                                                      list={instruments}
-                                                                      slug={"instrument-" + status.id}
-                                                                      toggleItem={this.toggleSelected}
-                                                                      disabled={this.state.purpose !== status.id} />
+                                                        <div className={"block pl-4 mb-4 mt-3 text-left animated-label"}>
+                                                            <Dropdown
+                                                                placeholder={"Instrument"}
+                                                                value={this.state["instrument-" + status.id]}
+                                                                list={instruments}
+                                                                slug={"instrument-" + status.id}
+                                                                toggleItem={this.toggleSelected}
+                                                                disabled={this.state.purpose !== status.id}
+                                                                animatedLabel
+                                                            />
                                                         </div>
                                                         : ""
                                                 }
@@ -158,19 +161,51 @@ class SearchContent extends Component {
                             <Col className={"d-flex flex-column align-items-center mt-4 mt-sm-0"} xs={11} sm={6} md={5} lg={4} xl={3}>
                                 <h6 className={"mb-3 mb-sm-4"}>Parametry</h6>
 
-                                <div className={"block mb-3"}>
-                                    <Dropdown placeholder={"Województwo"} value={this.state.voivodeship} list={voivodeshipsArray} slug={"voivodeship"} toggleItem={this.toggleSelected} />
+                                <div className={"block mb-4 mt-2 text-left animated-label"}>
+                                    <Dropdown
+                                        placeholder={"Województwo"}
+                                        value={this.state.voivodeship}
+                                        list={voivodeshipsArray}
+                                        slug={"voivodeship"}
+                                        toggleItem={this.toggleSelected}
+                                        animatedLabel
+                                    />
                                 </div>
 
-                                <Form.Control id={"city"} type={"text"} placeholder={"Miasto"} onChange={this.handleInputChange} size="sm" className={"mb-3"} autoComplete={"off"}/>
+                                <Form.Group className={"block mb-4 mt-2 text-left animated-label"}>
+                                <Form.Control
+                                    id={"city"}
+                                    type={"text"}
+                                    // placeholder={"Miasto"}
+                                    className={this.state.city ? "not-empty" : ""}
+                                    size="sm"
+                                    autoComplete={"off"}
+                                    onChange={this.handleInputChange}
+                                />
+                                    <Form.Label>Miasto</Form.Label>
+                                </Form.Group>
 
-                                <div className={"block mb-3"}>
-                                    <Dropdown placeholder={"Gatunek"} value={this.state.genre} list={genresArray} slug={"genre"} toggleItem={this.toggleSelected} />
+                                <div className={"block mb-4 mt-2 text-left animated-label"}>
+                                    <Dropdown
+                                        placeholder={"Gatunek"}
+                                        value={this.state.genre}
+                                        list={genresArray}
+                                        slug={"genre"}
+                                        toggleItem={this.toggleSelected}
+                                        animatedLabel
+                                    />
                                 </div>
 
                                 {isArtist ?
-                                    <div className={"block mb-3"}>
-                                        <Dropdown placeholder={"Instrument"} value={this.state.instrument} list={instrumentsArray} slug={"instrument"} toggleItem={this.toggleSelected} />
+                                    <div className={"block mb-4 mt-2 text-left animated-label"}>
+                                        <Dropdown
+                                            placeholder={"Instrument"}
+                                            value={this.state.instrument}
+                                            list={instrumentsArray}
+                                            slug={"instrument"}
+                                            toggleItem={this.toggleSelected}
+                                            animatedLabel
+                                        />
                                     </div>
                                     : ""
                                 }
