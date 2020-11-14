@@ -27,17 +27,23 @@ class DropdownInput extends Component {
     }
 
     render(){
-        const { placeholder, defaultValue, value = '', list, slug, toggleItem, isMultiple = false, disabled = false } = this.props;
+        const { placeholder, defaultValue, value = '', list, slug, toggleItem, isMultiple = false, disabled = false, animatedLabel = false} = this.props;
         const { listOpen } = this.state;
 
         return(
             <div className="dd-wrapper" style={{width: "100%"}}>
-                <div className={"dd-header d-flex flex-row align-items-center justify-content-between" + (disabled ? " disabled" : " clickable")} onClick={() => this.toggleList()}>
+                <div
+                    className={"dd-header d-flex flex-row align-items-center justify-content-between"
+                        + (disabled ? " disabled" : " clickable")
+                        + (value ? " not-empty" : (defaultValue ? " not-empty" : ""))
+                        + (listOpen ? " focused" : "")}
+                    onClick={() => this.toggleList()}>
                     <div className={"dd-header-title" + (value || defaultValue ? "" : " placeholder")}>
                         { value ? value.name : (defaultValue ? defaultValue : placeholder) }
                     </div>
                     { listOpen ? <ChevronUp className={"ml-2"}/> : <ChevronDown className={"ml-2"}/> }
                 </div>
+                { animatedLabel ? <label className={"form-label"}>{placeholder}</label> : "" }
                 {listOpen && <ul className="dd-list list-unstyled text-left">
                     {list.map((item) => (
                         <li className={ "dd-list-item clickable" + (!isMultiple && value === item.name ? " selected" : "")}  key={item.id}

@@ -81,29 +81,33 @@ class Login extends Component{
                             <h3 className={"mb-2"}>Logowanie</h3>
                             { authError ? <p className={"error"}>{authError}</p> : null}
                             <Form onSubmit={this.handleSubmit} className={"mt-5 d-flex flex-column align-items-center"} style={{width: "100%"}}>
-                                <Form.Group className={"block mb-4"}>
+                                <Form.Group className={"block mb-4 text-left animated-label"}>
                                     <Form.Control
                                         id={"email"}
                                         type={"email"}
-                                        placeholder={"Email"}
+                                        // placeholder={"Email"}
+                                        className={this.state.email ? "not-empty" : ""}
                                         size="sm"
                                         autoComplete={"off"}
                                         onChange={this.handleChange}
                                         onBlur={this.handleBlur}
                                         isInvalid={this.state.errors.email}
                                     />
+                                    <Form.Label>Email</Form.Label>
                                     <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.email}</Form.Control.Feedback>
                                 </Form.Group>
-                                <Form.Group className={"block mb-1"}>
+                                <Form.Group className={"block mb-1 mt-2 text-left animated-label"}>
                                     <Form.Control
                                         id={"password"}
                                         type={"password"}
-                                        placeholder={"Hasło"}
+                                        // placeholder={"Hasło"}
+                                        className={this.state.password ? "not-empty" : ""}
                                         size="sm"
                                         onChange={this.handleChange}
                                         onBlur={this.handleBlur}
                                         isInvalid={this.state.errors.password}
                                     />
+                                    <Form.Label>Hasło</Form.Label>
                                     <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.password}</Form.Control.Feedback>
                                 </Form.Group>
 

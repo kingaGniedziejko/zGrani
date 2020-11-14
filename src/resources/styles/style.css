@@ -193,7 +193,7 @@ a:active {
     background: none;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color-dark);
     color: var(--text-color);
 }
 
@@ -290,7 +290,7 @@ input:-webkit-autofill {
 }
 
 .dd-wrapper .dd-header {
-    border-bottom: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color-dark);
     text-align: left;
     padding: 4px 8px;
 }
@@ -299,6 +299,10 @@ input:-webkit-autofill {
     border-bottom: 1px solid var(--text-color-light);
     text-align: left;
     padding: 4px 8px;
+}
+
+.dd-wrapper .dd-header:hover + .form-label {
+    color: var(--text-color-light);
 }
 
 .dd-wrapper .dd-header .dd-header-title {

@@ -280,15 +280,18 @@ class PersonalDataFormGroup extends Component{
         else if (type === type2.typeSlug) userType = type2;
 
         const isEdit = operation === "edit" && data.user;
+        console.log(state);
 
         return (
             <div className={"d-flex flex-column align-items-center"}>
-                <Form.Group className={"block mb-4"}>
+                <Form.Group className={"block mb-4 text-left animated-label"}>
                     <Form.Control
                         id={"login"}
                         type={"text"}
-                        placeholder={"Login"}
-                        defaultValue={isEdit ? data.user.login : ""}
+                        // placeholder={"Login"}
+                        className={state.login ? "not-empty" : ""}
+                        // defaultValue={isEdit ? data.user.login : ""}
+                        value={state.login}
                         size="sm"
                         autoComplete={"off"}
                         maxLength={"50"}
@@ -296,47 +299,55 @@ class PersonalDataFormGroup extends Component{
                         onBlur={this.handleBlur}
                         isInvalid={state.errors.login}
                     />
+                    <Form.Label>Login</Form.Label>
                     <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.login}</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group className={"block mb-4"}>
+                <Form.Group className={"block mb-4 mt-2 text-left animated-label"}>
                     <Form.Control
                         id={"email"}
                         type={"email"}
-                        placeholder={"Email"}
-                        defaultValue={isEdit ? data.auth.email : ""}
+                        // placeholder={"Email"}
+                        className={state.email ? "not-empty" : ""}
+                        // defaultValue={isEdit ? data.auth.email : ""}
+                        value={state.email}
                         size="sm"
                         autoComplete={"off"}
                         onChange={this.handleChange}
                         onBlur={this.handleBlur}
                         isInvalid={state.errors.email}
                     />
+                    <Form.Label>Email</Form.Label>
                     <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.email}</Form.Control.Feedback>
                 </Form.Group>
 
                 {operation === "create" ?
                     <>
-                        <Form.Group className={"block mb-4"}>
+                        <Form.Group className={"block mb-4 mt-2 text-left animated-label"}>
                             <Form.Control
                                 id={"password"}
                                 type={"password"}
-                                placeholder={"Hasło"}
+                                // placeholder={"Hasło"}
+                                className={state.password ? "not-empty" : ""}
                                 size="sm"
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.password}
                             />
+                            <Form.Label>Hasło</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.password}</Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className={"block mb-5"}>
+                        <Form.Group className={"block mb-5 mt-2 text-left animated-label"}>
                             <Form.Control
                                 id={"passwordRep"}
                                 type={"password"}
-                                placeholder={"Powtórz hasło"}
+                                // placeholder={"Powtórz hasło"}
+                                className={state.passwordRep ? "not-empty" : ""}
                                 size="sm"
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={state.errors.passwordRep}
                             />
+                            <Form.Label>Powtórz hasło</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.passwordRep}</Form.Control.Feedback>
                         </Form.Group>
                     </>
@@ -353,12 +364,14 @@ class PersonalDataFormGroup extends Component{
                     : ""
                 }
 
-                <Form.Group className={"block mb-4"}>
+                <Form.Group className={"block mb-4 mt-2 text-left animated-label"}>
                     <Form.Control
                         id={"name"}
                         type={"text"}
-                        placeholder={userType.nameFieldText}
-                        defaultValue={isEdit ? data.user.name : ""}
+                        // placeholder={userType.nameFieldText}
+                        className={state.name ? "not-empty" : ""}
+                        // defaultValue={isEdit ? data.user.name : ""}
+                        value={state.name}
                         size="sm"
                         autoComplete={"off"}
                         maxLength={"100"}
@@ -366,26 +379,30 @@ class PersonalDataFormGroup extends Component{
                         onBlur={this.handleBlur}
                         isInvalid={state.errors.name}
                     />
+                    <Form.Label>{userType.nameFieldText}</Form.Label>
                     <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.name}</Form.Control.Feedback>
                 </Form.Group>
 
 
-                <Form.Group className={"block mb-4"}>
+                <Form.Group className={"block mb-4 mt-2 text-left animated-label"}>
                     <Dropdown
                         placeholder={"Województwo"}
-                        defaultValue={isEdit ? data.voivodeships[data.user.voivodeshipId].name : ""}
+                        // defaultValue={isEdit ? data.voivodeships[data.user.voivodeshipId].name : ""}
                         value={state.voivodeship}
                         list={data.voivodeshipsOrdered}
                         slug={"voivodeship"}
                         toggleItem={this.toggleSelected}
+                        animatedLabel
                     />
                 </Form.Group>
-                <Form.Group className={"block mb-5"}>
+                <Form.Group className={"block mb-5 mt-2 text-left animated-label"}>
                     <Form.Control
                         id={"city"}
                         type={"text"}
-                        placeholder={"Miasto"}
-                        defaultValue={isEdit ? data.user.city : ""}
+                        // placeholder={"Miasto"}
+                        className={state.city ? "not-empty" : ""}
+                        // defaultValue={isEdit ? data.user.city : ""}
+                        value={state.city}
                         size="sm"
                         autoComplete={"off"}
                         maxLength={"50"}
@@ -393,6 +410,7 @@ class PersonalDataFormGroup extends Component{
                         onBlur={this.handleBlur}
                         isInvalid={state.errors.city}
                     />
+                    <Form.Label>Miasto</Form.Label>
                     <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.city}</Form.Control.Feedback>
                 </Form.Group>
 

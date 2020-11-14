@@ -21,10 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/userActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/content_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/forms/ProfileDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/ProfileDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/inputs/DropdownInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/inputs/DropdownInput.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +120,7 @@
       <workItem from="1604587373556" duration="1777000" />
       <workItem from="1604657391863" duration="991000" />
       <workItem from="1605035678578" duration="2270000" />
-      <workItem from="1605183612577" duration="35816000" />
+      <workItem from="1605183612577" duration="44756000" />
     </task>
     <servers />
   </component>
@@ -176,6 +178,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.864/-1920.-422.1536.864@0.0.1536.864" timestamp="1600851056467" />
+    <state x="404" y="47" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1605360562349">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="404" y="47" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.864@0.0.1536.864" timestamp="1605360562349" />
     <state x="380" y="257" width="1145" height="844" key="dock-window-1" timestamp="1603366611523">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Col, Container, Form, Nav, Row } from "react-bootstrap";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 import PersonalDataFormGroup from "../../views/forms/PersonalDataFormGroup";
 import ProfileDataFormGroup from "../../views/forms/ProfileDataFormGroup";
@@ -14,13 +14,17 @@ class UserProfileEdit extends Component{
     state = {
         isLoaded: false,
 
-        login: '',
-        email: '',
+        login: this.props.user && this.props.user.login || '',
+        email: this.props.auth && this.props.auth.email || '',
         password: '',
         passwordRep: '',
-        name: '',
-        voivodeship: '',
-        city: '',
+        name: this.props.user && this.props.user.name || '',
+        voivodeship: (this.props.user && this.props.user.voivodeshipId &&
+            {
+                id: this.props.user.voivodeshipId,
+                name: this.props.voivodeships[this.props.user.voivodeshipId].name
+            }) || '',
+        city: this.props.user && this.props.user.city || '',
 
         genres: (this.props.user && this.props.genres && this.props.user.genresId.map( genreId => {
             return {
@@ -82,10 +86,22 @@ class UserProfileEdit extends Component{
     static getDerivedStateFromProps(props, prevState) {
         if (!prevState.isLoaded) {
             let isLoaded = false;
-            if (props.user && props.genres && props.instruments && props.users && props.statusFiltered) isLoaded = true;
+            if (props.auth && props.user && props.genres && props.instruments && props.users && props.statusFiltered) isLoaded = true;
 
             return {
                 ...prevState,
+
+                login: (props.user && props.user.login) || '',
+                email: (props.auth && props.auth.email) || '',
+                password: '',
+                passwordRep: '',
+                name: (props.user && props.user.name) || '',
+                voivodeship: (props.user && props.voivodeships && props.user.voivodeshipId &&
+                    {
+                        id: props.user.voivodeshipId,
+                        name: props.voivodeships[props.user.voivodeshipId].name
+                    }) || '',
+                city: (props.user && props.user.city) || '',
 
                 profilePhotoSrcPrev: props.user && props.user.imageUrl,
                 profilePhotoSrc: props.user && (prevState.profilePhotoSrc && prevState.profilePhotoSrc !== props.user.imageUrl
@@ -218,7 +234,6 @@ class UserProfileEdit extends Component{
         this.props.editUser(editedAuth, editedUser, userPhoto, newMembers, editedProfile);
 
         this.props.history.push("/profil/" + auth.uid);
-        // window.location.href = "/profil/" + auth.uid;
     }
 
     clean = (obj) => {

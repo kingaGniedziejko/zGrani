@@ -57,3 +57,47 @@ audio {
     width: 100%;
     height: 40px;
 }
+
+.form-group.animated-label {
+    position: relative;
+}
+
+.form-group.animated-label .form-label {
+    position: absolute;
+    color: var(--text-color-dark);
+    top: 5px;
+    padding: 0 .5rem;
+    font-size: .875rem;
+    font-weight: 400;
+    transition: all ease-in-out 0.2s;
+}
+
+.form-group.animated-label input:focus + .form-label,
+.form-group.animated-label input.not-empty + .form-label,
+.form-group.animated-label .not-empty + .form-label {
+    top: -13px;
+    font-size: 0.68rem;
+}
+
+.form-group.animated-label input:focus + .form-label,
+.form-group.animated-label .focused + .form-label {
+    color: var(--text-color-light);
+}
+
+.form-group.animated-label input:hover + .form-label {
+    color: var(--text-color-light);
+}
+
+
+.form-group.animated-label input.is-invalid + .form-label {
+    color: var(--text-color-error);
+}
+
+input.is-invalid,
+input.is-invalid:focus {
+    color: var(--text-color-error-light);
+}
+
+/*input {*/
+/*    padding-left: 0 !important;*/
+/*}*/
