@@ -40,25 +40,35 @@ class BrowseDisplay extends Component{
 
         return (
             <div className={"section d-flex flex-column align-items-center"}>
-                <Container>
-                    <Row>
-                        {usersList && usersList.map((user, index) => {
-                            if (user) {
-                                return (
-                                    <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
-                                )
-                            } else {
-                                return "";
-                            }
-                        })}
-                    </Row>
-                </Container>
-                {isMore ?
-                    <div className={"d-flex flex-column align-items-center clickable"} onClick={this.handleExtend}>
-                        <p className={"m-0"}>Więcej</p>
-                        <ChevronDown/>
-                    </div>
-                    : ""
+                {usersList && usersList.length === 0 ?
+                    <p className={"mt-3 mb-5"}>
+                        <i className={"dark-text"}>
+                            Brak użytkowników
+                        </i>
+                    </p>
+                    :
+                    <>
+                        <Container>
+                            <Row>
+                                {usersList && usersList.map((user, index) => {
+                                    if (user) {
+                                        return (
+                                            <Col key={index} sm={6} lg={3}><ProfileShortcut user={user}/></Col>
+                                        )
+                                    } else {
+                                        return "";
+                                    }
+                                })}
+                            </Row>
+                        </Container>
+                        {isMore ?
+                            <div className={"d-flex flex-column align-items-center clickable"} onClick={this.handleExtend}>
+                                <p className={"m-0"}>Więcej</p>
+                                <ChevronDown/>
+                            </div>
+                            : ""
+                        }
+                    </>
                 }
             </div>
         );
