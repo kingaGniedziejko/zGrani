@@ -20,21 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/viewmodels/auth/EmailVerification.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/styles/modal_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/modal_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/styles/profile_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/profile_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/authActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/userActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/authReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/ForgotPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/auth/ForgotPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/browse/Browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/browse/Browse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodels/search/Search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/PrivacyPolicy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PrivacyPolicy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/TermsOfService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/TermsOfService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/displays/BlocksImage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +125,7 @@
       <workItem from="1604657391863" duration="991000" />
       <workItem from="1605035678578" duration="2270000" />
       <workItem from="1605183612577" duration="52539000" />
-      <workItem from="1605444027686" duration="8381000" />
+      <workItem from="1605444027686" duration="20134000" />
     </task>
     <servers />
   </component>
@@ -197,11 +192,12 @@
     </state>
     <state x="2013" y="-492" width="1173" height="787" key="dock-window-1/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602066304951" />
     <state x="380" y="257" width="1145" height="844" key="dock-window-1/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1603366611523" />
-    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1604322867127">
+    <state x="88" y="135" width="577" height="566" key="find.popup" timestamp="1605474914276">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1604322867127" />
+    <state x="88" y="135" width="577" height="566" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1605474914276" />
     <state x="425" y="197" key="run.anything.popup" timestamp="1604320890800">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

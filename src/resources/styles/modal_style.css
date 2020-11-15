@@ -5,8 +5,25 @@
 .modal-content {
     background-color: var(--background-light);
     border-radius: 0;
-    border: 3px solid var(--background-lighter);
+    padding: 5px;
 }
+
+@media (min-width: 576px) {
+    .modal-content {
+        background-color: var(--background-light);
+        border-radius: 0;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal-content {
+        background-color: var(--background-light);
+        border-radius: 0;
+        padding: 20px;
+    }
+}
+
 
 .modal-header {
     border: none;
@@ -14,8 +31,8 @@
 
 .modal-header .close {
     position: absolute;
-    top: 0.5rem;
-    right: 1rem;
+    top: 1rem;
+    right: 1.5rem;
     margin-left: 1rem;
 }
 

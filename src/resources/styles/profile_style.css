@@ -184,3 +184,24 @@
 #links svg {
     width: 20px;
 }
+
+#video-section>div>div {
+    max-width: 640px;
+    max-height: 360px;
+    width: 90vw !important;
+    height: 50.5vw !important;
+}
+
+#video-section>div>div>div {
+    max-width: 640px;
+    max-height: 360px;
+    width: 90vw !important;
+    height: 50.5vw !important;
+}
+
+#video-section>div>div>div>iframe {
+    max-width: 640px;
+    max-height: 360px;
+    width: 90vw !important;
+    height: 50.5vw !important;
+}

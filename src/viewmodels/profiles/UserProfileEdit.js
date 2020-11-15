@@ -16,8 +16,12 @@ class UserProfileEdit extends Component{
 
         login: (this.props.user && this.props.user.login) || '',
         email: (this.props.auth && this.props.auth.email) || '',
-        password: '',
-        passwordRep: '',
+
+        actualPassword: '',
+        newPassword: '',
+        newPasswordRep: '',
+        isNewPasswordSet: false,
+
         name: (this.props.user && this.props.user.name) || '',
         voivodeship: (this.props.user && this.props.user.voivodeshipId &&
             {
@@ -93,8 +97,6 @@ class UserProfileEdit extends Component{
 
                 login: (props.user && props.user.login) || '',
                 email: (props.auth && props.auth.email) || '',
-                password: '',
-                passwordRep: '',
                 name: (props.user && props.user.name) || '',
                 voivodeship: (props.user && props.voivodeships && props.user.voivodeshipId &&
                     {
@@ -158,7 +160,7 @@ class UserProfileEdit extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         const { auth, profile } = this.props;
-        const { email, password,
+        const { email, newPassword, isNewPasswordSet,
             login, name, voivodeship, city, genres, instruments, members, newMembers, status, isArtist,
             profilePhoto, profilePhotoSrcPrev, profilePhotoSrc,
             facebookLink, youtubeLink, instagramLink, soundcloudLink, websiteLink,
@@ -171,7 +173,7 @@ class UserProfileEdit extends Component{
         let editedAuth = {
             id: auth.uid,
             email: email,
-            password: password,
+            password: isNewPasswordSet ? newPassword : "",
             hasProfile: profile
         }
 

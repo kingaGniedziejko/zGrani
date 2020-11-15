@@ -7,8 +7,9 @@ export const editUser = (auth, user, userPhoto, newMembers, profile) => {
         const firestore = getFirestore();
         const storage = firebase.storage().ref();
 
-        if (auth.email) emailUpdate(auth.email);
-        if (auth.password) passwordUpdate(auth.password);
+        console.log(auth.password);
+        if (auth.email) emailUpdate(auth.email, firebase);
+        if (auth.password) passwordUpdate(auth.password, firebase);
 
         if (auth.hasProfile){
             if (profile) editProfile(auth, profile, firebase, firestore, storage);

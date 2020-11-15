@@ -52,10 +52,32 @@ const authReducer = (state = initState, action) => {
                 isVerificationEmailSend: true
             }
         case 'EMAIL_VERIFICATION_ERROR':
-            console.log("email verification success");
+            console.log("email verification error");
             return {
                 ...state,
                 isVerificationEmailSend: false
+            }
+        case 'REAUTHENTICATE_SUCCESS':
+            console.log("reauthenticate success");
+            return {
+                ...state,
+                isReauthenticate: true
+            }
+        case 'REAUTHENTICATE_ERROR':
+            console.log("reauthenticate error");
+            return {
+                ...state,
+                isReauthenticate: false
+            }
+        case "PASSWORD_UPDATE_SUCCESS":
+            console.log("password update success");
+            return {
+                ...state
+            }
+        case "PASSWORD_UPDATE_ERROR":
+            console.log("password update error", action.err && action.err.message);
+            return {
+                ...state
             }
         default:
             return state;

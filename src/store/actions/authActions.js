@@ -106,34 +106,29 @@ export const sendVerificationEmail = () => {
     }
 }
 
-export const emailUpdate = (newEmail) => {
-    return (dispatch, getState, {getFirebase}) => {
-        const firebase = getFirebase();
-        const currentUser = firebase.auth().currentUser;
+export const emailUpdate = (newEmail, firebase) => {
+    const currentUser = firebase.auth().currentUser;
 
-        if (newEmail !== currentUser.email) {
-            currentUser.updateEmail(newEmail)
-                .then(function () {
-                    dispatch({type: "EMAIL_UPDATE_SUCCESS"});
-                }).catch(function (error) {
-                    dispatch({type: "EMAIL_UPDATE_ERROR", error});
+    if (newEmail !== currentUser.email) {
+        currentUser.updateEmail(newEmail)
+            .then(function () {
+                return "";
+            }).catch(function (error) {
+                return error;
             });
-        }
     }
 }
 
-export const passwordUpdate = (newPassword) => {
-    return (dispatch, getState, {getFirebase}) => {
-        const firebase = getFirebase();
-        const currentUser = firebase.auth().currentUser;
+export const passwordUpdate = (newPassword, firebase) => {
+    const currentUser = firebase.auth().currentUser;
 
-        if (newPassword) {
-            currentUser.updatePassword(newPassword).then(function () {
-                dispatch({ type: "PASSWORD_UPDATE_SUCCESS"});
-            }).catch(function (error) {
-                dispatch({ type: "PASSWORD_UPDATE_ERROR", error});
-            });
-        }
+    console.log("PASSWORD UPDATE");
+    if (newPassword) {
+        currentUser.updatePassword(newPassword).then(function () {
+            return "";
+        }).catch(function (error) {
+            return error;
+        });
     }
 }
 
@@ -149,11 +144,26 @@ export const forgotPassword = (email) => {
         firebase.auth().languageCode = 'pl';
 
         firebase.auth().sendPasswordResetEmail(email, config)
-            .then(r => {
-                dispatch({ type: 'FORGET_PASSWORD_SUCCESS'})
+            .then(() => {
+                dispatch({ type: 'FORGET_PASSWORD_SUCCESS'});
             })
             .catch((error) => {
                 dispatch({ type: 'FORGET_PASSWORD_ERROR', error });
             });
+    }
+}
+
+export const reauthenticate = (credential) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase();
+        const currentUser = firebase.auth().currentUser;
+
+        const cred = firebase.auth.EmailAuthProvider.credential(credential.email, credential.password);
+
+        currentUser.reauthenticateWithCredential(cred).then(function () {
+            dispatch({ type: 'REAUTHENTICATE_SUCCESS' });
+        }).catch(function (error) {
+            dispatch({ type: 'REAUTHENTICATE_ERROR', error });
+        });
     }
 }

@@ -85,7 +85,6 @@ class Login extends Component{
                                     <Form.Control
                                         id={"email"}
                                         type={"email"}
-                                        // placeholder={"Email"}
                                         className={this.state.email ? "not-empty" : ""}
                                         size="sm"
                                         autoComplete={"off"}
@@ -100,7 +99,6 @@ class Login extends Component{
                                     <Form.Control
                                         id={"password"}
                                         type={"password"}
-                                        // placeholder={"Hasło"}
                                         className={this.state.password ? "not-empty" : ""}
                                         size="sm"
                                         onChange={this.handleChange}

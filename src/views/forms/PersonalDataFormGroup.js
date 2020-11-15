@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Modal } from "react-bootstrap";
+import { connect } from "react-redux";
 import cloneDeep from 'lodash/cloneDeep';
 
 import "../../resources/styles/modal_style.css";
@@ -10,6 +11,7 @@ import Dropdown from "../inputs/DropdownInput";
 import BlocksStatus from "../displays/BlocksStatus";
 import isEmpty from "validator/es/lib/isEmpty";
 import equals from "validator/es/lib/equals";
+import { reauthenticate } from "../../store/actions/authActions";
 
 class PersonalDataFormGroup extends Component{
     state = {
@@ -17,10 +19,18 @@ class PersonalDataFormGroup extends Component{
         statusError: '',
 
         modalShow: false,
-        actualPassword: '',
+        // actualPassword: '',
         isPasswordCorrect: false,
-        newPassword: '',
-        newPasswordRep: ''
+        // newPassword: '',
+        // newPasswordRep: '',
+        // isNewPasswordSet: false
+    }
+
+    static getDerivedStateFromProps(props, prevState) {
+        return {
+            ...prevState,
+            isPasswordCorrect: props.isReauthenticate
+        }
     }
 
     handleChange = (e) => {
@@ -57,11 +67,17 @@ class PersonalDataFormGroup extends Component{
                     else errorMessage = "";
                     break;
                 case "password":
+                case "newPassword":
                     if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków";
                     else errorMessage = "";
                     break;
                 case "passwordRep":
                     if (!equals(value, this.props.state.password)) errorMessage = "* Hasła muszą być takie same"
+                    else errorMessage = "";
+                    break;
+
+                case "newPasswordRep":
+                    if (!equals(value, this.props.state.newPassword)) errorMessage = "* Hasła muszą być takie same"
                     else errorMessage = "";
                     break;
                 default:
@@ -183,7 +199,6 @@ class PersonalDataFormGroup extends Component{
                     <Form.Control
                         id={"currentMember"}
                         type={"text"}
-                        // placeholder={"Pseudonim"}
                         onChange={this.handleLocalChange}
                         size="sm"
                         className={"mr-2"}
@@ -232,21 +247,23 @@ class PersonalDataFormGroup extends Component{
     }
 
     checkActualPassword = () => {
-        let isCorrect = true;
-        console.log(this.state.actualPassword);
-
-        this.setState({isPasswordCorrect: isCorrect})
+        this.props.reauthenticate({
+            email: this.props.data.auth.email,
+            password: this.props.state.actualPassword
+        })
     }
 
     saveNewPassword = () => {
-        console.log(this.state.newPassword);
-        console.log(this.state.newPasswordRep);
+        console.log(this.props.state.newPassword);
+        console.log(this.props.state.newPasswordRep);
 
         this.setState({modalShow: false, isPasswordCorrect: false});
+        this.props.handleUpdate("isNewPasswordSet", true);
     }
 
     displayPasswordEdit = () => {
         const { modalShow, isPasswordCorrect } = this.state;
+        const { state, isReauthenticate } = this.props;
 
         return (
             <Modal
@@ -254,16 +271,50 @@ class PersonalDataFormGroup extends Component{
                 onHide={() => this.setState({modalShow: false, isPasswordCorrect: false})}
                 size="md"
                 centered>
-                <Modal.Header closeButton className={"d-flex flex-row justify-content-center"}>
-                    <h5>Zmiana hasła</h5>
+                <Modal.Header closeButton className={"d-flex flex-column align-items-center"}>
+                    <h5 className={"mb-2"}>Zmiana hasła</h5>
+                    {isReauthenticate === undefined ? "" : (isReauthenticate ? "" : <p className={"error"}>Błędne hasło</p>)}
                 </Modal.Header>
-                <Modal.Body className={"d-flex flex-row justify-content-center"}>
+                <Modal.Body className={"d-flex flex-column align-items-center"}>
                     {!isPasswordCorrect ?
-                        <Form.Control id={"actualPassword"} type={"password"} placeholder={"Aktualne hasło"} onChange={this.handleChange} size="sm" className={"mb-4"} style={{width: "60%"}}/>
+                        <Form.Group className={"block mb-4 text-left animated-label"} style={{width: "70%"}}>
+                            <Form.Control
+                                id={"actualPassword"}
+                                type={"password"}
+                                onChange={this.handleChange}
+                                className={state.actualPassword ? "not-empty" : ""}
+                                size="sm"
+                            />
+                            <Form.Label>Aktualne hasło</Form.Label>
+                        </Form.Group>
                         :
                         <div className={"d-flex flex-column align-items-center"} style={{width: "100%"}}>
-                            <Form.Control id={"newPassword"} type={"password"} placeholder={"Nowe hasło"} onChange={this.handleChange} size="sm" className={"mb-4"} style={{width: "60%"}}/>
-                            <Form.Control id={"newPasswordRep"} type={"password"} placeholder={"Powtórz hasło"} onChange={this.handleChange} size="sm" className={"mb-4"} style={{width: "60%"}}/>
+                            <Form.Group className={"block mb-4 text-left animated-label"} style={{width: "70%"}}>
+                                <Form.Control
+                                    id={"newPassword"}
+                                    type={"password"}
+                                    className={state.newPassword ? "not-empty" : ""}
+                                    size="sm"
+                                    onChange={this.handleChange}
+                                    onBlur={this.handleBlur}
+                                    isInvalid={state.errors.newPassword}
+                                />
+                                <Form.Label>Nowe hasło</Form.Label>
+                                <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.newPassword}</Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group className={"block mb-4 mt-2 text-left animated-label"} style={{width: "70%"}}>
+                                <Form.Control
+                                    id={"newPasswordRep"}
+                                    type={"password"}
+                                    className={state.newPasswordRep ? "not-empty" : ""}
+                                    size="sm"
+                                    onChange={this.handleChange}
+                                    onBlur={this.handleBlur}
+                                    isInvalid={state.errors.newPasswordRep}
+                                />
+                                <Form.Label>Powtórz hasło</Form.Label>
+                                <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.newPasswordRep}</Form.Control.Feedback>
+                            </Form.Group>
                         </div>
                     }
                 </Modal.Body>
@@ -297,9 +348,7 @@ class PersonalDataFormGroup extends Component{
                     <Form.Control
                         id={"login"}
                         type={"text"}
-                        // placeholder={"Login"}
                         className={state.login ? "not-empty" : ""}
-                        // defaultValue={isEdit ? data.user.login : ""}
                         value={state.login}
                         size="sm"
                         autoComplete={"off"}
@@ -315,9 +364,7 @@ class PersonalDataFormGroup extends Component{
                     <Form.Control
                         id={"email"}
                         type={"email"}
-                        // placeholder={"Email"}
                         className={state.email ? "not-empty" : ""}
-                        // defaultValue={isEdit ? data.auth.email : ""}
                         value={state.email}
                         size="sm"
                         autoComplete={"off"}
@@ -335,7 +382,6 @@ class PersonalDataFormGroup extends Component{
                             <Form.Control
                                 id={"password"}
                                 type={"password"}
-                                // placeholder={"Hasło"}
                                 className={state.password ? "not-empty" : ""}
                                 size="sm"
                                 onChange={this.handleChange}
@@ -349,7 +395,6 @@ class PersonalDataFormGroup extends Component{
                             <Form.Control
                                 id={"passwordRep"}
                                 type={"password"}
-                                // placeholder={"Powtórz hasło"}
                                 className={state.passwordRep ? "not-empty" : ""}
                                 size="sm"
                                 onChange={this.handleChange}
@@ -364,12 +409,20 @@ class PersonalDataFormGroup extends Component{
                 }
 
                 {operation === "edit" ?
-                    <>
-                        <Button block variant="outline-white" size="sm" className={"mt-2 mb-5"} onClick={() => this.setState({modalShow: true})}>
-                            Zmień hasło
-                        </Button>
-                        {this.displayPasswordEdit()}
-                    </>
+                    (state.isNewPasswordSet ?
+                            <p className={"mb-4"}>
+                                <i className={"dark-text"}>
+                                    Hasło zostanie trwale zmienione po naciśnięciu przycisku "Zapisz" na dole formularza.
+                                </i>
+                            </p>
+                        :
+                            <>
+                                <Button block variant="outline-white" size="sm" className={"mt-2 mb-5"} onClick={() => this.setState({modalShow: true})}>
+                                    Zmień hasło
+                                </Button>
+                                {this.displayPasswordEdit()}
+                            </>
+                    )
                     : ""
                 }
 
@@ -377,9 +430,7 @@ class PersonalDataFormGroup extends Component{
                     <Form.Control
                         id={"name"}
                         type={"text"}
-                        // placeholder={userType.nameFieldText}
                         className={state.name ? "not-empty" : ""}
-                        // defaultValue={isEdit ? data.user.name : ""}
                         value={state.name}
                         size="sm"
                         autoComplete={"off"}
@@ -396,7 +447,6 @@ class PersonalDataFormGroup extends Component{
                 <Form.Group className={"block mb-4 mt-2 text-left animated-label"}>
                     <Dropdown
                         placeholder={"Województwo"}
-                        // defaultValue={isEdit ? data.voivodeships[data.user.voivodeshipId].name : ""}
                         value={state.voivodeship}
                         list={data.voivodeshipsOrdered}
                         slug={"voivodeship"}
@@ -408,9 +458,7 @@ class PersonalDataFormGroup extends Component{
                     <Form.Control
                         id={"city"}
                         type={"text"}
-                        // placeholder={"Miasto"}
                         className={state.city ? "not-empty" : ""}
-                        // defaultValue={isEdit ? data.user.city : ""}
                         value={state.city}
                         size="sm"
                         autoComplete={"off"}
@@ -431,4 +479,16 @@ class PersonalDataFormGroup extends Component{
     }
 }
 
-export default PersonalDataFormGroup;
+const mapStateToProps = (state) => {
+    return {
+        isReauthenticate: state.auth.isReauthenticate
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        reauthenticate: (credentials) => dispatch(reauthenticate(credentials))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalDataFormGroup);

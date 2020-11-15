@@ -97,7 +97,7 @@ class UserProfile extends Component {
                 { profile === undefined ? <ExclamationCircle className={"ml-3"} size={22}/> : ""}
             </div>
             :
-            <>
+            <div className={"mt-2"}>
                 <Button
                     variant="outline-accent"
                     size="sm"
@@ -108,7 +108,7 @@ class UserProfile extends Component {
                     Skontaktuj się
                 </Button>
                 {this.displayMessageEdit()}
-            </>
+            </div>
 
         const links = (
             <div className={"d-flex flex-row mb-4"}>
@@ -133,11 +133,6 @@ class UserProfile extends Component {
                             <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3 d-flex flex-column"}>
                                 <h4 className={"mb-1"}>{ user.name }</h4>
                                 <p className={"mb-2"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
-                                { links }
-                                { statusArray
-                                    ? <Blocks elementsList={ statusArray } align={"start"}/>
-                                    : null
-                                }
                                 <div className={"mb-4"}>
                                     <div className={"d-flex flex-row mb-1"}>
                                         <div className={"icon-container mr-2"}>
@@ -146,6 +141,13 @@ class UserProfile extends Component {
                                         <p className={"m-0"}>{ voivodeship + ", " + user.city }</p>
                                     </div>
                                 </div>
+                                { statusArray ?
+                                     <div className={"block mb-1"}>
+                                        <Blocks elementsList={ statusArray } align={"start"}/>
+                                     </div>
+                                    : null
+                                }
+                                { links }
                                 { button }
                             </Col>
                         </Row>
@@ -180,9 +182,9 @@ class UserProfile extends Component {
 
         user.genresId && user.genresId.forEach(genre => genresNames.push(genres[genre]));
         user.instrumentsId && user.instrumentsId.forEach(instr => instrumentsNames.push(instruments[instr]));
-        user.members && user.members.forEach(member => {
+        users && user.members && user.members.forEach(member => {
             members.push({
-                name: member.userId ? users.find(elem => elem.id === member.userId).name : member.name,
+                name: member.userId ? users.find(elem => elem.id === member.userId) && users.find(elem => elem.id === member.userId).name : member.name,
                 path: member.userId ? "/profil/" + member.userId : "",
                 buttonText: "Odwiedź profil"
             })
@@ -275,7 +277,7 @@ class UserProfile extends Component {
         const {profile} = this.props;
 
         return (
-            <Row className={"justify-content-center"}>
+            <Row id={"video-section"} className={"justify-content-center"}>
                 <Col className={"text-center align-self-center d-flex flex-column align-items-center"}>
                     <h5 className={"mb-4"}>Film</h5>
                     <ReactPlayer url={profile && profile.videoLink}/>
@@ -298,13 +300,13 @@ class UserProfile extends Component {
                 </Modal.Header>
                 <Modal.Body className={"d-flex flex-row justify-content-center"}>
                     <Form className={"block p-3 d-flex flex-column align-items-center"} onSubmit={this.handleSendMessage}>
-                        <Form.Group className={"block mb-4"}>
+                        <Form.Group className={"block mb-4 text-left animated-label"}>
                             <Form.Control
                                 id={"name"}
                                 name={"name"}
                                 type={"text"}
-                                placeholder={"Imię i nazwisko"}
-                                defaultValue={this.state.name}
+                                className={this.state.name ? "not-empty" : ""}
+                                value={this.state.name}
                                 size="sm"
                                 autoComplete={"off"}
                                 maxLength={"100"}
@@ -312,14 +314,14 @@ class UserProfile extends Component {
                                 onBlur={this.handleBlur}
                                 isInvalid={this.state.errors.name}
                             />
+                            <Form.Label>Imię i nazwisko</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.name}</Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className={"block mb-4"}>
+                        <Form.Group className={"block mb-4 mt-2 text-left animated-label"}>
                             <Form.Control
                                 id={"email"}
                                 name={"email"}
                                 type={"email"}
-                                placeholder={"Email"}
                                 defaultValue={this.state.email}
                                 size="sm"
                                 autoComplete={"off"}
@@ -327,30 +329,32 @@ class UserProfile extends Component {
                                 onBlur={this.handleBlur}
                                 isInvalid={this.state.errors.email}
                             />
+                            <Form.Label>Email</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.email}</Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className={"block mb-5"}>
+                        <Form.Group className={"block mb-5 mt-2 text-left animated-label"}>
                             <Form.Control
                                 id={"subject"}
                                 name={"subject"}
                                 type={"text"}
-                                placeholder={"Temat"}
                                 size="sm"
                                 autoComplete={"off"}
                                 onChange={this.handleChange}
                                 onBlur={this.handleBlur}
                                 isInvalid={this.state.errors.subject}
                             />
+                            <Form.Label>Temat</Form.Label>
                             <Form.Control.Feedback type="invalid" className={"text-left"}>{this.state.errors.subject}</Form.Control.Feedback>
                         </Form.Group>
 
+                        <h6 className={"mb-3"}>Treść</h6>
                         <Form.Group className={"block mb-5"}>
                             <Form.Control
                                 id={"message"}
                                 name={"message"}
                                 as={"textarea"}
                                 rows={5}
-                                placeholder={"Wiadomość"}
+                                // placeholder={"Wiadomość"}
                                 maxLength={"1000"}
                                 size="sm"
                                 onChange={this.handleChange}

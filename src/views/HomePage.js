@@ -11,6 +11,7 @@ class HomePage extends Component{
     render() {
         if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
 
+        console.log(this.props.auth);
         return (
             <div className={"home"}>
                 <div className={"section photo-section d-flex flex-column align-items-center"}>
