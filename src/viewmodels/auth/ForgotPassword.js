@@ -10,8 +10,7 @@ import isEmpty from "validator/es/lib/isEmpty";
 class ForgotPassword extends Component{
     state = {
         email: "",
-        errors: {},
-        loading: this.props.forgotPasswordError === null
+        errors: {}
     }
 
     evaluateFields = (slugs) => {
@@ -80,7 +79,6 @@ class ForgotPassword extends Component{
 
     render() {
         const { auth, forgotPasswordError, forgotPasswordAwaitMessage } = this.props;
-        const { loading } = this.state;
 
         if (auth.uid) return <Redirect to={"/"} />;
 

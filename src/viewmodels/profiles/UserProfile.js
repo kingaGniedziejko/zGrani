@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import {Button, Col, Container, Form, Image as Img, Modal, Row} from "react-bootstrap";
+import { Link, Redirect } from "react-router-dom";
+import { Button, Col, Container, Form, Image as Img, Modal, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -46,6 +46,8 @@ class UserProfile extends Component {
         const { user, profile, auth, users, status, voivodeships, genres, instruments } = this.props;
         const { id } = this.props.match.params;
 
+
+        if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
         if (user === null) return <ErrorPage/>
         if (user === undefined || !users || !status || !voivodeships || !instruments || !genres) return <Loader/>
 
@@ -110,11 +112,11 @@ class UserProfile extends Component {
 
         const links = (
             <div className={"d-flex flex-row mb-4"}>
-                { profile.facebookLink ? <a href={profile.facebookLink} target={"_blank"}><FontAwesomeIcon icon={faFacebook} className={"mr-3"}/></a> : ""}
-                { profile.youtubeLink ? <a href={profile.youtubeLink} target={"_blank"}><FontAwesomeIcon icon={faYoutube} className={"mr-3"}/></a> : ""}
-                { profile.instagramLink ? <a href={profile.instagramLink} target={"_blank"}><FontAwesomeIcon icon={faInstagram} className={"mr-3"}/></a> : ""}
-                { profile.soundcloudLink ? <a href={profile.soundcloudLink} target={"_blank"}><FontAwesomeIcon icon={faSoundcloud} className={"mr-3"}/></a> : ""}
-                { profile.websiteLink ? <a href={profile.websiteLink} target={"_blank"}><FontAwesomeIcon icon={faGlobeAmericas} className={"mr-3"}/></a> : ""}
+                { profile && profile.facebookLink ? <a href={profile.facebookLink} target={"_blank"} rel={"noopener noreferrer"}><FontAwesomeIcon icon={faFacebook} className={"mr-3"}/></a> : ""}
+                { profile && profile.youtubeLink ? <a href={profile.youtubeLink} target={"_blank"} rel={"noopener noreferrer"}><FontAwesomeIcon icon={faYoutube} className={"mr-3"}/></a> : ""}
+                { profile && profile.instagramLink ? <a href={profile.instagramLink} target={"_blank"} rel={"noopener noreferrer"}><FontAwesomeIcon icon={faInstagram} className={"mr-3"}/></a> : ""}
+                { profile && profile.soundcloudLink ? <a href={profile.soundcloudLink} target={"_blank"} rel={"noopener noreferrer"}><FontAwesomeIcon icon={faSoundcloud} className={"mr-3"}/></a> : ""}
+                { profile && profile.websiteLink ? <a href={profile.websiteLink} target={"_blank"} rel={"noopener noreferrer"}><FontAwesomeIcon icon={faGlobeAmericas} className={"mr-3"}/></a> : ""}
             </div>
         )
 
@@ -153,28 +155,6 @@ class UserProfile extends Component {
             </>
         );
     }
-
-    // linksSection = (_) => {
-    //     const { profile } = this.props;
-    //     let links = ["facebookLink", "youtubeLink", "instagramLink", "soundcloudLink", "websiteLink"];
-    //
-    //     return (
-    //         <Row>
-    //             <Col className={"text-center"}>
-    //                 <h5 className={"mb-3"}>Linki</h5>
-    //                 { profile.facebookLink ?
-    //                     <div className={"d-flex flex-row align-items-center"}>
-    //                         <FontAwesomeIcon icon={faFacebook} className={"mr-3"}/>
-    //                         <a href={profile.facebookLink}>profile.facebookLink</a>
-    //                     </div>
-    //                     : ""
-    //                 }
-    //
-    //             </Col>
-    //         </Row>
-    //     );
-    //
-    // }
 
     descriptionSection = (_) => {
         const { profile } = this.props;
@@ -298,7 +278,7 @@ class UserProfile extends Component {
             <Row className={"justify-content-center"}>
                 <Col className={"text-center align-self-center d-flex flex-column align-items-center"}>
                     <h5 className={"mb-4"}>Film</h5>
-                    <ReactPlayer url={profile.videoLink}/>
+                    <ReactPlayer url={profile && profile.videoLink}/>
                 </Col>
             </Row>
         )

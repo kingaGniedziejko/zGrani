@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import  {Container, Row, Col } from "react-bootstrap";
 
 class PrivacyPolicy extends Component{
     render() {
+        if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
         return (
             <div id={"terms-of-service"} className={"page-content"}>
                 <Container>
@@ -163,4 +166,10 @@ class PrivacyPolicy extends Component{
     }
 }
 
-export default PrivacyPolicy;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(PrivacyPolicy);

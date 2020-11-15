@@ -45,6 +45,18 @@ const authReducer = (state = initState, action) => {
                 forgotPasswordError: "błędny email",
                 forgotPasswordAwaitMessage: ""
             }
+        case 'EMAIL_VERIFICATION_SUCCESS':
+            console.log("email verification success");
+            return {
+                ...state,
+                isVerificationEmailSend: true
+            }
+        case 'EMAIL_VERIFICATION_ERROR':
+            console.log("email verification success");
+            return {
+                ...state,
+                isVerificationEmailSend: false
+            }
         default:
             return state;
     }

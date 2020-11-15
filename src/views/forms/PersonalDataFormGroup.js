@@ -288,7 +288,7 @@ class PersonalDataFormGroup extends Component{
         if (type === type1.typeSlug) userType = type1;
         else if (type === type2.typeSlug) userType = type2;
 
-        const isEdit = operation === "edit" && data.user;
+        // const isEdit = operation === "edit" && data.user;
         console.log(state);
 
         return (

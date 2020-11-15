@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import SearchContent from "./SearchContent";
-
 
 class Search extends Component{
     state = {
@@ -14,6 +15,9 @@ class Search extends Component{
 
     render() {
         const { isArtist } = this.state;
+
+        if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
+
         return (
             <div id={"search"} className={"page-content"}>
                 <div className={"d-flex flex-column align-items-center pt-5"}>
@@ -29,4 +33,10 @@ class Search extends Component{
     }
 }
 
-export default Search;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(Search);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Container, Form, Nav, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
@@ -14,17 +14,17 @@ class UserProfileEdit extends Component{
     state = {
         isLoaded: false,
 
-        login: this.props.user && this.props.user.login || '',
-        email: this.props.auth && this.props.auth.email || '',
+        login: (this.props.user && this.props.user.login) || '',
+        email: (this.props.auth && this.props.auth.email) || '',
         password: '',
         passwordRep: '',
-        name: this.props.user && this.props.user.name || '',
+        name: (this.props.user && this.props.user.name) || '',
         voivodeship: (this.props.user && this.props.user.voivodeshipId &&
             {
                 id: this.props.user.voivodeshipId,
                 name: this.props.voivodeships[this.props.user.voivodeshipId].name
             }) || '',
-        city: this.props.user && this.props.user.city || '',
+        city: (this.props.user && this.props.user.city) || '',
 
         genres: (this.props.user && this.props.genres && this.props.user.genresId.map( genreId => {
             return {
@@ -256,6 +256,7 @@ class UserProfileEdit extends Component{
             instruments, instrumentsOrdered } = this.props;
         const { id } = this.props.match.params;
 
+        if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
         if (!auth.uid || auth.uid !== id) return <Redirect to={"/logowanie"} />
         if (!auth || !user || !users || !usersOrdered || !usersArtists
             || !statusFiltered || !statusFilteredOrdered || !voivodeships || !voivodeshipsOrdered

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Image, Image as Img} from "react-bootstrap";
+import {Button, Image as Img} from "react-bootstrap";
 
 import BlocksImageElement from "./BlocksImageElement";
 import {X} from "react-bootstrap-icons";
@@ -30,8 +30,6 @@ class BlocksImage extends Component{
             if (files) [].forEach.call(files, read);
         }
     }
-
-
 
     buttonAdd = (type, id) => {
         let opts = {};

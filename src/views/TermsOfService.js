@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import  {Container, Row, Col } from "react-bootstrap";
 
 class TermsOfService extends Component{
     render() {
+        if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
         return (
             <div id={"terms-of-service"} className={"page-content"}>
                 <Container>
@@ -72,4 +75,10 @@ class TermsOfService extends Component{
     }
 }
 
-export default TermsOfService;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(TermsOfService);

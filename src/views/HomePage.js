@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
-import  {Container, Row, Col, Button, Image} from "react-bootstrap";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import photo1 from '../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
 import photo2 from '../resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
@@ -8,6 +9,8 @@ import photo3 from '../resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
 
 class HomePage extends Component{
     render() {
+        if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
+
         return (
             <div className={"home"}>
                 <div className={"section photo-section d-flex flex-column align-items-center"}>
@@ -64,4 +67,11 @@ class HomePage extends Component{
     }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(HomePage);
+

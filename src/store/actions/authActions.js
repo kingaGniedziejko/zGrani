@@ -32,47 +32,77 @@ export const signup = (newUser) => {
         const firestore = getFirestore();
         const storage = firebase.storage().ref();
 
-        firebase.auth().createUserWithEmailAndPassword(
-            newUser.email,
-            newUser.password
-        ).then((response) => {
-            storage.child("default_user_picture.png").getDownloadURL().then((url) => {
-                if (newUser.isArtist){
-                    return firestore.collection('users').doc(response.user.uid).set({
-                        login: newUser.login,
-                        email: newUser.email,
-                        name: newUser.name,
-                        voivodeshipId: newUser.voivodeshipId,
-                        city: newUser.city,
-                        genresId: newUser.genresId,
-                        instrumentsId: newUser.instrumentsId,
-                        status: newUser.status,
-                        isArtist: true,
-                        isActive: true,
-                        imageUrl: url,
-                        bandsId: []
-                    })
-                } else {
-                    return firestore.collection('users').doc(response.user.uid).set({
-                        login: newUser.login,
-                        name: newUser.name,
-                        voivodeshipId: newUser.voivodeshipId,
-                        city: newUser.city,
-                        genresId: newUser.genresId,
-                        members: newUser.members,
-                        status: newUser.status,
-                        isArtist: false,
-                        isActive: true,
-                        imageUrl: url
-                    })
-                }
-            })
+        firebase.auth().createUserWithEmailAndPassword( newUser.email, newUser.password )
+            .then((response) => {
+                storage.child("default_user_picture.png").getDownloadURL().then((url) => {
+                    if (newUser.isArtist){
+                        firestore.collection('users').doc(response.user.uid).set({
+                            login: newUser.login,
+                            email: newUser.email,
+                            name: newUser.name,
+                            voivodeshipId: newUser.voivodeshipId,
+                            city: newUser.city,
+                            genresId: newUser.genresId,
+                            instrumentsId: newUser.instrumentsId,
+                            status: newUser.status,
+                            isArtist: true,
+                            isActive: true,
+                            imageUrl: url,
+                            bandsId: []
+                        })
+                    } else {
+                        firestore.collection('users').doc(response.user.uid).set({
+                            login: newUser.login,
+                            name: newUser.name,
+                            voivodeshipId: newUser.voivodeshipId,
+                            city: newUser.city,
+                            genresId: newUser.genresId,
+                            members: newUser.members,
+                            status: newUser.status,
+                            isArtist: false,
+                            isActive: true,
+                            imageUrl: url
+                        })
+                    }
 
-        }).then(() => {
-            dispatch({ type: 'SIGNUP_SUCCESS' })
-        }).catch(error => {
-            dispatch({ type: 'SIGNUP_ERROR', error })
-        })
+                    const config = {
+                        url: process.env.REACT_APP_SIGNUP_REDIRECT,
+                        handleCodeInApp: true
+                    }
+                    firebase.auth().languageCode = 'pl';
+                    response.user.sendEmailVerification(config)
+                        .then(() => {
+                            dispatch({ type: 'SIGNUP_SUCCESS' })
+                        })
+                        .catch(error => {
+                            dispatch({ type: 'SIGNUP_ERROR', error })
+                        })
+                })
+            })
+            .catch(error => {
+                dispatch({ type: 'SIGNUP_ERROR', error })
+            })
+    }
+}
+
+export const sendVerificationEmail = () => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase();
+        const user = firebase.auth().currentUser;
+        firebase.auth().languageCode = 'pl';
+
+        const config = {
+            url: process.env.REACT_APP_SIGNUP_REDIRECT,
+            handleCodeInApp: true
+        }
+
+        user.sendEmailVerification(config)
+            .then(() => {
+                dispatch({type: 'EMAIL_VERIFICATION_SUCCESS'})
+            })
+            .catch(error => {
+                dispatch({type: 'EMAIL_VERIFICATION_ERROR', error})
+            })
     }
 }
 
@@ -116,6 +146,8 @@ export const forgotPassword = (email) => {
             handleCodeInApp: true
         }
 
+        firebase.auth().languageCode = 'pl';
+
         firebase.auth().sendPasswordResetEmail(email, config)
             .then(r => {
                 dispatch({ type: 'FORGET_PASSWORD_SUCCESS'})
@@ -123,14 +155,5 @@ export const forgotPassword = (email) => {
             .catch((error) => {
                 dispatch({ type: 'FORGET_PASSWORD_ERROR', error });
             });
-
-        // firebase.auth().signInWithEmailAndPassword(
-        //     credentials.email,
-        //     credentials.password
-        // ).then(() => {
-        //     dispatch({ type: 'LOGIN_SUCCESS' });
-        // }).catch((error) => {
-        //     dispatch({ type: 'LOGIN_ERROR', error });
-        // })
     }
 }
