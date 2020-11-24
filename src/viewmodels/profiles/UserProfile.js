@@ -55,7 +55,7 @@ class UserProfile extends Component {
 
         if (profile && profile.description) sectionArray.push(this.descriptionSection);
         sectionArray.push(this.genresInstrumentsMembersSection);
-        if (user.isArtist && user.bandsId) sectionArray.push(this.bandsSection);
+        if (user.isArtist && user.bandsId && user.bandsId.length !==0) sectionArray.push(this.bandsSection);
         if (profile && profile.recordings && profile.recordings.length !==0 ) sectionArray.push(this.recordsSection);
         if (profile && profile.imageGallery && profile.imageGallery.length !== 0) sectionArray.push(this.gallerySection);
         if (profile && profile.videoLink) sectionArray.push(this.videoSection);
@@ -322,7 +322,8 @@ class UserProfile extends Component {
                                 id={"email"}
                                 name={"email"}
                                 type={"email"}
-                                defaultValue={this.state.email}
+                                className={this.state.email ? "not-empty" : ""}
+                                value={this.state.email}
                                 size="sm"
                                 autoComplete={"off"}
                                 onChange={this.handleChange}
@@ -337,6 +338,7 @@ class UserProfile extends Component {
                                 id={"subject"}
                                 name={"subject"}
                                 type={"text"}
+                                className={this.state.subject ? "not-empty" : ""}
                                 size="sm"
                                 autoComplete={"off"}
                                 onChange={this.handleChange}
@@ -354,7 +356,6 @@ class UserProfile extends Component {
                                 name={"message"}
                                 as={"textarea"}
                                 rows={5}
-                                // placeholder={"Wiadomość"}
                                 maxLength={"1000"}
                                 size="sm"
                                 onChange={this.handleChange}
@@ -406,10 +407,10 @@ class UserProfile extends Component {
                     }, (error) => {
                         console.log(error.text);
                     });
+                e.target.reset();
+                this.setState({ modalShow: false });
             }
         }
-        e.target.reset();
-        this.setState({ modalShow: false });
     }
 
     handleChange = (e) => {
