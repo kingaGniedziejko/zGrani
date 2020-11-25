@@ -4,11 +4,11 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 
-import PersonalDataFormGroup from "../../views/forms/PersonalDataFormGroup";
-import ProfileDataFormGroup from "../../views/forms/ProfileDataFormGroup";
+import PersonalDataFormGroup from "../layout/forms/PersonalDataFormGroup";
+import ProfileDataFormGroup from "../layout/forms/ProfileDataFormGroup";
 import { firestoreConnect } from "react-redux-firebase";
 import { editUser } from "../../store/actions/userActions";
-import Loader from "../../views/Loader";
+import Loader from "../layout/Loader";
 
 class UserProfileEdit extends Component{
     state = {
@@ -363,7 +363,7 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) => [
         {collection: "users"},
-        {collection: "profiles", where: ["userId", "==", props.match.params.id]},
+        {collection: "users", where: ["userId", "==", props.match.params.id]},
         {collection: "status", where: ["type", "in", [props.user && props.user.isArtist ? "artist" : "band", "all"]], storeAs: "statusFiltered"},
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},

@@ -6,7 +6,7 @@ import {firestoreConnect} from "react-redux-firebase";
 
 import "../../resources/styles/browse_style.css"
 
-import Dropdown from "../../views/inputs/DropdownInput";
+import Dropdown from "../layout/inputs/DropdownInput";
 import BrowseDisplay from "./BrowseDisplay";
 
 class BrowseContent extends Component{

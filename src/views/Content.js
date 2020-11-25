@@ -4,44 +4,24 @@ import { connect } from "react-redux";
 
 import '../resources/styles/content_style.css'
 
-import HomePage from "../views/HomePage";
+import HomePage from "./layout/static_pages/HomePage";
 import Browse from "./browse/Browse";
 import Search from "./search/Search";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
-import UserProfile from "./profiles/UserProfile";
-import UserProfileCreate from "./profiles/UserProfileCreate";
-import UserProfileEdit from "./profiles/UserProfileEdit";
-import TermsOfService from "../views/TermsOfService";
-import PrivacyPolicy from "../views/PrivacyPolicy";
+import UserProfile from "./users/UserProfile";
+import UserProfileCreate from "./users/UserProfileCreate";
+import UserProfileEdit from "./users/UserProfileEdit";
+import TermsOfService from "./layout/static_pages/TermsOfService";
+import PrivacyPolicy from "./layout/static_pages/PrivacyPolicy";
 import ForgotPassword from "./auth/ForgotPassword";
 import EmailVerification from "./auth/EmailVerification";
+import ErrorPage from "./layout/static_pages/ErrorPage";
 
 class Content extends Component{
     render() {
         return (
             <div className={"content"}>
-                {/*{(this.props.auth.uid && !this.props.auth.emailVerified) ?*/}
-                {/*    <Switch>*/}
-                {/*        <Route exact path={"/"} component={EmailVerification}/>*/}
-                {/*        <Route path={"/przegladaj"} component={EmailVerification}/>*/}
-                {/*        <Route path={"/szukaj"} component={EmailVerification}/>*/}
-
-                {/*        <Route exact path={"/logowanie"} component={EmailVerification}/>*/}
-                {/*        <Route exact path={"/zapomnialem-hasla"} component={EmailVerification}/>*/}
-                {/*        <Route exact path={"/rejestracja"} component={EmailVerification}/>*/}
-                {/*        <Route exact path={"/rejestracja/:type"} component={EmailVerification}/>*/}
-                {/*        <Route exact path={"/potwierdzanie-adresu-email"} component={EmailVerification}/>*/}
-
-                {/*        <Route exact path={"/profil/:id"} component={EmailVerification}/>*/}
-                {/*        <Route path={"/profil/:id/edytowanie"} component={EmailVerification}/>*/}
-
-                {/*        <Route exact path={"/regulamin"} component={EmailVerification}/>*/}
-                {/*        <Route exact path={"/polityka-prywatnosci"} component={EmailVerification}/>*/}
-
-                {/*    </Switch>*/}
-
-                {/*    :*/}
                     <Switch>
                         <Route exact path={"/"} component={HomePage}/>
                         <Route path={"/przegladaj"} component={Browse}/>
@@ -58,6 +38,8 @@ class Content extends Component{
 
                         <Route exact path={"/regulamin"} component={TermsOfService}/>
                         <Route exact path={"/polityka-prywatnosci"} component={PrivacyPolicy}/>
+
+                        <Route path={"/"} component={ErrorPage}/>
 
                     </Switch>
                 {/*}*/}

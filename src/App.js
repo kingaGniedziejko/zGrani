@@ -8,10 +8,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //custom style
 import "./resources/styles/style.css"
 
-import Header from "./views/header/Header";
-import Content from "./viewmodels/Content";
-import Footer from "./views/Footer";
-import ScrollToTop from "./views/ScrollToTop";
+import Header from "./views/layout/header/Header";
+import Content from "./views/Content";
+import Footer from "./views/layout/Footer";
+import ScrollToTop from "./views/layout/ScrollToTop";
 
 class App extends Component{
     render() {

@@ -10,7 +10,7 @@ import { createFirestoreInstance, reduxFirestore, getFirestore } from "redux-fir
 import firebase from "firebase/app";
 import 'firebase/database';
 import firebaseConfig from "./firebaseConfig";
-import Loader from "./views/Loader";
+import Loader from "./views/layout/Loader";
 
 const store = createStore(rootReducer,
     compose (

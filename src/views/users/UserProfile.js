@@ -16,10 +16,10 @@ import { faMapMarkerAlt, faGlobeAmericas } from "@fortawesome/free-solid-svg-ico
 import { ExclamationCircle } from "react-bootstrap-icons";
 import { faFacebook, faYoutube, faInstagram, faSoundcloud } from "@fortawesome/free-brands-svg-icons";
 
-import Blocks from "../../views/displays/Blocks";
-import BlocksWithButton from "../../views/displays/BlocksWithButton";
-import ErrorPage from "../../views/ErrorPage";
-import Loader from "../../views/Loader";
+import Blocks from "../layout/displays/Blocks";
+import BlocksWithButton from "../layout/displays/BlocksWithButton";
+import ErrorPage from "../layout/static_pages/ErrorPage";
+import Loader from "../layout/Loader";
 import ReactAudioPlayer from "react-audio-player";
 
 class UserProfile extends Component {
@@ -488,7 +488,7 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
         {collection: "users", storeAs: "allUsers"},
-        {collection: "profiles", where: ["userId", "==", props.match.params.id]},
+        {collection: "users", where: ["userId", "==", props.match.params.id]},
         {collection: "status"},
         {collection: "voivodeships"},
         {collection: "genres", orderBy: "name"},

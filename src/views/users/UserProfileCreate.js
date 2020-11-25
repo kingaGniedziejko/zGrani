@@ -6,10 +6,10 @@ import { Redirect } from "react-router-dom"
 
 import { signup } from "../../store/actions/authActions";
 
-import PersonalDataFormGroup from "../../views/forms/PersonalDataFormGroup";
+import PersonalDataFormGroup from "../layout/forms/PersonalDataFormGroup";
 import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
-import Loader from "../../views/Loader";
+import Loader from "../layout/Loader";
 
 class UserProfileCreate extends Component{
     state = {

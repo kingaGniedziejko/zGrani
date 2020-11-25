@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {Col, Container, Row} from "react-bootstrap";
-import ProfileShortcut from "../profiles/ProfileShortcut";
+import ProfileShortcut from "../users/UserShortcut";
 import {ChevronDown} from "react-bootstrap-icons";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import Loader from "../../views/Loader";
+import Loader from "../layout/Loader";
 
 class BrowseDisplay extends Component{
     state = {

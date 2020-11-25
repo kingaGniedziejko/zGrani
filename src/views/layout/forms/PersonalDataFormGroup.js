@@ -3,7 +3,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import cloneDeep from 'lodash/cloneDeep';
 
-import "../../resources/styles/modal_style.css";
+import "../../../resources/styles/modal_style.css";
 
 import Blocks from "../displays/Blocks";
 import BlocksMembers from "../displays/BlocksMembers";
@@ -11,7 +11,7 @@ import Dropdown from "../inputs/DropdownInput";
 import BlocksStatus from "../displays/BlocksStatus";
 import isEmpty from "validator/es/lib/isEmpty";
 import equals from "validator/es/lib/equals";
-import { reauthenticate } from "../../store/actions/authActions";
+import { reauthenticate } from "../../../store/actions/authActions";
 
 class PersonalDataFormGroup extends Component{
     state = {
