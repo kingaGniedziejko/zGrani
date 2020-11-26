@@ -20,13 +20,17 @@ class BrowseDisplay extends Component{
     }
 
     render() {
-        let { users, instrument, genre } = this.props;
+        let { users, instruments, genres } = this.props;
         const { limit } = this.state;
 
         if (!users) return <Loader/>
 
-        if (instrument && genre) {
-            users = users.filter(user => user.genresId.includes(genre.id));
+        if (genres.length !== 0) {
+            users = users.filter(user => genres.every(genreId => user.genresId.includes(genreId)));
+        }
+
+        if (instruments.length !== 0) {
+            users = users.filter(user => instruments.every(instrumentId => user.instrumentsId.includes(instrumentId)));
         }
 
         let usersList = [];
@@ -84,38 +88,40 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect ( (props) => {
-        if (props.instrument && props.genre)
-            return [
-                {collection: "users",
-                    where: [
-                        ["instrumentsId", "array-contains", props.instrument.id],
-                        ["isArtist", "==", props.isArtist]
-                    ]
-                }
-            ]
-        else if (props.instrument && !props.genre)
-            return [
-                {collection: "users",
-                    where: [
-                        ["instrumentsId", "array-contains", props.instrument.id],
-                        ["isArtist", "==", props.isArtist]
-                    ]
-                }
-            ]
-        else if (!props.instrument && props.genre)
-            return [
-                {collection: "users",
-                    where: [
-                        ["genresId", "array-contains", props.genre.id],
-                        ["isArtist", "==", props.isArtist]
-                    ]
-                }
-            ]
-        else
-            return [
-                {collection: "users",
-                    where: ["isArtist", "==", props.isArtist]
-                }
-            ]
+        // if (props.instruments.length !== 0 && props.genres.length !== 0)
+        //     return [
+        //         {collection: "users",
+        //             where: [
+        //                 ["instrumentsId", "array-contains-any", props.instruments],
+        //                 ["isArtist", "==", props.isArtist]
+        //             ]
+        //         }
+        //     ]
+        // else if (props.instruments.length !== 0 && props.genres.length === 0)
+        //     return [
+        //         {collection: "users",
+        //             where: [
+        //                 ["instrumentsId", "array-contains-any", props.instruments],
+        //                 ["isArtist", "==", props.isArtist]
+        //             ]
+        //         }
+        //     ]
+        // else if (props.instruments.length === 0 && props.genres.length !== 0)
+        //     return [
+        //         {collection: "users",
+        //             where: ["isArtist", "==", props.isArtist],
+        //         ... props.genres.map(genre => {where: ["genresId", "array-contains", genre]})
+        //             // where: [
+        //             //     ["genresId", "array-contains-any", props.genres],
+        //             //     ["isArtist", "==", props.isArtist]
+        //             // ]
+        //         }
+        //     ]
+        // else
+
+        return [
+            {collection: "users",
+                where: ["isArtist", "==", props.isArtist]
+            }]
     })
 )(BrowseDisplay);

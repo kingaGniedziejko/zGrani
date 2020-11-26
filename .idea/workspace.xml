@@ -20,53 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/layout/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/layout/Loader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/layout/static_pages/ErrorPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/layout/static_pages/PrivacyPolicy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/layout/static_pages/TermsOfService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/userActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/EmailVerification.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/EmailVerification.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/ForgotPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/ForgotPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/auth/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/browse/Browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/browse/Browse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/browse/BrowseContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/browse/BrowseContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/browse/BrowseDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/browse/BrowseDisplay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/ProfileShortcut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserShortcut.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfileCreate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/profiles/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfileEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/search/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/search/SearchContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/search/SearchContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodels/search/SearchDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/search/SearchDisplay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ErrorPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Footer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Loader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/PrivacyPolicy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ScrollToTop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/ScrollToTop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/TermsOfService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/Blocks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksImage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksImageElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksImageElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksMembers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksMembers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksMembersElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksMembersElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksRecords.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksRecords.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksStatus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksStatusElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksStatusElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/displays/BlocksWithButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksWithButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/forms/PersonalDataFormGroup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/forms/ProfileDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/forms/ProfileDataFormGroup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/header/LoggedInButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/header/LoggedInButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/header/LoggedOutButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/header/LoggedOutButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/inputs/DropdownInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/inputs/DropdownInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/browse/BrowseContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/browse/BrowseContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/browse/BrowseDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/browse/BrowseDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layout/displays/Blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/Blocks.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +119,7 @@
       <workItem from="1605035678578" duration="2270000" />
       <workItem from="1605183612577" duration="52539000" />
       <workItem from="1605444027686" duration="21056000" />
-      <workItem from="1605535616712" duration="22242000" />
+      <workItem from="1605535616712" duration="34464000" />
     </task>
     <servers />
   </component>
