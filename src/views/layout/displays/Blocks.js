@@ -17,7 +17,7 @@ class Blocks extends Component{
                              style={flex_1 ? {flex: 1} : {}}
                         >
                             <p className={(editable ? "ml-1 mr-3" : "ml-2 mr-2")}>{elem.name.replace(/ /g, "\u00a0")}</p>
-                            {editable ? <X className={"ml-auto"} onClick={()=>handler(slug, elem)}/> : ""}
+                            {editable ? <X className={"ml-auto clickable"} onClick={()=>handler(slug, elem)}/> : ""}
                         </div>
                     )
                 })}

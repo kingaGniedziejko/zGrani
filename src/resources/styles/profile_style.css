@@ -170,6 +170,7 @@
 }
 
 .img-wrap img {
+    display: block;
     min-width: 100%;
     min-height: 100%;
     max-width: 100%;
@@ -179,6 +180,23 @@
     left: 0;
     margin-top: auto;
     margin-bottom: auto;
+    background-color: var(--background-lighter);
+    transition: transform .2s;
+}
+
+a.image-link:hover {
+    /*box-shadow: 3px 3px 5px black;*/
+    /*-webkit-box-shadow: 3px 3px 5px black;*/
+    /*-moz-box-shadow: 3px 3px 5px black;*/
+}
+
+a.image-link:hover img {
+    transform: scale(1.1);
+}
+
+a.image-link:hover img::after {
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 5;
 }
 
 #links svg {
