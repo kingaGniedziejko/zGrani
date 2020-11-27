@@ -228,6 +228,7 @@ class PersonalDataFormGroup extends Component{
 
     statusInput = () => {
         const list = this.props.data.statusFilteredOrdered;
+        const { type } = this.props;
         const { statusError } = this.state;
 
         return (
@@ -240,8 +241,14 @@ class PersonalDataFormGroup extends Component{
                     ? <p className={"error mb-3"}>{statusError}</p>
                     : ""
                 }
-                <BlocksStatus elementsList={this.props.state.status} instrumentList={this.props.data.instrumentsOrdered} slug={"status"}
-                               deleteHandler={this.handleDelete} instrumentHandler={this.handleStatusInstrument}/>
+                <BlocksStatus
+                    isArtist={type === "artist"}
+                    elementsList={this.props.state.status}
+                    instrumentList={this.props.data.instrumentsOrdered}
+                    slug={"status"}
+                    deleteHandler={this.handleDelete}
+                    instrumentHandler={this.handleStatusInstrument}
+                />
             </Form.Group>
         )
     }

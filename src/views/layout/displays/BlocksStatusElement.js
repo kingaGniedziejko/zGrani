@@ -21,7 +21,7 @@ class BlocksStatusElement extends Component{
     }
 
     render() {
-        const { elem, slug, instrumentList, deleteHandler, index } = this.props;
+        const { isArtist, elem, slug, instrumentList, deleteHandler, index } = this.props;
 
         return (
             <>
@@ -31,7 +31,7 @@ class BlocksStatusElement extends Component{
                         <X className={"clickable ml-auto"} size={25} onClick={()=>deleteHandler(slug, elem)}/>
                     </div>
                     {
-                        elem.withInstrument ?
+                        elem.withInstrument && !isArtist ?
                             <div className={"mr-4 mt-3 text-left animated-label"}>
                                 <Dropdown
                                     placeholder={"Instrument"}
