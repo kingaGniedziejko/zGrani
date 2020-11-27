@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { compose } from "redux";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom"
+import { firestoreConnect } from "react-redux-firebase";
+import isEmpty from "validator/es/lib/isEmpty";
+import equals from "validator/es/lib/equals";
 
 import { signup } from "../../store/actions/authActions";
 
 import PersonalDataFormGroup from "../layout/forms/PersonalDataFormGroup";
-import {compose} from "redux";
-import {firestoreConnect} from "react-redux-firebase";
 import Loader from "../layout/Loader";
 
 class UserProfileCreate extends Component{
@@ -53,18 +54,74 @@ class UserProfileCreate extends Component{
         }
     }
 
+    evaluateFields = (slugs) => {
+        const { errors, isArtist } = this.state;
+        let newErrors = {};
+
+        slugs.forEach(slug => {
+            const value = this.state[slug];
+            let errorMessage = "";
+
+            if (["login", "email", "password", "passwordRep", "name", "city", "voivodeship"].some(field => field === slug)
+                    && (value === "" || value === undefined))
+                errorMessage = "* Wymagane pole";
+            else if (slug === "genres" && ((value && value.length === 0) || value === undefined))
+                errorMessage = "* Należy wybrać minimum jedną wartość";
+            else if (isArtist && slug === "instruments" && ((value && value.length === 0) || value === undefined))
+                errorMessage = "* Należy wybrać minimum jedną wartość";
+            else if (slug === "agreement" && !value)
+                errorMessage = "* Wymagana zgoda";
+            else {
+                switch (slug) {
+                    case "login":
+                        if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
+                        else {
+                            if (this.props.usersOrdered.some(user => user.login === value)) errorMessage = "* Login jest już zajęty";
+                            else errorMessage = "";
+                        }
+                        break;
+                    case "email":
+                        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
+                        else errorMessage = "";
+                        break;
+                    case "password":
+                    case "newPassword":
+                        if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków";
+                        else errorMessage = "";
+                        break;
+                    case "passwordRep":
+                        if (!equals(value, this.state.password)) errorMessage = "* Hasła muszą być takie same"
+                        else errorMessage = "";
+                        break;
+                    case "newPasswordRep":
+                        if (!equals(value, this.state.newPassword)) errorMessage = "* Hasła muszą być takie same"
+                        else errorMessage = "";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            newErrors[slug] = errorMessage;
+        })
+
+        this.setState({
+            errors: {
+                ...errors,
+                ...newErrors
+            }
+        })
+
+        return !Object.keys(newErrors).some((key) => newErrors[key])
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist, errors, agreement } = this.state;
+        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist, errors } = this.state;
 
         console.log(this.state);
 
-        if (!agreement){
-            this.setState({"errors": { ...errors, agreement: "* Wymagana zgoda" }});
-        } else {
+        if (this.evaluateFields(["login", "email", "password", "passwordRep", "name", "voivodeship", "city", "genres", "instruments", "agreement"])){
             if (!Object.keys(errors).some((key) => errors[key])) {
-                // walidacja statusu, czy z instrumentem
-
                 let newUser = {
                     login: login,
                     email: email,
@@ -88,6 +145,15 @@ class UserProfileCreate extends Component{
                 this.props.signup(newUser);
             }
         }
+
+        this.scrollToTop();
+    }
+
+    scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
     render() {
@@ -141,6 +207,7 @@ class UserProfileCreate extends Component{
                                         genresOrdered: genresOrdered,
                                         instrumentsOrdered: instrumentsOrdered,
                                     }}
+                                    evaluateFields={this.evaluateFields}
                                     handleUpdate={this.handleUpdate}
                                     state={this.state}/>
                                 <Form.Group className={"block mb-2"}>
@@ -176,6 +243,7 @@ const mapStateToProps = (state) => {
         auth: state.firebase.auth,
         authError: state.auth.authError,
 
+        usersOrdered: state.firestore.ordered.users,
         usersArtists: state.firestore.ordered.users && state.firestore.ordered.users.filter(user => user.isArtist),
         statusFilteredOrdered: state.firestore.ordered.statusFiltered,
         voivodeshipsOrdered: state.firestore.ordered.voivodeships,

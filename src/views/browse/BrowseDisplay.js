@@ -26,11 +26,11 @@ class BrowseDisplay extends Component{
         if (!users) return <Loader/>
 
         if (genres.length !== 0) {
-            users = users.filter(user => genres.every(genreId => user.genresId.includes(genreId)));
+            users = users.filter(user => genres.every(genreId => user.genresId && user.genresId.includes(genreId)));
         }
 
         if (instruments.length !== 0) {
-            users = users.filter(user => instruments.every(instrumentId => user.instrumentsId.includes(instrumentId)));
+            users = users.filter(user => instruments.every(instrumentId => user.instrumentsId && user.instrumentsId.includes(instrumentId)));
         }
 
         let usersList = [];
@@ -47,7 +47,7 @@ class BrowseDisplay extends Component{
                 {usersList && usersList.length === 0 ?
                     <p className={"mt-3 mb-5"}>
                         <i className={"dark-text"}>
-                            Brak użytkowników
+                            Brak twórców
                         </i>
                     </p>
                     :

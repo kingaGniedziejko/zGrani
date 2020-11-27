@@ -9,8 +9,6 @@ import Blocks from "../displays/Blocks";
 import BlocksMembers from "../displays/BlocksMembers";
 import Dropdown from "../inputs/DropdownInput";
 import BlocksStatus from "../displays/BlocksStatus";
-import isEmpty from "validator/es/lib/isEmpty";
-import equals from "validator/es/lib/equals";
 import { reauthenticate } from "../../../store/actions/authActions";
 
 class PersonalDataFormGroup extends Component{
@@ -19,11 +17,7 @@ class PersonalDataFormGroup extends Component{
         statusError: '',
 
         modalShow: false,
-        // actualPassword: '',
         isPasswordCorrect: false,
-        // newPassword: '',
-        // newPasswordRep: '',
-        // isNewPasswordSet: false
     }
 
     static getDerivedStateFromProps(props, prevState) {
@@ -45,47 +39,7 @@ class PersonalDataFormGroup extends Component{
     }
 
     handleBlur = (e) => {
-        const { id, value } = e.target;
-        const { errors } = this.props.state;
-        let errorMessage = "";
-
-        if (isEmpty(value)) errorMessage = "* Wymagane pole";
-        else {
-            switch (id) {
-                case "login":
-                    if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
-                    else {
-                        if (this.props.operation === "edit"){
-                            if (this.props.data.usersOrdered.some(user => user.login === value && user.id !== this.props.data.auth.uid)) errorMessage = "* Login jest już zajęty";
-                            else errorMessage = "";
-                        }
-                        else errorMessage = "";
-                    }
-                    break;
-                case "email":
-                    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
-                    else errorMessage = "";
-                    break;
-                case "password":
-                case "newPassword":
-                    if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków";
-                    else errorMessage = "";
-                    break;
-                case "passwordRep":
-                    if (!equals(value, this.props.state.password)) errorMessage = "* Hasła muszą być takie same"
-                    else errorMessage = "";
-                    break;
-
-                case "newPasswordRep":
-                    if (!equals(value, this.props.state.newPassword)) errorMessage = "* Hasła muszą być takie same"
-                    else errorMessage = "";
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        this.props.handleUpdate("errors", { ...errors, [id]: errorMessage });
+        this.props.evaluateFields([e.target.id]);
     }
 
     handleLocalChange = (e) => {
@@ -105,6 +59,8 @@ class PersonalDataFormGroup extends Component{
     }
 
     toggleSelected = (id, item, slug, isMultiple) => {
+        const { errors } = this.props.state;
+
         if (!isMultiple) {
             this.props.handleUpdate(slug, cloneDeep(item));
         } else {
@@ -125,16 +81,22 @@ class PersonalDataFormGroup extends Component{
 
             this.props.handleUpdate(slug, elements);
         }
+
+        if (errors[slug]) {
+            this.props.handleUpdate("errors", { ...errors, [slug]: "" });
+        }
     }
 
     blockInput = (title, slug, dataSlug) => {
         let list = this.props.data[dataSlug];
+        let error = this.props.state.errors[slug];
 
         return (
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
-                <h6 className={"mb-3"}>{title}</h6>
+                <h6 className={"mb-1"}>{title}</h6>
+                { error ? <p className={"mt-1 error"}>{error}</p> : ""}
 
-                <div className={"block mb-3"}>
+                <div className={"block mt-2 mb-3"}>
                     <Dropdown placeholder="Wybierz z listy" list={list} slug={slug} toggleItem={this.toggleSelected} isMultiple={true}/>
                 </div>
 
@@ -459,7 +421,9 @@ class PersonalDataFormGroup extends Component{
                         slug={"voivodeship"}
                         toggleItem={this.toggleSelected}
                         animatedLabel
+                        isInvalid={state.errors.voivodeship}
                     />
+                    { state.errors.voivodeship ? <p className={"text-left error mt-1"}>{state.errors.voivodeship}</p> : ""}
                 </Form.Group>
                 <Form.Group className={"block mb-5 mt-2 text-left animated-label"}>
                     <Form.Control

@@ -77,7 +77,7 @@ class SearchDisplay extends Component{
                 {usersList && usersList.length === 0 ?
                     <p className={"mt-3 mb-5"}>
                         <i className={"dark-text"}>
-                            Brak użytkowników
+                            Brak twórców
                         </i>
                     </p>
                     :

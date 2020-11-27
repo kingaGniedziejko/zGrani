@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect, withRouter } from "react-router-dom";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router-dom";
+import { firestoreConnect } from "react-redux-firebase";
+import isEmpty from "validator/es/lib/isEmpty";
+import equals from "validator/es/lib/equals";
+
+import { editUser } from "../../store/actions/userActions";
 
 import PersonalDataFormGroup from "../layout/forms/PersonalDataFormGroup";
 import ProfileDataFormGroup from "../layout/forms/ProfileDataFormGroup";
-import { firestoreConnect } from "react-redux-firebase";
-import { editUser } from "../../store/actions/userActions";
 import Loader from "../layout/Loader";
 
 class UserProfileEdit extends Component{
@@ -152,6 +155,58 @@ class UserProfileEdit extends Component{
         }
     }
 
+    evaluateFields = (slugs) => {
+        const { errors } = this.state;
+        let newErrors = {};
+
+        slugs.forEach(slug => {
+            const value = this.state[slug];
+            let errorMessage = "";
+
+            if (value === "" || value === undefined) errorMessage = "* Wymagane pole";
+            else {
+                switch (slug) {
+                    case "login":
+                        if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
+                        else {
+                            if (this.props.usersOrdered.some(user => user.login === value && user.id !== this.props.auth.uid)) errorMessage = "* Login jest już zajęty";
+                            else errorMessage = "";
+                        }
+                        break;
+                    case "email":
+                        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
+                        else errorMessage = "";
+                        break;
+                    case "password":
+                    case "newPassword":
+                        if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków";
+                        else errorMessage = "";
+                        break;
+                    case "passwordRep":
+                        if (!equals(value, this.state.password)) errorMessage = "* Hasła muszą być takie same"
+                        else errorMessage = "";
+                        break;
+                    case "newPasswordRep":
+                        if (!equals(value, this.state.newPassword)) errorMessage = "* Hasła muszą być takie same"
+                        else errorMessage = "";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            newErrors[slug] = errorMessage;
+        })
+
+        this.setState({
+            errors: {
+                ...errors,
+                ...newErrors
+            }
+        })
+
+        return !Object.keys(newErrors).some((key) => newErrors[key])
+    }
+
     handleUpdate = (slug, value) => {
         this.setState({ [slug]: value });
         console.log(this.state);
@@ -167,75 +222,84 @@ class UserProfileEdit extends Component{
             description,
             gallerySrc, galleryNew, galleryDeleted,
             recordingsSrc, recordingsNew, recordingsDeleted,
-            videoLink
+            videoLink,
+            errors
         } = this.state;
 
-        let editedAuth = {
-            id: auth.uid,
-            email: email,
-            password: isNewPasswordSet ? newPassword : "",
-            hasProfile: profile
+
+        if (this.evaluateFields(["login", "email", "name", "voivodeship", "city"])) {
+            if (!Object.keys(errors).some((key) => errors[key])) {
+
+                let editedAuth = {
+                    id: auth.uid,
+                    email: email,
+                    password: isNewPasswordSet ? newPassword : "",
+                    hasProfile: profile
+                }
+
+                let editedUser = {
+                    login: login,
+                    email: email,
+                    name: name,
+                    voivodeshipId: voivodeship.id,
+                    city: city,
+                    genresId: genres && genres.map(genre => genre.id),
+                    instrumentsId: instruments && instruments.map(instrument => instrument.id),
+                    members: members && members.map(member => (member.user ? {
+                        name: member.name,
+                        userId: member.user.id
+                    } : {name: member.name})),
+                    status: status && status.map(stat => (stat.withInstrument ? {
+                        instrumentId: stat.instrument.id,
+                        statusId: stat.id
+                    } : {statusId: stat.id})),
+                    isArtist: isArtist
+                }
+
+                let userPhoto = {
+                    image: profilePhoto,
+                    imageUrlDeleted: profilePhotoSrcPrev !== profilePhotoSrc ? profilePhotoSrcPrev : "",
+                    defaultImage: profilePhotoSrc === undefined && profilePhoto === undefined
+                }
+
+                let editedProfile = {
+                    id: profile && profile.id,
+
+                    facebookLink: facebookLink,
+                    youtubeLink: youtubeLink,
+                    instagramLink: instagramLink,
+                    soundcloudLink: soundcloudLink,
+                    websiteLink: websiteLink,
+
+                    description: description,
+
+                    recordingsSrc: recordingsSrc,
+                    recordingsNew: recordingsNew,
+                    recordingsDeleted: recordingsDeleted,
+
+                    gallerySrc: gallerySrc,
+                    galleryNew: galleryNew,
+                    galleryDeleted: galleryDeleted,
+
+                    videoLink: videoLink
+                }
+
+                this.clean(editedAuth);
+                this.clean(editedUser);
+                this.clean(userPhoto);
+
+                console.log(editedAuth);
+                console.log(editedUser);
+                console.log(userPhoto);
+                console.log(editedProfile);
+
+                this.props.editUser(editedAuth, editedUser, userPhoto, newMembers, editedProfile);
+
+                this.props.history.push("/profil/" + auth.uid);
+            }
         }
 
-        let editedUser = {
-            login: login,
-            email: email,
-            name: name,
-            voivodeshipId: voivodeship.id,
-            city: city,
-            genresId: genres && genres.map(genre => genre.id),
-            instrumentsId: instruments && instruments.map(instrument => instrument.id),
-            members: members && members.map(member => (member.user ? {
-                name: member.name,
-                userId: member.user.id
-            } : {name: member.name})),
-            status: status && status.map(stat => (stat.withInstrument ? {
-                instrumentId: stat.instrument.id,
-                statusId: stat.id
-            } : {statusId: stat.id})),
-            isArtist: isArtist
-        }
-
-        let userPhoto = {
-            image: profilePhoto,
-            imageUrlDeleted: profilePhotoSrcPrev !== profilePhotoSrc ? profilePhotoSrcPrev : "",
-            defaultImage: profilePhotoSrc === undefined && profilePhoto === undefined
-        }
-
-        let editedProfile = {
-            id: profile && profile.id,
-
-            facebookLink: facebookLink,
-            youtubeLink: youtubeLink,
-            instagramLink: instagramLink,
-            soundcloudLink: soundcloudLink,
-            websiteLink: websiteLink,
-
-            description: description,
-
-            recordingsSrc: recordingsSrc,
-            recordingsNew: recordingsNew,
-            recordingsDeleted: recordingsDeleted,
-
-            gallerySrc: gallerySrc,
-            galleryNew: galleryNew,
-            galleryDeleted: galleryDeleted,
-
-            videoLink: videoLink
-        }
-
-        this.clean(editedAuth);
-        this.clean(editedUser);
-        this.clean(userPhoto);
-
-        console.log(editedAuth);
-        console.log(editedUser);
-        console.log(userPhoto);
-        console.log(editedProfile);
-
-        this.props.editUser(editedAuth, editedUser, userPhoto, newMembers, editedProfile);
-
-        this.props.history.push("/profil/" + auth.uid);
+        this.scrollToTop();
     }
 
     clean = (obj) => {
@@ -249,6 +313,13 @@ class UserProfileEdit extends Component{
         return obj;
     }
 
+    scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
     render() {
         const { auth, user, profile,
             users, usersOrdered, usersArtists,
@@ -258,11 +329,15 @@ class UserProfileEdit extends Component{
             instruments, instrumentsOrdered } = this.props;
         const { id } = this.props.match.params;
 
+        console.log(this.props);
+
         if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
         if (!auth.uid || auth.uid !== id) return <Redirect to={"/logowanie"} />
         if (!auth || !user || !users || !usersOrdered || !usersArtists
             || !statusFiltered || !statusFilteredOrdered || !voivodeships || !voivodeshipsOrdered
             || !genres || !genresOrdered || !instruments || !instrumentsOrdered) return <Loader/>;
+
+
 
         let userType;
         const type1 = {
@@ -306,6 +381,7 @@ class UserProfileEdit extends Component{
                                                     genresOrdered: genresOrdered,
                                                     instrumentsOrdered: instrumentsOrdered,
                                                 }}
+                                                evaluateFields={this.evaluateFields}
                                                 handleUpdate={this.handleUpdate}
                                                 state={this.state}/>
                                         </Col>
@@ -363,7 +439,6 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) => [
         {collection: "users"},
-        {collection: "users", where: ["userId", "==", props.match.params.id]},
         {collection: "status", where: ["type", "in", [props.user && props.user.isArtist ? "artist" : "band", "all"]], storeAs: "statusFiltered"},
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},

@@ -201,8 +201,8 @@ a:active {
     border-bottom: 1px solid var(--text-color-light);
 }
 
-.form-control.is-invalid:hover {
-     border-bottom: 1px solid var(--text-color-error-light);
+.form-group:hover .form-control.is-invalid {
+    border-bottom: 1px solid var(--text-color-error-light);
  }
 
 .form-control:focus {
@@ -215,6 +215,15 @@ a:active {
 .form-control.is-invalid:focus {
     border-bottom: 1px solid var(--text-color-error-light);
     box-shadow: none;
+}
+
+.invalid-feedback {
+    pointer-events: none;
+}
+
+.form-group:hover .invalid-feedback,
+.form-group .invalid-feedback:focus {
+    color: var(--text-color-error-light);
 }
 
 ::-webkit-input-placeholder {
@@ -300,8 +309,42 @@ input:-webkit-autofill {
     border-bottom: 1px solid var(--text-color-light);
 }
 
+.dd-wrapper.is-invalid .dd-header {
+    border-bottom: 1px solid var(--text-color-error);
+}
+
+.dd-wrapper.is-invalid .dd-header + .form-label {
+    color: var(--text-color-error);
+}
+
+.dd-wrapper.is-invalid .dd-header svg {
+    fill: var(--text-color-error);
+}
+
+.dd-wrapper.is-invalid:hover + p {
+    color: var(--text-color-error-light);
+}
+
+
+.dd-wrapper.is-invalid .dd-header:hover {
+    border-bottom: 1px solid var(--text-color-error-light);
+}
+
+.dd-wrapper.is-invalid:focus {
+    border-bottom: 1px solid var(--text-color-error-light);
+    box-shadow: none;
+}
+
 .dd-wrapper .dd-header:hover + .form-label {
     color: var(--text-color-light);
+}
+
+.dd-wrapper.is-invalid .dd-header:hover + .form-label {
+    color: var(--text-color-error-light);
+}
+
+.dd-wrapper.is-invalid .dd-header:hover svg {
+    fill: var(--text-color-error-light);
 }
 
 .dd-wrapper .dd-header .dd-header-title {

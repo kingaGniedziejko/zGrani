@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
-import { Button, Col, Container, Form, Image as Img, Modal, Row } from "react-bootstrap";
+import { Container, Col, Row, Form, Button, Image as Img, Modal, OverlayTrigger, Tooltip} from "react-bootstrap";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -89,12 +89,21 @@ class UserProfile extends Component {
 
         let voivodeship = voivodeships[user.voivodeshipId].name;
 
+        const renderTooltip = (props) => <Tooltip id="button-tooltip" {...props}>Dodaj więcej informacji o sobie</Tooltip>;
+
         const button = auth.uid && auth.uid === id ?
             <div className={"d-flex flex-row align-items-center"}>
                 <Link to={"/profil/" + id + "/edytowanie"} style={{width: "fit-content"}}>
                     <Button variant="outline-accent" size="sm">Edytuj profil</Button>
                 </Link>
-                { profile === undefined ? <ExclamationCircle className={"ml-3"} size={22}/> : ""}
+                { profile === undefined ?
+
+                    <OverlayTrigger placement="top" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
+                        <ExclamationCircle className={"ml-3"} size={22}/>
+                    </OverlayTrigger>
+
+
+                    : ""}
             </div>
             :
             <div className={"mt-2"}>

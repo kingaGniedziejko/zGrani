@@ -27,11 +27,11 @@ class DropdownInput extends Component {
     }
 
     render(){
-        const { placeholder, defaultValue, value = '', list, slug, toggleItem, isMultiple = false, disabled = false, animatedLabel = false} = this.props;
+        const { placeholder, defaultValue, value = '', list, slug, toggleItem, isMultiple = false, disabled = false, animatedLabel = false, isInvalid = false} = this.props;
         const { listOpen } = this.state;
 
         return(
-            <div className="dd-wrapper" style={{width: "100%"}}>
+            <div className={"dd-wrapper" + (isInvalid ? " is-invalid" : "")} style={{width: "100%"}}>
                 <div
                     className={"dd-header d-flex flex-row align-items-center justify-content-between"
                         + (disabled ? " disabled" : " clickable")

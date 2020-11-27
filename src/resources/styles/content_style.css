@@ -96,6 +96,7 @@ audio {
 }
 
 input.is-invalid,
+.form-group:hover input.is-invalid + .form-label,
 input.is-invalid:focus {
     color: var(--text-color-error-light);
 }
