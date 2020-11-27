@@ -64,11 +64,6 @@ class BrowseContent extends Component{
     }
 
     browseFilters = (isArtist) => {
-        const { genres, instruments } = this.props;
-
-        let genresArray = [{id: "all", name: "-"}].concat(genres);
-        let instrumentsArray = [{id: "all", name: "-"}].concat(instruments);
-
         return (
             <Row className={"mb-5 justify-content-center"}>
                 <Col className={"d-flex flex-column flex-sm-row align-items-center align-items-sm-baseline justify-content-center col-11"
@@ -77,27 +72,11 @@ class BrowseContent extends Component{
 
                     <div className={"mr-sm-3 mb-sm-0 block text-left animated-label"}>
                         { this.blockInput("Gatunki", "genres", "genres") }
-                        {/*<Dropdown*/}
-                        {/*    placeholder={"Gatunek"}*/}
-                        {/*    value={this.state.genre}*/}
-                        {/*    list={genresArray}*/}
-                        {/*    slug={"genre"}*/}
-                        {/*    toggleItem={this.toggleSelected}*/}
-                        {/*    animatedLabel*/}
-                        {/*/>*/}
                     </div>
 
                     {isArtist ?
                         <div className={"block text-left animated-label mt-2 mt-sm-0"}>
                             { this.blockInput("Instrumenty", "instruments", "instruments") }
-                            {/*<Dropdown*/}
-                            {/*    placeholder={"Instrument"}*/}
-                            {/*    value={this.state.instrument}*/}
-                            {/*    list={instrumentsArray}*/}
-                            {/*    slug={"instrument"}*/}
-                            {/*    toggleItem={this.toggleSelected}*/}
-                            {/*    animatedLabel*/}
-                            {/*/>*/}
                         </div>
                         : ""
                     }

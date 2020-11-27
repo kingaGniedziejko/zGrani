@@ -74,10 +74,10 @@ small {
     color: var(--accent-1) !important;
 }
 
-.underline {
+a.underline {
     text-decoration: underline;
 }
-.underline:hover {
+a.underline:hover {
     text-decoration: underline;
 }
 

@@ -19,7 +19,7 @@ class UserShortcut extends Component {
             return {
                 name: status[stat.statusId].name + (stat.instrumentId ? (": " + instruments[stat.instrumentId].name) : "")
             }});
-        let voivodeship = voivodeships[user.voivodeshipId].name;
+        let voivodeship = voivodeships[user.voivodeshipId] && voivodeships[user.voivodeshipId].name;
 
         let genresNames = [];
         let instrumentsNames = [];

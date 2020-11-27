@@ -4,7 +4,6 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import isEmpty from "validator/es/lib/isEmpty";
 import equals from "validator/es/lib/equals";
 
 import { signup } from "../../store/actions/authActions";

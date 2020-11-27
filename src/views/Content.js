@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Redirect, Switch, Route } from 'react-router-dom';
 import { connect } from "react-redux";
 
 import '../resources/styles/content_style.css'
@@ -39,10 +39,13 @@ class Content extends Component{
                         <Route exact path={"/regulamin"} component={TermsOfService}/>
                         <Route exact path={"/polityka-prywatnosci"} component={PrivacyPolicy}/>
 
-                        <Route path={"/"} component={ErrorPage}/>
+                        <Route path={"/nie-znaleziono"} component={ErrorPage} status={404}/>
+
+                        <Route>
+                            <Redirect to={"/nie-znaleziono"}/>
+                        </Route>
 
                     </Switch>
-                {/*}*/}
             </div>
         );
     }
