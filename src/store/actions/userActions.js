@@ -41,7 +41,7 @@ export const editUser = (auth, user, userPhoto, newMembers, profile) => {
 }
 
 const createProfile = (auth, profile, firebase, firestore, storage) => {
-    firestore.collection('users').add({
+    firestore.collection('profiles').add({
         userId: auth.id,
         facebookLink: profile.facebookLink,
         youtubeLink: profile.youtubeLink,
@@ -54,7 +54,7 @@ const createProfile = (auth, profile, firebase, firestore, storage) => {
         videoLink: profile.videoLink
     }).then( docRef => {
         profile.galleryNew.forEach( image => {
-            putImageToArray(image, firestore, storage, "profile/gallery/", "users", docRef.id, "imageGallery");
+            putImageToArray(image, firestore, storage, "profile/gallery/", "profiles", docRef.id, "imageGallery");
         })
 
         profile.galleryDeleted.forEach( imageUrl => {
@@ -62,7 +62,7 @@ const createProfile = (auth, profile, firebase, firestore, storage) => {
         })
 
         profile.recordingsNew.forEach( recording => {
-            putImageToArray(recording, firestore, storage, "profile/recordings/", "users", docRef.id, "recordings");
+            putImageToArray(recording, firestore, storage, "profile/recordings/", "profiles", docRef.id, "recordings");
         })
 
         profile.recordingsDeleted.forEach( recordingUrl => {
@@ -72,7 +72,7 @@ const createProfile = (auth, profile, firebase, firestore, storage) => {
 }
 
 const editProfile = (auth, profile, firebase, firestore, storage) => {
-    firestore.collection('users').doc(profile.id).set({
+    firestore.collection('profiles').doc(profile.id).set({
         facebookLink: profile.facebookLink,
         youtubeLink: profile.youtubeLink,
         instagramLink: profile.instagramLink,
@@ -85,7 +85,7 @@ const editProfile = (auth, profile, firebase, firestore, storage) => {
     }, { merge: true })
         .then(() => {
             profile.galleryNew.forEach( image => {
-                putImageToArray(image, firestore, storage, "profile/gallery/", "users", profile.id, "imageGallery");
+                putImageToArray(image, firestore, storage, "profile/gallery/", "profiles", profile.id, "imageGallery");
             })
 
             profile.galleryDeleted.forEach( imageUrl => {
@@ -93,7 +93,7 @@ const editProfile = (auth, profile, firebase, firestore, storage) => {
             })
 
             profile.recordingsNew.forEach( recording => {
-                putImageToArray(recording, firestore, storage, "profile/recordings/", "users", profile.id, "recordings");
+                putImageToArray(recording, firestore, storage, "profile/recordings/", "profiles", profile.id, "recordings");
             })
 
             profile.recordingsDeleted.forEach( recordingUrl => {

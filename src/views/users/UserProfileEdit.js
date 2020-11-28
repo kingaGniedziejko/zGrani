@@ -226,6 +226,7 @@ class UserProfileEdit extends Component{
             errors
         } = this.state;
 
+        console.log(this.state);
 
         if (this.evaluateFields(["login", "email", "name", "voivodeship", "city"])) {
             if (!Object.keys(errors).some((key) => errors[key])) {
@@ -234,7 +235,7 @@ class UserProfileEdit extends Component{
                     id: auth.uid,
                     email: email,
                     password: isNewPasswordSet ? newPassword : "",
-                    hasProfile: profile
+                    hasProfile: profile !== undefined
                 }
 
                 let editedUser = {

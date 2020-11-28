@@ -261,7 +261,7 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) => [
         {collection: "users"},
-        {collection: "status", where: ["type", "in", [props.user && props.user.isArtist ? "artist" : "band", "all"]], storeAs: "statusFiltered"},
+        {collection: "status", where: ["type", "in", [props.match.params.type === "artysta" ? "artist" : "band", "all"]], storeAs: "statusFiltered"},
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},
         {collection: "instruments", orderBy: "name"}
