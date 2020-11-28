@@ -497,7 +497,7 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [
         {collection: "users", storeAs: "allUsers"},
-        {collection: "users", where: ["userId", "==", props.match.params.id]},
+        {collection: "profiles", where: ["userId", "==", props.match.params.id]},
         {collection: "status"},
         {collection: "voivodeships"},
         {collection: "genres", orderBy: "name"},

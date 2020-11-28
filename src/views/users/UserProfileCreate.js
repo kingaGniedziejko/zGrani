@@ -73,7 +73,7 @@ class UserProfileCreate extends Component{
             else {
                 switch (slug) {
                     case "login":
-                        if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
+                        if (value.search(/^[a-z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać małe litery, cyfry, oraz znaki: - . _ ";
                         else {
                             if (this.props.usersOrdered.some(user => user.login === value)) errorMessage = "* Login jest już zajęty";
                             else errorMessage = "";

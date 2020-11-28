@@ -167,7 +167,7 @@ class UserProfileEdit extends Component{
             else {
                 switch (slug) {
                     case "login":
-                        if (value.search(/^[a-zA-Z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać litery, cyfry, oraz znaki: - . _ ";
+                        if (value.search(/^[a-z0-9-._]+$/) === -1) errorMessage = "* Login może zawierać małe litery, cyfry, oraz znaki: - . _";
                         else {
                             if (this.props.usersOrdered.some(user => user.login === value && user.id !== this.props.auth.uid)) errorMessage = "* Login jest już zajęty";
                             else errorMessage = "";
@@ -440,6 +440,7 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) => [
         {collection: "users"},
+        {collection: "profiles", where: ["userId", "==", props.match.params.id]},
         {collection: "status", where: ["type", "in", [props.user && props.user.isArtist ? "artist" : "band", "all"]], storeAs: "statusFiltered"},
         {collection: "voivodeships", orderBy: "name"},
         {collection: "genres", orderBy: "name"},
