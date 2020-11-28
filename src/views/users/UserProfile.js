@@ -140,8 +140,9 @@ class UserProfile extends Component {
                                 </div>
                             </Col>
                             <Col className={"pt-3 pt-md-0 pt-lg-2 pt-xl-3 d-flex flex-column"}>
-                                <h4 className={"mb-1"}>{ user.name }</h4>
-                                <p className={"mb-2"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
+                                <h4 className={""}>{ user.name }</h4>
+                                { auth.uid && auth.uid === id ? <p className={"accent-text mb-2"} style={{fontStyle: "italic"}}>{user.login}</p> : ""}
+                                <p className={"mb-2 mt-1"}>{ user.isArtist ? "Artysta" : "Zespół" }</p>
                                 <div className={"mb-4"}>
                                     <div className={"d-flex flex-row mb-1"}>
                                         <div className={"icon-container mr-2"}>
