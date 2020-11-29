@@ -20,10 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/users/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +116,7 @@
       <workItem from="1605035678578" duration="2270000" />
       <workItem from="1605183612577" duration="52539000" />
       <workItem from="1605444027686" duration="21056000" />
-      <workItem from="1605535616712" duration="65927000" />
+      <workItem from="1605535616712" duration="68152000" />
     </task>
     <servers />
   </component>
@@ -208,11 +205,12 @@
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1606566491964" />
     <state x="88" y="135" width="577" height="566" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1605474914276" />
-    <state x="425" y="197" key="run.anything.popup" timestamp="1606488404428">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="2451" y="-286" key="run.anything.popup" timestamp="1606661521409">
+      <screen x="1920" y="-532" width="1920" height="1080" />
     </state>
     <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1601402373360" />
     <state x="425" y="197" key="run.anything.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1606488404428" />
+    <state x="2451" y="-286" key="run.anything.popup/0.0.1536.864/1920.-532.1920.1080@1920.-532.1920.1080" timestamp="1606661521409" />
     <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1603896105702" />
     <state x="430" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1606568181062">
       <screen x="0" y="0" width="1536" height="864" />

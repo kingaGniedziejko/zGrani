@@ -33,7 +33,7 @@ class BlocksRecords extends Component{
                     id={id}
                     type="file"
                     className="custom-file-input position-absolute"
-                    style={{top: 0, right: 0, height: "31px"}}
+                    style={{top: 0, right: 0, height: "31px", width: "unset"}}
                     multiple={true}
                     onChange={this.selectFiles}/>
                 <Button variant="outline-accent" size="sm" className={"px-4"}>Dodaj</Button>
