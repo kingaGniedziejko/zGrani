@@ -3,9 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
-import photo1 from '../../../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg';
-import photo2 from '../../../resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg';
-import photo3 from '../../../resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg';
+import photo1 from '../../../resources/images/lacey-williams-0c9CmxU0EJI-unsplash.webp';
+import photo2 from '../../../resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.webp';
+import photo3 from '../../../resources/images/oscar-keys-ojVMh1QTVGY-unsplash.webp';
 
 function HomePage (props){
     if (props.auth.uid && !props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
@@ -15,7 +15,7 @@ function HomePage (props){
             <div className={"section photo-section d-flex flex-column align-items-center"}>
                 <div id={"title-text"} className={"section-content mt-1 mt-sm-4 mt-lg-5 px-3"}>
                     <h1 className="text-center mb-1">zGrani</h1>
-                    <h4 className="text-center mb-3">portal dla muzyków i nie tylko</h4>
+                    <h2 className="text-center mb-3" style={{fontSize: "1.5rem"}}>portal dla muzyków i nie tylko</h2>
                     <p className="text-center">Stwórz profil, załóż zespół, znajdź zastępstwo, zatrudnij twórcę</p>
                 </div>
             </div>
@@ -23,7 +23,7 @@ function HomePage (props){
                 <Container className={"section-content"}>
                     <Row className="py-5 justify-content-center">
                         <Col className="col-12 col-sm-8 col-lg-4 mt-5 mt-lg-0 d-flex flex-column align-items-center">
-                            <Image src={photo1} fluid className="my-5"/>
+                            <Image src={photo1} fluid className="my-5" alt={"Artysta"}/>
                             <h5 className="text-center mb-3">Stwórz swoje osobiste konto</h5>
                             <p className="text-center dark-text mb-4">
                                 Stwórz profil, wyraź siebie, pokaż nam na czym grasz,
@@ -35,7 +35,7 @@ function HomePage (props){
                             </Link>
                         </Col>
                         <Col className="col-12 col-sm-8 col-lg-4 mt-5 mt-lg-0 d-flex flex-column align-items-center">
-                            <Image src={photo2} fluid className="my-5"/>
+                            <Image src={photo2} fluid className="my-5" alt={"Zespół"}/>
                             <h5 className="text-center mb-3">Stwórzcie konto zespołu</h5>
                             <p className="text-center dark-text mb-4">
                                 Pokażcie swoje portfolio, szukajcie nowych członków,
@@ -47,7 +47,7 @@ function HomePage (props){
                             </Link>
                         </Col>
                         <Col className="col-12 col-sm-8 col-lg-4 mt-5 mt-lg-0 d-flex flex-column align-items-center">
-                            <Image src={photo3} fluid className="my-5"/>
+                            <Image src={photo3} fluid className="my-5" alt={"Szukaj twórcy"}/>
                             <h5 className="text-center mb-3">Znajdź artystę</h5>
                             <p className="text-center dark-text mb-4">
                                 Organizujesz wydarzenie?

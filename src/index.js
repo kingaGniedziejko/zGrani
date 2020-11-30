@@ -11,6 +11,7 @@ import firebase from "firebase/app";
 import 'firebase/database';
 import firebaseConfig from "./firebaseConfig";
 import Loader from "./views/layout/Loader";
+// import * as serviceWorker from "./serviceWorker"
 
 const store = createStore(rootReducer,
     compose (
@@ -53,3 +54,4 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root'));
 
+// serviceWorker.unregister();

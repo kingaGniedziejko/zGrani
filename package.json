@@ -36,7 +36,8 @@
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
     "uuid": "^8.3.1",
-    "validator": "^13.1.17"
+    "validator": "^13.1.17",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
