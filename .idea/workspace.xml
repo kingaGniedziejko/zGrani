@@ -22,11 +22,9 @@
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Content.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/styles/profile_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/profile_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/layout/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/forms/PersonalDataFormGroup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/users/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/users/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfileEdit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +125,7 @@
       <workItem from="1605183612577" duration="52539000" />
       <workItem from="1605444027686" duration="21056000" />
       <workItem from="1605535616712" duration="88145000" />
-      <workItem from="1606779278610" duration="7743000" />
+      <workItem from="1606779278610" duration="9174000" />
     </task>
     <servers />
   </component>

@@ -249,6 +249,9 @@ class PersonalDataFormGroup extends Component{
 
         return (
             <Modal
+                id={"password-edit"}
+                aria-labelledby={"password-edit"}
+                backdropClassName={"password-edit"}
                 show={modalShow}
                 onHide={() => this.setState({modalShow: false, isPasswordCorrect: false})}
                 size="md"

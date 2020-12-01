@@ -308,6 +308,8 @@ class UserProfile extends Component {
         return (
             <Modal
                 id={"edit-modal"}
+                aria-labelledby={"profile-edit"}
+                backdropClassName={"profile-edit"}
                 show={editModalShow}
                 onHide={() => this.setState({editModalShow: false})}
                 size="lg"
