@@ -16,6 +16,11 @@ class PersonalDataFormGroup extends Component{
         currentMember: '',
         statusError: '',
 
+        genresLimit: 10,
+        instrumentsLimit: 10,
+        membersLimit: 160,
+        statusLimit: 10,
+
         modalShow: false,
         isPasswordCorrect: false,
     }
@@ -87,20 +92,28 @@ class PersonalDataFormGroup extends Component{
         }
     }
 
-    blockInput = (title, slug, dataSlug) => {
-        let list = this.props.data[dataSlug];
+    blockInput = (title, slug, listSlug, limit) => {
+        let elements = this.props.state[slug];
+        let list = this.props.data[listSlug];
         let error = this.props.state.errors[slug];
 
         return (
             <Form.Group className={"list-select mb-5"} style={{width: "100%"}}>
                 <h6 className={"mb-1"}>{title}</h6>
                 { error ? <p className={"mt-1 error"}>{error}</p> : ""}
+                { elements.length >= limit ? <p className={"mt-1 dark-text"}>Osiągnięto limit {limit} elementów. Jeśli chcesz możesz usuwać już dodane.</p> : ""}
 
                 <div className={"block mt-2 mb-3"}>
-                    <Dropdown placeholder="Wybierz z listy" list={list} slug={slug} toggleItem={this.toggleSelected} isMultiple={true}/>
+                    <Dropdown
+                        placeholder="Wybierz z listy"
+                        list={list}
+                        slug={slug}
+                        toggleItem={this.toggleSelected}
+                        isMultiple={true}
+                        disabled={elements.length >= limit}/>
                 </div>
 
-                <Blocks elementsList={this.props.state[slug]} align={"start"} editable={true} slug={slug} handler={this.handleDelete} flex_1={true}/>
+                <Blocks elementsList={elements} align={"start"} editable={true} slug={slug} handler={this.handleDelete} flex_1={true}/>
             </Form.Group>
         )
     }
@@ -442,8 +455,8 @@ class PersonalDataFormGroup extends Component{
                     <Form.Control.Feedback type="invalid" className={"text-left"}>{state.errors.city}</Form.Control.Feedback>
                 </Form.Group>
 
-                { this.blockInput("Gatunki", "genres", "genresOrdered") }
-                { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments", "instrumentsOrdered") : this.membersInput() }
+                { this.blockInput("Gatunki", "genres", "genresOrdered", this.state.genresLimit) }
+                { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments", "instrumentsOrdered", this.state.instrumentsLimit) : this.membersInput() }
                 { this.statusInput() }
             </div>
         );

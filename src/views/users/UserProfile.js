@@ -21,11 +21,12 @@ import BlocksWithButton from "../layout/displays/BlocksWithButton";
 import ErrorPage from "../layout/static_pages/ErrorPage";
 import Loader from "../layout/Loader";
 import ReactAudioPlayer from "react-audio-player";
+import UserProfileEdit from "./UserProfileEdit";
 
 class UserProfile extends Component {
     state = {
-        modalShow: false,
-
+        messageModalShow: false,
+        editModalShow: false,
         name: (this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) || (!this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) ? '' : this.props.activeUser.name,
         email: this.props.auth && this.props.auth.isLoaded && this.props.auth.isEmpty ? '' : this.props.auth.email,
         subject: '',
@@ -43,13 +44,13 @@ class UserProfile extends Component {
     }
 
     render() {
-        const { user, profile, auth, users, status, voivodeships, genres, instruments } = this.props;
+        const { user, profile, auth, usersOrdered, status, voivodeships, genres, instruments } = this.props;
         const { id } = this.props.match.params;
 
 
         if (this.props.auth.uid && !this.props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
         if (user === null) return <ErrorPage/>
-        if (user === undefined || !users || !status || !voivodeships || !instruments || !genres) return <Loader/>
+        if (user === undefined || !usersOrdered || !status || !voivodeships || !instruments || !genres) return <Loader/>
 
         let sectionArray = [];
 
@@ -88,22 +89,25 @@ class UserProfile extends Component {
             }});
 
         let voivodeship = voivodeships[user.voivodeshipId].name;
-
         const renderTooltip = (props) => <Tooltip id="button-tooltip" {...props}>Dodaj więcej informacji o sobie</Tooltip>;
 
         const button = auth.uid && auth.uid === id ?
             <div className={"d-flex flex-row align-items-center"}>
-                <Link to={"/profil/" + id + "/edytowanie"} style={{width: "fit-content"}}>
-                    <Button variant="outline-accent" size="sm">Edytuj profil</Button>
-                </Link>
-                { profile === undefined ?
+                <Button
+                    variant="outline-accent"
+                    size="sm"
+                    onClick={() => this.setState({editModalShow: true})}
+                >
+                    Edytuj profil
+                </Button>
 
+                { profile === undefined ?
                     <OverlayTrigger placement="top" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
                         <ExclamationCircle className={"ml-3"} size={22}/>
                     </OverlayTrigger>
-
-
-                    : ""}
+                    : ""
+                }
+                {this.displayEditModal()}
             </div>
             :
             <div className={"mt-2"}>
@@ -111,12 +115,13 @@ class UserProfile extends Component {
                     variant="outline-accent"
                     size="sm"
                     onClick={() => {this.setState({
-                        modalShow:true,
+                        messageModalShow:true,
                         name: (this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) || (!this.props.activeUser.isLoaded && this.props.activeUser.isEmpty) ? '' : this.props.activeUser.name,
+                        email: this.props.auth && this.props.auth.isLoaded && this.props.auth.isEmpty ? '' : this.props.auth.email
                     })}}>
                     Skontaktuj się
                 </Button>
-                {this.displayMessageEdit()}
+                {this.displayMessageModal()}
             </div>
 
         const links = (
@@ -182,9 +187,7 @@ class UserProfile extends Component {
     }
 
     genresInstrumentsMembersSection = (isBgLight) => {
-        const { user, genres, instruments, users } = this.props;
-
-        console.log(users);
+        const { user, genres, instruments, usersOrdered } = this.props;
 
         let genresNames = [];
         let instrumentsNames = [];
@@ -192,9 +195,9 @@ class UserProfile extends Component {
 
         user.genresId && user.genresId.forEach(genre => genresNames.push(genres[genre]));
         user.instrumentsId && user.instrumentsId.forEach(instr => instrumentsNames.push(instruments[instr]));
-        users && user.members && user.members.forEach(member => {
+        usersOrdered && user.members && user.members.forEach(member => {
             members.push({
-                name: member.userId ? users.find(elem => elem.id === member.userId) && users.find(elem => elem.id === member.userId).name : member.name,
+                name: member.userId ? usersOrdered.find(elem => elem.id === member.userId) && usersOrdered.find(elem => elem.id === member.userId).name : member.name,
                 path: member.userId ? "/profil/" + member.userId : "",
                 buttonText: "Odwiedź profil"
             })
@@ -223,13 +226,13 @@ class UserProfile extends Component {
     }
 
     bandsSection = (isBgLight) => {
-        const { user, users } = this.props;
+        const { user, usersOrdered } = this.props;
         let bands = [];
 
-        console.log(users);
+        console.log(usersOrdered);
 
-        users && user.bandsId && user.bandsId.forEach(bandId => {
-            let band = users.find( elem => elem.id === bandId)
+        usersOrdered && user.bandsId && user.bandsId.forEach(bandId => {
+            let band = usersOrdered.find( elem => elem.id === bandId)
             bands.push({
                 name: band.name,
                 path: "/profil/" + bandId,
@@ -296,13 +299,62 @@ class UserProfile extends Component {
         )
     }
 
-    displayMessageEdit = (_) => {
-        const { modalShow } = this.state;
+    displayEditModal = () => {
+        const { editModalShow } = this.state;
+        const { auth, user, users, usersOrdered, usersArtists, profile, status, statusOrdered,
+            voivodeships, voivodeshipsOrdered, genres, genresOrdered, instruments, instrumentsOrdered } = this.props;
+
+        console.log(this.props);
+        return (
+            <Modal
+                id={"edit-modal"}
+                show={editModalShow}
+                onHide={() => this.setState({editModalShow: false})}
+                size="lg"
+                centered>
+                <Modal.Header closeButton/>
+                <Modal.Body>
+                    <UserProfileEdit
+                        auth={auth}
+                        user={user}
+                        users={users}
+                        usersOrdered={usersOrdered}
+                        usersArtists={usersArtists}
+                        profile={profile}
+                        statusFiltered={status}
+                        statusFilteredOrdered={statusOrdered && statusOrdered.filter((s) => s.type === "all" || s.type === (user && user.isArtist ? "artist" : "band"))}
+                        voivodeships={voivodeships}
+                        voivodeshipsOrdered={voivodeshipsOrdered}
+                        genres={genres}
+                        genresOrdered={genresOrdered}
+                        instruments={instruments}
+                        instrumentsOrdered={instrumentsOrdered}
+                        closeModal={this.closeEditModal}
+                        scrollToTop={this.scrollEditModalToTop}
+                    />
+                </Modal.Body>
+            </Modal>
+        );
+    }
+
+    closeEditModal = () => {
+        this.setState({editModalShow: false})
+    }
+
+    scrollEditModalToTop = () => {
+        document.getElementsByClassName("modal")[0].scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    displayMessageModal = () => {
+        const { messageModalShow } = this.state;
 
         return (
             <Modal
-                show={modalShow}
-                onHide={() => this.setState({modalShow: false})}
+                show={messageModalShow}
+                onHide={() => this.setState({messageModalShow: false})}
                 size="md"
                 centered>
                 <Modal.Header closeButton className={"d-flex flex-row justify-content-center pt-4"}>
@@ -418,7 +470,7 @@ class UserProfile extends Component {
                         console.log(error.text);
                     });
                 e.target.reset();
-                this.setState({ modalShow: false });
+                this.setState({ messageModalShow: false });
             }
         }
     }
@@ -482,15 +534,26 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        user: state.firestore.data.allUsers && state.firestore.data.allUsers[ownProps.match.params.id],
-        users: state.firestore.ordered.allUsers,
-        profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
         auth: state.firebase.auth,
         activeUser: state.firebase.profile,
+
+        user: state.firestore.data.allUsers && state.firestore.data.allUsers[ownProps.match.params.id],
+        users: state.firestore.data.allUsers,
+        usersOrdered: state.firestore.ordered.allUsers,
+        usersArtists: state.firestore.ordered.allUsers && state.firestore.ordered.allUsers.filter(user => user.isArtist),
+        profile: state.firestore.ordered.profiles && state.firestore.ordered.profiles[0],
+
         status: state.firestore.data.status,
+        statusOrdered: state.firestore.ordered.status,
+
         voivodeships: state.firestore.data.voivodeships,
+        voivodeshipsOrdered: state.firestore.ordered.voivodeships,
+
         genres: state.firestore.data.genres,
-        instruments: state.firestore.data.instruments
+        genresOrdered: state.firestore.ordered.genres,
+
+        instruments: state.firestore.data.instruments,
+        instrumentsOrdered: state.firestore.ordered.instruments
     }
 }
 

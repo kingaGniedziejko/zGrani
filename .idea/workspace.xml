@@ -20,28 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/diego-sulivan-iDa5Mf7GqRg-unsplash.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/lacey-williams-0c9CmxU0EJI-unsplash.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/oscar-keys-ojVMh1QTVGY-unsplash.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/serviceWorker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/diego-sulivan-iDa5Mf7GqRg-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/hemerson-coelho-Lf-Wbrr6_-Y-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/lacey-williams-0c9CmxU0EJI-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/oscar-keys-ojVMh1QTVGY-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/styles/content_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/styles/content_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Content.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layout/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/forms/PersonalDataFormGroup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/users/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/users/UserProfileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfileEdit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +126,8 @@
       <workItem from="1605035678578" duration="2270000" />
       <workItem from="1605183612577" duration="52539000" />
       <workItem from="1605444027686" duration="21056000" />
-      <workItem from="1605535616712" duration="80018000" />
+      <workItem from="1605535616712" duration="88145000" />
+      <workItem from="1606779278610" duration="7743000" />
     </task>
     <servers />
   </component>
@@ -224,12 +210,12 @@
     </state>
     <state x="2013" y="-492" width="1173" height="787" key="dock-window-1/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602066304951" />
     <state x="380" y="257" width="1145" height="844" key="dock-window-1/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1603366611523" />
-    <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1606566491964">
+    <state x="88" y="135" width="577" height="566" key="find.popup" timestamp="1606765808391">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600620069483" />
     <state x="479" y="149" width="577" height="566" key="find.popup/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1606566491964" />
-    <state x="88" y="135" width="577" height="566" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1605474914276" />
+    <state x="88" y="135" width="577" height="566" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1606765808391" />
     <state x="2451" y="-286" key="run.anything.popup" timestamp="1606661521409">
       <screen x="1920" y="-532" width="1920" height="1080" />
     </state>

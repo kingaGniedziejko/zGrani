@@ -34,7 +34,6 @@ class Content extends Component{
                         <Route exact path={"/potwierdzanie-adresu-email"} component={EmailVerification}/>
 
                         <Route exact path={"/profil/:id"} component={UserProfile}/>
-                        <Route path={"/profil/:id/edytowanie"} component={UserProfileEdit}/>
 
                         <Route exact path={"/regulamin"} component={TermsOfService}/>
                         <Route exact path={"/polityka-prywatnosci"} component={PrivacyPolicy}/>
