@@ -224,14 +224,6 @@ a.image-link:hover img::after {
     height: 50.5vw !important;
 }
 
-.modal-open .modal-backdrop.profile-edit.show {
-
-}
-
-.modal-open .modal[aria-labelledby="profile-edit"] {
-
-}
-
 .modal-open .modal-backdrop.password-edit.show {
     z-index: 1600;
 }
