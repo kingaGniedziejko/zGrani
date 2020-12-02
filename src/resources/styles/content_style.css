@@ -101,6 +101,11 @@ input.is-invalid:focus {
     color: var(--text-color-error-light);
 }
 
+.animated-label .form-control:disabled + .form-label {
+    color: var(--text-color-darker);
+}
+
+
 /*input {*/
 /*    padding-left: 0 !important;*/
 /*}*/

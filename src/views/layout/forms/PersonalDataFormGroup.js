@@ -18,7 +18,7 @@ class PersonalDataFormGroup extends Component{
 
         genresLimit: 10,
         instrumentsLimit: 10,
-        membersLimit: 160,
+        membersLimit: 20,
         statusLimit: 10,
 
         modalShow: false,
@@ -138,10 +138,10 @@ class PersonalDataFormGroup extends Component{
         let elements = this.props.state[slug];
         let newMembers = this.props.state.newMembers;
         const { usersArtists } = this.props.data;
-        let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
 
         switch (operation){
             case "add":
+                let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
                 if (linkedUser) {
                     elements[index].user = linkedUser;
                     newMembers.push(linkedUser.id);
@@ -151,9 +151,10 @@ class PersonalDataFormGroup extends Component{
                 } else
                     return false;
             case "delete":
+                let id = elements[index].user.id;
                 elements[index].user = "";
 
-                let memberIndex = newMembers.indexOf(linkedUser.id);
+                let memberIndex = newMembers.indexOf(id);
                 if (memberIndex !== -1) {
                     elements.splice(memberIndex, 1);
                     this.props.handleUpdate("newMembers", newMembers);
@@ -167,10 +168,19 @@ class PersonalDataFormGroup extends Component{
     }
 
     membersInput = () => {
+        const { membersLimit } = this.state;
+        let isLimited = this.props.state.members.length >= membersLimit;
+
         return (
             <Form.Group className={"mb-5"} style={{width: "100%"}}>
-                <h6 className={"mb-3"}>Członkowie</h6>
-                <div className={"d-flex flex-row mb-3 text-left animated-label"}>
+                <h6 className={"mb-1"}>Członkowie</h6>
+                { isLimited ?
+                    <p className={"mt-1 dark-text"}>
+                        Osiągnięto limit {membersLimit} elementów. Jeśli chcesz możesz usuwać już dodane.
+                    </p>
+                    : ""
+                }
+                <div className={"d-flex flex-row mt-3 mb-3 text-left animated-label"}>
                     <Form.Control
                         id={"currentMember"}
                         type={"text"}
@@ -178,9 +188,10 @@ class PersonalDataFormGroup extends Component{
                         size="sm"
                         className={"mr-2"}
                         autoComplete={"off"}
+                        disabled={isLimited}
                     />
                     <Form.Label>Pseudonim</Form.Label>
-                    <Button variant="outline-accent" size="sm" onClick={this.handleAddMember}>Dodaj</Button>
+                    <Button variant="outline-accent" size="sm" onClick={this.handleAddMember} disabled={isLimited}>Dodaj</Button>
                 </div>
                 <BlocksMembers elementsList={this.props.state.members} align={"start"} editable={true} slug={"members"}
                                handler={this.handleDelete} linkingHandler={this.handleLinkingMember} flex_1={true}/>
@@ -203,14 +214,30 @@ class PersonalDataFormGroup extends Component{
 
     statusInput = () => {
         const list = this.props.data.statusFilteredOrdered;
+        const { statusLimit } = this.state;
         const { type } = this.props;
         const { statusError } = this.state;
 
+        let isLimited = this.props.state.status.length >= statusLimit;
+
         return (
             <Form.Group className={"mb-5"} style={{width: "100%"}}>
-                <h6 className={"mb-2"}>Status</h6>
-                <div className={"block mb-3"}>
-                    <Dropdown placeholder="Wybierz z listy" list={list} slug={"status"} toggleItem={this.toggleSelected} isMultiple={true}/>
+                <h6 className={"mb-1"}>Status</h6>
+                { isLimited ?
+                    <p className={"mt-1 dark-text"}>
+                        Osiągnięto limit {statusLimit} elementów. Jeśli chcesz możesz usuwać już dodane.
+                    </p>
+                    : ""
+                }
+                <div className={"block mt-2 mb-3"}>
+                    <Dropdown
+                        placeholder="Wybierz z listy"
+                        list={list}
+                        slug={"status"}
+                        toggleItem={this.toggleSelected}
+                        isMultiple={true}
+                        disabled={isLimited}
+                    />
                 </div>
                 { statusError
                     ? <p className={"error mb-3"}>{statusError}</p>

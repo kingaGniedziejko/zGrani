@@ -24,6 +24,7 @@ class UserProfileCreate extends Component{
         genres: [],
         instruments: [],
         members: [],
+        newMembers: [],
         status: [],
 
         agreement: false,
@@ -81,19 +82,17 @@ class UserProfileCreate extends Component{
                         break;
                     case "email":
                         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
-                        else errorMessage = "";
+                        else {
+                            if (this.props.usersOrdered.some(user => user.email === value)) errorMessage = "* Istnieje już konto utworzone na podany adres e-mail";
+                            else errorMessage = "";
+                        }
                         break;
                     case "password":
-                    case "newPassword":
                         if (value.length < 6) errorMessage = "* Hasło musi posiadać conajmniej 6 znaków";
                         else errorMessage = "";
                         break;
                     case "passwordRep":
                         if (!equals(value, this.state.password)) errorMessage = "* Hasła muszą być takie same"
-                        else errorMessage = "";
-                        break;
-                    case "newPasswordRep":
-                        if (!equals(value, this.state.newPassword)) errorMessage = "* Hasła muszą być takie same"
                         else errorMessage = "";
                         break;
                     default:
@@ -115,7 +114,7 @@ class UserProfileCreate extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { login, email, password, name, voivodeship, city, genres, instruments, members, status, isArtist, errors } = this.state;
+        const { login, email, password, name, voivodeship, city, genres, instruments, members, newMembers, status, isArtist, errors } = this.state;
 
         console.log(this.state);
 
@@ -141,7 +140,7 @@ class UserProfileCreate extends Component{
                     isArtist: isArtist
                 }
                 console.log(newUser);
-                this.props.signup(newUser);
+                this.props.signup(newUser, newMembers);
             }
         }
 
@@ -253,7 +252,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signup: (newUser) => dispatch(signup(newUser))
+        signup: (newUser, newMembers) => dispatch(signup(newUser, newMembers))
     }
 }
 

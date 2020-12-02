@@ -22,7 +22,9 @@ class BlocksMembersElement extends Component{
 
     handleChange = (e) => {
         this.setState({
-            userLogin: e.target.value
+            userLogin: e.target.value,
+            linkingError: false,
+            linkingErrorMessage: ""
         })
     }
 

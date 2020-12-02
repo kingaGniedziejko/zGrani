@@ -130,29 +130,31 @@ a.underline:hover {
     background-color: var(--transparent);
 }
 
-.btn-outline-white:hover {
+.btn-outline-white:hover:not(:disabled) {
     color: var(--background);
     background-color: var(--text-color);
     border-color: var(--text-color);
 }
 
 .btn-outline-accent,
-.btn-outline-accent *
-{
+.btn-outline-accent * {
     color: var(--accent-1);
     border-color: var(--accent-1);
     background-color: var(--transparent);
 }
 
-.btn-outline-accent:hover
-{
+.btn-outline-accent:hover:not(:disabled) {
     color: var(--background);
     background-color: var(--accent-1);
     border-color: var(--accent-1);
 }
 
-.btn-outline-accent:hover * {
+.btn-outline-accent:hover:not(:disabled) * {
     color: var(--background);
+}
+
+.btn-outline-accent:disabled {
+    color: var(--accent-1);
 }
 
 
@@ -224,6 +226,12 @@ a:active {
 .form-group:hover .invalid-feedback,
 .form-group .invalid-feedback:focus {
     color: var(--text-color-error-light);
+}
+
+.form-control:disabled {
+    background: none;
+    color: var(--text-color-darker);
+    border-bottom-color: var(--text-color-darker);
 }
 
 ::-webkit-input-placeholder {

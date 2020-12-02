@@ -44,7 +44,7 @@ class UserProfileEdit extends Component{
 
         members: (this.props.user && !this.props.user.isArtist && this.props.users && this.props.user.members.map(member => {
             return member.userId
-                ? { name: member.name, user: this.props.users[member.userId] }
+                ? { name: member.name, user: this.props.usersOrdered.find((user) => user.id === member.userId)}
                 : { name: member.name }})) || [],
         newMembers: [],
 
@@ -102,7 +102,10 @@ class UserProfileEdit extends Component{
                         break;
                     case "email":
                         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) errorMessage = "* Nieprawidłowy adres email"
-                        else errorMessage = "";
+                        else {
+                            if (this.props.usersOrdered.some(user => user.email === value && user.id !== this.props.auth.uid)) errorMessage = "* Istnieje już konto utworzone na podany adres e-mail";
+                            else errorMessage = "";
+                        }
                         break;
                     case "password":
                     case "newPassword":

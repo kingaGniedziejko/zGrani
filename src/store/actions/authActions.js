@@ -26,7 +26,7 @@ export const logout = () => {
     }
 }
 
-export const signup = (newUser) => {
+export const signup = (newUser, newMembers) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
@@ -64,6 +64,12 @@ export const signup = (newUser) => {
                             imageUrl: url
                         })
                     }
+
+                    newMembers.forEach(member => {
+                        firestore.collection('users').doc(member).update({
+                            bandsId: firestore.FieldValue.arrayUnion(response.user.uid)
+                        })
+                    })
 
                     const config = {
                         url: process.env.REACT_APP_SIGNUP_REDIRECT,
