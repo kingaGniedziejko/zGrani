@@ -1,7 +1,7 @@
 import {emailUpdate, passwordUpdate} from "./authActions";
 import { v1 as uuidv1 } from 'uuid';
 
-export const editUser = (auth, user, userPhoto, newMembers, profile) => {
+export const editUser = (auth, user, userPhoto, newMembers, deletedMembers, updatedDeletedBands, profile) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
@@ -33,6 +33,17 @@ export const editUser = (auth, user, userPhoto, newMembers, profile) => {
             })
         })
 
+        deletedMembers.forEach(member => {
+            firestore.collection('users').doc(member).update({
+                bandsId: firestore.FieldValue.arrayRemove(auth.id)
+            })
+        })
+
+        updatedDeletedBands.forEach(band => {
+            firestore.collection('users').doc(band.id).update({
+                members: band.updatedMembers
+            })
+        })
 
         return firestore.collection('users').doc(auth.id).set({
             ...user

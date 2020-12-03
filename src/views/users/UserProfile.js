@@ -234,7 +234,7 @@ class UserProfile extends Component {
         usersOrdered && user.bandsId && user.bandsId.forEach(bandId => {
             let band = usersOrdered.find( elem => elem.id === bandId)
             bands.push({
-                name: band.name,
+                name: band && band.name,
                 path: "/profil/" + bandId,
                 buttonText: "Odwiedź profil"
             });

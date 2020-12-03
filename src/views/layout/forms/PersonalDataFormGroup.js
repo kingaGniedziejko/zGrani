@@ -59,7 +59,28 @@ class PersonalDataFormGroup extends Component{
         if (index !== -1) {
             elements.splice(index, 1);
             this.props.handleUpdate(slug, elements);
-            this.setState({ statusError: "" });
+
+            if (slug === "status" ) this.setState({ statusError: "" });
+
+            if (this.props.operation === "edit" && slug === "members" && item.user && item.user.id) {
+                let newMembers = this.props.state.newMembers;
+                let deletedMembers = this.props.state.deletedMembers;
+
+                let indexNew = newMembers.indexOf(item.user.id);
+                if (indexNew !== -1) {
+                    newMembers.splice(indexNew, 1);
+                    this.props.handleUpdate("newMembers", newMembers);
+                } else {
+                    deletedMembers.push(item.user.id);
+                    this.props.handleUpdate("deletedMembers", deletedMembers);
+                }
+            }
+
+            if (this.props.operation === "edit" && slug === "bands"){
+                let deletedBands = this.props.state.deletedBands;
+                deletedBands.push(item);
+                this.props.handleUpdate("deletedBands", deletedBands);
+            }
         }
     }
 
@@ -137,31 +158,44 @@ class PersonalDataFormGroup extends Component{
     handleLinkingMember = (slug, operation, index, login) => {
         let elements = this.props.state[slug];
         let newMembers = this.props.state.newMembers;
+        let deletedMembers = this.props.state.deletedMembers;
         const { usersArtists } = this.props.data;
 
         switch (operation){
             case "add":
-                let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
-                if (linkedUser) {
-                    elements[index].user = linkedUser;
-                    newMembers.push(linkedUser.id);
-                    this.props.handleUpdate(slug, elements);
-                    this.props.handleUpdate("newMembers", newMembers);
-                    return true;
-                } else
-                    return false;
-            case "delete":
-                let id = elements[index].user.id;
-                elements[index].user = "";
+                // if (!elements[index].user && login === elements[index].user.login) {
+                    let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
+                    if (linkedUser) {
+                        elements[index].user = linkedUser;
+                        this.props.handleUpdate(slug, elements);
 
-                let memberIndex = newMembers.indexOf(id);
-                if (memberIndex !== -1) {
-                    elements.splice(memberIndex, 1);
-                    this.props.handleUpdate("newMembers", newMembers);
-                }
-
-                this.props.handleUpdate(slug, elements);
-                return true;
+                        let indexDeleted = deletedMembers.indexOf(linkedUser.id);
+                        if (indexDeleted !== -1) {
+                            deletedMembers.splice(indexDeleted, 1);
+                            this.props.handleUpdate("deletedMembers", deletedMembers);
+                        } else {
+                            newMembers.push(linkedUser.id);
+                            this.props.handleUpdate("newMembers", newMembers);
+                        }
+                        return true;
+                    } else
+                        return false;
+                // }
+                // return true;
+            // case "delete":
+            //     let id = elements[index].user.id;
+            //     elements[index].user = "";
+            //     this.props.handleUpdate(slug, elements);
+            //
+            //     let indexNew = newMembers.indexOf(id);
+            //     if (indexNew !== -1) {
+            //         newMembers.splice(indexNew, 1);
+            //         this.props.handleUpdate("newMembers", newMembers);
+            //     } else {
+            //         deletedMembers.push(id);
+            //         this.props.handleUpdate("deletedMembers", deletedMembers);
+            //     }
+            //     return true;
             default:
                 break;
         }
@@ -487,6 +521,25 @@ class PersonalDataFormGroup extends Component{
 
                 { this.blockInput("Gatunki", "genres", "genresOrdered", this.state.genresLimit) }
                 { userType.typeSlug === "artist" ? this.blockInput("Instrumenty", "instruments", "instrumentsOrdered", this.state.instrumentsLimit) : this.membersInput() }
+
+                {operation === "edit" && userType.typeSlug === "artist" ?
+                    <Form.Group className={"mb-5"} style={{width: "100%"}}>
+                        <h6 className={"mb-3"}>Zespoły</h6>
+                        { state.bands && state.bands.length === 0 ?
+                            <p className={"mt-1 dark-text"}>
+                                Nie jesteś w żadnym zespole. Tylko zespół może Cię dodać.
+                            </p> : ""
+                        }
+                        <Blocks
+                            elementsList={state.bands}
+                            align={"start"}
+                            editable={true}
+                            slug={"bands"}
+                            handler={this.handleDelete}
+                            flex_1={true}/>
+                    </Form.Group>
+                    : ""
+                }
                 { this.statusInput() }
             </div>
         );

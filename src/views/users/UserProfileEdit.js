@@ -42,11 +42,17 @@ class UserProfileEdit extends Component{
                 name: this.props.instruments[instrumentId].name
             }})) || [],
 
-        members: (this.props.user && !this.props.user.isArtist && this.props.users && this.props.user.members.map(member => {
+        members: (this.props.user && !this.props.user.isArtist && this.props.usersOrdered && this.props.user.members.map(member => {
             return member.userId
                 ? { name: member.name, user: this.props.usersOrdered.find((user) => user.id === member.userId)}
                 : { name: member.name }})) || [],
         newMembers: [],
+        deletedMembers: [],
+
+        bands: (this.props.user && this.props.user.isArtist && this.props.usersOrdered && this.props.user.bandsId && this.props.user.bandsId.map(bandId => {
+            return this.props.usersOrdered.find( elem => elem.id === bandId)
+        })) || [],
+        deletedBands: [],
 
         status: (this.props.user && this.props.statusFiltered && this.props.instruments && this.props.user.status.map( stat => {
             return (
@@ -145,8 +151,8 @@ class UserProfileEdit extends Component{
         e.preventDefault();
         const { auth, profile } = this.props;
         const { email, newPassword, isNewPasswordSet, login, name, voivodeship, city, genres, instruments, members,
-            newMembers, status, isArtist, profilePhoto, profilePhotoSrcPrev, profilePhotoSrc, facebookLink,
-            youtubeLink, instagramLink, soundcloudLink, websiteLink, description, gallerySrc, galleryNew,
+            newMembers, deletedMembers, bands, deletedBands, status, isArtist, profilePhoto, profilePhotoSrcPrev, profilePhotoSrc,
+            facebookLink, youtubeLink, instagramLink, soundcloudLink, websiteLink, description, gallerySrc, galleryNew,
             galleryDeleted, recordingsSrc, recordingsNew, recordingsDeleted, videoLink, errors } = this.state;
 
         if (this.evaluateFields(["login", "email", "name", "voivodeship", "city"])) {
@@ -171,6 +177,7 @@ class UserProfileEdit extends Component{
                             name: member.name,
                             userId: member.user.id
                         } : {name: member.name})),
+                    bandsId: bands && bands.map(band => band.id),
                     status: status && status.map(stat => (stat.withInstrument ? {
                             instrumentId: stat.instrument.id,
                             statusId: stat.id
@@ -201,6 +208,25 @@ class UserProfileEdit extends Component{
                     videoLink: videoLink
                 }
 
+                let updatedDeletedBands = deletedBands.map((band) => {
+                    let members = band.members;
+                    let updatedMembers = [];
+                    console.log(members);
+
+                    Object.keys(members).forEach((key) => {
+                        if (members[key].userId){
+                            if (members[key].userId !== auth.uid){
+                                updatedMembers.push(members[key]);
+                            }
+                        } else updatedMembers.push(members[key]);
+                    })
+
+                    return {
+                        id: band.id,
+                        updatedMembers: updatedMembers
+                    }
+                });
+
                 this.clean(editedAuth);
                 this.clean(editedUser);
                 this.clean(userPhoto);
@@ -210,7 +236,7 @@ class UserProfileEdit extends Component{
                 console.log(userPhoto);
                 console.log(editedProfile);
 
-                this.props.editUser(editedAuth, editedUser, userPhoto, newMembers, editedProfile);
+                this.props.editUser(editedAuth, editedUser, userPhoto, newMembers, deletedMembers, updatedDeletedBands, editedProfile);
                 this.props.closeModal();
             }
         }
@@ -296,7 +322,8 @@ class UserProfileEdit extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editUser: (auth, user, userPhoto, newMembers, profile) => dispatch(editUser(auth, user, userPhoto, newMembers, profile))
+        editUser: (auth, user, userPhoto, newMembers, deletedMembers, updatedDeletedBands, profile) =>
+            dispatch(editUser(auth, user, userPhoto, newMembers, deletedMembers, updatedDeletedBands, profile))
     }
 }
 

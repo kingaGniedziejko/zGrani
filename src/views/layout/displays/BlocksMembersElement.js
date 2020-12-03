@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 class BlocksMembersElement extends Component{
     state = {
         isLinking: false,
-        userLogin: "",
+        userLogin: (this.props.elem.user && this.props.elem.user.login) || "",
         isLinked: false,
         linkingError: false,
         linkingErrorMessage: ""
@@ -61,11 +61,11 @@ class BlocksMembersElement extends Component{
             linkingError: false
         })
         // document.getElementById("user-login-" + this.props.index).value = "";
-        this.props.linkingHandler(this.props.slug, "delete", this.props.index);
+        // this.props.linkingHandler(this.props.slug, "delete", this.props.index);
     }
 
     render() {
-        const { isLinking, isLinked, linkingError, linkingErrorMessage } = this.state;
+        const { isLinking, linkingError, linkingErrorMessage } = this.state;
         const { elem, editable, slug, handler } = this.props;
 
         return (
@@ -73,9 +73,13 @@ class BlocksMembersElement extends Component{
                 <div className={"block d-flex flex-row align-items-center background-lighter mb-2 py-2" + (editable ? " pl-3 pr-2" : " px-3")}>
                     <p>{elem.user ? elem.user.name : elem.name}</p>
                     { editable ?
-                        <Button variant="outline-white" onClick={this.displayLinking} size="sm" className={"ml-auto"} style={{fontSize: "0.8rem"}}>
-                            {isLinked ? "Edytuj" : "Załącz profil"}
-                        </Button>
+                        ( elem.user ?
+                            <small className={"text-italic accent-text ml-auto"}>Załączono</small>
+                                :
+                            <Button variant="outline-white" onClick={this.displayLinking} size="sm" className={"ml-auto"} style={{fontSize: "0.8rem"}}>
+                                Załącz profil
+                            </Button>
+                        )
                         :
                         <Link to={"/profil/" + elem.user.id } className="mt-1 mt-md-0 ml-auto">
                             <Button block variant="outline-white" size="sm" onClick={this.props.logout}>Odwiedź profil</Button>

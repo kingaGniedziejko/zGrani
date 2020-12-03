@@ -66,6 +66,10 @@ small {
     font-size: 0.7rem;
 }
 
+.text-italic {
+    font-style: italic;
+}
+
 .dark-text {
     color: var(--text-color-dark) !important;
 }
@@ -476,7 +480,7 @@ textarea.form-control:invalid:hover, textarea.form-control.is-invalid:hover {
 /*   error   */
 .error {
     color: var(--text-color-error);
-    font-style: italic;
+    /*font-style: italic;*/
     font-size: 0.8rem;
 }
 
