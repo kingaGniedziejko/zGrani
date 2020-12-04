@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import {X, Check2} from 'react-bootstrap-icons';
-import {Button, Form} from "react-bootstrap";
+import {X, Check2, ExclamationCircle} from 'react-bootstrap-icons';
+import {Button, Form, OverlayTrigger, Tooltip} from "react-bootstrap";
 import isEmpty from "validator/es/lib/isEmpty";
 import {Link} from "react-router-dom";
 
 class BlocksMembersElement extends Component{
     state = {
         isLinking: false,
-        userLogin: (this.props.elem.user && this.props.elem.user.login) || "",
+        userLogin: "",
         isLinked: false,
         linkingError: false,
         linkingErrorMessage: ""
@@ -37,17 +37,19 @@ class BlocksMembersElement extends Component{
                 linkingErrorMessage: "* Należy podać unikalny login aktywnego użytkownika aplikacji - artysty"
             })
         } else {
-            if (this.props.linkingHandler(this.props.slug, "add", this.props.index, login)) {
+            let errorMessage = this.props.linkingHandler(this.props.slug, this.props.index, login)
+            if (errorMessage === "") {
                 this.setState({
                     isLinked: true,
                     isLinking: false,
                     linkingError: false,
-                    linkingErrorMessage: ""
+                    linkingErrorMessage: "",
+                    userLogin: ""
                 })
             } else {
                 this.setState({
                     linkingError: true,
-                    linkingErrorMessage: "* Nie ma takiego artysty"
+                    linkingErrorMessage: errorMessage
                 })
             }
         }
@@ -68,13 +70,17 @@ class BlocksMembersElement extends Component{
         const { isLinking, linkingError, linkingErrorMessage } = this.state;
         const { elem, editable, slug, handler } = this.props;
 
+        const renderTooltip = (props) => <Tooltip id="login-tooltip" {...props}>{elem.user.login}</Tooltip>;
+
         return (
             <>
                 <div className={"block d-flex flex-row align-items-center background-lighter mb-2 py-2" + (editable ? " pl-3 pr-2" : " px-3")}>
                     <p>{elem.user ? elem.user.name : elem.name}</p>
                     { editable ?
                         ( elem.user ?
-                            <small className={"text-italic accent-text ml-auto"}>Załączono</small>
+                            <OverlayTrigger placement="top" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
+                                <small className={"text-italic accent-text ml-auto"}>Załączono</small>
+                            </OverlayTrigger>
                                 :
                             <Button variant="outline-white" onClick={this.displayLinking} size="sm" className={"ml-auto"} style={{fontSize: "0.8rem"}}>
                                 Załącz profil

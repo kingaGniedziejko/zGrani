@@ -155,50 +155,29 @@ class PersonalDataFormGroup extends Component{
         }
     }
 
-    handleLinkingMember = (slug, operation, index, login) => {
-        let elements = this.props.state[slug];
+    handleLinkingMember = (slug, index, login) => {
+        let members = this.props.state[slug];
         let newMembers = this.props.state.newMembers;
         let deletedMembers = this.props.state.deletedMembers;
         const { usersArtists } = this.props.data;
 
-        switch (operation){
-            case "add":
-                // if (!elements[index].user && login === elements[index].user.login) {
-                    let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
-                    if (linkedUser) {
-                        elements[index].user = linkedUser;
-                        this.props.handleUpdate(slug, elements);
+        let linkedUser = usersArtists && usersArtists.find(user => user.login === login);
 
-                        let indexDeleted = deletedMembers.indexOf(linkedUser.id);
-                        if (indexDeleted !== -1) {
-                            deletedMembers.splice(indexDeleted, 1);
-                            this.props.handleUpdate("deletedMembers", deletedMembers);
-                        } else {
-                            newMembers.push(linkedUser.id);
-                            this.props.handleUpdate("newMembers", newMembers);
-                        }
-                        return true;
-                    } else
-                        return false;
-                // }
-                // return true;
-            // case "delete":
-            //     let id = elements[index].user.id;
-            //     elements[index].user = "";
-            //     this.props.handleUpdate(slug, elements);
-            //
-            //     let indexNew = newMembers.indexOf(id);
-            //     if (indexNew !== -1) {
-            //         newMembers.splice(indexNew, 1);
-            //         this.props.handleUpdate("newMembers", newMembers);
-            //     } else {
-            //         deletedMembers.push(id);
-            //         this.props.handleUpdate("deletedMembers", deletedMembers);
-            //     }
-            //     return true;
-            default:
-                break;
-        }
+        if (linkedUser) {
+            if (!members.some( member => member.user && member.user.id === linkedUser.id)) {
+                members[index].user = linkedUser;
+                this.props.handleUpdate(slug, members);
+                let indexDeleted = deletedMembers.indexOf(linkedUser.id);
+                if (indexDeleted !== -1) {
+                    deletedMembers.splice(indexDeleted, 1);
+                    this.props.handleUpdate("deletedMembers", deletedMembers);
+                } else {
+                    newMembers.push(linkedUser.id);
+                    this.props.handleUpdate("newMembers", newMembers);
+                }
+                return "";
+            } else return "* Artysta jest już dodany";
+        } else return "* Nie ma takiego artysty";
     }
 
     membersInput = () => {
