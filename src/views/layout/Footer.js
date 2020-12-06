@@ -14,7 +14,7 @@ function Footer (){
                 <Link to={"/polityka-prywatnosci"} className="mx-2 my-1 my-md-1 align-self-md-center">Polityka&nbsp;prywatności</Link>
             </div>
             <div id={"copyright"} className="ml-auto p-2 accent-text">
-                Copyright © 2020 zGrani
+                Developed by Kinga Gniedziejko
             </div>
         </div>
     );

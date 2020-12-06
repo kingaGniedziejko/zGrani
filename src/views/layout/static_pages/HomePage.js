@@ -3,9 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
-import photo1 from '../../../resources/images/lacey-williams-0c9cmxu0eji-unsplash.webp';
-import photo2 from '../../../resources/images/glenn-van-de-wiel-dwhsc8o8k9y-unsplash.webp';
-import photo3 from '../../../resources/images/oscar-keys-ojvmh1qtvgy-unsplash.webp';
+import photo1 from '../../../resources/images/lacey-williams-0c9cmxu0eji-unsplash.jpg';
+import photo2 from '../../../resources/images/glenn-van-de-wiel-dwhsc8o8k9y-unsplash.jpg';
+import photo3 from '../../../resources/images/oscar-keys-ojvmh1qtvgy-unsplash.jpg';
 
 function HomePage (props){
     if (props.auth.uid && !props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>

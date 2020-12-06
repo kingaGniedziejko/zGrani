@@ -20,11 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="024cd41d-4868-4ea7-8ea2-35955165fd0d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/resources/images/glenn-van-de-wiel-dwhsc8o8k9y-unsplash.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/lacey-williams-0c9cmxu0eji-unsplash.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/oscar-keys-ojvmh1qtvgy-unsplash.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/displays/BlocksMembersElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/displays/BlocksMembersElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/forms/PersonalDataFormGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/forms/PersonalDataFormGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/diego-sulivan-iDa5Mf7GqRg-unsplash.webp" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/diego-sulivan-iDa5Mf7GqRg-unsplash.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/glenn-van-de-wiel-DWHSc8o8K9Y-unsplash.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/lacey-williams-0c9CmxU0EJI-unsplash.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/oscar-keys-ojVMh1QTVGY-unsplash.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layout/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,12 +50,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JsFlowSettings">
-    <service-enabled>true</service-enabled>
-    <exe-path />
-    <other-services-enabled>true</other-services-enabled>
-    <auto-save>true</auto-save>
-  </component>
   <component name="ProjectId" id="1hXt6X7pefa2YYzQZOGSMpsWoxq" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -60,6 +61,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
@@ -125,7 +127,11 @@
       <workItem from="1605183612577" duration="52539000" />
       <workItem from="1605444027686" duration="21056000" />
       <workItem from="1605535616712" duration="88145000" />
-      <workItem from="1606779278610" duration="37019000" />
+      <workItem from="1606779278610" duration="37999000" />
+      <workItem from="1607092132281" duration="219000" />
+      <workItem from="1607092430567" duration="1048000" />
+      <workItem from="1607112864218" duration="5000" />
+      <workItem from="1607207733917" duration="2315000" />
     </task>
     <servers />
   </component>
@@ -154,10 +160,10 @@
     <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/-1920.-438.1920.1080@0.0.1536.864" timestamp="1600258962379" />
     <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1920.-524.1920.1080@0.0.1536.864" timestamp="1602065348763" />
     <state x="536" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1605187536753" />
-    <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1603443857822">
+    <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1607092338777">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1603443857822" />
+    <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.864/1920.-532.1920.1080@0.0.1536.864" timestamp="1607092338777" />
     <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600171230000">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
