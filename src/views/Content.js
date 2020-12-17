@@ -21,29 +21,23 @@ class Content extends Component{
     render() {
         return (
             <div className={"content"}>
-                    <Switch>
-                        <Route exact path={"/"} component={HomePage}/>
-                        <Route path={"/przegladaj"} component={Browse}/>
-                        <Route path={"/szukaj"} component={Search}/>
-
-                        <Route exact path={"/logowanie"} component={Login}/>
-                        <Route exact path={"/zapomnialem-hasla"} component={ForgotPassword}/>
-                        <Route exact path={"/rejestracja"} component={Signup}/>
-                        <Route exact path={"/rejestracja/:type"} component={UserProfileCreate}/>
-                        <Route exact path={"/potwierdzanie-adresu-email"} component={EmailVerification}/>
-
-                        <Route exact path={"/profil/:id"} component={UserProfile}/>
-
-                        <Route exact path={"/regulamin"} component={TermsOfService}/>
-                        <Route exact path={"/polityka-prywatnosci"} component={PrivacyPolicy}/>
-
-                        <Route path={"/nie-znaleziono"} component={ErrorPage} status={404}/>
-
-                        <Route>
-                            <Redirect to={"/nie-znaleziono"}/>
-                        </Route>
-
-                    </Switch>
+                <Switch>
+                    <Route exact path={"/"} component={HomePage}/>
+                    <Route exact path={"/przegladaj"} component={Browse}/>
+                    <Route exact path={"/szukaj"} component={Search}/>
+                    <Route exact path={"/logowanie"} component={Login}/>
+                    <Route exact path={"/zapomnialem-hasla"} component={ForgotPassword}/>
+                    <Route exact path={"/rejestracja"} component={Signup}/>
+                    <Route exact path={"/rejestracja/:type"} component={UserProfileCreate}/>
+                    <Route exact path={"/potwierdzanie-adresu-email"} component={EmailVerification}/>
+                    <Route exact path={"/profil/:id"} component={UserProfile}/>
+                    <Route exact path={"/regulamin"} component={TermsOfService}/>
+                    <Route exact path={"/polityka-prywatnosci"} component={PrivacyPolicy}/>
+                    <Route path={"/nie-znaleziono"} component={ErrorPage} status={404}/>
+                    <Route>
+                        <Redirect to={"/nie-znaleziono"}/>
+                    </Route>
+                </Switch>
             </div>
         );
     }

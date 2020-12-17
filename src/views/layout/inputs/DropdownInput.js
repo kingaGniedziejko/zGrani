@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {ChevronDown, ChevronUp} from "react-bootstrap-icons";
 import listensToClickOutside from 'react-onclickoutside';
 
-
 class DropdownInput extends Component {
     constructor(props){
         super(props)

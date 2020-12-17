@@ -7,7 +7,7 @@ import photo1 from '../../../resources/images/lacey-williams-0c9cmxu0eji-unsplas
 import photo2 from '../../../resources/images/glenn-van-de-wiel-dwhsc8o8k9y-unsplash.jpg';
 import photo3 from '../../../resources/images/oscar-keys-ojvmh1qtvgy-unsplash.jpg';
 
-function HomePage (props){
+function HomePage(props){
     if (props.auth.uid && !props.auth.emailVerified) return <Redirect to={"/potwierdzanie-adresu-email"}/>
 
     return (

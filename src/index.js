@@ -40,7 +40,6 @@ function AuthIsLoaded({ children }) {
     if (!isLoaded(auth)) {
         return <Loader/>;
     }
-
     return children
 }
 
