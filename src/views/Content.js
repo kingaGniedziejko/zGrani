@@ -11,7 +11,6 @@ import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import UserProfile from "./users/UserProfile";
 import UserProfileCreate from "./users/UserProfileCreate";
-import UserProfileEdit from "./users/UserProfileEdit";
 import TermsOfService from "./layout/static_pages/TermsOfService";
 import PrivacyPolicy from "./layout/static_pages/PrivacyPolicy";
 import ForgotPassword from "./auth/ForgotPassword";
