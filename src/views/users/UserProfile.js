@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from "react-router-dom";
-import { Container, Col, Row, Form, Button, Image as Img, Modal, OverlayTrigger, Tooltip} from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import { Container, Col, Row, Button, Image as Img, Modal, OverlayTrigger, Tooltip} from "react-bootstrap";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import emailjs from 'emailjs-com';
 import ReactPlayer from "react-player";
-import isEmpty from "validator/es/lib/isEmpty";
-import isEmail from "validator/es/lib/isEmail";
 
 import "../../resources/styles/profile_style.css";
 
@@ -87,11 +84,9 @@ class UserProfile extends Component {
 
         const button = auth.uid && auth.uid === id ?
             <div className={"d-flex flex-row align-items-center"}>
-                <Button
-                    variant="outline-accent"
-                    size="sm"
-                    onClick={() => this.setState({editModalShow: true})}
-                >
+                <Button variant="outline-accent"
+                        size="sm"
+                        onClick={() => this.setState({editModalShow: true})}>
                     Edytuj profil
                 </Button>
 
@@ -104,7 +99,7 @@ class UserProfile extends Component {
                 {this.displayEditModal()}
             </div>
             :
-            <div className={"mt-2"}>
+            <div className={"mt-0 mt-sm-2 align-self-end align-self-sm-start"}>
                 <Button
                     variant="outline-accent"
                     size="sm"

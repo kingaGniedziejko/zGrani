@@ -23,14 +23,9 @@
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/header/LoggedInButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/header/LoggedInButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/header/LoggedOutButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/header/LoggedOutButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/inputs/DropdownInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/inputs/DropdownInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/layout/static_pages/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/users/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/UserProfile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +129,7 @@
       <workItem from="1607346034132" duration="1784000" />
       <workItem from="1607640664192" duration="3910000" />
       <workItem from="1607649012652" duration="1291000" />
-      <workItem from="1608202521318" duration="6947000" />
+      <workItem from="1608202521318" duration="10660000" />
     </task>
     <servers />
   </component>
